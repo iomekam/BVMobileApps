@@ -1,0 +1,24 @@
+﻿*{
+    -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing:border-box; box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    width: 100%;
+    width: 100%;
+    position: relative;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+h1 {
+    line-height: 200%;
+    margin: 30px auto;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: 100;
+}
