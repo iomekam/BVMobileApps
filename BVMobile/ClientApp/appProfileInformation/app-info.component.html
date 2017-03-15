@@ -1,76 +1,22 @@
-﻿﻿<div class="row">
-    <div class="row col s12">
-        <div class="row col s12">
-
-            <div class="col s3 flex_container">
-                <div class="numberCircle fixed" style="text-align: center">1</div>
-                <div class="flex-item valign-wrapper">
-                    <span class="numberCircleText valign">App Info</span>
-                </div>
-            </div>
-
-            <div class="col s3 flex_container">
-                <div class="numberCircle fixed" style="text-align: center">2</div>
-                <div class="flex-item valign-wrapper">
-                    <span class="numberCircleText valign">Profile Info</span>
-                </div>
-            </div>
-
-            <div class="col s3 flex_container">
-                <div class="numberCircle fixed" style="text-align: center">3</div>
-                <div class="flex-item valign-wrapper">
-                    <span class="numberCircleText valign">Blog Posts</span>
-                </div>
-            </div>
-
-            <div class="col s3 flex_container">
-                <div class="numberCircle fixed" style="text-align: center">4</div>
-                <div class="flex-item valign-wrapper">
-                    <span class="numberCircleText valign">Create!</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="card white darken-1 col s12">
-            <div class="card-content black-text ">
-                <div class="card-content blue lighten-4 ">
-
-                    <form class="card white darken-1 card-content black-text row">
-                        <div class="row input-field">
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name" class="active">App Name</label>
-                        </div>
-                    </form>
-
-                    <form class="row card white darken-1 card-content black-text">
-                        <div class="row input-field">
-                            <textarea id="last_name" class="materialize-textarea"></textarea>
-                            <label for="last_name" class="active">App Description</label>
-                        </div>
-
-                        <div class="row input-field">
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name" class="active">Short App Description</label>
-                        </div>
-
-                        <div class="row input-field">
-                            <input id="last_name" type="text" class="validate">
-                            <label for="last_name" class="active">KeyWords</label>
-                        </div>
-                    </form>
-
-                </div>
-
-                <div class="right-align">
-                    <br />
-                    <br />
-
-                    <button class="btn waves-effect waves-light" type="submit" name="action">
-                        Save and continue
-                        <i class="material-icons right">send</i>
-                    </button>
-                </div>
-            </div>
-        </div>
+﻿<form class="card white darken-1 card-content black-text">
+    <div class="input-field">
+        <input id="last_name" type="text" class="validate">
+        <label for="last_name" class="active">App Name</label>
     </div>
+</form>
+
+<form class="card white darken-1 card-content black-text">
+    <div class="row input-field">
+        <input id="last_name" type="text" class="validate">
+        <label for="last_name" class="active">Short App Description</label>
+    </div>
+
+    <div class="input-field">
+        <textarea id="last_name" class="materialize-textarea"></textarea>
+        <label for="last_name" class="active">Long App Description</label>
+    </div> 
+</form>
+
+<div class="card white darken-1 card-content">
+    <rl-tag-input placeholder="Add keywords" addOnSpace="true" allowDuplicates="false"></rl-tag-input>
 </div>

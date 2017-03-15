@@ -6,9 +6,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var shared_module_1 = require("../shared/shared.module");
 var app_profile_info_module_1 = require("../appProfileInformation/app-profile-info.module");
 var profile_registration_component_1 = require("./profile-registration.component");
+var header_component_1 = require("./header.component");
 var ProfileRegistrationModule = (function () {
     function ProfileRegistrationModule() {
     }
@@ -17,9 +19,11 @@ var ProfileRegistrationModule = (function () {
 ProfileRegistrationModule = __decorate([
     core_1.NgModule({
         declarations: [
-            profile_registration_component_1.ProfileRegistrationComponent
+            profile_registration_component_1.ProfileRegistrationComponent,
+            header_component_1.ProfileRegistrationHeader
         ],
         imports: [
+            router_1.RouterModule,
             shared_module_1.SharedModule,
             app_profile_info_module_1.AppProfileInformationModule
         ],
