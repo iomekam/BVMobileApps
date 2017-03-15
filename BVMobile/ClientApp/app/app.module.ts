@@ -3,7 +3,9 @@ import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
 
 import { AppComponent } from './app.component'
-import { DeviceMockupModule } from '../deviceMockup/device-mockup.module'
+
+import { ProfileRegistrationModule } from '../profileRegistration/profile-registration.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -12,7 +14,12 @@ import { DeviceMockupModule } from '../deviceMockup/device-mockup.module'
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
-        DeviceMockupModule
+        RouterModule.forRoot([
+            { path: '', redirectTo: '', pathMatch: 'full' },
+            { path: '**', redirectTo: '', pathMatch: 'full' }
+        ]),
+        ProfileRegistrationModule,
+        SharedModule
     ],
     providers: [
     ]
