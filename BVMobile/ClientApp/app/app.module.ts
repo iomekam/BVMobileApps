@@ -8,7 +8,9 @@ import { MdIconModule } from '@angular2-material/icon';
 import { MdIconRegistry } from '@angular2-material/icon';
 
 import { AppComponent } from './app.component'
-import { DeviceMockupModule } from '../deviceMockup/device-mockup.module'
+
+import { ProfileRegistrationModule } from '../profileRegistration/profile-registration.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
     bootstrap: [ AppComponent ],
@@ -17,10 +19,12 @@ import { DeviceMockupModule } from '../deviceMockup/device-mockup.module'
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
-        MdCardModule,
-        MdButtonModule,
-        MdIconModule,
-        DeviceMockupModule
+        RouterModule.forRoot([
+            { path: '', redirectTo: '', pathMatch: 'full' },
+            { path: '**', redirectTo: '', pathMatch: 'full' }
+        ]),
+        ProfileRegistrationModule,
+        SharedModule
     ],
     providers: [
         
