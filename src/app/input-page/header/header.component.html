@@ -1,0 +1,18 @@
+﻿<nav>
+  <ol class="cd-breadcrumb triangle custom-icons">
+    <li 
+        [ngClass]="{'current': isAppInfoCurrent }"
+        (click)="toggleCurrent(isAppInfoCurrent)">
+      <a [routerLink]="['/app-info']" skipLocationChange>App info</a>
+    </li>
+    <li [ngClass]="{'current': isProfileInfoCurrent }"
+        (click)="toggleCurrent(profileInfoID)">
+      <a [routerLink]="['/app-profile-info']" skipLocationChange>Profile Info</a>
+    </li>
+    <li [ngClass]="{'current': isBlogCurrent }"
+        (click)="toggleCurrent(blogInfoID)">
+      <a [routerLink]="['/app-blog']" skipLocationChange>Blog</a>
+    </li>
+    <li><em>Design</em></li>
+  </ol>
+</nav>

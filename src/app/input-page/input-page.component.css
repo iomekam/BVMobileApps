@@ -1,0 +1,12 @@
+﻿.demo-card-blue {
+  background-color: #BBDEFB;
+  .mat-card-actions {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.card-width {
+  width:650px;
+  max-width:650px
+}
