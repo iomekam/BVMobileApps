@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IAppInfo } from '../profile-info/app-info/iapp-info';
 import { AppInfoUpdateServiceService } from '../profile-info/app-info/app-info-update-service.service';
 
@@ -60,6 +60,10 @@ export class InputPageComponent implements OnInit {
             longDescription: '',
             keywords: []
         };
+    }
+
+    ngOnDestroy(): void {
+        this._appInfoUpdateService.emitSource.unsubscribe();
     }
 
 }
