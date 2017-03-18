@@ -8,12 +8,16 @@ import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppInfoComponent } from './app-info/app-info.component';
+import { AppProfileInfoComponent } from './app-profile-info/app-profile-info.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   imports: [
       CommonModule,
       RouterModule.forChild([
-          { path: 'noop', component: AppInfoComponent },
+          { path: 'app-info', component: AppInfoComponent },
+          { path: 'app-profile-info', component: AppProfileInfoComponent },
+          { path: 'app-blog', component: BlogComponent },
       ]),
       FormsModule,
       ReactiveFormsModule,
@@ -22,6 +26,8 @@ import { AppInfoComponent } from './app-info/app-info.component';
     ],
   declarations: [
       AppInfoComponent,
+      AppProfileInfoComponent,
+      BlogComponent,
   ],
   exports: [
       AppInfoComponent,    

@@ -19,9 +19,6 @@ import { HeaderComponent } from './header/header.component';
       CommonModule,
       RouterModule.forChild([
           { path: '', component: AppInfoComponent },
-          { path: 'app-info', component: AppInfoComponent },
-          { path: 'app-profile-info', component: AppInfoComponent },
-          { path: 'app-blog', component: AppInfoComponent },
       ]),
       FormsModule,
       SharedModule,
