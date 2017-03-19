@@ -3,7 +3,6 @@
     <div class="col s8">
       <div>
         <bv-input-page-header [current]="currentHeader" (currentChanged)="onCurrentHeaderChanged($event)"></bv-input-page-header>
-
         <div class="card-width">
           <md-card>
             <md-card-content>
@@ -30,8 +29,9 @@
 
     </div>
 
-    <bv-device-mockup [headerText]="appInfo.appName" class="col s4"></bv-device-mockup>
-
+    <div class="col s4">
+      <bv-device-mockup [headerText]="appInfo.appName" class="locked"></bv-device-mockup>
+    </div>
   </div>
 </div>
 

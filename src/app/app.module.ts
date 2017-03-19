@@ -8,6 +8,7 @@ import { InputPageModule } from './input-page/input-page.module';
 import { AppComponent } from './app.component';
 
 import { AppInfoUpdateServiceService } from './profile-info/app-info/app-info-update-service.service';
+import { BlogPostService } from './profile-info/blog/blog-post.service';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AppInfoUpdateServiceService } from './profile-info/app-info/app-info-up
     ],
   providers: [
       AppInfoUpdateServiceService,
+      BlogPostService,
   ],
   bootstrap: [AppComponent]
 })
