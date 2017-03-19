@@ -21,8 +21,8 @@ import { AppInfoUpdateServiceService } from './profile-info/app-info/app-info-up
           { path: '', redirectTo: '', pathMatch: 'full' },
           { path: '**', redirectTo: '', pathMatch: 'full' }
       ]),
-      InputPageModule,
-  ],
+      InputPageModule
+    ],
   providers: [
       AppInfoUpdateServiceService,
   ],

@@ -1,13 +1,22 @@
-import { TestBed, async } from '@angular/core/testing';
+﻿import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
+import { InputPageModule } from './input-page/input-page.module';
+
+import { AppInfoUpdateServiceService } from './profile-info/app-info/app-info-update-service.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        AppComponent
-      ],
+      TestBed.configureTestingModule({
+        imports: [
+            InputPageModule,
+        ],
+        declarations: [
+            AppComponent
+        ],
+        providers: [
+            AppInfoUpdateServiceService,
+        ],
     }).compileComponents();
   }));
 
