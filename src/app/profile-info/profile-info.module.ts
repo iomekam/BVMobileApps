@@ -14,6 +14,8 @@ import { SocialComponent } from './app-profile-info/social/social.component';
 import { MusicComponent } from './app-profile-info/music/music.component';
 import { VideoComponent } from './app-profile-info/video/video.component';
 
+import { CKEditorModule } from 'ng2-ckeditor';
+
 @NgModule({
   imports: [
       CommonModule,
@@ -45,6 +47,7 @@ import { VideoComponent } from './app-profile-info/video/video.component';
       ReactiveFormsModule,
       MaterialModule,
       TagInputModule,
+      CKEditorModule,
     ],
   declarations: [
       AppInfoComponent,
