@@ -10,13 +10,35 @@ import 'hammerjs';
 import { AppInfoComponent } from './app-info/app-info.component';
 import { AppProfileInfoComponent } from './app-profile-info/app-profile-info.component';
 import { BlogComponent } from './blog/blog.component';
+import { SocialComponent } from './app-profile-info/social/social.component';
+import { MusicComponent } from './app-profile-info/music/music.component';
+import { VideoComponent } from './app-profile-info/video/video.component';
 
 @NgModule({
   imports: [
       CommonModule,
       RouterModule.forChild([
           { path: 'app-info', component: AppInfoComponent },
-          { path: 'app-profile-info', component: AppProfileInfoComponent },
+          {
+              path: 'app-profile-info', component: AppProfileInfoComponent,
+              children: [
+                  {
+                      path: '',
+                      component: SocialComponent,
+                      outlet: 'social',
+                  },
+                  {
+                      path: '',
+                      component: VideoComponent,
+                      outlet: 'video',
+                  },
+                  {
+                      path: '',
+                      component: MusicComponent,
+                      outlet: 'music',
+                  },
+              ],
+          },
           { path: 'app-blog', component: BlogComponent },
       ]),
       FormsModule,
@@ -28,6 +50,9 @@ import { BlogComponent } from './blog/blog.component';
       AppInfoComponent,
       AppProfileInfoComponent,
       BlogComponent,
+      SocialComponent,
+      MusicComponent,
+      VideoComponent,
   ],
   exports: [
       AppInfoComponent,    
