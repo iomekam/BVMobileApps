@@ -2,6 +2,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppInfo } from './iapp-info';
 import { AppInfoUpdateServiceService } from './app-info-update-service.service';
+import { CropperSettings } from 'ng2-img-cropper';
 
 @Component({
   selector: 'bv-app-info',
@@ -27,6 +28,9 @@ export class AppInfoComponent implements OnInit {
 
     private isTagTouched: boolean = false;
 
+    private data: any;
+    private cropperSettings: CropperSettings;
+
     constructor(form: FormBuilder, private _appInfoUpdateService: AppInfoUpdateServiceService) {
         this.form = form.group({
             appName: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
@@ -34,6 +38,16 @@ export class AppInfoComponent implements OnInit {
             longDescription: ['', Validators.compose([Validators.required, Validators.maxLength(4000)])],
             keywords: [[], Validators.required]
         })
+
+        this.cropperSettings = new CropperSettings();
+        this.cropperSettings.width = 100;
+        this.cropperSettings.height = 100;
+        this.cropperSettings.croppedWidth = 100;
+        this.cropperSettings.croppedHeight = 100;
+        this.cropperSettings.canvasWidth = 500;
+        this.cropperSettings.canvasHeight = 300;
+
+        this.data = {};
     }
 
     private onTagLostFocus(message: string): void {

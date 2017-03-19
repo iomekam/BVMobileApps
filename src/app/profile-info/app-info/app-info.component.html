@@ -3,21 +3,19 @@
     <md-card class="mat-card-flat">
       <md-card-content>
         <md-input-container>
-          <input 
-                  [(ngModel)]="appInfo.appName"
+          <input [(ngModel)]="appInfo.appName"
                  (focusout)="OnFocusOut()"
-                  [formControl]="form.controls['appName']"
-                  mdTooltip="{{ appNameMinCharacters }}"
-                  mdTooltipShowDelay="{{ displayTime }}"
-                  mdTooltipPosition="right"
-                  class="tb-width"
-                  type="text"
-                  maxlength="100"
-                  mdInput
-                  placeholder="App Name">
-          <md-hint 
-                   [ngStyle]="{'color': 'red'}" 
-                   align="start" 
+                 [formControl]="form.controls['appName']"
+                 mdTooltip="{{ appNameMinCharacters }}"
+                 mdTooltipShowDelay="{{ displayTime }}"
+                 mdTooltipPosition="right"
+                 class="tb-width"
+                 type="text"
+                 maxlength="100"
+                 mdInput
+                 placeholder="App Name">
+          <md-hint [ngStyle]="{'color': 'red'}"
+                   align="start"
                    *ngIf="form.controls['appName'].hasError('required') && form.controls['appName'].touched">{{ appNameEmptyErrorMessage }}</md-hint>
         </md-input-container>
       </md-card-content>
@@ -28,8 +26,7 @@
     <md-card class="demo-card-blue mat-card-flat">
       <md-card-content>
         <md-input-container>
-          <textarea 
-                    [(ngModel)]="shortDescription"
+          <textarea [(ngModel)]="shortDescription"
                     (focusout)="OnFocusOut()"
                     [formControl]="form.controls['shortDescription']"
                     [ngClass]="{'has-error':!form.controls['appName'].valid && form.controls['appName'].touched}"
@@ -48,8 +45,7 @@
         </md-input-container>
         <br />
         <md-input-container>
-          <textarea 
-                    [(ngModel)]="longDescription"
+          <textarea [(ngModel)]="longDescription"
                     (focusout)="OnFocusOut()"
                     [formControl]="form.controls['longDescription']"
                     rows="10"
@@ -71,8 +67,7 @@
   <div class="demo-card-container">
     <md-card class="demo-card-blue mat-card-flat">
       <md-card-content>
-        <tag-input 
-                   [formControl]="form.controls['keywords']"
+        <tag-input [formControl]="form.controls['keywords']"
                    (focusout)="OnFocusOut()"
                    [(ngModel)]="appInfo.keywords"
                    (onBlur)="onTagLostFocus($event)"
@@ -96,4 +91,21 @@
       </md-card-content>
     </md-card>
   </div>
+
+  <br/>
+
+  <div class="demo-card-container">
+    <md-card class="demo-card-blue mat-card-flat">
+      <md-card-subtitle>
+        <em>Upload a picture that is at least 512 in one dimmension. E.g. 512x500 or 350x600</em>
+      </md-card-subtitle>
+      <md-card-content>
+        <div>
+          <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper><br>
+          <!--<img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">-->
+        </div>
+      </md-card-content>
+    </md-card>
+  </div>
+      
 </form>

@@ -31,6 +31,7 @@
     "materialize-css": "^0.98.0",
     "ng2-bootstrap": "^1.4.1",
     "ng2-ckeditor": "^1.1.6",
+    "ng2-img-cropper": "^0.8.1",
     "ng2-tag-input": "^0.9.6",
     "onsenui": "^2.2.0",
     "rxjs": "^5.1.0",
