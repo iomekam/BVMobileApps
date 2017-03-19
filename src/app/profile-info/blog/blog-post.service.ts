@@ -16,17 +16,27 @@ export class BlogPostService {
     }
 
     getBlogPosts(): IBlogPost[] {
+        this._blogPost = this._blogPost.sort(
+            (a: IBlogPost, b: IBlogPost) => {
+                if (b.date > a.date) { return 1; }
+                if (b.date < a.date) { return -1; }
+
+                return 0;
+            }
+        );
+
         return this._blogPost;
     }
 
     submitBlogPost(blogPost: IBlogPost): void {
         this._highestID++;
         blogPost.id = this._highestID;
+        blogPost.date = new Date();
         this._blogPost.push(blogPost);
     }
 
     updateBlogPost(updatedBlogPost: IBlogPost): void {
-        
+        updatedBlogPost.date = new Date();
     }
 
     deleteBlogPost(id: number): void {

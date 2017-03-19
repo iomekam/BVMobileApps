@@ -3,5 +3,6 @@
     headline: string,
     body: string,
     imageUrl: string,
-    keywords: string[]
+    keywords: string[],
+    date: Date
 }

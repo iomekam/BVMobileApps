@@ -33,7 +33,6 @@ export class BlogListComponent implements OnInit {
     }
 
     editBlogPost(id: number): void {
-        console.log(id);
         this._router.navigate(['/app-blog/blog-create/' + id], { skipLocationChange: true });
     }
 
