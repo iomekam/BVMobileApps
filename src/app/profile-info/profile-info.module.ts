@@ -16,6 +16,8 @@ import { VideoComponent } from './app-profile-info/video/video.component';
 
 import { CKEditorModule } from 'ng2-ckeditor';
 
+import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
+
 @NgModule({
   imports: [
       CommonModule,
@@ -56,6 +58,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
       SocialComponent,
       MusicComponent,
       VideoComponent,
+      ImageCropperComponent
   ],
   exports: [
       AppInfoComponent,    
