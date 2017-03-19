@@ -9,12 +9,10 @@ import { AppComponent } from './app.component';
 
 import { AppInfoUpdateServiceService } from './profile-info/app-info/app-info-update-service.service';
 import { BlogPostService } from './profile-info/blog/blog-post.service';
-import { BlogFilterPipe } from './blog-filter.pipe';
 
 @NgModule({
   declarations: [
       AppComponent,
-      BlogFilterPipe,
   ],
   imports: [
       BrowserModule,
