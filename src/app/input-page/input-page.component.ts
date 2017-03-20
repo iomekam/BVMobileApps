@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IAppInfo } from '../profile-info/app-info/iapp-info';
-import { AppInfoUpdateServiceService } from '../profile-info/app-info/app-info-update-service.service';
+import { AppInfoService } from '../profile-info/app-info/app-info.service';
+import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -19,8 +20,10 @@ export class InputPageComponent implements OnInit {
 
     appInfo: IAppInfo;
 
-    constructor(private _appInfoUpdateService: AppInfoUpdateServiceService) {
-        _appInfoUpdateService.emitSource.asObservable().subscribe(
+    private _appInfoUpdatedSub: Subscription;
+
+    constructor(private _appInfoService: AppInfoService) {
+        this._appInfoUpdatedSub = _appInfoService.appNameUpdated$.subscribe(
             appInfo => {
                 this.appInfo = appInfo;
             }
@@ -65,7 +68,6 @@ export class InputPageComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
-        this._appInfoUpdateService.emitSource.unsubscribe();
+        this._appInfoUpdatedSub.unsubscribe();
     }
-
 }

@@ -1,7 +1,6 @@
 ﻿import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppInfo } from './iapp-info';
-import { AppInfoUpdateServiceService } from './app-info-update-service.service';
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { AppInfoService } from './app-info.service';
 
@@ -37,7 +36,6 @@ export class AppInfoComponent implements OnInit, AfterViewInit {
 
     constructor(
         form: FormBuilder,
-        private _appInfoUpdateService: AppInfoUpdateServiceService,
         private _appInfoService: AppInfoService) {
         this.form = form.group({
             appName: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
@@ -72,7 +70,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit {
     }
 
     OnFocusOut(): void {
-        this._appInfoUpdateService.emitChange(this.appInfo);
+        this._appInfoService.appNameUpdated();
     }
 
     onInput(): void {

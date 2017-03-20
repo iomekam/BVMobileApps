@@ -7,7 +7,6 @@ import { InputPageModule } from './input-page/input-page.module';
 
 import { AppComponent } from './app.component';
 
-import { AppInfoUpdateServiceService } from './profile-info/app-info/app-info-update-service.service';
 import { BlogPostService } from './profile-info/blog/blog-post.service';
 import { AppInfoService } from './profile-info/app-info/app-info.service';
 
@@ -36,7 +35,6 @@ import { MusicUpdateServiceService } from "./profile-info/app-profile-info/music
       OnsenModule,
     ],
   providers: [
-      AppInfoUpdateServiceService,
       BlogPostService,
       AppInfoService,
       SocialUpdateServiceService,

@@ -1,10 +1,14 @@
 ﻿import { Injectable } from '@angular/core';
 import { IAppInfo } from './iapp-info';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AppInfoService {
 
     private _appInfo: IAppInfo;
+
+    private _appNameUpdatedSource: Subject<IAppInfo> = new Subject<IAppInfo>();
+    appNameUpdated$ = this._appNameUpdatedSource.asObservable();
 
     constructor() {
         this._appInfo = {
@@ -22,5 +26,9 @@ export class AppInfoService {
 
     getAppInfo(): IAppInfo {
         return this._appInfo;
+    }
+
+    appNameUpdated(): void {
+        this._appNameUpdatedSource.next(this._appInfo);
     }
 }
