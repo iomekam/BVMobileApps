@@ -1,4 +1,4 @@
-﻿import { NgModule } from '@angular/core';
+﻿import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -13,6 +13,9 @@ import { AppInfoComponent } from '../profile-info/app-info/app-info.component';
 import { InputPageComponent } from './input-page.component';
 
 import { HeaderComponent } from './header/header.component';
+import {OnsenModule} from "angular2-onsenui";
+
+
 
 @NgModule({
   imports: [
@@ -24,6 +27,7 @@ import { HeaderComponent } from './header/header.component';
       SharedModule,
       ProfileInfoModule,
       MaterialModule,
+      OnsenModule
   ],
   declarations: [
       InputPageComponent,
@@ -34,6 +38,7 @@ import { HeaderComponent } from './header/header.component';
   ],
   providers: [
       MdIconRegistry,
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA,],
 })
 export class InputPageModule { }

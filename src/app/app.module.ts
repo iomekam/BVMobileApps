@@ -1,5 +1,5 @@
 ﻿import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
@@ -10,6 +10,14 @@ import { AppComponent } from './app.component';
 import { AppInfoUpdateServiceService } from './profile-info/app-info/app-info-update-service.service';
 import { BlogPostService } from './profile-info/blog/blog-post.service';
 
+import "materialize-css";
+import "angular2-materialize";
+
+import { MaterializeModule } from "angular2-materialize";
+import {OnsenModule} from "angular2-onsenui";
+import {SocialUpdateServiceService} from "./profile-info/app-profile-info/social/social-update-service.service";
+import {MusicUpdateServiceService} from "./profile-info/app-profile-info/music/music-update-service.service";
+
 @NgModule({
   declarations: [
       AppComponent,
@@ -18,15 +26,19 @@ import { BlogPostService } from './profile-info/blog/blog-post.service';
       BrowserModule,
       FormsModule,
       HttpModule,
+      MaterializeModule,
       RouterModule.forRoot([
           { path: '', redirectTo: '', pathMatch: 'full' },
           { path: '**', redirectTo: '', pathMatch: 'full' }
       ]),
-      InputPageModule
+      InputPageModule,
+      OnsenModule
     ],
   providers: [
       AppInfoUpdateServiceService,
       BlogPostService,
+      SocialUpdateServiceService,
+      MusicUpdateServiceService,
   ],
   bootstrap: [AppComponent]
 })
