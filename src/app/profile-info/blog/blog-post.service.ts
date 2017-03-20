@@ -17,7 +17,6 @@ export class BlogPostService {
 
     setIsInCreationPage(isCreation: boolean, updateID: number): void {
         this._isInCreationPage = isCreation;
-        console.log(this._isInCreationPage);
         this._currentUpdateID = updateID;
     }
 

@@ -43,7 +43,6 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        console.log("blog-create");
         let updateID = 0;
         this._activatedRouteSub = this._route.params.subscribe(
             params => {

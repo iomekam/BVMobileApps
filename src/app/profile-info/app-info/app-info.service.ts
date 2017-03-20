@@ -31,4 +31,8 @@ export class AppInfoService {
     appNameUpdated(): void {
         this._appNameUpdatedSource.next(this._appInfo);
     }
+
+    isAppNameUnique(): boolean {
+        return true;
+    }
 }
