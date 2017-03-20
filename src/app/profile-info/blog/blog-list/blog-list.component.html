@@ -1,6 +1,6 @@
 ﻿<md-card>
   <div class="container" align="center">
-    <button md-raised-button (click)="createBlogPost()">Create Blog Post</button>
+    <button md-raised-button [disabled]="blogPosts.length > 2" (click)="createBlogPost()">Create Blog Post</button>
   </div>
 </md-card>
 
@@ -9,7 +9,7 @@
   <md-card>
     <md-card-title>{{ blogPost.headline }}</md-card-title>
     <md-card-subtitle><em>{{ blogPost.date | date: 'medium' }}</em></md-card-subtitle>
-    <img md-card-image src="{{ blogPost.imageUrl }}">
+    <img md-card-image src="{{ blogPost.image }}">
     <md-card-content>
         <div [innerHTML]="blogPost.body"></div>
     </md-card-content>

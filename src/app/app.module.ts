@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { AppInfoUpdateServiceService } from './profile-info/app-info/app-info-update-service.service';
 import { BlogPostService } from './profile-info/blog/blog-post.service';
+import { AppInfoService } from './profile-info/app-info/app-info.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BlogPostService } from './profile-info/blog/blog-post.service';
   providers: [
       AppInfoUpdateServiceService,
       BlogPostService,
+      AppInfoService,
   ],
   bootstrap: [AppComponent]
 })

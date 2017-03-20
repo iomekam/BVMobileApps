@@ -12,7 +12,7 @@
     <br />
 
     <div>
-      <img-cropper [(image)]="data" [settings]="cropperSettings">ff</img-cropper><br>
+      <img-cropper #cropper [(image)]="data" [settings]="cropperSettings" (onCrop)="onCrop($event)"></img-cropper><br>
       <!--<img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">-->
     </div>
 

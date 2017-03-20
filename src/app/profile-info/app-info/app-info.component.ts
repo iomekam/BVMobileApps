@@ -1,15 +1,16 @@
-﻿import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+﻿import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppInfo } from './iapp-info';
 import { AppInfoUpdateServiceService } from './app-info-update-service.service';
-import { CropperSettings } from 'ng2-img-cropper';
+import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
+import { AppInfoService } from './app-info.service';
 
 @Component({
   selector: 'bv-app-info',
   templateUrl: './app-info.component.html',
   styleUrls: ['./app-info.component.css']
 })
-export class AppInfoComponent implements OnInit {
+export class AppInfoComponent implements OnInit, AfterViewInit {
 
     private readonly displayTime: number = 500;
 
@@ -31,7 +32,13 @@ export class AppInfoComponent implements OnInit {
     private data: any;
     private cropperSettings: CropperSettings;
 
-    constructor(form: FormBuilder, private _appInfoUpdateService: AppInfoUpdateServiceService) {
+    @ViewChild('cropper', undefined)
+    private cropper: ImageCropperComponent;
+
+    constructor(
+        form: FormBuilder,
+        private _appInfoUpdateService: AppInfoUpdateServiceService,
+        private _appInfoService: AppInfoService) {
         this.form = form.group({
             appName: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
             shortDescription: ['', Validators.compose([Validators.required, Validators.maxLength(80)])],
@@ -55,16 +62,24 @@ export class AppInfoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.appInfo = {
-            appName: '',
-            shortDescription: '',
-            longDescription: '',
-            keywords: []
-        };
+        this.appInfo = this._appInfoService.getAppInfo();
+    }
+
+    ngAfterViewInit(): void {
+        let img = document.createElement("img");
+        img.src = this.appInfo.image;
+        this.cropper.setImage(img);
     }
 
     OnFocusOut(): void {
         this._appInfoUpdateService.emitChange(this.appInfo);
     }
 
+    onInput(): void {
+        this._appInfoService.setAppInfo(this.appInfo);
+    }
+
+    onCrop(event: any): void {
+        this.appInfo.image = this.data.image;
+    }
 }

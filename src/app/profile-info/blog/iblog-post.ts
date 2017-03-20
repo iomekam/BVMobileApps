@@ -2,7 +2,7 @@
     id: number;
     headline: string,
     body: string,
-    imageUrl: string,
+    image: string,
     keywords: string[],
     date: Date
 }

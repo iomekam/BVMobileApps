@@ -3,4 +3,5 @@
     shortDescription: string;
     longDescription: string;
     keywords: string[];
+    image: string;
 }

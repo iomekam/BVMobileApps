@@ -58,7 +58,8 @@ export class InputPageComponent implements OnInit {
             appName: '',
             shortDescription: '',
             longDescription: '',
-            keywords: []
+            keywords: [],
+            image: '',
         };
     }
 
