@@ -11,11 +11,6 @@ import { BlogPostService } from '../blog-post.service';
 })
 export class BlogListComponent implements OnInit {
 
-  private blogTitle: string;
-    private date: string;
-    private content: string;
-    private keywords: string[];
-
     private data: any;
     private cropperSettings: CropperSettings;
 
@@ -41,6 +36,19 @@ export class BlogListComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this._blogPostService.isInCreationPage()) {
+            let url = '/app-blog/';
+            url += 'blog-create/';
+            let id = this._blogPostService.getUpdateId();
+
+            if (!isNaN(id) && id > 0) {
+                url += id;
+            }
+
+            this._router.navigate([url], { skipLocationChange: true });
+            return;
+        }
+        
         this.blogPosts = this._blogPostService.getBlogPosts();
     }
 }

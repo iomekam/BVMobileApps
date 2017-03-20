@@ -5,7 +5,24 @@ import { IBlogPost } from './iblog-post';
 export class BlogPostService {
 
     private _blogPost: IBlogPost[];
+    private _unfinishedBlogPost: IBlogPost;
+
     private _highestID: number = 0;
+    private _isInCreationPage: boolean = false;
+    private _currentUpdateID: number = 0;
+
+    isInCreationPage(): boolean {
+        return this._isInCreationPage;
+    }
+
+    setIsInCreationPage(isCreation: boolean, updateID: number): void {
+        this._isInCreationPage = isCreation;
+        this._currentUpdateID = updateID;
+    }
+
+    getUpdateId(): number {
+        return this._currentUpdateID;
+    }
 
     getBlogPost(id: number): IBlogPost {
         return this._blogPost.find(
@@ -13,6 +30,14 @@ export class BlogPostService {
                 return id == blogPost.id;
             }
         );
+    }
+
+    setUnfinishedBlogPost(blogPost: IBlogPost): void {
+        this._unfinishedBlogPost = blogPost;
+    }
+
+    getUnfinishedBlogPost(): IBlogPost {
+        return this._unfinishedBlogPost;
     }
 
     getBlogPosts(): IBlogPost[] {
@@ -33,6 +58,8 @@ export class BlogPostService {
         blogPost.id = this._highestID;
         blogPost.date = new Date();
         this._blogPost.push(blogPost);
+
+        this._unfinishedBlogPost = null;
     }
 
     updateBlogPost(updatedBlogPost: IBlogPost): void {

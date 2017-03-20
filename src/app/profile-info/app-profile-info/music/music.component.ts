@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import {AppInfoUpdateServiceService} from "../../app-info/app-info-update-service.service";
+﻿import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {FormBuilder, Validators, FormGroup} from "@angular/forms";
 import {IAppInfo} from "../../app-info/iapp-info";
 import {IMusicInfo} from "./IMusicInfo";
@@ -14,10 +13,8 @@ export class MusicComponent implements OnInit {
   private readonly appNameMinCharacters: string = "We recommend strong, relevant keyword in your App Name. For example, a. Contraband – Free Mixtapes b. Fresh Radio – Hip-Hop and Soul c. Jayforce – Celebrity News d. DJ Kenny B – Chicago House ";
   private readonly appNameEmptyErrorMessage: string = "An App Name is required";
 
-
   private form: FormGroup;
   private appInfo: IMusicInfo;
-
 
   private showPeriscope = false;
   private showSoundCloud = false;

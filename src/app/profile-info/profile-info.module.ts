@@ -70,7 +70,6 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component';
       SocialComponent,
       MusicComponent,
       VideoComponent,
-      ImageCropperComponent,
       BlogCreateComponent,
       BlogListComponent,
   ],
