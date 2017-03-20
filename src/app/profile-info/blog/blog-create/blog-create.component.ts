@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs/Subscription';
 @Component({
   selector: 'bv-blog-create',
   templateUrl: './blog-create.component.html',
-  styleUrls: ['./blog-create.component.css']
+  styleUrls: ['./blog-create.component.css'],
 })
 export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
 

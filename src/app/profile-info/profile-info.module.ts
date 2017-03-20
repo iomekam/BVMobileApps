@@ -17,7 +17,7 @@ import {OnsenModule} from "angular2-onsenui";
 
 import { CKEditorModule } from 'ng2-ckeditor';
 
-import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
+import { ImageCropperModule } from 'ng2-img-cropper';
 import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
 
@@ -62,6 +62,7 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component';
       TagInputModule,
       CKEditorModule,
       OnsenModule,
+      ImageCropperModule
     ],
   declarations: [
       AppInfoComponent,
