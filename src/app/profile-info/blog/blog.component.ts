@@ -7,7 +7,7 @@
 })
 export class BlogComponent implements OnInit {
 
-    constructor() { }
+    constructor() {}
 
     ngOnInit() {
 

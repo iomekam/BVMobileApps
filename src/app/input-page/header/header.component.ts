@@ -67,6 +67,5 @@ export class HeaderComponent implements OnInit, OnChanges  {
         else if (this.currentID == this.blogInfoID) {
             this._router.navigate(['/app-blog'], { skipLocationChange: true });
         }
-
     }
 }
