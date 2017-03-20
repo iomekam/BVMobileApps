@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+﻿import { Component, OnInit, AfterViewInit, Input, Output, EventEmitter, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppInfo } from './iapp-info';
 import { AppInfoUpdateServiceService } from './app-info-update-service.service';
@@ -8,7 +8,7 @@ import { AppInfoService } from './app-info.service';
 @Component({
   selector: 'bv-app-info',
   templateUrl: './app-info.component.html',
-  styleUrls: ['./app-info.component.css']
+  styleUrls: ['./app-info.component.css'],
 })
 export class AppInfoComponent implements OnInit, AfterViewInit {
 

@@ -20,9 +20,12 @@
       "prefix": "bv",
       "styles": [
         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
-        "styles.css"
+        "styles.css",
+        "../node_modules/onsenui/css/onsen-css-components.css",
+        "../node_modules/onsenui/css/onsenui.css"
       ],
-      "scripts": [],
+      "scripts": ["../node_modules/onsenui/js/onsenui.js"],
+      "mobile": false,
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

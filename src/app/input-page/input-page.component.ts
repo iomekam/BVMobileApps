@@ -2,6 +2,7 @@
 import { IAppInfo } from '../profile-info/app-info/iapp-info';
 import { AppInfoUpdateServiceService } from '../profile-info/app-info/app-info-update-service.service';
 
+
 @Component({
   selector: 'bv-input-page',
   templateUrl: './input-page.component.html',

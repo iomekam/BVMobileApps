@@ -1,4 +1,4 @@
-﻿import { NgModule } from '@angular/core';
+﻿import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +13,7 @@ import { BlogComponent } from './blog/blog.component';
 import { SocialComponent } from './app-profile-info/social/social.component';
 import { MusicComponent } from './app-profile-info/music/music.component';
 import { VideoComponent } from './app-profile-info/video/video.component';
+import {OnsenModule} from "angular2-onsenui";
 
 import { CKEditorModule } from 'ng2-ckeditor';
 
@@ -60,6 +61,7 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component';
       MaterialModule,
       TagInputModule,
       CKEditorModule,
+      OnsenModule,
     ],
   declarations: [
       AppInfoComponent,
@@ -73,7 +75,9 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component';
       BlogListComponent,
   ],
   exports: [
-      AppInfoComponent,    
-  ]
+      AppInfoComponent,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA,],
+
 })
 export class ProfileInfoModule { }
