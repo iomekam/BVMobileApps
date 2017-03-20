@@ -1,14 +1,16 @@
 {
-  "name": "angular-test",
+  "name": "by-mobile-apps",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "http-server dist/",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "preinstall": "npm install -g http-server",
+    "postinstall": "ng build"
   },
   "private": true,
   "dependencies": {
@@ -35,9 +37,7 @@
     "ng2-tag-input": "^0.9.6",
     "onsenui": "^2.2.0",
     "rxjs": "^5.1.0",
-    "zone.js": "^0.7.6"
-  },
-  "devDependencies": {
+    "zone.js": "^0.7.6",
     "@angular/cli": "1.0.0-rc.2",
     "@angular/compiler-cli": "^2.4.0",
     "@types/jasmine": "2.5.38",
@@ -55,5 +55,8 @@
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.0.0"
+  },
+  "devDependencies": {
+    
   }
 }
