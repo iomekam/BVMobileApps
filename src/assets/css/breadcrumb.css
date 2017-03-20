@@ -1,4 +1,4 @@
-/* -------------------------------- 
+﻿/* -------------------------------- 
 
 Primary style
 
@@ -19,7 +19,7 @@ body {
 }
 
 a {
-  color: #96c03d;
+  color: #13afeb;
   text-decoration: none;
 }
 
@@ -87,11 +87,11 @@ Basic Style
 }
 .cd-breadcrumb li.current > *, .cd-multi-steps li.current > * {
   /* selected step */
-  color: #96c03d;
+  color: #13afeb;
 }
 .no-touch .cd-breadcrumb a:hover, .no-touch .cd-multi-steps a:hover {
   /* steps already visited */
-  color: #96c03d;
+  color: #13afeb;
 }
 .cd-breadcrumb.custom-separator li::after, .cd-multi-steps.custom-separator li::after {
   /* replace the default arrow separator with a custom icon */
@@ -180,8 +180,8 @@ Triangle breadcrumb
   .cd-breadcrumb.triangle li.current > * {
     /* selected step */
     color: #ffffff;
-    background-color: #96c03d;
-    border-color: #96c03d;
+    background-color: #13afeb;
+    border-color: #13afeb;
   }
   .cd-breadcrumb.triangle li:first-of-type > * {
     padding-left: 1.6em;
@@ -304,7 +304,7 @@ Multi steps indicator
     margin: 0;
   }
   .cd-multi-steps li.visited::after {
-    background-color: #96c03d;
+    background-color: #13afeb;
   }
   .cd-multi-steps li > *, .cd-multi-steps li.current > * {
     position: relative;
@@ -338,7 +338,7 @@ Multi steps indicator
   }
   .cd-multi-steps.text-center li.current > *, .cd-multi-steps.text-center li.visited > * {
     color: #ffffff;
-    background-color: #96c03d;
+    background-color: #13afeb;
   }
   .cd-multi-steps.text-center.custom-icons li.visited a::before {
     /* change the custom icon for the visited item - check icon */
@@ -376,10 +376,10 @@ Multi steps indicator
   .cd-multi-steps.text-top li.visited > *::before,
   .cd-multi-steps.text-top li.current > *::before, .cd-multi-steps.text-bottom li.visited > *::before,
   .cd-multi-steps.text-bottom li.current > *::before {
-    background-color: #96c03d;
+    background-color: #13afeb;
   }
   .no-touch .cd-multi-steps.text-top a:hover, .no-touch .cd-multi-steps.text-bottom a:hover {
-    color: #96c03d;
+    color: #13afeb;
   }
   .no-touch .cd-multi-steps.text-top a:hover::before, .no-touch .cd-multi-steps.text-bottom a:hover::before {
     box-shadow: 0 0 0 3px rgba(150, 192, 61, 0.3);

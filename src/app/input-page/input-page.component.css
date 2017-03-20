@@ -1,5 +1,5 @@
 ﻿.demo-card-blue {
-  background-color: #BBDEFB;
+  background-color: #01F7FD;
   .mat-card-actions {
     display: flex;
     flex-direction: column;
@@ -9,4 +9,8 @@
 .card-width {
   width:650px;
   max-width:650px
+}
+
+.locked {
+  position:fixed;
 }

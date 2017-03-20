@@ -1,0 +1,39 @@
+﻿<md-card>
+  <md-card-content>
+    <md-input-container>
+      <input [(ngModel)]="blogPost.headline" class="tb-width" mdInput placeholder="Headline" value="{{ blogPost.headline }}">
+    </md-input-container>
+
+    <br />
+    <ckeditor [(ngModel)]="blogPost.body"
+              debounce="500">
+    </ckeditor>
+
+    <br />
+
+    <div>
+      <img-cropper [(image)]="data" [settings]="cropperSettings">ff</img-cropper><br>
+      <!--<img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">-->
+    </div>
+
+    <br />
+
+    <tag-input [(ngModel)]="blogPost.keywords"
+               secondaryPlaceholder="Add a keyword"
+               modelAsStrings="true"
+               blinkIfDupe="true"
+               placeholder="Add another keyword"
+               pasteSplitPattern="[' ']"
+               addOnSpace="true"
+               addOnPaste="true"
+               trimTags="true"
+               editable="true"
+               addOnBlur="true"
+               separatorKeys="[32]"></tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
+
+  </md-card-content>
+  <md-card-actions align="right">
+    <button md-button (click)="openDialog()">Cancel</button>
+    <button md-button (click)="submit()">Submit</button>
+  </md-card-actions>
+</md-card>

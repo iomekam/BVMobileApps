@@ -1,6 +1,6 @@
 ﻿<form [formGroup]="form">
   <div class="demo-card-container">
-    <md-card class="mat-card-flat">
+    <md-card class="">
       <md-card-content>
         <md-input-container>
           <input [(ngModel)]="appInfo.appName"
@@ -23,7 +23,7 @@
   </div>
   <br />
   <div class="demo-card-container">
-    <md-card class="demo-card-blue mat-card-flat">
+    <md-card class="demo-card-blue">
       <md-card-content>
         <md-input-container>
           <textarea [(ngModel)]="shortDescription"
@@ -65,7 +65,7 @@
   <br />
 
   <div class="demo-card-container">
-    <md-card class="demo-card-blue mat-card-flat">
+    <md-card class="demo-card-blue">
       <md-card-content>
         <tag-input [formControl]="form.controls['keywords']"
                    (focusout)="OnFocusOut()"
@@ -92,10 +92,9 @@
     </md-card>
   </div>
 
-  <br/>
 
   <div class="demo-card-container">
-    <md-card class="demo-card-blue mat-card-flat">
+    <md-card class="demo-card-blue">
       <md-card-subtitle>
         <em>Upload a picture that is at least 512 in one dimmension. E.g. 512x500 or 350x600</em>
       </md-card-subtitle>

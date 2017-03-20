@@ -1,0 +1,21 @@
+﻿<md-card>
+  <div class="container" align="center">
+    <button md-raised-button (click)="createBlogPost()">Create Blog Post</button>
+  </div>
+</md-card>
+
+<div *ngFor='let blogPost of blogPosts'>
+  <br />
+  <md-card>
+    <md-card-title>{{ blogPost.headline }}</md-card-title>
+    <md-card-subtitle><em>{{ blogPost.date | date: 'medium' }}</em></md-card-subtitle>
+    <img md-card-image src="{{ blogPost.imageUrl }}">
+    <md-card-content>
+        <div [innerHTML]="blogPost.body"></div>
+    </md-card-content>
+    <md-card-actions align="right">
+      <button md-mini-fab (click)="deleteBlogPost(blogPost.id)"><md-icon>clear</md-icon></button>
+      <button md-mini-fab (click)="editBlogPost(blogPost.id)"><md-icon>create</md-icon></button>
+    </md-card-actions>
+  </md-card>
+</div>

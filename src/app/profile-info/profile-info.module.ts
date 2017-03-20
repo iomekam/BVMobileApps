@@ -17,6 +17,8 @@ import { VideoComponent } from './app-profile-info/video/video.component';
 import { CKEditorModule } from 'ng2-ckeditor';
 
 import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
+import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
+import { BlogListComponent } from './blog/blog-list/blog-list.component';
 
 @NgModule({
   imports: [
@@ -43,7 +45,15 @@ import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
                   },
               ],
           },
-          { path: 'app-blog', component: BlogComponent },
+          {
+              path: 'app-blog', component: BlogComponent,
+              children: [
+                  { path: '', component: BlogListComponent, },
+                  { path: 'blog-list', component: BlogListComponent, },
+                  { path: 'blog-create', component: BlogCreateComponent, },
+                  { path: 'blog-create/:id', component: BlogCreateComponent, },
+              ]
+          },
       ]),
       FormsModule,
       ReactiveFormsModule,
@@ -58,7 +68,9 @@ import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
       SocialComponent,
       MusicComponent,
       VideoComponent,
-      ImageCropperComponent
+      ImageCropperComponent,
+      BlogCreateComponent,
+      BlogListComponent,
   ],
   exports: [
       AppInfoComponent,    
