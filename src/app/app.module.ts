@@ -10,13 +10,11 @@ import { AppComponent } from './app.component';
 import { BlogPostService } from './profile-info/blog/blog-post.service';
 import { AppInfoService } from './profile-info/app-info/app-info.service';
 
-import "materialize-css";
-import "angular2-materialize";
-
-import { MaterializeModule } from "angular2-materialize";
 import { OnsenModule } from "angular2-onsenui";
 import { SocialUpdateServiceService } from "./profile-info/app-profile-info/social/social-update-service.service";
 import { MusicUpdateServiceService } from "./profile-info/app-profile-info/music/music-update-service.service";
+
+import { MdIconRegistry } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,7 +24,6 @@ import { MusicUpdateServiceService } from "./profile-info/app-profile-info/music
       BrowserModule,
       FormsModule,
       HttpModule,
-      MaterializeModule,
       RouterModule.forRoot([
           { path: '', redirectTo: '', pathMatch: 'full' },
           { path: '**', redirectTo: '', pathMatch: 'full' }
@@ -35,6 +32,7 @@ import { MusicUpdateServiceService } from "./profile-info/app-profile-info/music
       OnsenModule,
     ],
   providers: [
+      MdIconRegistry,
       BlogPostService,
       AppInfoService,
       SocialUpdateServiceService,

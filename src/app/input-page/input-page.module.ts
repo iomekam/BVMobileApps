@@ -6,16 +6,14 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileInfoModule } from '../profile-info/profile-info.module'
 
-import { MaterialModule, MdIconRegistry } from '@angular/material';
+import { MaterialModule } from '@angular/material';
 import 'hammerjs';
 
 import { AppInfoComponent } from '../profile-info/app-info/app-info.component';
 import { InputPageComponent } from './input-page.component';
 
 import { HeaderComponent } from './header/header.component';
-import {OnsenModule} from "angular2-onsenui";
-
-
+import { OnsenModule } from "angular2-onsenui";
 
 @NgModule({
   imports: [
@@ -35,9 +33,6 @@ import {OnsenModule} from "angular2-onsenui";
   ],
   exports: [
       InputPageComponent,
-  ],
-  providers: [
-      MdIconRegistry,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,],
 })
