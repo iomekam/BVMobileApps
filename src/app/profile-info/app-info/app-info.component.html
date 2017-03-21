@@ -1,11 +1,6 @@
-﻿
-<form [formGroup]="form">
+﻿<form [formGroup]="form">
   <div class="demo-card-container">
     <md-card class="">
-      <button md-button>
-        Next
-        <md-icon>send</md-icon>
-      </button>    
       <md-card-content>
         <md-input-container>
           <input [(ngModel)]="appInfo.appName"
@@ -70,7 +65,7 @@
       </md-card-content>
     </md-card>
   </div>
-  <br/>
+  <br />
 
   <div class="demo-card-container">
     <md-card class="demo-card-blue">
@@ -83,10 +78,10 @@
                    mdTooltip="{{ keywordMaxCharacters }}"
                    mdTooltipShowDelay="{{ displayTime }}"
                    maxItems="100"
-                   secondaryPlaceholder="Add some keywords!"
+                   secondaryPlaceholder="Add some keywords"
                    modelAsStrings="true"
                    blinkIfDupe="true"
-                   placeholder="Add more keyword if needed!"
+                   placeholder="Add more keyword if needed"
                    pasteSplitPattern="[' ']"
                    addOnSpace="true"
                    addOnPaste="true"
