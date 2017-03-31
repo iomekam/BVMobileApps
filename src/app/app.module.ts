@@ -14,7 +14,6 @@ import { OnsenModule } from "angular2-onsenui";
 import { SocialUpdateServiceService } from "./profile-info/app-profile-info/social/social-update-service.service";
 import { MusicUpdateServiceService } from "./profile-info/app-profile-info/music/music-update-service.service";
 
-import { MdIconRegistry } from '@angular/material';
 import {SuiModule} from 'ng2-semantic-ui';
 import { ColorPickerModule } from 'angular2-color-picker';
 import {DesignService} from "./profile-info/design/design.service";
