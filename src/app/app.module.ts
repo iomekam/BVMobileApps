@@ -18,6 +18,7 @@ import { MdIconRegistry } from '@angular/material';
 import {SuiModule} from 'ng2-semantic-ui';
 import { ColorPickerModule } from 'angular2-color-picker';
 import {DesignService} from "./profile-info/design/design.service";
+
 @NgModule({
   declarations: [
       AppComponent,
