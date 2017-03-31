@@ -4,6 +4,7 @@ import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
 import { IBlogPost } from '../iblog-post';
 import { BlogPostService } from '../blog-post.service';
 import { Subscription } from 'rxjs/Subscription';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'bv-blog-create',
@@ -27,10 +28,24 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
     private _wasNewPostSubmitted: boolean = false;
     private _wasCanceled: boolean = false;
 
+    private form: FormGroup;
+    private isTagTouched: boolean = false;
+
+    private readonly headlineErrorMessage: string = "A headline is required";
+    private readonly blogErrorMessage: string = "Your blog post must have content";
+    private readonly keywordEmptyErrorMessage: string = "A keyword is required";
+
     constructor(
+        form: FormBuilder,
         private _router: Router,
         private _route: ActivatedRoute,
         private _blogPostService: BlogPostService) {
+
+        this.form = form.group({
+            headline: ['', Validators.compose([Validators.required])],
+            blog: ['', Validators.compose([Validators.required])],
+            keywords: [[], Validators.required]
+        })
 
         this.cropperSettings = new CropperSettings();
         this.cropperSettings.width = 600;
@@ -115,5 +130,9 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
 
     onCrop(event: any): void {
         this.blogPost.image = this.data.image;
+    }
+
+    private onTagLostFocus(message: string): void {
+        this.isTagTouched = true;
     }
 }

@@ -1,39 +1,50 @@
-﻿<md-card>
-  <md-card-content>
-    <md-input-container>
-      <input [(ngModel)]="blogPost.headline" class="tb-width" mdInput placeholder="Headline" value="{{ blogPost.headline }}">
-    </md-input-container>
+﻿<form [formGroup]="form">
+  <md-card>
+    <md-card-content>
+      <md-input-container>
+        <input
+               [(ngModel)]="blogPost.headline"
+               [formControl]="form.controls['headline']"
+               class="tb-width"
+               mdInput placeholder="Headline"
+               value="{{ blogPost.headline }}">
+        <md-hint [ngStyle]="{'color': 'red'}"
+                 align="start"
+                 *ngIf="form.controls['headline'].hasError('required') && form.controls['headline'].touched">{{ headlineErrorMessage }}</md-hint>
+      </md-input-container>
 
-    <br />
-    <ckeditor [(ngModel)]="blogPost.body"
-              debounce="500">
-    </ckeditor>
+      <br />
+      <ckeditor [(ngModel)]="blogPost.body"
+                [formControl]="form.controls['blog']"
+                debounce="500">
+      </ckeditor>
+      <br />
 
-    <br />
+      <div>
+        <img-cropper #cropper [(image)]="data" [settings]="cropperSettings" (onCrop)="onCrop($event)"></img-cropper><br>
+        <!--<img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">-->
+      </div>
 
-    <div>
-      <img-cropper #cropper [(image)]="data" [settings]="cropperSettings" (onCrop)="onCrop($event)"></img-cropper><br>
-      <!--<img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">-->
-    </div>
+      <br />
 
-    <br />
-
-    <tag-input [(ngModel)]="blogPost.keywords"
-               secondaryPlaceholder="Add a keyword"
-               modelAsStrings="true"
-               blinkIfDupe="true"
-               placeholder="Add another keyword"
-               pasteSplitPattern="[' ']"
-               addOnSpace="true"
-               addOnPaste="true"
-               trimTags="true"
-               editable="true"
-               addOnBlur="true"
-               separatorKeys="[32]"></tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
-
-  </md-card-content>
-  <md-card-actions align="right">
-    <button md-button (click)="cancel()">Cancel</button>
-    <button md-button (click)="submit()">Submit</button>
-  </md-card-actions>
-</md-card>
+      <tag-input [(ngModel)]="blogPost.keywords"
+                 [formControl]="form.controls['keywords']"
+                 (onBlur)="onTagLostFocus($event)"
+                 secondaryPlaceholder="Add a keyword"
+                 modelAsStrings="true"
+                 blinkIfDupe="true"
+                 placeholder="Add another keyword"
+                 pasteSplitPattern="[' ']"
+                 addOnSpace="true"
+                 addOnPaste="true"
+                 trimTags="true"
+                 editable="true"
+                 addOnBlur="true"
+                 separatorKeys="[32]"></tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
+    </md-card-content>
+    <md-card-actions align="right">
+      <button md-button (click)="cancel()">Cancel</button>
+      <button md-button type="submit" (click)="submit()" [disabled]="!form.valid || data.image === ''">Submit</button>
+    </md-card-actions>
+  </md-card>
+</form>
