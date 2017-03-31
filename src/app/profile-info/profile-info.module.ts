@@ -20,6 +20,9 @@ import { CKEditorModule } from 'ng2-ckeditor';
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
+import {DesignComponent} from "./design/design.component";
+import {SuiModule} from "ng2-semantic-ui";
+import { ColorPickerModule } from 'angular2-color-picker';
 
 @NgModule({
   imports: [
@@ -55,6 +58,9 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component';
                   { path: 'blog-create/:id', component: BlogCreateComponent, },
               ]
           },
+        {
+          path: 'design', component: DesignComponent,
+        },
       ]),
       FormsModule,
       ReactiveFormsModule,
@@ -62,7 +68,9 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component';
       TagInputModule,
       CKEditorModule,
       OnsenModule,
-      ImageCropperModule
+      ImageCropperModule,
+      SuiModule,
+    ColorPickerModule
     ],
   declarations: [
       AppInfoComponent,
@@ -73,6 +81,7 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component';
       VideoComponent,
       BlogCreateComponent,
       BlogListComponent,
+      DesignComponent
   ],
   exports: [
       AppInfoComponent,

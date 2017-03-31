@@ -16,6 +16,10 @@ import { MusicUpdateServiceService } from "./profile-info/app-profile-info/music
 
 import { MdIconRegistry } from '@angular/material';
 
+import {SuiModule} from 'ng2-semantic-ui';
+import { ColorPickerModule } from 'angular2-color-picker';
+import {DesignService} from "./profile-info/design/design.service";
+
 @NgModule({
   declarations: [
       AppComponent,
@@ -30,11 +34,14 @@ import { MdIconRegistry } from '@angular/material';
       ]),
       InputPageModule,
       OnsenModule,
+      SuiModule,
+    ColorPickerModule
     ],
   providers: [
       MdIconRegistry,
       BlogPostService,
       AppInfoService,
+      DesignService,
       SocialUpdateServiceService,
       MusicUpdateServiceService,
   ],

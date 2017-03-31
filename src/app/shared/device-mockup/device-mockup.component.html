@@ -5,11 +5,66 @@
   <div class="camera"></div>
   <div class="sensor"></div>
   <div class="speaker"></div>
-  <div class="screen" style="background:#13afeb">
+  <div class="screen" [style.background]="backgroundColor">
     <div style="font-size:36px;color:#000000">
       {{ text }}
+
     </div>
+
+    <ons-tabbar>
+      <ons-tab page="Music" label="Home" icon="ion-home" active="true"></ons-tab>
+      <ons-tab page="Video" label="Comments" icon="ion-chatbox-working"></ons-tab>
+      <ons-tab page="Photo" label="Tags" icon="ion-ios-pricetag"></ons-tab>
+      <ons-tab page="Tab 4" label="Settings" icon="ion-ios-cog"></ons-tab>
+      <ons-tab page="Tab 5" label="Settings" icon="ion-ios-cog"></ons-tab>
+    </ons-tabbar>
+
+
+    <ons-template id="Music">
+      <ons-toolbar>
+        <div class="center">Home</div>
+      </ons-toolbar>
+
+      <p style="padding-top: 100px; color: #999; text-align: center">Page Contents</p>
+    </ons-template>
+
+    <ons-template id="Video">
+      <ons-toolbar>
+        <div class="center">Comments</div>
+      </ons-toolbar>
+
+      <p style="padding-top: 100px; color: #999; text-align: center">Page Contents</p>
+    </ons-template>
+
+    <ons-template id="Photo">
+      <ons-toolbar>
+        <div class="center">Tags</div>
+      </ons-toolbar>
+
+      <p style="padding-top: 100px; color: #999; text-align: center">Page Contents</p>
+    </ons-template>
+
+    <ons-template id="Tab 4">
+      <ons-toolbar>
+        <div class="center">Feed</div>
+      </ons-toolbar>
+
+      <p style="padding-top: 100px; color: #999; text-align: center">Page Contents</p>
+    </ons-template>
+
+    <ons-template id="Tab 5">
+      <ons-toolbar>
+        <div class="center">Settings</div>
+      </ons-toolbar>
+
+      <p style="padding-top: 100px; color: #999; text-align: center">Page Contents</p>
+    </ons-template>
+
+
+
   </div>
-  <div class="home"></div>
-  <div class="bottom-bar"></div>
+
+
+
+
 </div>

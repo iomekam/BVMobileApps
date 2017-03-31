@@ -4,6 +4,7 @@ import { AppComponent } from './app.component';
 import { InputPageModule } from './input-page/input-page.module';
 
 import { AppInfoUpdateServiceService } from './profile-info/app-info/app-info-update-service.service';
+import {DesignService} from "./profile-info/design/design.service";
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
         ],
         providers: [
             AppInfoUpdateServiceService,
+            DesignService
         ],
     }).compileComponents();
   }));

@@ -15,6 +15,11 @@ import { InputPageComponent } from './input-page.component';
 import { HeaderComponent } from './header/header.component';
 import { OnsenModule } from "angular2-onsenui";
 
+import {SuiModule} from 'ng2-semantic-ui';
+
+import { ColorPickerModule } from 'angular2-color-picker';
+
+
 @NgModule({
   imports: [
       CommonModule,
@@ -25,7 +30,9 @@ import { OnsenModule } from "angular2-onsenui";
       SharedModule,
       ProfileInfoModule,
       MaterialModule,
-      OnsenModule
+      OnsenModule,
+      SuiModule,
+      ColorPickerModule
   ],
   declarations: [
       InputPageComponent,
