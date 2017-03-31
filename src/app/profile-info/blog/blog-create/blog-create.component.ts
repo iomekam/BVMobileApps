@@ -33,12 +33,12 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
         private _blogPostService: BlogPostService) {
 
         this.cropperSettings = new CropperSettings();
-        this.cropperSettings.width = 100;
-        this.cropperSettings.height = 100;
-        this.cropperSettings.croppedWidth = 100;
-        this.cropperSettings.croppedHeight = 100;
-        this.cropperSettings.canvasWidth = 500;
-        this.cropperSettings.canvasHeight = 300;
+        this.cropperSettings.width = 600;
+        this.cropperSettings.height = 600;
+        this.cropperSettings.croppedWidth = 600;
+        this.cropperSettings.croppedHeight = 600;
+        this.cropperSettings.canvasWidth = 600;
+        this.cropperSettings.canvasHeight = 600;
 
         this.data = {};
     }

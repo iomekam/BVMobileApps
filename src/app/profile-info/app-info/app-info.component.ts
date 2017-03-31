@@ -45,12 +45,12 @@ export class AppInfoComponent implements OnInit, AfterViewInit {
         })
 
         this.cropperSettings = new CropperSettings();
-        this.cropperSettings.width = 100;
-        this.cropperSettings.height = 100;
-        this.cropperSettings.croppedWidth = 100;
-        this.cropperSettings.croppedHeight = 100;
-        this.cropperSettings.canvasWidth = 500;
-        this.cropperSettings.canvasHeight = 300;
+        this.cropperSettings.width = 600;
+        this.cropperSettings.height = 512;
+        this.cropperSettings.croppedWidth = 600
+        this.cropperSettings.croppedHeight = 512;
+        this.cropperSettings.canvasWidth = 600;
+        this.cropperSettings.canvasHeight = 512;
 
         this.data = {};
     }
