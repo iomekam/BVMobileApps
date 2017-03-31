@@ -1,13 +1,13 @@
 ﻿<nav>
-  <ol class="cd-breadcrumb triangle custom-icons">
+  <ol class="cd-breadcrumb triangle">
     <li 
         [ngClass]="{'current': isAppInfoCurrent }"
         (click)="toggleCurrent(isAppInfoCurrent)">
-      <a [routerLink]="['/app-info']" skipLocationChange>App info</a>
+      <a [routerLink]="['/app-info']" skipLocationChange>App Information</a>
     </li>
     <li [ngClass]="{'current': isProfileInfoCurrent }"
         (click)="toggleCurrent(profileInfoID)">
-      <a [routerLink]="['/app-profile-info']" skipLocationChange>Profile Info</a>
+      <a [routerLink]="['/app-profile-info']" skipLocationChange>Profile Information</a>
     </li>
     <li [ngClass]="{'current': isBlogCurrent }"
         (click)="toggleCurrent(blogInfoID)">
