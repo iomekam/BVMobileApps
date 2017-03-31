@@ -55,6 +55,6 @@
     "typescript": "~2.0.0"
   },
   "devDependencies": {
-    
+    "@angular/cli": "^1.0.0"
   }
 }
