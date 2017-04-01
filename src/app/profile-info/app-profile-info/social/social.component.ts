@@ -25,26 +25,38 @@ export class SocialComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.mainButton = {
+            color: "primary",
+            iconName: "add"
+        }
 
+        this.socialMediaButtons = [];
+        this.createButtonsForFab();
     }
 
     createButtonsForFab(): void {
-        this._mediaTypes.forEach(function (mediaType: MediaType) {
+        this._mediaTypes.forEach(
+            mediaType => {
             let mediaInfo = MediaTypeFactory.GetMediaInfo(mediaType);
             let ngFAB = {
-                color: "primary",
+                color: "accent",
                 iconName: mediaInfo.icon,
                 onClick: () => {
-                    this.onSocialFabButtonClicked(mediaInfo.mediaType);
-                }
+                    this.onSocialFabButtonClicked(ngFAB);
+                },
             };
 
             this.socialMediaButtons.push(ngFAB);
         });
     }
 
-    onSocialFabButtonClicked(mediaType: MediaType): void {
+    onSocialFabButtonClicked(ngButton: Ng2FloatBtn): void {
+        let index: number = this.socialMediaButtons.findIndex(
+            button => {
+                return ngButton == button;
+            }
+        );
 
+        this.socialMediaButtons.splice(index, 1);
     }
-
 }
