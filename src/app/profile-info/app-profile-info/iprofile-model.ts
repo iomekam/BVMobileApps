@@ -1,7 +1,10 @@
 ﻿export interface IProfileModel {
     website: string;
     phone_number: string;
-    mediaInfo: IMediaInfo[];
+    socialInfo: IMediaInfo[];
+    videoInfo: IMediaInfo[];
+    musicInfo: IMediaInfo[];
+    radioInfo: IMediaInfo[];
 }
 
 export enum MediaType {
