@@ -13,6 +13,7 @@ import { AppInfoService } from './profile-info/app-info/app-info.service';
 import { OnsenModule } from "angular2-onsenui";
 
 import { MdIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -36,4 +37,10 @@ import { MdIconRegistry } from '@angular/material';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+    constructor(mdIconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
+        mdIconRegistry.addSvgIcon('sss',
+            sanitizer.bypassSecurityTrustResourceUrl('/../assets/img/facebook-app-symbol.svg'));
+        mdIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+    } 
+}

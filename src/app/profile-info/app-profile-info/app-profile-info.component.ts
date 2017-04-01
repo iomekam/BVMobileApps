@@ -1,4 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
+import { MdIconRegistry } from '@angular/material';
 
 @Component({
   selector: 'profile-social-info',
@@ -7,9 +8,10 @@
 })
 export class AppProfileInfoComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
-
+    ngOnInit() {
+      
+    }
 }
