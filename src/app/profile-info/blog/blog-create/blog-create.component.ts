@@ -35,6 +35,8 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly blogErrorMessage: string = "Your blog post must have content";
     private readonly keywordEmptyErrorMessage: string = "A keyword is required";
 
+    private config: any;
+
     constructor(
         form: FormBuilder,
         private _router: Router,
@@ -56,6 +58,21 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
         this.cropperSettings.canvasHeight = 600;
 
         this.data = {};
+
+        this.config = {
+            toolbarGroups: [
+                { "name": "basicstyles", "groups": ["basicstyles"] },
+                { "name": "links", "groups": ["links"] },
+                { "name": "paragraph", "groups": ["list", "blocks"] },
+                { "name": "document", "groups": ["mode"] },
+                { "name": "insert", "groups": ["insert"] },
+                { "name": "styles", "groups": ["styles"] },
+                { "name": "about", "groups": ["about"] }
+            ],
+            // Remove the redundant buttons from toolbar groups defined above.
+            removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar',
+            extraPlugins: 'divarea'
+        };
     }
 
     ngOnInit(): void {

@@ -16,6 +16,7 @@
       <br />
       <ckeditor [(ngModel)]="blogPost.body"
                 [formControl]="form.controls['blog']"
+                [config]="config"
                 debounce="500">
       </ckeditor>
       <br />
