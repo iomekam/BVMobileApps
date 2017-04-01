@@ -31,4 +31,14 @@ export class MusicComponent implements OnInit {
             }
         );
     }
+
+    onFabClicked(mediaType: IMediaInfo): void {
+        let index: number = this.contentArray.findIndex(
+            type => {
+                return type == mediaType;
+            }
+        );
+
+        this.contentArray.splice(index, 1);
+    }
 }

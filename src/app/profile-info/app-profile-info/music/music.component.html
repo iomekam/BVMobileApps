@@ -4,10 +4,10 @@
     <ons-icon icon="ion-plus-round">
     </ons-icon>
   </ons-fab>
-  <ons-speed-dial-item *ngFor='let mediaType of contentArray'>
-    <ons-icon 
-              [ngClass]="mediaType.icon"
-              ></ons-icon>
+  <ons-speed-dial-item 
+                       *ngFor='let mediaType of contentArray'
+                       (click)="onFabClicked(mediaType)" >
+    <ons-icon [ngClass]="mediaType.icon"></ons-icon>
   </ons-speed-dial-item>
 </ons-speed-dial>
 <br />
