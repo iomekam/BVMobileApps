@@ -25,14 +25,14 @@ export class SocialComponent implements OnInit {
               },
           },
           {
-              color: "warn",
+              color: "accent",
               iconName: "remove",
               onClick: () => {
                   
               },
           },
           {
-              color: "primary",
+              color: "accent",
               iconName: "test",
               onClick: () => {
                   
