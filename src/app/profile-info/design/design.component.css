@@ -1,0 +1,20 @@
+﻿* {
+  font-family: 'Raleway', sans-serif;
+}
+
+.demo-card-container {
+  display: flex;
+  flex-flow: column nowrap;
+
+  .mat-card {
+    width: 100px;
+  }
+
+  img {
+    background-color: gray;
+  }
+}
+
+.tb-width {
+  width: 500px;
+}

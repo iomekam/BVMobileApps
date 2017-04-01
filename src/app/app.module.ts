@@ -15,7 +15,8 @@ import { OnsenModule } from "angular2-onsenui";
 import {SuiModule} from 'ng2-semantic-ui';
 import { ColorPickerModule } from 'angular2-color-picker';
 import {DesignService} from "./profile-info/design/design.service";
-import {MdIconRegistry} from "@angular/material";
+import { MdIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -48,5 +49,5 @@ import {MdIconRegistry} from "@angular/material";
 export class AppModule {
     constructor(mdIconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
         mdIconRegistry.registerFontClassAlias('fontawesome', 'fa');
-    } 
+    }
 }

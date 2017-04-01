@@ -1,0 +1,167 @@
+﻿
+  <div class="demo-card-container">
+    <md-card class="">
+      <md-card-content>
+
+        <md-grid-list cols="6">
+          <md-grid-tile>
+            <md-card class="" (click)= "toggleCollapse(colorTabID)">
+              <md-card-content>
+                Color
+              </md-card-content>
+            </md-card>
+          </md-grid-tile>
+
+          <md-grid-tile>
+            <md-card class="" (click)= "toggleCollapse(musicTabID)">
+              <md-card-content>
+                Music
+              </md-card-content>
+            </md-card>
+          </md-grid-tile>
+
+          <md-grid-tile>
+            <md-card class="" (click)= "toggleCollapse(videoTabID)">
+              <md-card-content>
+                Video
+              </md-card-content>
+            </md-card>
+          </md-grid-tile>
+
+          <md-grid-tile>
+            <md-card class="" (click)= "toggleCollapse(photoTabID)">
+              <md-card-content>
+                Photo
+              </md-card-content>
+            </md-card>
+          </md-grid-tile>
+
+          <md-grid-tile>
+            <md-card class="" (click)= "toggleCollapse(optionalTabID)">
+              <md-card-content>
+                Tab 4
+              </md-card-content>
+            </md-card>
+          </md-grid-tile>
+
+          <md-grid-tile>
+            <md-card class="" (click)= "toggleCollapse(optionalTab2ID)">
+              <md-card-content>
+                Tab 5
+              </md-card-content>
+            </md-card>
+          </md-grid-tile>
+        </md-grid-list>
+
+
+
+
+            <!--
+            <button class="ui primary button" (click)="collapse = !collapse">
+              Toggle Collapse
+            </button>
+            -->
+
+        <div [suiCollapse]="colorTab">
+          <div class="ui segment">
+            <h4 class="ui header">Color Tab</h4>
+
+
+
+            <!--
+            <div class="row" style="height: 320px">
+              <div class="col s6 center-align">
+            <span [(colorPicker)]="arrayColors[selectedColor]"
+                  [cpDialogDisplay]="'inline'"
+                  [style.background]="arrayColors[selectedColor]"
+                  [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
+                  [cpCancelButton]="true"
+                  [cpToggle]="true"
+            >
+            </span>
+              </div>
+              <div class="col s6">
+                <input [style.background]="arrayColors['color']"
+                       (click)="selectedColor='color'"
+                />
+
+                <input
+                  [style.background]="arrayColors['color2']"
+                       (click)="selectedColor='color2'"
+                 />
+              </div>
+            </div>
+            -->
+
+            <div class="row" style="height: 320px">
+              <div class="col s6 center-align">
+                <input [colorPicker]="color"
+                       (colorPickerChange)="cmyk=onChangeColor($event);color=$event"
+                       [style.background]="color"
+                       style="height: 200px"/>
+              </div>
+
+              <div class="col s6">
+                <input [colorPicker]="color"
+                       (colorPickerChange)="cmyk=onChangeColor($event);color=$event"
+                       [style.background]="color"
+                       style="height: 200px"/>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div [suiCollapse]="musicTab">
+          <div class="ui segment">
+            <h4 class="ui header">Music Tab</h4>
+            <p>Content of the panel.</p>
+          </div>
+        </div>
+
+        <div [suiCollapse]="videoTab">
+          <div class="ui segment">
+            <h4 class="ui header">Video Tab</h4>
+            <p>Content of the panel.</p>
+          </div>
+        </div>
+
+        <div [suiCollapse]="photoTab">
+          <div class="ui segment">
+            <h4 class="ui header">Photo Tab</h4>
+            <p>Content of the panel.</p>
+          </div>
+        </div>
+
+        <div [suiCollapse]="optionalTab">
+          <div class="ui segment">
+            <h4 class="ui header">Optional Tab 1</h4>
+            <p>Content of the panel.</p>
+          </div>
+        </div>
+
+        <div [suiCollapse]="optionalTab2">
+          <div class="ui segment">
+            <h4 class="ui header">Optional Tab 2</h4>
+            <p>Content of the panel.</p>
+          </div>
+        </div>
+
+
+
+
+
+
+
+      </md-card-content>
+    </md-card>
+  </div>
+  <br />
+
+
+
+<br>
+  <br>
+  <br>
+
+
