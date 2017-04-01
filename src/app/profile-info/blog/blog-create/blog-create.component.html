@@ -43,9 +43,11 @@
                  addOnBlur="true"
                  separatorKeys="[32]"></tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
     </md-card-content>
-    <md-card-actions align="right">
-      <button md-button (click)="cancel()">Cancel</button>
-      <button md-button type="submit" (click)="submit()" [disabled]="!form.valid || data.image === ''">Submit</button>
+    <md-card-actions>
+      <div align="right">
+        <button md-button (click)="cancel()">Cancel</button>
+        <button md-button type="submit" (click)="submit()" [disabled]="!form.valid || data.image === ''">Submit</button>
+      </div> 
     </md-card-actions>
   </md-card>
 </form>
