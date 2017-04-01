@@ -25,10 +25,11 @@ export enum MediaType {
 
 export interface IMediaInfo {
     mediaType: MediaType;
-    mediaName: string
+    mediaName: string;
     icon: string;
-    pre_url: string
-    username: string
+    pre_url: string;
+    username: string;
+    color: string;
 }
 
 export class MediaTypeFactory {
@@ -39,7 +40,8 @@ export class MediaTypeFactory {
                 mediaName: "Facebook",
                 icon: "socicon socicon-facebook",
                 pre_url: "www.facebook.com/",
-                username: ""
+                username: "",
+                color: "#3b5998"
             };
         }
         else if (mediaType == MediaType.TWITTER) {
@@ -48,7 +50,8 @@ export class MediaTypeFactory {
                 mediaName: "Twitter",
                 icon: "socicon socicon-twitter",
                 pre_url: "www.twitter.com/",
-                username: ""
+                username: "",
+                color: "#4099FF"
             };
         }
         else if (mediaType == MediaType.INSTAGRAM) {
@@ -57,7 +60,8 @@ export class MediaTypeFactory {
                 mediaName: "Instagram",
                 icon: "socicon socicon-instagram",
                 pre_url: "www.instragram.com/",
-                username: ""
+                username: "",
+                color: "#8a3ab9"
             };
         }
         else if (mediaType == MediaType.PERISCOPE) {
@@ -66,7 +70,8 @@ export class MediaTypeFactory {
                 mediaName: "Periscope",
                 icon: "socicon socicon-periscope",
                 pre_url: "www.periscope.com/",
-                username: ""
+                username: "",
+                color: "#3FA4C4"
             };
         }
         else if (mediaType === MediaType.AUDIOMACK) {
@@ -75,7 +80,8 @@ export class MediaTypeFactory {
                 mediaName: "Audiomack",
                 icon: "send",
                 pre_url: "www.audiomack.com/",
-                username: ""
+                username: "",
+              color: "#3FA4C4"
             };
         }
         else if (mediaType == MediaType.SOUNDCLOUD) {
@@ -84,7 +90,8 @@ export class MediaTypeFactory {
                 mediaName: "SoundCloud",
                 icon: "socicon socicon-soundcloud",
                 pre_url: "www.soundcloud.com/",
-                username: ""
+                username: "",
+              color: "#3FA4C4"
             };
         }
         else if (mediaType == MediaType.MIXCLOUD) {
@@ -93,7 +100,8 @@ export class MediaTypeFactory {
                 mediaName: "Mixcloud",
                 icon: "socicon socicon-mixcloud",
                 pre_url: "www.mixcloud.com/",
-                username: ""
+                username: "",
+              color: "#3FA4C4"
             };
         }
         else if (mediaType == MediaType.PODOMATIC) {
@@ -102,7 +110,8 @@ export class MediaTypeFactory {
                 mediaName: "PodOmatic",
                 icon: "extension",
                 pre_url: "www.podomatic.com/",
-                username: ""
+                username: "",
+              color: "#3FA4C4"
             };
         }
         else if (mediaType == MediaType.BLOGTALKRADIO) {
@@ -111,7 +120,8 @@ export class MediaTypeFactory {
                 mediaName: "BlogTalkRadio",
                 icon: "extension",
                 pre_url: "www.blogtalkradio.com.com/",
-                username: ""
+                username: "",
+              color: "#3FA4C4"
             };
         }
         else if (mediaType == MediaType.YOUTUBE) {
@@ -120,7 +130,8 @@ export class MediaTypeFactory {
                 mediaName: "YouTube",
                 icon: "socicon socicon-youtube",
                 pre_url: "www.youtube.com/",
-                username: ""
+                username: "",
+              color: "#3FA4C4"
             };
         }
         else if (mediaType == MediaType.VIMEO) {
@@ -129,7 +140,8 @@ export class MediaTypeFactory {
                 mediaName: "Vimeo",
                 icon: "socicon socicon-vimeo",
                 pre_url: "www.vimeo.com/",
-                username: ""
+                username: "",
+              color: "#3FA4C4"
             };
         }
         else if (mediaType == MediaType.FLICKR) {
@@ -138,7 +150,8 @@ export class MediaTypeFactory {
                 mediaName: "Flickr",
                 icon: "socicon socicon-flickr",
                 pre_url: "www.Flikr.com/",
-                username: ""
+                username: "",
+              color: "#3FA4C4"
             };
         }
         else if (mediaType == MediaType.LISTENLIVE) {
@@ -147,7 +160,8 @@ export class MediaTypeFactory {
                 mediaName: "ListenLive",
                 icon: "extension",
                 pre_url: "www.?.com/",
-                username: ""
+                username: "",
+              color: "#3FA4C4"
             };
         }
     }

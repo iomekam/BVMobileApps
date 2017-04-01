@@ -21,36 +21,50 @@
 </div>
 
 <br />
-<br />
-<br />
-<div class="content">
-  <ons-speed-dial position="left bottom" direction="right">
-    <ons-fab>
-      <ons-icon icon="ion-plus-round"></ons-icon>
-    </ons-fab>
-    <ons-speed-dial-item (click)="onFabClicked(mediaType)"
-                         *ngFor='let mediaType of contentArray'>
-      <ons-icon [ngClass]="mediaType.icon"></ons-icon>
-    </ons-speed-dial-item>
-  </ons-speed-dial>
-</div>
-<br />
+
 <div *ngFor='let display of displayArray'>
   <div class="ui message">
-    <div class="ui blue ribbon label">
-      <span class="{{display.mediaType.icon}}"></span> {{display.mediaType.mediaName}}
+    <div class="ui ribbon label" [style.background-color] = display.color>
+      <span class="{{display.icon}}"></span> {{display.mediaName}}
     </div>
+
+    <a class="ui right corner label" [style.background-color] = display.color [style.border-color] = display.color>
+      <i class="delete icon"></i>
+    </a>
+
     <br/>
     <br/>
     <div class="row">
       <div class="col s12">
         <div class="ui labeled input col s12">
           <div class="ui label">
-            {{display.mediaType.pre_url}}
+            {{display.pre_url}}
           </div>
           <input type="text" placeholder="username">
         </div>
       </div>
     </div>
   </div>
+  <br>
+</div>
+
+
+<br />
+<br />
+<br />
+
+
+
+<div class="row">
+  <div class="col s12">
+      <ons-speed-dial position="right bottom" direction="left">
+        <ons-fab>
+          <ons-icon icon="ion-plus-round"></ons-icon>
+        </ons-fab>
+        <ons-speed-dial-item (click)="onFabClicked(mediaType)"
+                             *ngFor='let mediaType of contentArray'>
+          <ons-icon [ngClass]="mediaType.icon"></ons-icon>
+        </ons-speed-dial-item>
+      </ons-speed-dial>
+    </div>
 </div>
