@@ -17,27 +17,34 @@ export class SocialComponent implements OnInit {
       }
 
       this.buttons = [
-          {
+          { // Facebook
               color: "accent",
               iconName: "add",
               onClick: () => {
                  
               },
           },
-          {
+          { // Instagram
               color: "accent",
               iconName: "remove",
               onClick: () => {
                   
               },
           },
-          {
+          { // Twitter
               color: "accent",
               iconName: "test",
               onClick: () => {
                   
               },
-          }
+          },
+          { // Periscope
+              color: "accent",
+              iconName: "add",
+              onClick: () => {
+
+              },
+          },
       ]
 
   }
