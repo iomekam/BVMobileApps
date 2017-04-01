@@ -3,11 +3,11 @@
     <li class="ui mini"
         [ngClass]="{'current': isAppInfoCurrent }"
         (click)="toggleCurrent(isAppInfoCurrent)">
-      <a [routerLink]="['/app-info']" skipLocationChange style="font-size: large">App Information</a>
+      <a [routerLink]="['/app-info']" skipLocationChange style="font-size: large">App Info</a>
     </li>
     <li [ngClass]="{'current': isProfileInfoCurrent }"
         (click)="toggleCurrent(profileInfoID)">
-      <a [routerLink]="['/app-profile-info']" skipLocationChange style="font-size: large">Profile Information</a>
+      <a [routerLink]="['/app-profile-info']" skipLocationChange style="font-size: large">Profile Info</a>
     </li>
     <li [ngClass]="{'current': isBlogCurrent }"
         (click)="toggleCurrent(blogInfoID)">
