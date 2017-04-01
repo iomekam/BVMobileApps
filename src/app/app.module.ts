@@ -40,8 +40,7 @@ import { DomSanitizer } from '@angular/platform-browser';
       BlogPostService,
       AppInfoService,
       DesignService,
-      SocialUpdateServiceService,
-      MusicUpdateServiceService,
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,],
   bootstrap: [AppComponent]

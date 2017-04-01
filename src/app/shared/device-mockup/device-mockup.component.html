@@ -6,10 +6,16 @@
   <div class="sensor"></div>
   <div class="speaker"></div>
   <div class="screen" [style.background]="backgroundColor">
-    <div style="font-size:36px;color:#000000">
-      {{ text }}
 
-    </div>
+    <ons-toolbar>
+
+
+      <div style='padding: 3px; width: 130px; word-break: break-all; word-wrap: break-word; font-size:36px;color:#000000;'>
+        {{ text }}
+      </div>
+
+    </ons-toolbar>
+
 
     <ons-tabbar>
       <ons-tab page="Music" label="Home" icon="ion-home" active="true"></ons-tab>
@@ -21,41 +27,30 @@
 
 
     <ons-template id="Music">
-      <ons-toolbar>
-        <div class="center">Home</div>
-      </ons-toolbar>
+
 
       <p style="padding-top: 100px; color: #999; text-align: center">Page Contents</p>
     </ons-template>
 
     <ons-template id="Video">
-      <ons-toolbar>
-        <div class="center">Comments</div>
-      </ons-toolbar>
 
       <p style="padding-top: 100px; color: #999; text-align: center">Page Contents</p>
     </ons-template>
 
     <ons-template id="Photo">
-      <ons-toolbar>
-        <div class="center">Tags</div>
-      </ons-toolbar>
+
 
       <p style="padding-top: 100px; color: #999; text-align: center">Page Contents</p>
     </ons-template>
 
     <ons-template id="Tab 4">
-      <ons-toolbar>
-        <div class="center">Feed</div>
-      </ons-toolbar>
+
 
       <p style="padding-top: 100px; color: #999; text-align: center">Page Contents</p>
     </ons-template>
 
     <ons-template id="Tab 5">
-      <ons-toolbar>
-        <div class="center">Settings</div>
-      </ons-toolbar>
+
 
       <p style="padding-top: 100px; color: #999; text-align: center">Page Contents</p>
     </ons-template>

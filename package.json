@@ -28,7 +28,6 @@
     "@angular2-material/core": "^2.0.0-alpha.8-2",
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
-    "angular2-color-picker": "git://github.com/zefoy/angular2-color-picker.git#npm-package",
     "angular2-onsenui": "^1.0.0-rc.6",
     "bootstrap": "^4.0.0-alpha.6",
     "codelyzer": "~2.0.0",
@@ -45,8 +44,8 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "ng2-bootstrap": "^1.4.1",
     "ng2-ckeditor": "^1.1.6",
+    "ng2-float-btn": "0.0.3",
     "ng2-img-cropper": "^0.8.1",
-    "ng2-semantic-ui": "^0.5.5",
     "ng2-tag-input": "^0.9.6",
     "onsenui": "^2.2.0",
     "protractor": "~5.1.0",
@@ -59,5 +58,4 @@
   "devDependencies": {
     "@angular/cli": "^1.0.0"
   }
-
 }

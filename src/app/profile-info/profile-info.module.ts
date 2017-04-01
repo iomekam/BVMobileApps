@@ -78,7 +78,7 @@ import { RadioComponent } from './app-profile-info/radio/radio.component';
       OnsenModule,
       ImageCropperModule,
       SuiModule,
-    ColorPickerModule
+    ColorPickerModule,
       Ng2FloatBtnModule
     ],
   declarations: [
