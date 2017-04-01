@@ -1,7 +1,7 @@
 ﻿export interface IProfileModel {
     website: string;
     phone_number: string;
-    mediaInfo: IMediaInfo;
+    mediaInfo: IMediaInfo[];
 }
 
 export enum MediaType {
@@ -32,7 +32,7 @@ export class MediaTypeFactory {
         if (mediaType === MediaType.FACEBOOK) {
             return {
                 mediaType: MediaType.FACEBOOK,
-                icon: "send",
+                icon: "socicon socicon-facebook",
                 pre_url: "www.facebook.com/",
                 url: ""
             };
@@ -40,7 +40,7 @@ export class MediaTypeFactory {
         else if (mediaType == MediaType.TWITTER) {
             return {
                 mediaType: MediaType.TWITTER,
-                icon: "dashboard",
+                icon: "socicon socicon-twitter",
                 pre_url: "www.twitter.com/",
                 url: ""
             };
@@ -48,7 +48,7 @@ export class MediaTypeFactory {
         else if (mediaType == MediaType.INSTAGRAM) {
             return {
                 mediaType: MediaType.INSTAGRAM,
-                icon: "favorite",
+                icon: "socicon socicon-instagram",
                 pre_url: "www.instragram.com/",
                 url: ""
             };
@@ -56,7 +56,7 @@ export class MediaTypeFactory {
         else if (mediaType == MediaType.PERISCOPE) {
             return {
                 mediaType: MediaType.PERISCOPE,
-                icon: "extension",
+                icon: "socicon socicon-periscope",
                 pre_url: "www.periscope.com/",
                 url: ""
             };
@@ -72,7 +72,7 @@ export class MediaTypeFactory {
         else if (mediaType == MediaType.SOUNDCLOUD) {
             return {
                 mediaType: MediaType.SOUNDCLOUD,
-                icon: "dashboard",
+                icon: "socicon socicon-soundcloud",
                 pre_url: "www.twitter.com/",
                 url: ""
             };
@@ -80,7 +80,7 @@ export class MediaTypeFactory {
         else if (mediaType == MediaType.MIXCLOUD) {
             return {
                 mediaType: MediaType.MIXCLOUD,
-                icon: "favorite",
+                icon: "socicon socicon-mixcloud",
                 pre_url: "www.instragram.com/",
                 url: ""
             };
@@ -104,15 +104,15 @@ export class MediaTypeFactory {
         else if (mediaType == MediaType.YOUTUBE) {
             return {
                 mediaType: MediaType.YOUTUBE,
-                icon: "favorite",
-                pre_url: "www.instragram.com/",
+                icon: "socicon socicon-youtube",
+                pre_url: "www.youtube.com/",
                 url: ""
             };
         }
         else if (mediaType == MediaType.VIMEO) {
             return {
                 mediaType: MediaType.VIMEO,
-                icon: "extension",
+                icon: "socicon socicon-vimeo",
                 pre_url: "www.periscope.com/",
                 url: ""
             };
@@ -120,7 +120,7 @@ export class MediaTypeFactory {
         else if (mediaType == MediaType.FLICKR) {
             return {
                 mediaType: MediaType.FLICKR,
-                icon: "extension",
+                icon: "socicon socicon-flickr",
                 pre_url: "www.periscope.com/",
                 url: ""
             };

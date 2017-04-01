@@ -1,4 +1,12 @@
-﻿<div style="display:block; margin: 20px; height: 92px;">
-  <ng2-float-btn [mainButton]="mainButton" [buttons]="musicMediaButtons" [direction]="'right'">
-  </ng2-float-btn>
-</div>
+﻿<br />
+<ons-speed-dial direction="right">
+  <ons-fab>
+    <ons-icon icon="ion-plus-round">
+    </ons-icon>
+  </ons-fab>
+  <ons-speed-dial-item *ngFor='let mediaType of contentArray'>
+    <ons-icon [ngClass]="mediaType.icon"></ons-icon>
+  </ons-speed-dial-item>
+</ons-speed-dial>
+<br />
+<br />
