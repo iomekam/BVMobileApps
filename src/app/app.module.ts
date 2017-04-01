@@ -39,8 +39,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class AppModule {
     constructor(mdIconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
-        mdIconRegistry.addSvgIcon('sss',
-            sanitizer.bypassSecurityTrustResourceUrl('/../assets/img/facebook-app-symbol.svg'));
         mdIconRegistry.registerFontClassAlias('fontawesome', 'fa');
     } 
 }
