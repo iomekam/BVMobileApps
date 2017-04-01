@@ -8,8 +8,6 @@ import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprof
   styleUrls: ['./music.component.css']
 })
 export class MusicComponent implements OnInit {
-    private mainButton: Ng2FloatBtn;
-
     private _mediaTypes: MediaType[] = [
         MediaType.AUDIOMACK,
         MediaType.SOUNDCLOUD,
@@ -18,45 +16,29 @@ export class MusicComponent implements OnInit {
         MediaType.BLOGTALKRADIO,
     ];
 
-    private musicMediaButtons: Array<Ng2FloatBtn>;
-    private contentArray: Array<IProfileModel>;
+    private contentArray: Array<IMediaInfo>;
 
     constructor() {
     }
 
     ngOnInit(): void {
-        this.mainButton = {
-            color: "primary",
-            iconName: "add"
-        }
+        this.contentArray = [];
 
-        this.musicMediaButtons = [];
-        this.createButtonsForFab();
-    }
-
-    createButtonsForFab(): void {
         this._mediaTypes.forEach(
             mediaType => {
                 let mediaInfo = MediaTypeFactory.GetMediaInfo(mediaType);
-                let ngFAB = {
-                    color: "accent",
-                    iconName: mediaInfo.icon,
-                    onClick: () => {
-                        this.onMusicFabButtonClicked(ngFAB);
-                    },
-                };
-
-                this.musicMediaButtons.push(ngFAB);
-            });
+                this.contentArray.push(mediaInfo);
+            }
+        );
     }
 
-    onMusicFabButtonClicked(ngButton: Ng2FloatBtn): void {
-        let index: number = this.musicMediaButtons.findIndex(
-            button => {
-                return ngButton == button;
+    onFabClicked(mediaType: IMediaInfo): void {
+        let index: number = this.contentArray.findIndex(
+            type => {
+                return type == mediaType;
             }
         );
 
-        this.musicMediaButtons.splice(index, 1);
+        this.contentArray.splice(index, 1);
     }
 }

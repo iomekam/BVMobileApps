@@ -1,5 +1,4 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 
 @Component({
@@ -9,8 +8,6 @@ import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprof
 })
 
 export class SocialComponent implements OnInit {
-    private mainButton: Ng2FloatBtn;
-
     private _mediaTypes: MediaType[] = [
         MediaType.FACEBOOK,
         MediaType.TWITTER,
@@ -18,45 +15,29 @@ export class SocialComponent implements OnInit {
         MediaType.PERISCOPE,
     ];
 
-    private socialMediaButtons: Array<Ng2FloatBtn>;
-    private contentArray: Array<IProfileModel>;
+    private contentArray: Array<IMediaInfo>;
 
     constructor() {
     }
 
     ngOnInit(): void {
-        this.mainButton = {
-            color: "primary",
-            iconName: "add"
-        }
+        this.contentArray = [];
 
-        this.socialMediaButtons = [];
-        this.createButtonsForFab();
-    }
-
-    createButtonsForFab(): void {
         this._mediaTypes.forEach(
             mediaType => {
-            let mediaInfo = MediaTypeFactory.GetMediaInfo(mediaType);
-            let ngFAB = {
-                color: "accent",
-                iconName: mediaInfo.icon,
-                onClick: () => {
-                    this.onSocialFabButtonClicked(ngFAB);
-                },
-            };
-
-            this.socialMediaButtons.push(ngFAB);
-        });
+                let mediaInfo = MediaTypeFactory.GetMediaInfo(mediaType);
+                this.contentArray.push(mediaInfo);
+            }
+        );
     }
 
-    onSocialFabButtonClicked(ngButton: Ng2FloatBtn): void {
-        let index: number = this.socialMediaButtons.findIndex(
-            button => {
-                return ngButton == button;
+    onFabClicked(mediaType: IMediaInfo): void {
+        let index: number = this.contentArray.findIndex(
+            type => {
+                return type == mediaType;
             }
         );
 
-        this.socialMediaButtons.splice(index, 1);
+        this.contentArray.splice(index, 1);
     }
 }
