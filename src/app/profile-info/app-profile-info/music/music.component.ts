@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
+import { MediaUpdateService } from '../media-update.service'
 
 @Component({
   selector: 'bv-music',
@@ -16,20 +17,38 @@ export class MusicComponent implements OnInit {
         MediaType.BLOGTALKRADIO,
     ];
 
+    private profile: IProfileModel;
     private contentArray: Array<IMediaInfo>;
+    private displayArray: Array<IMediaInfo>;
 
-    constructor() {
+    constructor(private _profileService: MediaUpdateService) {
     }
 
     ngOnInit(): void {
         this.contentArray = [];
 
+        this.profile = this._profileService.getProfile();
+        this.displayArray = this.profile.musicInfo;
+
         this._mediaTypes.forEach(
             mediaType => {
+                let shouldAddToContent = this.displayArray.find(
+                    content => {
+                        return content.mediaType == mediaType;
+                    }
+                ) === undefined;
+
+                if (!shouldAddToContent) { return; }
+
                 let mediaInfo = MediaTypeFactory.GetMediaInfo(mediaType);
                 this.contentArray.push(mediaInfo);
             }
         );
+    }
+
+    ngOnDestroy(): void {
+        this.profile.socialInfo = this.displayArray;
+        this._profileService.setProfile(this.profile);
     }
 
     onFabClicked(mediaType: IMediaInfo): void {
@@ -39,6 +58,7 @@ export class MusicComponent implements OnInit {
             }
         );
 
+        this.displayArray.push(this.contentArray[index]);
         this.contentArray.splice(index, 1);
     }
 }

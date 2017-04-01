@@ -2,14 +2,16 @@
 
 <div>
   <md-input-container>
-    <input class="tb-width"
+    <input [(ngModel)]="profile.websites"
+           class="tb-width"
            type="text"
            maxlength="100"
            mdInput
            placeholder="Website url">
   </md-input-container>
   <md-input-container>
-    <input class="tb-width"
+    <input [(ngModel)]="profile.phone_number"
+           class="tb-width"
            type="text"
            maxlength="100"
            mdInput
@@ -31,4 +33,7 @@
     </ons-speed-dial-item>
   </ons-speed-dial>
 </div>
-<br/>
+<br />
+<div *ngFor='let display of displayArray'>
+
+</div>

@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 
 import { BlogPostService } from './profile-info/blog/blog-post.service';
 import { AppInfoService } from './profile-info/app-info/app-info.service';
+import { MediaUpdateService } from './profile-info/app-profile-info/media-update.service';
 
 import { OnsenModule } from "angular2-onsenui";
 
@@ -34,6 +35,7 @@ import { DomSanitizer } from '@angular/platform-browser';
       MdIconRegistry,
       BlogPostService,
       AppInfoService,
+      MediaUpdateService,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA,],
   bootstrap: [AppComponent]
