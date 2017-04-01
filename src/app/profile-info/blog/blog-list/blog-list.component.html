@@ -14,8 +14,8 @@
         <div [innerHTML]="blogPost.body"></div>
     </md-card-content>
     <md-card-actions align="right">
-      <button md-mini-fab (click)="deleteBlogPost(blogPost.id)"><md-icon>clear</md-icon></button>
-      <button md-mini-fab (click)="editBlogPost(blogPost.id)"><md-icon>create</md-icon></button>
+      <button md-button (click)="deleteBlogPost(blogPost.id)"><md-icon>clear</md-icon></button>
+      <button md-button (click)="editBlogPost(blogPost.id)"><md-icon>create</md-icon></button>
     </md-card-actions>
   </md-card>
 </div>
