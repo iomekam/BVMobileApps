@@ -1,39 +1,56 @@
 ﻿<br/>
 
 
+<div>
+  <md-input-container>
+    <input [(ngModel)]="profile.websites"
+           class="tb-width"
+           type="text"
+           maxlength="100"
+           mdInput
+           placeholder="Website url">
+  </md-input-container>
+  <md-input-container>
+    <input [(ngModel)]="profile.phone_number"
+           class=""
+           type="text"
+           maxlength="100"
+           mdInput
+           placeholder="Phone number">
+  </md-input-container>
+</div>
 
-<div class="ui message">
-  <div class="ui blue ribbon label">
-    <span class="socicon socicon-facebook"></span> Facebook
-  </div>
-  <br/>
-  <br/>
-<div class="row">
-  <div class="col s12">
-    <div class="ui labeled input col s12">
-      <div class="ui label">
-        https://www.facebook.com/
+<br />
+<br />
+<br />
+<div class="content">
+  <ons-speed-dial position="left bottom" direction="right">
+    <ons-fab>
+      <ons-icon icon="ion-plus-round"></ons-icon>
+    </ons-fab>
+    <ons-speed-dial-item (click)="onFabClicked(mediaType)"
+                         *ngFor='let mediaType of contentArray'>
+      <ons-icon [ngClass]="mediaType.icon"></ons-icon>
+    </ons-speed-dial-item>
+  </ons-speed-dial>
+</div>
+<br />
+<div *ngFor='let display of displayArray'>
+  <div class="ui message">
+    <div class="ui blue ribbon label">
+      <span class="{{display.mediaType.icon}}"></span> {{display.mediaType.mediaName}}
+    </div>
+    <br/>
+    <br/>
+    <div class="row">
+      <div class="col s12">
+        <div class="ui labeled input col s12">
+          <div class="ui label">
+            {{display.mediaType.pre_url}}
+          </div>
+          <input type="text" placeholder="username">
+        </div>
       </div>
-      <input type="text" placeholder="username">
     </div>
   </div>
 </div>
-</div>
-
-
-
-
-
-<ons-speed-dial direction="right">
-  <ons-fab>
-    <ons-icon icon="ion-plus-round">
-    </ons-icon>
-  </ons-fab>
-  <ons-speed-dial-item
-                       (click)="onFabClicked(mediaType)"
-                       *ngFor='let mediaType of contentArray'>
-    <ons-icon [ngClass]="mediaType.icon"></ons-icon>
-  </ons-speed-dial-item>
-</ons-speed-dial>
-<br/>
-<br/>
