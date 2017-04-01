@@ -136,13 +136,13 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
         }
 
         this._blogPostService.setIsInCreationPage(false, null);
-        this._router.navigate(['/app-blog'], { skipLocationChange: true });
+        this._router.navigate(['/app-blog/blog-list'], { skipLocationChange: true });
     }
 
     cancel(): void {
         this._wasCanceled = true;
         this._blogPostService.setIsInCreationPage(false, null);
-        this._router.navigate(['/app-blog'], { skipLocationChange: true });
+        this._router.navigate(['/app-blog/blog-list'], { skipLocationChange: true });
     }
 
     onCrop(event: any): void {

@@ -44,7 +44,7 @@ export class BlogListComponent implements OnInit {
             if (!isNaN(id) && id > 0) {
                 url += id;
             }
-
+            
             this._router.navigate([url], { skipLocationChange: true });
             return;
         }
