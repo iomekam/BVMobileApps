@@ -47,7 +47,7 @@ export class MusicComponent implements OnInit {
     }
 
     ngOnDestroy(): void {
-        this.profile.socialInfo = this.displayArray;
+        this.profile.musicInfo = this.displayArray;
         this._profileService.setProfile(this.profile);
     }
 
@@ -60,5 +60,16 @@ export class MusicComponent implements OnInit {
 
         this.displayArray.push(this.contentArray[index]);
         this.contentArray.splice(index, 1);
+    }
+
+    onDelete(mediaType: IMediaInfo): void {
+        let index: number = this.displayArray.findIndex(
+            type => {
+                return type == mediaType;
+            }
+        );
+
+        this.contentArray.push(this.displayArray[index]);
+        this.displayArray.splice(index, 1);
     }
 }

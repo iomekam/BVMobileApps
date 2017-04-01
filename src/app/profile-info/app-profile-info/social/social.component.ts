@@ -46,6 +46,7 @@ export class SocialComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        
         this.profile.socialInfo = this.displayArray;
         this._profileService.setProfile(this.profile);
     }
@@ -59,5 +60,16 @@ export class SocialComponent implements OnInit, OnDestroy {
 
         this.displayArray.push(this.contentArray[index]);
         this.contentArray.splice(index, 1);
+    }
+
+    onDelete(mediaType: IMediaInfo): void {
+        let index: number = this.displayArray.findIndex(
+            type => {
+                return type == mediaType;
+            }
+        );
+
+        this.contentArray.push(this.displayArray[index]);
+        this.displayArray.splice(index, 1);
     }
 }
