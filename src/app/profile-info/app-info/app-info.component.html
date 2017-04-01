@@ -71,32 +71,25 @@
   <div class="demo-card-container">
     <md-card class="demo-card-blue">
       <md-card-content>
-        <tag-input [formControl]="form.controls['keywords']"
+        <rl-tag-input [formControl]="form.controls['keywords']"
                    (focusout)="OnFocusOut()"
                    (input)="onInput()"
                    [(ngModel)]="appInfo.keywords"
                    (onBlur)="onTagLostFocus($event)"
                    mdTooltip="{{ keywordMaxCharacters }}"
                    mdTooltipShowDelay="{{ displayTime }}"
-                   maxItems="100"
-                   secondaryPlaceholder="Add some keywords"
-                   modelAsStrings="true"
-                   blinkIfDupe="true"
-                   placeholder="Add more keyword if needed"
-                   pasteSplitPattern="[' ']"
+                   placeholder="Add some keywords"
                    addOnSpace="true"
                    addOnPaste="true"
-                   trimTags="true"
-                   editable="true"
+                   addOnEnter="true"
                    addOnBlur="true"
-                   separatorKeys="[32]"></tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
+                   separatorKeys="[32]"></rl-tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
         <md-hint [ngStyle]="{'color': 'red'}"
                  align="start"
                  *ngIf="form.controls['keywords'].hasError('required') && isTagTouched">{{ keywordEmptyErrorMessage }}</md-hint>
       </md-card-content>
     </md-card>
   </div>
-
   <br />
 
   <div class="demo-card-container">

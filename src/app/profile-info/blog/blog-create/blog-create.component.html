@@ -28,20 +28,14 @@
 
       <br />
 
-      <tag-input [(ngModel)]="blogPost.keywords"
+      <rl-tag-input [(ngModel)]="blogPost.keywords"
                  [formControl]="form.controls['keywords']"
                  (onBlur)="onTagLostFocus($event)"
-                 secondaryPlaceholder="Add a keyword"
-                 modelAsStrings="true"
-                 blinkIfDupe="true"
-                 placeholder="Add another keyword"
-                 pasteSplitPattern="[' ']"
+                 placeholder="Add a keyword"
                  addOnSpace="true"
                  addOnPaste="true"
-                 trimTags="true"
-                 editable="true"
-                 addOnBlur="true"
-                 separatorKeys="[32]"></tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
+                 addOnEnter="true"
+                 addOnBlur="true"></rl-tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
     </md-card-content>
     <md-card-actions>
       <div align="right">

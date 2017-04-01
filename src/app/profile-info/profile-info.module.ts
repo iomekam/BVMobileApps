@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { RlTagInputModule } from 'angular2-tag-input';
 import { TagInputModule } from 'ng2-tag-input';
 import { MaterialModule } from '@angular/material';
 import 'hammerjs';
@@ -13,15 +14,15 @@ import { BlogComponent } from './blog/blog.component';
 import { SocialComponent } from './app-profile-info/social/social.component';
 import { MusicComponent } from './app-profile-info/music/music.component';
 import { VideoComponent } from './app-profile-info/video/video.component';
-import {OnsenModule} from "angular2-onsenui";
+import { OnsenModule } from "angular2-onsenui";
 
 import { CKEditorModule } from 'ng2-ckeditor';
 
 import { ImageCropperModule } from 'ng2-img-cropper';
 import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
-import {DesignComponent} from "./design/design.component";
-import {SuiModule} from "ng2-semantic-ui";
+import { DesignComponent } from "./design/design.component";
+import { SuiModule } from "ng2-semantic-ui";
 import { ColorPickerModule } from 'angular2-color-picker';
 
 import { Ng2FloatBtnModule } from 'ng2-float-btn';
@@ -78,8 +79,9 @@ import { RadioComponent } from './app-profile-info/radio/radio.component';
       OnsenModule,
       ImageCropperModule,
       SuiModule,
-    ColorPickerModule,
-      Ng2FloatBtnModule
+      ColorPickerModule,
+      Ng2FloatBtnModule,
+      RlTagInputModule
     ],
   declarations: [
       AppInfoComponent,
