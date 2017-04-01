@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder} from "@angular/forms";
-import {SocialUpdateServiceService} from "./social-update-service.service";
-import {ISocialInfo} from "./ISocialInfo";
+﻿import { Component, OnInit } from '@angular/core';
+import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 
 @Component({
   selector: 'bv-social',
@@ -9,29 +7,42 @@ import {ISocialInfo} from "./ISocialInfo";
   styleUrls: ['./social.component.css']
 })
 export class SocialComponent implements OnInit {
+  private mainButton: Ng2FloatBtn;
+  private buttons: Array<Ng2FloatBtn>;
 
-  private readonly appNameMinCharacters: string = "We recommend strong, relevant keyword in your App Name. For example, a. Contraband – Free Mixtapes b. Fresh Radio – Hip-Hop and Soul c. Jayforce – Celebrity News d. DJ Kenny B – Chicago House ";
-  private readonly appNameEmptyErrorMessage: string = "An App Name is required";
+  constructor() {
+      this.mainButton = {
+          color: "primary",
+          iconName: "add"
+      }
 
-
-  private form: FormGroup;
-  private appInfo: ISocialInfo;
-
-
-  private showPeriscope: boolean = false;
-  private showSoundCloud: boolean = false;
-  private showMixCloud: boolean = false;
-
-  constructor(form: FormBuilder, private _appInfoUpdateService: SocialUpdateServiceService) {
-    this.form = form.group({
-
-    })
+      this.buttons = [
+          {
+              color: "accent",
+              iconName: "add",
+              onClick: () => {
+                  alert("buton 1 clicked");
+              },
+          },
+          {
+              color: "warn",
+              iconName: "remove",
+              onClick: () => {
+                  alert("buton 2 clicked");
+              },
+          },
+          {
+              color: "primary",
+              iconName: "test",
+              onClick: () => {
+                  alert("buton 3 clicked");
+              },
+          }
+      ]
 
   }
-  ngOnInit() {
-    this.appInfo = {
-      appName: '',
-    };
+  ngOnInit(): void {
+
   }
 
 }

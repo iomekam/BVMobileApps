@@ -21,6 +21,8 @@ import { ImageCropperModule } from 'ng2-img-cropper';
 import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
 
+import { Ng2FloatBtnModule } from 'ng2-float-btn';
+
 @NgModule({
   imports: [
       CommonModule,
@@ -62,7 +64,8 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component';
       TagInputModule,
       CKEditorModule,
       OnsenModule,
-      ImageCropperModule
+      ImageCropperModule,
+      Ng2FloatBtnModule
     ],
   declarations: [
       AppInfoComponent,
