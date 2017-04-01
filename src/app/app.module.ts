@@ -11,7 +11,6 @@ import { BlogPostService } from './profile-info/blog/blog-post.service';
 import { AppInfoService } from './profile-info/app-info/app-info.service';
 
 import { OnsenModule } from "angular2-onsenui";
-import { MusicUpdateServiceService } from "./profile-info/app-profile-info/music/music-update-service.service";
 
 import { MdIconRegistry } from '@angular/material';
 
@@ -34,7 +33,6 @@ import { MdIconRegistry } from '@angular/material';
       MdIconRegistry,
       BlogPostService,
       AppInfoService,
-      MusicUpdateServiceService,
   ],
   bootstrap: [AppComponent]
 })
