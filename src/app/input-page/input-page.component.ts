@@ -18,7 +18,7 @@ export class InputPageComponent implements OnInit {
 
     appInfo: IAppInfo;
 
-    backgroundColor : string;
+    backgroundColor : string = "#13afeb";
 
     private _appInfoUpdatedSub: Subscription;
     private _colorUpdatedSub: Subscription;

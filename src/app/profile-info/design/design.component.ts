@@ -30,6 +30,10 @@ export class DesignComponent {
     private optionalTab: boolean = true;
     private optionalTab2: boolean = true;
 
+
+    public color: string = "#13afeb";
+    public color2: string = "#13afeb";
+
     private test = false;
     private colorTabID: number = 1
     private musicTabID: number = 2
@@ -129,6 +133,8 @@ export class DesignComponent {
 
   onChangeColor(color: string) {
     console.log('test');
+
+    console.log(color);
     this._appInfoService.setAppInfo(color);
     this._appInfoService.appNameUpdated();
 

@@ -1,23 +1,26 @@
-﻿<nav>
-  <ol class="cd-breadcrumb triangle">
-    <li
+﻿<nav >
+  <ol class="cd-breadcrumb triangle center-align" >
+    <li class="ui mini"
         [ngClass]="{'current': isAppInfoCurrent }"
         (click)="toggleCurrent(isAppInfoCurrent)">
-      <a [routerLink]="['/app-info']" skipLocationChange>App Information</a>
+      <a [routerLink]="['/app-info']" skipLocationChange style="font-size: large">App Information</a>
     </li>
     <li [ngClass]="{'current': isProfileInfoCurrent }"
         (click)="toggleCurrent(profileInfoID)">
-      <a [routerLink]="['/app-profile-info']" skipLocationChange>Profile Information</a>
+      <a [routerLink]="['/app-profile-info']" skipLocationChange style="font-size: large">Profile Information</a>
     </li>
     <li [ngClass]="{'current': isBlogCurrent }"
         (click)="toggleCurrent(blogInfoID)">
-      <a [routerLink]="['/app-blog']" skipLocationChange>Blog</a>
+      <a [routerLink]="['/app-blog']" skipLocationChange style="font-size: large">Blog</a>
     </li>
     <li
       [ngClass]="{'current': isDesignCurrent }"
       (click)="toggleCurrent(designInfoID)">
-      <a [routerLink]="['/design']" skipLocationChange>Design</a>
+      <a [routerLink]="['/design']" skipLocationChange style="font-size: large">Design</a>
 
     </li>
   </ol>
 </nav>
+
+
+

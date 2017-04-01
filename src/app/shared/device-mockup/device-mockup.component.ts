@@ -12,7 +12,11 @@ export class DeviceMockupComponent implements OnInit {
     @Input("headerText") text: string;
     @Input("backgroundText") backgroundColor: string = "#13afeb";
 
-    constructor() { }
+    constructor() {
+      this.backgroundColor = "#fffff";
+
+
+    }
 
     ngOnInit() {
     }
