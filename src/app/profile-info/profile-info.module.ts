@@ -22,6 +22,7 @@ import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
 
 import { Ng2FloatBtnModule } from 'ng2-float-btn';
+import { RadioComponent } from './app-profile-info/radio/radio.component';
 
 @NgModule({
   imports: [
@@ -45,6 +46,11 @@ import { Ng2FloatBtnModule } from 'ng2-float-btn';
                       path: '',
                       component: MusicComponent,
                       outlet: 'music',
+                  },
+                  {
+                      path: '',
+                      component: RadioComponent,
+                      outlet: 'radio',
                   },
               ],
           },
@@ -76,6 +82,7 @@ import { Ng2FloatBtnModule } from 'ng2-float-btn';
       VideoComponent,
       BlogCreateComponent,
       BlogListComponent,
+      RadioComponent,
   ],
   exports: [
       AppInfoComponent,

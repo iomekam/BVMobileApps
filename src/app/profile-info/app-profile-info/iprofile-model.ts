@@ -17,6 +17,7 @@ export enum MediaType {
     YOUTUBE,
     VIMEO,
     FLICKR,
+    LISTENLIVE,
 }
 
 export interface IMediaInfo {
@@ -119,6 +120,14 @@ export class MediaTypeFactory {
         else if (mediaType == MediaType.FLICKR) {
             return {
                 mediaType: MediaType.FLICKR,
+                icon: "extension",
+                pre_url: "www.periscope.com/",
+                url: ""
+            };
+        }
+        else if (mediaType == MediaType.LISTENLIVE) {
+            return {
+                mediaType: MediaType.LISTENLIVE,
                 icon: "extension",
                 pre_url: "www.periscope.com/",
                 url: ""
