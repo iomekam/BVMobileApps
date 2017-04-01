@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppInfo } from './iapp-info';
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { AppInfoService } from './app-info.service';
+import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 
 @Component({
   selector: 'bv-app-info',
@@ -80,4 +81,6 @@ export class AppInfoComponent implements OnInit, AfterViewInit {
     onCrop(event: any): void {
         this.appInfo.image = this.data.image;
     }
+
+    
 }

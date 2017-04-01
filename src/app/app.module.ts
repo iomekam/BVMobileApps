@@ -11,12 +11,12 @@ import { BlogPostService } from './profile-info/blog/blog-post.service';
 import { AppInfoService } from './profile-info/app-info/app-info.service';
 
 import { OnsenModule } from "angular2-onsenui";
-import { SocialUpdateServiceService } from "./profile-info/app-profile-info/social/social-update-service.service";
-import { MusicUpdateServiceService } from "./profile-info/app-profile-info/music/music-update-service.service";
 
 import {SuiModule} from 'ng2-semantic-ui';
 import { ColorPickerModule } from 'angular2-color-picker';
 import {DesignService} from "./profile-info/design/design.service";
+import { MdIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,11 @@ import {DesignService} from "./profile-info/design/design.service";
       SocialUpdateServiceService,
       MusicUpdateServiceService,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA,],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+    constructor(mdIconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
+        mdIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+    } 
+}

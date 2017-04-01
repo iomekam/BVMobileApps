@@ -16,9 +16,6 @@ export class InputPageComponent implements OnInit {
     readonly profileInfoID: number = 1;
     readonly blogInfoID: number = 2;
 
-    currentHeader: number = this.appInfoID;
-    showPrevButton: boolean = this.currentHeader > this.appInfoID;
-
     appInfo: IAppInfo;
 
     backgroundColor : string;
@@ -38,33 +35,6 @@ export class InputPageComponent implements OnInit {
         this._colorUpdatedSub = _designService.appNameUpdated$.subscribe(
              backgroundColor => {this.backgroundColor = backgroundColor}
         )
-    }
-
-    private onCurrentHeaderChanged(header: number): void {
-        if (isNaN(header) || header == this.currentHeader) {
-            return;
-        }
-
-        this.currentHeader = header;
-        this.updateShowPreviousButton();
-    }
-
-    private next(): void {
-        this.currentHeader++;
-        this.updateShowPreviousButton();
-    }
-
-    private prev(): void {
-        this.currentHeader--;
-        this.updateShowPreviousButton();
-    }
-
-    private updateShowPreviousButton(): void {
-        this.showPrevButton = this.currentHeader > this.appInfoID;
-    }
-
-    private isNextButtonDisabled(): boolean {
-      return this.currentHeader >= this.blogInfoID;
     }
 
     ngOnInit(): void {

@@ -3,19 +3,15 @@ import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 
 @Component({
-  selector: 'bv-music',
-  templateUrl: './music.component.html',
-  styleUrls: ['./music.component.css']
+  selector: 'bv-radio',
+  templateUrl: './radio.component.html',
+  styleUrls: ['./radio.component.css']
 })
-export class MusicComponent implements OnInit {
+export class RadioComponent implements OnInit {
     private mainButton: Ng2FloatBtn;
 
     private _mediaTypes: MediaType[] = [
-        MediaType.AUDIOMACK,
-        MediaType.SOUNDCLOUD,
-        MediaType.MIXCLOUD,
-        MediaType.PODOMATIC,
-        MediaType.BLOGTALKRADIO,
+        MediaType.LISTENLIVE
     ];
 
     private musicMediaButtons: Array<Ng2FloatBtn>;

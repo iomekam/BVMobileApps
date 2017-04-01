@@ -1,16 +1,16 @@
 ﻿<div class="demo-card-container">
   <md-card class="mat-card-flat">
     <md-card-content>
-      <md-tab-group>
+      <md-tab-group dynamicHeight="true">
         <md-tab>
           <template md-tab-label>
-            <md-icon>public</md-icon>
+            <md-icon>people</md-icon>
           </template>
           <router-outlet name="social"></router-outlet>
         </md-tab>
         <md-tab>
           <template md-tab-label>
-            <md-icon>playlist_play</md-icon>
+            <md-icon>library_music</md-icon>
           </template>
           <router-outlet name="music"></router-outlet>
         </md-tab>
@@ -19,6 +19,12 @@
             <md-icon>movie</md-icon>
           </template>
           <router-outlet name="video"></router-outlet>
+        </md-tab>
+        <md-tab>
+          <template md-tab-label>
+            <md-icon>radio</md-icon>
+          </template>
+          <router-outlet name="radio"></router-outlet>
         </md-tab>
       </md-tab-group>
     </md-card-content>

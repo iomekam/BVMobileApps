@@ -1,37 +1,62 @@
-import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormBuilder} from "@angular/forms";
-import {SocialUpdateServiceService} from "./social-update-service.service";
-import {ISocialInfo} from "./ISocialInfo";
+﻿import { Component, OnInit } from '@angular/core';
+import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
+import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 
 @Component({
   selector: 'bv-social',
   templateUrl: './social.component.html',
   styleUrls: ['./social.component.css']
 })
+
 export class SocialComponent implements OnInit {
+    private mainButton: Ng2FloatBtn;
 
-  private readonly appNameMinCharacters: string = "We recommend strong, relevant keyword in your App Name. For example, a. Contraband – Free Mixtapes b. Fresh Radio – Hip-Hop and Soul c. Jayforce – Celebrity News d. DJ Kenny B – Chicago House ";
-  private readonly appNameEmptyErrorMessage: string = "An App Name is required";
+    private _mediaTypes: MediaType[] = [
+        MediaType.FACEBOOK,
+        MediaType.TWITTER,
+        MediaType.INSTAGRAM,
+        MediaType.PERISCOPE,
+    ];
 
+    private socialMediaButtons: Array<Ng2FloatBtn>;
+    private contentArray: Array<IProfileModel>;
 
-  private form: FormGroup;
-  private appInfo: ISocialInfo;
+    constructor() {
+    }
 
+    ngOnInit(): void {
+        this.mainButton = {
+            color: "primary",
+            iconName: "add"
+        }
 
-  private showPeriscope: boolean = false;
-  private showSoundCloud: boolean = false;
-  private showMixCloud: boolean = false;
+        this.socialMediaButtons = [];
+        this.createButtonsForFab();
+    }
 
-  constructor(form: FormBuilder, private _appInfoUpdateService: SocialUpdateServiceService) {
-    this.form = form.group({
+    createButtonsForFab(): void {
+        this._mediaTypes.forEach(
+            mediaType => {
+            let mediaInfo = MediaTypeFactory.GetMediaInfo(mediaType);
+            let ngFAB = {
+                color: "accent",
+                iconName: mediaInfo.icon,
+                onClick: () => {
+                    this.onSocialFabButtonClicked(ngFAB);
+                },
+            };
 
-    })
+            this.socialMediaButtons.push(ngFAB);
+        });
+    }
 
-  }
-  ngOnInit() {
-    this.appInfo = {
-      appName: '',
-    };
-  }
+    onSocialFabButtonClicked(ngButton: Ng2FloatBtn): void {
+        let index: number = this.socialMediaButtons.findIndex(
+            button => {
+                return ngButton == button;
+            }
+        );
 
+        this.socialMediaButtons.splice(index, 1);
+    }
 }

@@ -24,6 +24,9 @@ import {DesignComponent} from "./design/design.component";
 import {SuiModule} from "ng2-semantic-ui";
 import { ColorPickerModule } from 'angular2-color-picker';
 
+import { Ng2FloatBtnModule } from 'ng2-float-btn';
+import { RadioComponent } from './app-profile-info/radio/radio.component';
+
 @NgModule({
   imports: [
       CommonModule,
@@ -46,6 +49,11 @@ import { ColorPickerModule } from 'angular2-color-picker';
                       path: '',
                       component: MusicComponent,
                       outlet: 'music',
+                  },
+                  {
+                      path: '',
+                      component: RadioComponent,
+                      outlet: 'radio',
                   },
               ],
           },
@@ -71,6 +79,7 @@ import { ColorPickerModule } from 'angular2-color-picker';
       ImageCropperModule,
       SuiModule,
     ColorPickerModule
+      Ng2FloatBtnModule
     ],
   declarations: [
       AppInfoComponent,
@@ -81,6 +90,7 @@ import { ColorPickerModule } from 'angular2-color-picker';
       VideoComponent,
       BlogCreateComponent,
       BlogListComponent,
+      RadioComponent,
       DesignComponent
   ],
   exports: [

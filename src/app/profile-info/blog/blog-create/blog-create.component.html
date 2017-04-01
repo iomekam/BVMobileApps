@@ -1,4 +1,4 @@
-﻿<form [formGroup]="form">
+﻿<form [formGroup]="form" (keydown.enter)="$event.preventDefault()">
   <md-card>
     <md-card-content>
       <md-input-container>
@@ -16,6 +16,7 @@
       <br />
       <ckeditor [(ngModel)]="blogPost.body"
                 [formControl]="form.controls['blog']"
+                [config]="config"
                 debounce="500">
       </ckeditor>
       <br />
