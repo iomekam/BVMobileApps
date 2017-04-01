@@ -39,8 +39,8 @@
     </md-card-content>
     <md-card-actions>
       <div align="right">
-        <button md-button (click)="cancel()">Cancel</button>
-        <button md-button type="submit" (click)="submit()" [disabled]="!form.valid || data.image === ''">Submit</button>
+        <button md-button type="button" (click)="cancel()">Cancel</button>
+        <button md-button type="button" (click)="submit()" [disabled]="!form.valid || data.image === ''">Submit</button>
       </div> 
     </md-card-actions>
   </md-card>
