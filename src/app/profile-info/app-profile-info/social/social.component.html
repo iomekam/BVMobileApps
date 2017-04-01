@@ -1,14 +1,34 @@
 ﻿<br/>
-<ons-speed-dial direction="right">
-  <ons-fab>
-    <ons-icon icon="ion-plus-round">
-    </ons-icon>
-  </ons-fab>
-  <ons-speed-dial-item 
-                       (click)="onFabClicked(mediaType)"
-                       *ngFor='let mediaType of contentArray'>
-    <ons-icon [ngClass]="mediaType.icon"></ons-icon>
-  </ons-speed-dial-item>
-</ons-speed-dial>
-<br/>
+
+<div>
+  <md-input-container>
+    <input class="tb-width"
+           type="text"
+           maxlength="100"
+           mdInput
+           placeholder="Website url">
+  </md-input-container>
+  <md-input-container>
+    <input class="tb-width"
+           type="text"
+           maxlength="100"
+           mdInput
+           placeholder="Phone number">
+  </md-input-container>
+</div>
+
+<br />
+<br />
+<br />
+<div class="content">
+  <ons-speed-dial position="left bottom" direction="right">
+    <ons-fab>
+      <ons-icon icon="ion-plus-round"></ons-icon>
+    </ons-fab>
+    <ons-speed-dial-item (click)="onFabClicked(mediaType)"
+                         *ngFor='let mediaType of contentArray'>
+      <ons-icon [ngClass]="mediaType.icon"></ons-icon>
+    </ons-speed-dial-item>
+  </ons-speed-dial>
+</div>
 <br/>
