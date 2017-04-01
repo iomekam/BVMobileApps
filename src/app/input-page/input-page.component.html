@@ -6,22 +6,12 @@
   <div class="row col s12">
     <div class="col s8">
       <div>
-        <bv-input-page-header [current]="currentHeader" (currentChanged)="onCurrentHeaderChanged($event)"></bv-input-page-header>
+        <bv-input-page-header [current]="currentHeader"></bv-input-page-header>
         <div class="card-width">
           <md-card class="demo-card-blue">
             <md-card-content>
               <router-outlet></router-outlet>
             </md-card-content>
-            <div align="right">
-
-              <button style="float:left" md-button (click)="prev()" *ngIf="showPrevButton">
-                <md-icon>arrow_back</md-icon>Previous
-              </button>
-              <button md-button (click)="next()" [disabled]="isNextButtonDisabled()">
-                Next
-                <md-icon>arrow_forward</md-icon>
-              </button>
-            </div>
           </md-card>
         </div>
       </div>
