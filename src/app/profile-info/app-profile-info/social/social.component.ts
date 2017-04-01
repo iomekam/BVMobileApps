@@ -21,21 +21,21 @@ export class SocialComponent implements OnInit {
               color: "accent",
               iconName: "add",
               onClick: () => {
-                  alert("buton 1 clicked");
+                 
               },
           },
           {
               color: "warn",
               iconName: "remove",
               onClick: () => {
-                  alert("buton 2 clicked");
+                  
               },
           },
           {
               color: "primary",
               iconName: "test",
               onClick: () => {
-                  alert("buton 3 clicked");
+                  
               },
           }
       ]
