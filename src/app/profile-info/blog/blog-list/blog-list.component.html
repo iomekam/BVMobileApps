@@ -5,6 +5,16 @@
     </div>
   </md-card>
 
+  <br/>
+
+  <md-card *ngIf="blogPosts.length === 0">
+    <div class="container" align="center">
+      <p>
+        <em><b>[At least one blog is required. Please create]</b></em>
+      </p>
+    </div>
+  </md-card>
+
   <div *ngFor='let blogPost of blogPosts'>
     <br />
     <md-card>
