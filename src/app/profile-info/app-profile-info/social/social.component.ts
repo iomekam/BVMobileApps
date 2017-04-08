@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service'
 
@@ -9,18 +9,9 @@ import { MediaUpdateService } from '../media-update.service'
 })
 
 export class SocialComponent implements OnInit, OnDestroy {
-    private _mediaTypes: MediaType[] = [
-        MediaType.FACEBOOK,
-        MediaType.TWITTER,
-        MediaType.INSTAGRAM,
-        MediaType.PERISCOPE,
-    ];
-
     private profile: IProfileModel;
     private contentArray: Array<IMediaInfo>;
     private displayArray: Array<IMediaInfo>;
-
-    @ViewChild('fab') fab;
 
     constructor(private _profileService: MediaUpdateService) {
     }
@@ -31,7 +22,7 @@ export class SocialComponent implements OnInit, OnDestroy {
         this.profile = this._profileService.getProfile();
         this.displayArray = this.profile.socialInfo;
 
-        this._mediaTypes.forEach(
+        this._profileService.socialMediaTypes.forEach(
             mediaType => {
                 let shouldAddToContent = this.displayArray.find(
                     content => {
@@ -45,10 +36,6 @@ export class SocialComponent implements OnInit, OnDestroy {
                 this.contentArray.push(mediaInfo);
             }
         );  
-    }
-
-    ngAfterViewInit(): void {
-        this.fab.nativeElement.showItems();
     }
 
     ngOnDestroy(): void {

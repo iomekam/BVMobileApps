@@ -6,6 +6,13 @@ export class MediaUpdateService {
 
     _profile: IProfileModel;
 
+    socialMediaTypes: MediaType[] = [
+        MediaType.FACEBOOK,
+        MediaType.TWITTER,
+        MediaType.INSTAGRAM,
+        MediaType.PERISCOPE,
+    ];
+
     constructor() {
         this._profile = {
             website: "",
@@ -13,8 +20,20 @@ export class MediaUpdateService {
             musicInfo: [],
             videoInfo: [],
             radioInfo: [],
-            socialInfo: []
+            socialInfo: this.createMediaInfoList(this.socialMediaTypes)
         };
+    }
+
+    private createMediaInfoList(mediaTypes: MediaType[]): IMediaInfo[] {
+        let mediaInfoList: IMediaInfo[] = [];
+
+        mediaTypes.forEach(
+            mediaType => {
+                mediaInfoList.push(MediaTypeFactory.GetMediaInfo(mediaType));
+            }
+        );
+
+        return mediaInfoList;
     }
 
     getProfile(): IProfileModel {
