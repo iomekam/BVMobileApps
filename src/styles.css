@@ -13,3 +13,11 @@
   margin: 0 auto;
   width: 80% /* value of your choice which suits your alignment */
 }
+
+.demo-card-blue {
+  background-color: #e2e2e2;
+  .mat-card-actions {
+    display: flex;
+    flex-direction: column;
+  }
+}
