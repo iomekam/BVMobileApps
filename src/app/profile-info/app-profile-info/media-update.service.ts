@@ -13,11 +13,19 @@ export class MediaUpdateService {
         MediaType.PERISCOPE,
     ];
 
+    musicMediaTypes: MediaType[] = [
+        MediaType.AUDIOMACK,
+        MediaType.SOUNDCLOUD,
+        MediaType.MIXCLOUD,
+        MediaType.PODOMATIC,
+        MediaType.BLOGTALKRADIO,
+    ];
+
     constructor() {
         this._profile = {
             website: "",
             phone_number: "",
-            musicInfo: [],
+            musicInfo: this.createMediaInfoList(this.musicMediaTypes),
             videoInfo: [],
             radioInfo: [],
             socialInfo: this.createMediaInfoList(this.socialMediaTypes)
