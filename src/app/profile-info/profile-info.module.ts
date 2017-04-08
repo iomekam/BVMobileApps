@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { SharedModule } from '../shared/shared.module';
+
 import { RlTagInputModule } from 'angular2-tag-input';
 import { TagInputModule } from 'ng2-tag-input';
 import { MaterialModule } from '@angular/material';
@@ -81,7 +83,8 @@ import { RadioComponent } from './app-profile-info/radio/radio.component';
       SuiModule,
       ColorPickerModule,
       Ng2FloatBtnModule,
-      RlTagInputModule
+      RlTagInputModule,
+      SharedModule,
     ],
   declarations: [
       AppInfoComponent,

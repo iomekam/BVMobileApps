@@ -1,23 +1,25 @@
-﻿<md-card>
-  <div class="container" align="center">
-    <button md-raised-button [disabled]="blogPosts.length > 2" (click)="createBlogPost()">Create Blog Post</button>
-  </div>
-</md-card>
-
-<div *ngFor='let blogPost of blogPosts'>
-  <br />
+﻿<div>
   <md-card>
-    <md-card-title>{{ blogPost.headline }}</md-card-title>
-    <md-card-subtitle><em>{{ blogPost.date | date: 'medium' }}</em></md-card-subtitle>
-    <img md-card-image src="{{ blogPost.image }}">
-    <md-card-content>
-        <div [innerHTML]="blogPost.body"></div>
-    </md-card-content>
-    <md-card-actions >
-      <div align="right">
-        <button md-button (click)="deleteBlogPost(blogPost.id)"><md-icon>clear</md-icon></button>
-        <button md-button (click)="editBlogPost(blogPost.id)"><md-icon>create</md-icon></button>
-      </div> 
-    </md-card-actions>
+    <div class="container" align="center">
+      <button md-raised-button [disabled]="blogPosts.length > 2" (click)="createBlogPost()">Create Blog Post</button>
+    </div>
   </md-card>
+
+  <div *ngFor='let blogPost of blogPosts'>
+    <br />
+    <md-card>
+      <md-card-title>{{ blogPost.headline }}</md-card-title>
+      <md-card-subtitle><em>{{ blogPost.date | date: 'medium' }}</em></md-card-subtitle>
+      <img md-card-image src="{{ blogPost.image }}">
+      <md-card-content>
+        <div [innerHTML]="blogPost.body"></div>
+      </md-card-content>
+      <md-card-actions>
+        <div align="right">
+          <button md-button (click)="deleteBlogPost(blogPost.id)"><md-icon>clear</md-icon></button>
+          <button md-button (click)="editBlogPost(blogPost.id)"><md-icon>create</md-icon></button>
+        </div>
+      </md-card-actions>
+    </md-card>
+  </div>
 </div>

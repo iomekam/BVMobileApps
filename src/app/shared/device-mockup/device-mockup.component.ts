@@ -19,6 +19,7 @@ export class DeviceMockupComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log("g");
     }
 
 }
