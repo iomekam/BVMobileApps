@@ -21,13 +21,23 @@ export class MediaUpdateService {
         MediaType.BLOGTALKRADIO,
     ];
 
+    videoMediaTypes: MediaType[] = [
+        MediaType.YOUTUBE,
+        MediaType.VIMEO,
+        MediaType.FLICKR,
+    ];
+
+    radioMediaTypes: MediaType[] = [
+        MediaType.LISTENLIVE
+    ];
+
     constructor() {
         this._profile = {
             website: "",
             phone_number: "",
             musicInfo: this.createMediaInfoList(this.musicMediaTypes),
-            videoInfo: [],
-            radioInfo: [],
+            videoInfo: this.createMediaInfoList(this.videoMediaTypes),
+            radioInfo: this.createMediaInfoList(this.radioMediaTypes),
             socialInfo: this.createMediaInfoList(this.socialMediaTypes)
         };
     }

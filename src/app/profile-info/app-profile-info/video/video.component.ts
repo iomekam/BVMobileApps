@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service'
 
@@ -8,17 +8,10 @@ import { MediaUpdateService } from '../media-update.service'
   styleUrls: ['./video.component.css']
 })
 export class VideoComponent implements OnInit {
-    private _mediaTypes: MediaType[] = [
-        MediaType.YOUTUBE,
-        MediaType.VIMEO,
-        MediaType.FLICKR,
-    ];
 
     private profile: IProfileModel;
     private contentArray: Array<IMediaInfo>;
     private displayArray: Array<IMediaInfo>;
-
-    @ViewChild('fab') fab;
 
     constructor(private _profileService: MediaUpdateService) {
     }
@@ -29,7 +22,7 @@ export class VideoComponent implements OnInit {
         this.profile = this._profileService.getProfile();
         this.displayArray = this.profile.videoInfo;
 
-        this._mediaTypes.forEach(
+        this._profileService.videoMediaTypes.forEach(
             mediaType => {
                 let shouldAddToContent = this.displayArray.find(
                     content => {
@@ -43,10 +36,6 @@ export class VideoComponent implements OnInit {
                 this.contentArray.push(mediaInfo);
             }
         );
-    }
-
-    ngAfterViewInit(): void {
-        this.fab.nativeElement.showItems();
     }
 
     ngOnDestroy(): void {
