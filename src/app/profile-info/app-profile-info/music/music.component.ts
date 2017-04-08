@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service'
@@ -20,6 +20,8 @@ export class MusicComponent implements OnInit {
     private profile: IProfileModel;
     private contentArray: Array<IMediaInfo>;
     private displayArray: Array<IMediaInfo>;
+
+    @ViewChild('fab') fab;
 
     constructor(private _profileService: MediaUpdateService) {
     }
@@ -44,6 +46,10 @@ export class MusicComponent implements OnInit {
                 this.contentArray.push(mediaInfo);
             }
         );
+    }
+
+    ngAfterViewInit(): void {
+        this.fab.nativeElement.showItems();
     }
 
     ngOnDestroy(): void {

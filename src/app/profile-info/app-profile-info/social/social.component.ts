@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service'
 
@@ -19,6 +19,8 @@ export class SocialComponent implements OnInit, OnDestroy {
     private profile: IProfileModel;
     private contentArray: Array<IMediaInfo>;
     private displayArray: Array<IMediaInfo>;
+
+    @ViewChild('fab') fab;
 
     constructor(private _profileService: MediaUpdateService) {
     }
@@ -42,7 +44,11 @@ export class SocialComponent implements OnInit, OnDestroy {
                 let mediaInfo = MediaTypeFactory.GetMediaInfo(mediaType);
                 this.contentArray.push(mediaInfo);
             }
-        );
+        );  
+    }
+
+    ngAfterViewInit(): void {
+        this.fab.nativeElement.showItems();
     }
 
     ngOnDestroy(): void {
