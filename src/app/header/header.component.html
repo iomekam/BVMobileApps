@@ -1,0 +1,23 @@
+<nav >
+  <ol class="cd-breadcrumb triangle center-align" >
+    <li class="ui mini"
+        [ngClass]="{'current': isAppInfoCurrent }"
+        (click)="toggleCurrent(appInfoID)">
+      <a [routerLink]="['/app-info']" skipLocationChange style="font-size: large">App Info</a>
+    </li>
+    <li [ngClass]="{'current': isProfileInfoCurrent }"
+        (click)="toggleCurrent(profileInfoID)">
+      <a id='profileInfo' [routerLink]="['/app-profile-info']" skipLocationChange style="font-size: large">Profile Info</a>
+    </li>
+    <li [ngClass]="{'current': isBlogCurrent }"
+        (click)="toggleCurrent(blogInfoID)">
+      <a [routerLink]="['/app-blog']" skipLocationChange style="font-size: large">Blog</a>
+    </li>
+    <li
+      [ngClass]="{'current': isDesignCurrent }"
+      (click)="toggleCurrent(designInfoID)">
+      <a [routerLink]="['/design']" skipLocationChange style="font-size: large">Design</a>
+
+    </li>
+  </ol>
+</nav>
