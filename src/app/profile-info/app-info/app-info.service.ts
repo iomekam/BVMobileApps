@@ -11,9 +11,6 @@ export class AppInfoService {
     private _appNameUpdatedSource: Subject<IAppInfo> = new Subject<IAppInfo>();
     appNameUpdated$ = this._appNameUpdatedSource.asObservable();
 
-    private _appInfoSource: Subject<IAppInfo> = new Subject<IAppInfo>();
-    appInfo$ = this._appInfoSource.asObservable();
-
     constructor() {
         this._appInfo = {
             appName: '',
