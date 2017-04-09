@@ -61,7 +61,9 @@ export class AppInfoComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.appInfo = this._appInfoService.getAppInfo();
+        this._appInfoService.getAppInfo().subscribe(
+            appInfo => this.appInfo = appInfo
+        );
     }
 
     ngAfterViewInit(): void {
@@ -80,7 +82,5 @@ export class AppInfoComponent implements OnInit, AfterViewInit {
 
     onCrop(event: any): void {
         this.appInfo.image = this.data.image;
-    }
-
-    
+    } 
 }
