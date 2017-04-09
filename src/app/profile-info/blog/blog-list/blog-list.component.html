@@ -1,7 +1,14 @@
 ﻿<div>
   <md-card>
     <div class="container" align="center">
-      <button md-raised-button [disabled]="blogPosts.length > 2" (click)="createBlogPost()">{{ createBlogPostString }}</button>
+      <button md-raised-button [disabled]="blogPosts.length > 2" (click)="createBlogPost()">
+        <div *ngIf="blogPosts.length === 0">
+          Create a Blog Post
+        </div>
+        <div *ngIf="blogPosts.length > 0">
+          Create Another Blog Post
+        </div>
+      </button>
     </div>
   </md-card>
 
