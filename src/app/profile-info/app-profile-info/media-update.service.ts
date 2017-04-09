@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from './iprofile-model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class MediaUpdateService {
@@ -54,8 +55,8 @@ export class MediaUpdateService {
         return mediaInfoList;
     }
 
-    getProfile(): IProfileModel {
-        return this._profile;
+    getProfile(): Observable<IProfileModel> {
+        return Observable.of(this._profile);
     }
 
     setProfile(profile: IProfileModel): void {

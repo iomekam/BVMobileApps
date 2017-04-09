@@ -19,23 +19,27 @@ export class SocialComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.contentArray = [];
         
-        this.profile = this._profileService.getProfile();
-        this.displayArray = this.profile.socialInfo;
+        this._profileService.getProfile().subscribe(
+            profile => {
+                this.profile = profile;
+                this.displayArray = this.profile.socialInfo;
 
-        this._profileService.socialMediaTypes.forEach(
-            mediaType => {
-                let shouldAddToContent = this.displayArray.find(
-                    content => {
-                        return content.mediaType == mediaType;
+                this._profileService.socialMediaTypes.forEach(
+                    mediaType => {
+                        let shouldAddToContent = this.displayArray.find(
+                            content => {
+                                return content.mediaType == mediaType;
+                            }
+                        ) === undefined;
+
+                        if (!shouldAddToContent) { return; }
+
+                        let mediaInfo = MediaTypeFactory.GetMediaInfo(mediaType);
+                        this.contentArray.push(mediaInfo);
                     }
-                ) === undefined;
-
-                if (!shouldAddToContent) { return; }
-
-                let mediaInfo = MediaTypeFactory.GetMediaInfo(mediaType);
-                this.contentArray.push(mediaInfo);
+                );  
             }
-        );  
+        );
     }
 
     ngOnDestroy(): void {
