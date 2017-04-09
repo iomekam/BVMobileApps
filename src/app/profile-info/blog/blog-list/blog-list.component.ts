@@ -14,6 +14,8 @@ export class BlogListComponent implements OnInit {
     private data: any;
     private cropperSettings: CropperSettings;
 
+    private createBlogPostString: string;
+
     @Input("list") private blogPosts: IBlogPost[];
 
     constructor(
@@ -50,5 +52,11 @@ export class BlogListComponent implements OnInit {
         }
         
         this.blogPosts = this._blogPostService.getBlogPosts();
+        if(this.blogPosts.length > 0) {
+            this.createBlogPostString = "Create Another Blog Post";
+        }
+        else {
+            this.createBlogPostString = "Create a Blog Post";
+        }
     }
 }

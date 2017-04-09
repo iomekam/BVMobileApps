@@ -1,19 +1,20 @@
 ﻿<div>
   <md-card>
     <div class="container" align="center">
-      <button md-raised-button [disabled]="blogPosts.length > 2" (click)="createBlogPost()">Create Blog Post</button>
+      <button md-raised-button [disabled]="blogPosts.length > 2" (click)="createBlogPost()">{{ createBlogPostString }}</button>
     </div>
   </md-card>
 
-  <br/>
-
-  <md-card *ngIf="blogPosts.length === 0">
-    <div class="container" align="center">
-      <p>
-        <em><b>[At least one blog post is required]</b></em>
-      </p>
-    </div>
-  </md-card>
+  <div *ngIf="blogPosts.length === 0">
+    <br/>
+    <md-card>
+      <div class="container" align="center">
+        <p>
+          <em><b>[At least one blog post is required]</b></em>
+        </p>
+      </div>
+    </md-card>
+  </div>
 
   <div *ngFor='let blogPost of blogPosts'>
     <br />
