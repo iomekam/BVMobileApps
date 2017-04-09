@@ -49,6 +49,8 @@ export class BlogListComponent implements OnInit {
             return;
         }
         
-        this.blogPosts = this._blogPostService.getBlogPosts();
+        this._blogPostService.getBlogPosts().subscribe(
+            blogPosts => this.blogPosts = blogPosts
+        );
     }
 }

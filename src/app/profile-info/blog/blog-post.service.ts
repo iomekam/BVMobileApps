@@ -1,5 +1,6 @@
 ﻿import { Injectable } from '@angular/core';
 import { IBlogPost } from './iblog-post';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class BlogPostService {
@@ -40,7 +41,7 @@ export class BlogPostService {
         return this._unfinishedBlogPost;
     }
 
-    getBlogPosts(): IBlogPost[] {
+    getBlogPosts(): Observable<IBlogPost[]> {
         this._blogPost = this._blogPost.sort(
             (a: IBlogPost, b: IBlogPost) => {
                 if (b.date > a.date) { return 1; }
@@ -50,7 +51,7 @@ export class BlogPostService {
             }
         );
 
-        return this._blogPost;
+        return Observable.of(this._blogPost);
     }
 
     submitBlogPost(blogPost: IBlogPost): void {
