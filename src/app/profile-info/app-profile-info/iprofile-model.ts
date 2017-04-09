@@ -61,7 +61,7 @@ export class MediaTypeFactory {
                 icon: "socicon socicon-instagram",
                 pre_url: "www.instragram.com/",
                 username: "",
-                color: "#8a3ab9"
+                color: "#458eff"
             };
         }
         else if (mediaType == MediaType.PERISCOPE) {
@@ -71,7 +71,7 @@ export class MediaTypeFactory {
                 icon: "socicon socicon-periscope",
                 pre_url: "www.periscope.com/",
                 username: "",
-                color: "#3FA4C4"
+                color: "#3aa4c6"
             };
         }
         else if (mediaType === MediaType.AUDIOMACK) {
@@ -81,7 +81,7 @@ export class MediaTypeFactory {
                 icon: "send",
                 pre_url: "www.audiomack.com/",
                 username: "",
-              color: "#3FA4C4"
+                color: "#ffa200"
             };
         }
         else if (mediaType == MediaType.SOUNDCLOUD) {
@@ -91,7 +91,7 @@ export class MediaTypeFactory {
                 icon: "socicon socicon-soundcloud",
                 pre_url: "www.soundcloud.com/",
                 username: "",
-              color: "#3FA4C4"
+                color: "#ff7700"
             };
         }
         else if (mediaType == MediaType.MIXCLOUD) {
@@ -101,7 +101,7 @@ export class MediaTypeFactory {
                 icon: "socicon socicon-mixcloud",
                 pre_url: "www.mixcloud.com/",
                 username: "",
-              color: "#3FA4C4"
+                color: "#589fc3"
             };
         }
         else if (mediaType == MediaType.PODOMATIC) {
@@ -111,7 +111,7 @@ export class MediaTypeFactory {
                 icon: "extension",
                 pre_url: "www.podomatic.com/",
                 username: "",
-              color: "#3FA4C4"
+              color: "#6e5494"
             };
         }
         else if (mediaType == MediaType.BLOGTALKRADIO) {
@@ -121,7 +121,7 @@ export class MediaTypeFactory {
                 icon: "extension",
                 pre_url: "www.blogtalkradio.com.com/",
                 username: "",
-              color: "#3FA4C4"
+              color: "#363739"
             };
         }
         else if (mediaType == MediaType.YOUTUBE) {
@@ -131,7 +131,7 @@ export class MediaTypeFactory {
                 icon: "socicon socicon-youtube",
                 pre_url: "www.youtube.com/",
                 username: "",
-              color: "#3FA4C4"
+              color: "#cd201f"
             };
         }
         else if (mediaType == MediaType.VIMEO) {
@@ -141,7 +141,7 @@ export class MediaTypeFactory {
                 icon: "socicon socicon-vimeo",
                 pre_url: "www.vimeo.com/",
                 username: "",
-              color: "#3FA4C4"
+              color: "#1ab7ea"
             };
         }
         else if (mediaType == MediaType.FLICKR) {
@@ -151,7 +151,7 @@ export class MediaTypeFactory {
                 icon: "socicon socicon-flickr",
                 pre_url: "www.Flikr.com/",
                 username: "",
-              color: "#3FA4C4"
+              color: "#0063dc"
             };
         }
         else if (mediaType == MediaType.LISTENLIVE) {
@@ -161,7 +161,7 @@ export class MediaTypeFactory {
                 icon: "extension",
                 pre_url: "www.?.com/",
                 username: "",
-              color: "#3FA4C4"
+              color: "#6e5494"
             };
         }
     }
