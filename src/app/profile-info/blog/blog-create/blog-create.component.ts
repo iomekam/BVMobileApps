@@ -97,7 +97,7 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
             }    
         }
         else {
-            this.blogPost = this._blogPostService.getBlogPost(updateID);
+            //this.blogPost = this._blogPostService.getBlogPost(updateID);
         }
 
         this._isUpdate = !isNaN(updateID);

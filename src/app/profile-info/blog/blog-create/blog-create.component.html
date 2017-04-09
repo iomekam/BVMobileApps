@@ -6,8 +6,7 @@
                [(ngModel)]="blogPost.headline"
                [formControl]="form.controls['headline']"
                class="tb-width"
-               mdInput placeholder="Headline"
-               value="{{ blogPost.headline }}">
+               mdInput placeholder="Headline">
         <md-hint [ngStyle]="{'color': 'red'}"
                  align="start"
                  *ngIf="form.controls['headline'].hasError('required') && form.controls['headline'].touched">{{ headlineErrorMessage }}</md-hint>
