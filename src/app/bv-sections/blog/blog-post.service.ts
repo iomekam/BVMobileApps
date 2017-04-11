@@ -74,6 +74,8 @@ export class BlogPostService {
             }
         );
 
+        if (index === -1) { return; }
+
         this._blogPost.splice(index, 1);
     }
 

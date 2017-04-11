@@ -64,7 +64,19 @@ export class DeviceService {
           }
       );
 
+      if (index === -1) { return; }
+
       this._model.tabs.splice(index, 1);
+  }
+
+  public isTabCreated(id: TabID): boolean {
+    const index: number = this._model.tabs.findIndex(
+          tab => {
+              return id === tab.id;
+          }
+      );
+
+       return index !== -1;
   }
 
   public setPrimaryColor(color: string): void {

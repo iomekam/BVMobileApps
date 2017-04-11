@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service';
+import { DeviceService } from '../../device-mockup/device.service';
+import { OrderType, TabID } from '../../device-mockup/i-device-model';
 
 @Component({
   templateUrl: './video.component.html',
@@ -17,7 +19,10 @@ export class VideoComponent implements OnInit, OnDestroy {
     // get removed/added to the contentArray list
     private displayArray: Array<IMediaInfo>;
 
-    constructor(private _profileService: MediaUpdateService) {
+    constructor(
+        private _profileService: MediaUpdateService,
+        private _deviceService: DeviceService) {
+
     }
 
     ngOnInit(): void {
@@ -52,6 +57,23 @@ export class VideoComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.profile.videoInfo = this.displayArray;
         this._profileService.setProfile(this.profile);
+
+        if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.VIDEO)) {
+            this._deviceService.addTab(
+                {
+                    id: TabID.VIDEO,
+                    defaultIcon: 'icon ion ion-videocamera',
+                    title: 'Video',
+                    orderType: OrderType.ANY,
+                    order: 1,
+                    showTitle: true,
+                    image: ''
+                }
+            );
+        }
+        else if (this.displayArray.length === 0) {
+            this._deviceService.removeTab(TabID.VIDEO);
+        }
     }
 
     onFabClicked(mediaType: IMediaInfo): void {
@@ -60,6 +82,8 @@ export class VideoComponent implements OnInit, OnDestroy {
                 return type === mediaType;
             }
         );
+
+        if (index === -1) { return; }
 
         this.displayArray.push(this.contentArray[index]);
         this.contentArray.splice(index, 1);
@@ -71,6 +95,8 @@ export class VideoComponent implements OnInit, OnDestroy {
                 return type === mediaType;
             }
         );
+
+        if (index === -1) { return; }
 
         this.contentArray.push(this.displayArray[index]);
         this.displayArray.splice(index, 1);

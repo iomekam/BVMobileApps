@@ -61,6 +61,8 @@ export class RadioComponent implements OnInit, OnDestroy {
             }
         );
 
+        if (index === -1) { return; }
+
         this.displayArray.push(this.contentArray[index]);
         this.contentArray.splice(index, 1);
     }
@@ -71,6 +73,8 @@ export class RadioComponent implements OnInit, OnDestroy {
                 return type === mediaType;
             }
         );
+
+        if (index === -1) { return; }
 
         this.contentArray.push(this.displayArray[index]);
         this.displayArray.splice(index, 1);

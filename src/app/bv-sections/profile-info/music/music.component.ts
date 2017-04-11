@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service';
+import { DeviceService } from '../../device-mockup/device.service';
+import { OrderType, TabID } from '../../device-mockup/i-device-model';
 
 @Component({
   templateUrl: './music.component.html',
@@ -17,7 +19,9 @@ export class MusicComponent implements OnInit, OnDestroy {
     // get removed/added to the contentArray list
     private displayArray: Array<IMediaInfo>;
 
-    constructor(private _profileService: MediaUpdateService) {
+    constructor(
+        private _profileService: MediaUpdateService,
+        private _deviceService: DeviceService) {
     }
 
     ngOnInit(): void {
@@ -52,6 +56,23 @@ export class MusicComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.profile.musicInfo = this.displayArray;
         this._profileService.setProfile(this.profile);
+
+        if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.MUSIC)) {
+            this._deviceService.addTab(
+                {
+                    id: TabID.MUSIC,
+                    defaultIcon: 'icon ion ion-music-note',
+                    title: 'Music',
+                    orderType: OrderType.ANY,
+                    order: 1,
+                    showTitle: true,
+                    image: ''
+                }
+            );
+        }
+        else if (this.displayArray.length === 0) {
+            this._deviceService.removeTab(TabID.MUSIC);
+        }
     }
 
     onFabClicked(mediaType: IMediaInfo): void {
@@ -60,6 +81,8 @@ export class MusicComponent implements OnInit, OnDestroy {
                 return type === mediaType;
             }
         );
+
+        if (index === -1) { return; }
 
         this.displayArray.push(this.contentArray[index]);
         this.contentArray.splice(index, 1);
@@ -71,6 +94,8 @@ export class MusicComponent implements OnInit, OnDestroy {
                 return type === mediaType;
             }
         );
+
+        if (index === -1) { return; }
 
         this.contentArray.push(this.displayArray[index]);
         this.displayArray.splice(index, 1);
