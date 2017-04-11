@@ -16,6 +16,7 @@ import { HeaderComponent } from './header/header.component';
 import { AppInfoService } from './bv-sections/app-info/app-info.service';
 import { MediaUpdateService } from './bv-sections/profile-info/media-update.service';
 import { BlogPostService } from './bv-sections/blog/blog-post.service';
+import { DeviceService } from './bv-sections/device-mockup/device.service';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { BlogPostService } from './bv-sections/blog/blog-post.service';
     AppInfoService,
     MediaUpdateService,
     BlogPostService,
+    DeviceService,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],
   bootstrap: [ AppComponent ]

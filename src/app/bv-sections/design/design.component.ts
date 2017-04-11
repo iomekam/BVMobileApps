@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ColorPickerService, Rgba } from 'angular2-color-picker';
-import {DragulaService} from "ng2-dragula";
+import {DragulaService} from 'ng2-dragula';
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }
@@ -10,7 +10,7 @@ export class Cmyk {
   templateUrl: 'design.component.html',
   styleUrls: ['design.component.css'],
 })
-export class DesignComponent {
+export class DesignComponent implements OnInit, OnDestroy {
 
     public arrayColors: any = {};
 
@@ -135,6 +135,6 @@ export class DesignComponent {
   }
 
   ngOnDestroy() {
-    this.dragulaService.destroy("drag-bag");
+    this.dragulaService.destroy('drag-bag');
   }
 }
