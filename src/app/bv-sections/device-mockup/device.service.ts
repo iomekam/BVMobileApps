@@ -27,7 +27,7 @@ export class DeviceService {
             title: 'Main',
             orderType: OrderType.FIRST,
             order: -1, // Since we specify FIRST, the order doesn't matter.
-            defaultIcon: '',
+            defaultIcon: 'icon ion ion-home',
             image: '',
             showTitle: true
           },
@@ -36,12 +36,16 @@ export class DeviceService {
             title: 'More',
             orderType: OrderType.LAST,
             order: 5, // Since we specify LAST, the order doesn't matter.
-            defaultIcon: '',
+            defaultIcon: 'icon ion ion-more',
             image: '',
             showTitle: true
           },
         ]
       };
+  }
+
+  public getModel(): IDeviceModel {
+    return this._model;
   }
 
   public setAppName(name: string): void {

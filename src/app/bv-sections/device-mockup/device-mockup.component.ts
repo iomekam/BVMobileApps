@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OnsenModule } from 'angular2-onsenui';
 import { DragulaService } from 'ng2-dragula/components/dragula.provider';
+import { DeviceService } from './device.service';
+import { IDeviceModel } from './i-device-model';
 
 @Component({
   selector: 'bv-device-mockup',
@@ -9,13 +11,15 @@ import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 })
 export class DeviceMockupComponent implements OnInit, OnDestroy {
 
+    public deviceModel: IDeviceModel;
+
     public backgroundColor = '#13afeb';
 
-    private dragulaService: DragulaService;
+    constructor(
+      private _dService: DragulaService,
+      private _deviceService: DeviceService) {
 
-    constructor(private dService: DragulaService) {
-      this.dragulaService = dService;
-    }
+      }
 
     onDrag() {
 
@@ -26,12 +30,14 @@ export class DeviceMockupComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-      this.dragulaService.setOptions('test', {
+      this._dService.setOptions('test', {
         copy: true
       });
+
+      this.deviceModel = this._deviceService.getModel();
     }
 
     ngOnDestroy() {
-      this.dragulaService.destroy('test');
+      this._dService.destroy('test');
     }
 }
