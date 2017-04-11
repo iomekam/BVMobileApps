@@ -9,36 +9,29 @@ import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 })
 export class DeviceMockupComponent implements OnInit {
 
-    public color = '#13afeb';
-    text: string;
-    backgroundColor = '#13afeb';
+    public backgroundColor = '#13afeb';
 
     private dragulaService: DragulaService;
 
     constructor(private dService: DragulaService) {
-      this.backgroundColor = '#fffff';
-
       this.dragulaService = dService;
+    }
+
+    onDrag() {
 
     }
 
-    onDrag()
-    {
+    onDrop() {
 
     }
 
-    onDrop()
-    {
-
-    }
     ngOnInit() {
       this.dragulaService.setOptions('test', {
         copy: true
       });
     }
 
-  ngOnDestroy() {
-    this.dragulaService.destroy("test");
-  }
-
+    ngOnDestroy() {
+      this.dragulaService.destroy("test");
+    }
 }
