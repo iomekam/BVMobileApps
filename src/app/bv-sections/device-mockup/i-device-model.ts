@@ -17,7 +17,7 @@ export enum OrderType {
 
 // Represents the type of tab.
 export enum TabID {
-    SOCIAL,
+    PHOTO,
     MUSIC,
     VIDEO,
     RADIO,

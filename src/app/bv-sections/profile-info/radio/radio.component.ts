@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service';
+import { DeviceService } from '../../device-mockup/device.service';
+import { OrderType, TabID } from '../../device-mockup/i-device-model';
 
 @Component({
   templateUrl: './radio.component.html',
@@ -17,7 +19,9 @@ export class RadioComponent implements OnInit, OnDestroy {
     // get removed/added to the contentArray list
     private displayArray: Array<IMediaInfo>;
 
-    constructor(private _profileService: MediaUpdateService) {
+    constructor(
+        private _profileService: MediaUpdateService,
+        private _deviceService: DeviceService) {
     }
 
     ngOnInit(): void {
@@ -52,6 +56,23 @@ export class RadioComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.profile.radioInfo = this.displayArray;
         this._profileService.setProfile(this.profile);
+
+        if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.RADIO)) {
+            this._deviceService.addTab(
+                {
+                    id: TabID.RADIO,
+                    defaultIcon: 'icon ion ion-radio-waves',
+                    title: 'Radio',
+                    orderType: OrderType.ANY,
+                    order: 1,
+                    showTitle: true,
+                    image: ''
+                }
+            );
+        }
+        else if (this.displayArray.length === 0) {
+            this._deviceService.removeTab(TabID.RADIO);
+        }
     }
 
     onFabClicked(mediaType: IMediaInfo): void {
