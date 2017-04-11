@@ -4,6 +4,7 @@ import { IAppInfo } from './iapp-info';
 import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 import { AppInfoService } from './app-info.service';
 import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
+import { DeviceService } from '../device-mockup/device.service';
 
 @Component({
   selector: 'bv-app-info',
@@ -44,7 +45,8 @@ export class AppInfoComponent implements OnInit, AfterViewInit {
 
     constructor(
         form: FormBuilder,
-        private _appInfoService: AppInfoService) {
+        private _appInfoService: AppInfoService,
+        private _deviceService: DeviceService) {
         this.form = form.group({
             appName: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
             shortDescription: ['', Validators.compose([Validators.required, Validators.maxLength(80)])],
@@ -81,8 +83,12 @@ export class AppInfoComponent implements OnInit, AfterViewInit {
         this.cropper.setImage(img);
     }
 
-    ngOnDestry(): void {
+    ngOnDestroy(): void {
         this._appInfoService.setAppInfo(this.appInfo);
+    }
+
+    onInput(): void {
+        this._deviceService.setAppName(this.appInfo.appName);
     }
 
     onCrop(event: any): void {

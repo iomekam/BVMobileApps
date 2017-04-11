@@ -9,15 +9,6 @@ export class DeviceService {
 
   private _photo: IDeviceTab;
 
-  private _appNameUpdatedSource: Subject<string> = new Subject<string>();
-  appNameUpdated$ = this._appNameUpdatedSource.asObservable();
-
-  private _primaryColorUpdatedSource: Subject<string> = new Subject<string>();
-  primaryColorUpdated$ = this._primaryColorUpdatedSource.asObservable();
-
-  private _secondaryColorUpdatedSource: Subject<string> = new Subject<string>();
-  _secondaryColorUpdated$ = this._secondaryColorUpdatedSource.asObservable();
-
   constructor() {
     this._photo = {
       id: TabID.PHOTO,
@@ -63,7 +54,6 @@ export class DeviceService {
 
   public setAppName(name: string): void {
     this._model.appName = name;
-    this._appNameUpdatedSource.next(name);
   }
 
   public addTab(tab: IDeviceTab): void {
@@ -104,11 +94,9 @@ export class DeviceService {
 
   public setPrimaryColor(color: string): void {
       this._model.primaryColor = color;
-      this._primaryColorUpdatedSource.next(color);
   }
 
   public setSecondaryColor(color: string): void {
       this._model.secondaryColor = color;
-      this._secondaryColorUpdatedSource.next(color);
   }
 }

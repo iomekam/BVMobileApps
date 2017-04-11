@@ -8,6 +8,7 @@
               <md-input-container>
                 <input [(ngModel)]="appInfo.appName"
                        [formControl]="form.controls['appName']"
+                       (input)="onInput()"
                        mdTooltip="{{ appNameMinCharacters }}"
                        mdTooltipShowDelay="{{ displayTime }}"
                        mdTooltipPosition="right"
