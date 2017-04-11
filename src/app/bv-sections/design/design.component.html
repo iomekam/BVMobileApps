@@ -1,59 +1,21 @@
-
+<div class="row">
+  <div class="col s10">
   <div class="demo-card-container">
-    <md-card class="">
+    <md-card class="demo-card-blue">
+      <div class="demo-card-container">
       <md-card-content>
 
-        <md-grid-list cols="6">
-          <md-grid-tile>
-            <md-card class="" (click)= "toggleCollapse(colorTabID)">
-              <md-card-content>
-                Color
-              </md-card-content>
-            </md-card>
-          </md-grid-tile>
 
-          <md-grid-tile>
-            <md-card class="" (click)= "toggleCollapse(musicTabID)">
-              <md-card-content>
-                Music
-              </md-card-content>
-            </md-card>
-          </md-grid-tile>
-
-          <md-grid-tile>
-            <md-card class="" (click)= "toggleCollapse(videoTabID)">
-              <md-card-content>
-                Video
-              </md-card-content>
-            </md-card>
-          </md-grid-tile>
-
-          <md-grid-tile>
-            <md-card class="" (click)= "toggleCollapse(photoTabID)">
-              <md-card-content>
-                Photo
-              </md-card-content>
-            </md-card>
-          </md-grid-tile>
-
-          <md-grid-tile>
-            <md-card class="" (click)= "toggleCollapse(optionalTabID)">
-              <md-card-content>
-                Tab 4
-              </md-card-content>
-            </md-card>
-          </md-grid-tile>
-
-          <md-grid-tile>
-            <md-card class="" (click)= "toggleCollapse(optionalTab2ID)">
-              <md-card-content>
-                Tab 5
-              </md-card-content>
-            </md-card>
-          </md-grid-tile>
-        </md-grid-list>
-
-
+          <div class="row" [dragula]='"drag-bag"'>
+            <!--
+            <div class="col card" (click)= "toggleCollapse(colorTabID)">Color</div>
+            -->
+            <div class="col card" (click)= "toggleCollapse(musicTabID)">Music</div>
+            <div class="col card" (click)= "toggleCollapse(videoTabID)">Video</div>
+            <div class="col card" (click)= "toggleCollapse(photoTabID)">Photo</div>
+            <div class="col card" (click)= "toggleCollapse(optionalTabID)">Tab 1</div>
+            <div class="col card" (click)= "toggleCollapse(optionalTab2ID)">Tab 2</div>
+          </div>
 
 
             <!--
@@ -65,8 +27,6 @@
         <div [suiCollapse]="colorTab">
           <div class="ui segment">
             <h4 class="ui header">Color Tab</h4>
-
-
 
             <!--
             <div class="row" style="height: 320px">
@@ -148,11 +108,12 @@
         </div>
 
 
-
-
-
-
-
       </md-card-content>
+      </div>
     </md-card>
   </div>
+  </div>
+  <div class="col s2">
+    <bv-device-mockup style="padding-left:16px" class="locked"></bv-device-mockup>
+  </div>
+</div>

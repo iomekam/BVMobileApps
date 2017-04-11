@@ -7,12 +7,80 @@
   <div class="speaker"></div>
   <div class="screen" [style.background]="backgroundColor">
 
-    <ons-toolbar>
+    <div class="bar bar-header bar-positive">
+      <h1 class="title">App  Name</h1>
+      <button class="button button-icon icon ion-refresh"></button>
+    </div>
 
-      <div class="center" style='font-size:medium;color:#000000;'>
-        {{ text }}
+    <div class="bar bar-subheader bar-calm">
+      <h2 class="title">Sub Header</h2>
+    </div>
+
+
+    <div class="content has-header padding has-footer padding has-subheader padding">
+      <div>
+
       </div>
-    </ons-toolbar>
+
+      <div>
+
+      </div>
+
+      <div>
+
+      </div>
+
+      <div>
+
+      </div>
+
+      <div>
+
+      </div>
+
+    </div>
+
+
+    <div class='wrapper'>
+    <div class="tabs tabs-icon-top" [dragula]='"section-bag"'>
+      <div class="tab-item active">
+      <a>
+        <i class="icon ion-music-note"></i>
+        Music
+      </a>
+      </div>
+
+      <div class="tab-item active">
+      <a>
+        <i class="icon ion-star"></i>
+        Video
+      </a>
+      </div>
+
+      <div class="tab-item active">
+      <a>
+        <i class="icon" style="background-image: url('https://raw.github.com/driftyco/ionic-site/gh-pages/img/docs/mcfly.jpg');background-size: 32px 32px;"></i>
+        Photo
+      </a>
+      </div>
+
+      <div class="tab-item active">
+      <a>
+        <i class="icon ion-gear-a"></i>
+        Tab 4
+      </a>
+    </div>
+
+      <div class="tab-item active">
+      <a>
+        <i class="icon ion-gear-a"></i>
+        Tab 5
+      </a>
+    </div>
+
+    </div>
+    </div>
+
 <!--
 
     <ons-template id="Music.html">

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColorPickerService, Rgba } from 'angular2-color-picker';
+import {DragulaService} from "ng2-dragula";
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }
@@ -38,9 +39,12 @@ export class DesignComponent {
 
     public cmyk: Cmyk = new Cmyk(0, 0, 0, 0);
 
-    constructor(private cpService: ColorPickerService) {
+    private dragulaService: DragulaService;
+
+    constructor(private cpService: ColorPickerService, private dService: DragulaService) {
       this.arrayColors['color'] = '#2883e9';
       this.arrayColors['color2'] = '#e920e9';
+      this.dragulaService = dService;
     }
 
 
@@ -124,4 +128,13 @@ export class DesignComponent {
     return this.cpService.outputFormat(this.cpService.stringToHsva(color, true), 'rgba', true);
   }
 
+  ngOnInit() {
+    this.dragulaService.setOptions('drag-bag', {
+      copy: true
+    });
+  }
+
+  ngOnDestroy() {
+    this.dragulaService.destroy("drag-bag");
+  }
 }

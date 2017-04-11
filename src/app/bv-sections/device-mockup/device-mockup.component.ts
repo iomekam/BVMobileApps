@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OnsenModule } from 'angular2-onsenui';
+import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 
 @Component({
   selector: 'bv-device-mockup',
@@ -12,13 +13,32 @@ export class DeviceMockupComponent implements OnInit {
     text: string;
     backgroundColor = '#13afeb';
 
-    constructor() {
+    private dragulaService: DragulaService;
+
+    constructor(private dService: DragulaService) {
       this.backgroundColor = '#fffff';
 
+      this.dragulaService = dService;
 
     }
 
+    onDrag()
+    {
+
+    }
+
+    onDrop()
+    {
+
+    }
     ngOnInit() {
+      this.dragulaService.setOptions('test', {
+        copy: true
+      });
     }
+
+  ngOnDestroy() {
+    this.dragulaService.destroy("test");
+  }
 
 }

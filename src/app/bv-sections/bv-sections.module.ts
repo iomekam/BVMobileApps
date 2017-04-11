@@ -26,6 +26,7 @@ import { BlogComponent } from './blog/blog.component';
 import { BlogListComponent } from './blog/blog-list/blog-list.component';
 import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { DesignComponent } from './design/design.component';
+import {DragulaModule} from "ng2-dragula";
 
 @NgModule({
   imports: [
@@ -80,6 +81,7 @@ import { DesignComponent } from './design/design.component';
     ColorPickerModule,
     Ng2FloatBtnModule,
     RlTagInputModule,
+    DragulaModule
   ],
   declarations: [
     AppInfoComponent,
