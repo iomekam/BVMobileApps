@@ -68,7 +68,7 @@ export class DeviceService {
       this.removeTab(TabID.PHOTO);
     }
 
-    this._model.tabs.push(tab);
+    this._model.tabs.splice(this._model.tabs.length - 2, 0, tab);
   }
 
   public removeTab(id: TabID): void {
