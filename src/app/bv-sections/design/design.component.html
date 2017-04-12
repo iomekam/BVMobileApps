@@ -28,20 +28,15 @@
                   [cpDialogDisplay]="'inline'"
                   [style.background]="deviceModel.colors[selectedColor]"
                   [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
-                  [cpCancelButton]="true"
+                  [cpCancelButton]="false"
                   [cpToggle]="true"
             >
             </span>
               </div>
               <div class="col s6">
-                <input [style.background]="deviceModel.colors['primary']"
-                       (click)="selectedColor='primary'"
-                />
-
-                <input
-                  [style.background]="deviceModel.colors['secondary']"
-                       (click)="selectedColor='secondary'"
-                 />
+                <div (click)="selectedColor='primary'" style="width:500px;height:100px;border:1px solid #000;" [style.background]="deviceModel.colors['primary']"></div>
+                <br/>
+                <div (click)="selectedColor='secondary'" style="width:500px;height:100px;border:1px solid #000;" [style.background]="deviceModel.colors['secondary']"></div>
               </div>
             </div>
           </div>
