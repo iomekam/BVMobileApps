@@ -12,7 +12,7 @@ import { DeviceService } from '../device-mockup/device.service';
   styleUrls: ['./app-info.component.css'],
 })
 
-export class AppInfoComponent implements OnInit, AfterViewInit {
+export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private readonly displayTime = 500;
 
