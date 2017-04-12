@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" style="width:1300px">
   <div class="col s10">
   <div class="demo-card-container">
     <md-card class="demo-card-blue">
@@ -8,9 +8,7 @@
 
           <div class="row" [dragula]='"drag-bag"'>
             <div class="col card" (click)= "toggleCollapse(colorTabID)">Color</div>
-            <div *ngFor="let tab of deviceModel.tabs">
-              <div class="col card" (click)= "toggleCollapse(tab.id)">{{ tab.title }}</div>
-            </div>
+            <div *ngFor="let tab of deviceModel.tabs" class="col card" (click)= "toggleCollapse(tab.id)">{{ tab.title }}</div>
           </div>
 
             <!--
