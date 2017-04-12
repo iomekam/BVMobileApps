@@ -36,7 +36,9 @@ export class DeviceMockupComponent implements OnInit, OnDestroy {
         copy: true
       });
 
-      this.deviceModel = this._deviceService.getModel();
+      this._deviceService.getModel().subscribe(
+        model => this.deviceModel = model
+      );
     }
 
     ngOnDestroy() {

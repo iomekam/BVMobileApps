@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IDeviceModel, IDeviceTab, OrderType, TabID } from './i-device-model';
-import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class DeviceService {
@@ -50,8 +50,12 @@ export class DeviceService {
     };
   }
 
-  public getModel(): IDeviceModel {
+  getDefaultModel(): IDeviceModel {
     return this._model;
+  }
+
+  public getModel(): Observable<IDeviceModel> {
+    return Observable.of(this._model);
   }
 
   public setAppName(name: string): void {

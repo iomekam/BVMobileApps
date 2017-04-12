@@ -14,7 +14,7 @@ import { DeviceService } from '../device-mockup/device.service';
 
 export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
-    private readonly displayTime = 500;
+    private readonly displayTime = 150;
 
     private readonly appNameMinCharacters = `
     We recommend strong, relevant keyword in your App Name. For example, 
