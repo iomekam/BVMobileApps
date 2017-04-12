@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { OnsenModule } from 'angular2-onsenui';
 import { DragulaService } from 'ng2-dragula/components/dragula.provider';
 import { DeviceService } from './device.service';
@@ -14,6 +14,8 @@ export class DeviceMockupComponent implements OnInit, OnDestroy {
     public deviceModel: IDeviceModel;
 
     public backgroundColor = '#13afeb';
+
+    @Input() public page: number;
 
     constructor(
       private _dService: DragulaService,

@@ -7,11 +7,14 @@
   <div class="speaker"></div>
   <div class="screen" [style.background]="backgroundColor">
 
-    <div> <!-- appInfoPage -->
-
+    <div *ngIf="page === 0"> <!-- appInfoPage -->
+      <div class="bar bar-header bar-positive">
+        <h1 class="title">{{ deviceModel.appName }}</h1>
+        <button class="button button-icon icon ion-refresh"></button>
+      </div>
     </div>
 
-    <div> <!-- designPage -->
+    <div *ngIf="page === 1"> <!-- designPage -->
 
       <div class="bar bar-header bar-positive">
         <h1 class="title">{{ deviceModel.appName }}</h1>
