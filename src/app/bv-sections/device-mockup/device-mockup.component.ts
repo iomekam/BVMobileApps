@@ -15,6 +15,8 @@ export class DeviceMockupComponent implements OnInit, OnDestroy {
 
     public backgroundColor = '#13afeb';
 
+    public imgSrc = "https://mail.google.com/mail/u/0/?ui=2&ik=8ac8202056&view=fimg&th=15b4ef8a7dcbdc3a&attid=0.1&disp=inline&realattid=15b4ef61d162a8c0a511&safe=1&attbid=ANGjdJ_wSBFbE0tDBA1LZnxjNUm3r0HJE-CPU8pHzBNLToK0LbjXi_geOkOd7n-0DA8dW5dEAmtgkob38TbBnIFu8OkJhbmXiiz4B3SjoJF1MOPJ_8I4CfV4R9OUI60&ats=1491975303061&rm=15b4ef8a7dcbdc3a&zw&sz=w1920-h950";
+
     @Input() public page: number;
 
     constructor(

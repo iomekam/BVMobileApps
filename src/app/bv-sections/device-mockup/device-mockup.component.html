@@ -5,40 +5,36 @@
   <div class="camera"></div>
   <div class="sensor"></div>
   <div class="speaker"></div>
-  <div class="screen" [style.background]="backgroundColor">
 
-    <div *ngIf="page === 0"> <!-- appInfoPage -->
-      <div class="bar bar-header bar-positive">
-        <h1 class="title">{{ deviceModel.appName }}</h1>
-        <button class="button button-icon icon ion-refresh"></button>
+  <div class="screen" *ngIf="page === 0"> <!-- appInfoPage -->
+    <img src={{imgSrc}}/>
+    {{ deviceModel.appName }}
+  </div>
+
+  <div class="screen" [style.background]="backgroundColor" *ngIf="page === 1"> <!-- designPage -->
+
+    <div class="bar bar-header bar-positive" [style.background]="deviceModel.colors['primary']">
+      <h1 class="title">{{ deviceModel.appName }}</h1>
+      <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
+    </div>
+
+    <div [style.background]="deviceModel.colors['secondary']" class="bar bar-subheader bar-calm">
+      <h2 class="title">Sub Header</h2>
+    </div>
+
+    <div class="wrapper">
+      <div class="tabs tabs-icon-top" [dragula]='"section-bag"'>
+          <div class="tab-item active" *ngFor="let tab of deviceModel.tabs">
+            <a>
+              <i *ngIf="tab.image !== ''" class="icon" [ngStyle]="{'background-image': 'url(' + tab.image + ')'}"></i>
+              <i *ngIf="tab.image === ''" [class]="tab.defaultIcon"></i>
+              <div *ngIf="tab.showTitle == true">
+                  {{ tab.title }}
+              </div>
+            </a>
+          </div>
       </div>
     </div>
 
-    <div *ngIf="page === 1"> <!-- designPage -->
-
-      <div class="bar bar-header bar-positive" [style.background]="deviceModel.colors['primary']">
-        <h1 class="title">{{ deviceModel.appName }}</h1>
-        <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
-      </div>
-
-      <div [style.background]="deviceModel.colors['secondary']" class="bar bar-subheader bar-calm">
-        <h2 class="title">Sub Header</h2>
-      </div>
-
-      <div class="wrapper">
-        <div class="tabs tabs-icon-top" [dragula]='"section-bag"'>
-            <div class="tab-item active" *ngFor="let tab of deviceModel.tabs">
-              <a>
-                <i *ngIf="tab.image !== ''" class="icon" [ngStyle]="{'background-image': 'url(' + tab.image + ')'}"></i>
-                <i *ngIf="tab.image === ''" [class]="tab.defaultIcon"></i>
-                <div *ngIf="tab.showTitle == true">
-                    {{ tab.title }}
-                </div>
-              </a>
-            </div>
-        </div>
-      </div>
-
-    </div>
   </div>
 </div>
