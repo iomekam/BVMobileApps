@@ -22,7 +22,8 @@ export enum TabID {
     VIDEO,
     RADIO,
     BLOG,
-    MORE
+    MORE,
+    COLOR,
 }
 
 export interface IDeviceTab {

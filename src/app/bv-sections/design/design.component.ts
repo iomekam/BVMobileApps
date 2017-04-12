@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ColorPickerService, Rgba } from 'angular2-color-picker';
-import {DragulaService} from 'ng2-dragula';
+import { DragulaService } from 'ng2-dragula';
+import { DeviceService } from '../device-mockup/device.service';
+import { IDeviceModel, TabID } from '../device-mockup/i-device-model';
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }
@@ -16,98 +18,35 @@ export class DesignComponent implements OnInit, OnDestroy {
 
     public selectedColor = 'color';
 
-    public colorTab = true;
-    public musicTab = true;
-    public videoTab = true;
-    public photoTab = true;
-    public optionalTab = true;
-    public optionalTab2 = true;
-
-
     public color = '#13afeb';
     public color2 = '#13afeb';
 
-    private test = false;
-    private colorTabID = 1;
-    private musicTabID = 2;
-    private videoTabID = 3;
-    private photoTabID = 4;
-    private optionalTabID = 5;
-    private optionalTab2ID = 6;
+    public colorTabID = TabID.COLOR;
 
-    private currentID = -1;
+    public currentID = this.colorTabID;
 
     public cmyk: Cmyk = new Cmyk(0, 0, 0, 0);
 
-    private dragulaService: DragulaService;
+    public deviceModel: IDeviceModel;
 
-    constructor(private cpService: ColorPickerService, private dService: DragulaService) {
+    constructor(
+      private cpService: ColorPickerService,
+      private _dragulaService: DragulaService,
+      private _deviceService: DeviceService) {
+
       this.arrayColors['color'] = '#2883e9';
       this.arrayColors['color2'] = '#e920e9';
-      this.dragulaService = dService;
     }
 
 
-    public toggleCollapse(location) {
-      console.log(location);
-      console.log(this.currentID);
+    public toggleCollapse(location: TabID) {
       if (location === this.currentID) {
-        if (location === this.colorTabID) {
-          this.colorTab = !this.colorTab;
-        }
-        else if (location === this.musicTabID) {
-          this.musicTab = !this.musicTab;
-        }
-        else if (location === this.videoTabID) {
-          this.videoTab = !this.videoTab;
-        }
-        else if (location === this.photoTabID) {
-          this.photoTab = !this.photoTab;
-        }
-        else if (location === this.optionalTabID) {
-          this.optionalTab = !this.optionalTab;
-        }
-        else if (location === this.optionalTab2ID) {
-          this.optionalTab2 = !this.optionalTab2;
-        }
+        this.currentID = -1;
       }
       else {
-        this.clearTabs();
-        if (location === this.colorTabID) {
-          this.colorTab = false;
-          this.currentID = location;
-        }
-        else if (location === this.musicTabID) {
-          this.musicTab = false;
-          this.currentID = location;
-        }
-        else if (location === this.videoTabID) {
-          this.videoTab = false;
-          this.currentID = location;
-        }
-        else if (location === this.photoTabID) {
-          this.photoTab = false;
-          this.currentID = location;
-        }
-        else if (location === this.optionalTabID) {
-          this.optionalTab = false;
-          this.currentID = location;
-        }
-        else if (location === this.optionalTab2ID) {
-          this.optionalTab2 = false;
-          this.currentID = location;
-        }
+        this.currentID = location;
       }
     }
-
-  clearTabs() {
-    this.colorTab = true;
-    this.musicTab = true;
-    this.videoTab = true;
-    this.photoTab = true;
-    this.optionalTab = true;
-    this.optionalTab2 = true;
-  }
 
   onChangeColor(color: string) {
 
@@ -129,12 +68,14 @@ export class DesignComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.dragulaService.setOptions('drag-bag', {
+    this._dragulaService.setOptions('drag-bag', {
       copy: true
     });
+
+    this.deviceModel = this._deviceService.getModel();
   }
 
   ngOnDestroy() {
-    this.dragulaService.destroy('drag-bag');
+    this._dragulaService.destroy('drag-bag');
   }
 }
