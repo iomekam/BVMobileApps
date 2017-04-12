@@ -16,12 +16,12 @@
 
     <div *ngIf="page === 1"> <!-- designPage -->
 
-      <div class="bar bar-header bar-positive">
+      <div class="bar bar-header bar-positive" [style.background]="deviceModel.colors['primary']">
         <h1 class="title">{{ deviceModel.appName }}</h1>
-        <button class="button button-icon icon ion-refresh"></button>
+        <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
       </div>
 
-      <div class="bar bar-subheader bar-calm">
+      <div [style.background]="deviceModel.colors['secondary']" class="bar bar-subheader bar-calm">
         <h2 class="title">Sub Header</h2>
       </div>
 

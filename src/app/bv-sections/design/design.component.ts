@@ -14,12 +14,7 @@ export class Cmyk {
 })
 export class DesignComponent implements OnInit, OnDestroy {
 
-    public arrayColors: any = {};
-
-    public selectedColor = 'color';
-
-    public color = '#13afeb';
-    public color2 = '#13afeb';
+    public selectedColor = 'primary';
 
     public colorTabID = TabID.COLOR;
 
@@ -33,9 +28,6 @@ export class DesignComponent implements OnInit, OnDestroy {
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,
       private _deviceService: DeviceService) {
-
-      this.arrayColors['color'] = '#2883e9';
-      this.arrayColors['color2'] = '#e920e9';
     }
 
 

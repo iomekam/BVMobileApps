@@ -1,8 +1,6 @@
 export interface IDeviceModel {
     appName: string;
-    primaryColor: string;
-    secondaryColor: string;
-
+    colors: any;
     tabs: IDeviceTab[];
 }
 

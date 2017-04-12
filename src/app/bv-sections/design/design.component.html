@@ -24,9 +24,9 @@
             
             <div class="row" style="height: 320px">
               <div class="col s6 center-align">
-            <span [(colorPicker)]="arrayColors[selectedColor]"
+            <span [(colorPicker)]="deviceModel.colors[selectedColor]"
                   [cpDialogDisplay]="'inline'"
-                  [style.background]="arrayColors[selectedColor]"
+                  [style.background]="deviceModel.colors[selectedColor]"
                   [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
                   [cpCancelButton]="true"
                   [cpToggle]="true"
@@ -34,34 +34,16 @@
             </span>
               </div>
               <div class="col s6">
-                <input [style.background]="arrayColors['color']"
-                       (click)="selectedColor='color'"
+                <input [style.background]="deviceModel.colors['primary']"
+                       (click)="selectedColor='primary'"
                 />
 
                 <input
-                  [style.background]="arrayColors['color2']"
-                       (click)="selectedColor='color2'"
+                  [style.background]="deviceModel.colors['secondary']"
+                       (click)="selectedColor='secondary'"
                  />
               </div>
             </div>
-            
-
-            <div class="row" style="height: 320px">
-              <div class="col s6 center-align">
-                <input [colorPicker]="color"
-                       (colorPickerChange)="cmyk=onChangeColor($event);color=$event"
-                       [style.background]="color"
-                       style="height: 200px"/>
-              </div>
-
-              <div class="col s6">
-                <input [colorPicker]="color2"
-                       (colorPickerChange)="cmyk=onChangeColor($event);color=$event"
-                       [style.background]="color2"
-                       style="height: 200px"/>
-              </div>
-            </div>
-
           </div>
         </div>
 

@@ -22,8 +22,10 @@ export class DeviceService {
 
     this._model = {
       appName: '',
-      primaryColor: '#000000',
-      secondaryColor: '#0099ff',
+      colors: {
+        primary: '#000000',
+        secondary: '#0099ff'
+      },
       tabs: [
         {
           id: TabID.BLOG,
@@ -93,10 +95,10 @@ export class DeviceService {
   }
 
   public setPrimaryColor(color: string): void {
-      this._model.primaryColor = color;
+      this._model.colors['primary'] = color;
   }
 
   public setSecondaryColor(color: string): void {
-      this._model.secondaryColor = color;
+     this._model.colors['secondary'] = color;
   }
 }
