@@ -27,6 +27,7 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component';
 import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { DesignComponent } from './design/design.component';
 import { DragulaModule } from 'ng2-dragula';
+import {MyPopoverComponent} from './design/MyPopoverComponent';
 
 @NgModule({
   imports: [
@@ -95,7 +96,9 @@ import { DragulaModule } from 'ng2-dragula';
     BlogListComponent,
     BlogCreateComponent,
     DesignComponent,
+    MyPopoverComponent
   ],
+  entryComponents: [MyPopoverComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],
 })
 export class BvSectionsModule { }

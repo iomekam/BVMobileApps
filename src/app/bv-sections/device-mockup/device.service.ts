@@ -102,6 +102,54 @@ export class DeviceService {
       this._model.colors['primary'] = color;
   }
 
+  public setImage(id: TabID, image: string) {
+    const index: number = this._model.tabs.findIndex(
+      tab => {
+        return (id + '') === (tab.id + '');
+      }
+    );
+
+    this._model.tabs[index].image = image;
+  }
+
+  public moveTab(id: TabID, before: TabID) {
+      if (this._model.tabs.length > 3 && id != null) {
+
+        let end: number;
+        if (before != null) {
+          const indexEnd: number = this._model.tabs.findIndex(
+            tab => {
+
+              return (before + '') === (tab.id + '');
+            }
+          );
+
+          end = indexEnd;
+        }
+        else {
+          end = this._model.tabs.length - 1;
+        }
+
+        const indexStart: number = this._model.tabs.findIndex(
+          tab => {
+
+            return (id + '') === (tab.id + '');
+          }
+        );
+
+        const removetab = this._model.tabs[indexStart];
+
+        if (indexStart < end) {
+          this._model.tabs.splice(end, 0, removetab);
+          this._model.tabs.splice(indexStart, 1);
+        }
+        else {
+          this._model.tabs.splice(indexStart, 1);
+          this._model.tabs.splice(end, 0, removetab);
+        }
+      }
+  }
+
   public setSecondaryColor(color: string): void {
      this._model.colors['secondary'] = color;
   }

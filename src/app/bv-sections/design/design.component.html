@@ -5,23 +5,29 @@
       <div class="demo-card-container">
       <md-card-content>
 
+        <div class="row">
+          <div class="col card" (click)= "toggleCollapse(colorTabID)">Color</div>
+        </div>
 
-          <div class="row" [dragula]='"drag-bag"'>
-            <div class="col card" (click)= "toggleCollapse(colorTabID)">Color</div>
-            <div *ngFor="let tab of deviceModel.tabs" class="col card" (click)= "toggleCollapse(tab.id)">{{ tab.title }}</div>
-          </div>
+        <div class="row">
+          <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[0].id)">{{ deviceModel.tabs[0].title }}</div>
+        </div>
 
-            <!--
-            <button class="ui primary button" (click)="collapse = !collapse">
-              Toggle Collapse
-            </button>
-            -->
+        <div class="row" [dragula]='"drag-bag"' #test>
+          <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1" class="col card" (click)= "toggleCollapse(tab.id)" [id] = 'tab.id'>{{ tab.title }}</div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id)">{{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
+        </div>
 
         <div [suiCollapse]="colorTabID !== currentID">
           <div class="ui segment">
             <h4 class="ui header">Color</h4>
 
-            
+
             <div class="row" style="height: 320px">
               <div class="col s6 center-align">
             <span [(colorPicker)]="deviceModel.colors[selectedColor]"
@@ -47,6 +53,7 @@
             <div class="ui segment">
               <h4 class="ui header">{{ tab.title }} Tab</h4>
               <p>Content of the panel.</p>
+              <img-cropper #cropper [image]="data" [settings]="cropperSettings" (onCrop)="onCrop($event, tab)"></img-cropper><br>
             </div>
           </div>
         </div>

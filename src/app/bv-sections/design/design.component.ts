@@ -1,8 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, AfterViewInit} from '@angular/core';
 import { ColorPickerService, Rgba } from 'angular2-color-picker';
 import { DragulaService } from 'ng2-dragula';
 import { DeviceService } from '../device-mockup/device.service';
-import { IDeviceModel, TabID } from '../device-mockup/i-device-model';
+import {IDeviceModel, IDeviceTab, TabID} from '../device-mockup/i-device-model';
+import {PopoverFactory} from 'angular2-onsenui';
+import {MyPopoverComponent} from './MyPopoverComponent';
+import {CropperSettings, ImageCropperComponent} from 'ng2-img-cropper';
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }
@@ -12,7 +15,9 @@ export class Cmyk {
   templateUrl: 'design.component.html',
   styleUrls: ['design.component.css'],
 })
-export class DesignComponent implements OnInit, OnDestroy {
+export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
+
+    @ViewChild('test') input;
 
     public selectedColor = 'primary';
 
@@ -24,10 +29,32 @@ export class DesignComponent implements OnInit, OnDestroy {
 
     public deviceModel: IDeviceModel;
 
+    private _popover: any;
+
+    private _destroyPopover: Function;
+
+    @ViewChild('cropper', undefined)
+    private cropper: ImageCropperComponent;
+
+    private cropperSettings: CropperSettings;
+
+    private data: any;
+
     constructor(
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,
-      private _deviceService: DeviceService) {
+      private _deviceService: DeviceService,
+      private _popoverFactory: PopoverFactory) {
+
+      this.cropperSettings = new CropperSettings();
+      this.cropperSettings.width = 600;
+      this.cropperSettings.height = 512;
+      this.cropperSettings.croppedWidth = 100;
+      this.cropperSettings.croppedHeight = 100;
+      this.cropperSettings.canvasWidth = 100;
+      this.cropperSettings.canvasHeight = 100;
+
+      this.data = {};
     }
 
 
@@ -61,15 +88,79 @@ export class DesignComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._dragulaService.setOptions('drag-bag', {
-      copy: true
+      copy: false,
+      moves: function (el, source, handle, sibling) {
+        return true;
+      },
+      accepts: function (el, target, source, sibling) {
+        return true;
+      },
+      direction: 'horizontal',             // Y axis is considered when determining where an element would be dropped
+      copySortSource: false,             // elements in copy-source containers can be reordered
+      revertOnSpill: false,              // spilling will put the element back where it was dragged from, if this is true
+      removeOnSpill: false,              // spilling will `.remove` the element, if this is true
+      mirrorContainer: document.body,    // set the element that gets mirror elements appended
+      ignoreInputTextSelection: true     // allows users to select input text, see details below
+    });
+
+    this._dragulaService.drop.subscribe((value) => {
+      console.log(`drop: ${value[0]}`);
+      this.onDrop(value.slice(1));
     });
 
     this._deviceService.getModel().subscribe(
       model => this.deviceModel = model
+
     );
+
+    this._popoverFactory
+      .createPopover(MyPopoverComponent, {msg: 'This is popover.'})
+      .then(({popover, destroy}) => {
+        this._popover = popover;
+        this._destroyPopover = destroy;
+      });
+
+    console.log(this.deviceModel);
+
+    console.log('input');
+    console.log(this.input);
   }
 
   ngOnDestroy() {
     this._dragulaService.destroy('drag-bag');
+    this._destroyPopover();
+  }
+
+
+  onDrop(args) {
+    const [el, target, source, sibling] = args;
+
+
+    const start = el.id;
+
+    let end;
+
+    if (sibling == null) {
+      end = null;
+    }
+    else {
+      end = sibling.id;
+    }
+
+    this._deviceService.moveTab(start, end);
+
+
+  }
+
+  ngAfterViewInit(): void {
+    // Cropper requires an actual img object if we want to preload an image
+    const img = document.createElement('img');
+    this.cropper.setImage(img);
+  }
+
+  onCrop(event: any, tab: IDeviceTab): void {
+    console.log(this.data.image);
+
+    this._deviceService.setImage(tab.id, this.data.image);
   }
 }
