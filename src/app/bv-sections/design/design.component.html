@@ -17,8 +17,6 @@
           <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1" class="col card" (click)= "toggleCollapse(tab.id)" [id] = 'tab.id'>{{ tab.title }}</div>
         </div>
 
-
-
         <div class="row">
           <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id)">{{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
         </div>

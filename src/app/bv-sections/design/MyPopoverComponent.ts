@@ -23,7 +23,6 @@ export class MyPopoverComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('popover:', this._popover.nativeElement);
   }
 
   onPreHide(event) {

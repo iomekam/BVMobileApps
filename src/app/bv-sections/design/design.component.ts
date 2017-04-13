@@ -104,7 +104,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this._dragulaService.drop.subscribe((value) => {
-      console.log(`drop: ${value[0]}`);
       this.onDrop(value.slice(1));
     });
 
@@ -119,11 +118,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
         this._popover = popover;
         this._destroyPopover = destroy;
       });
-
-    console.log(this.deviceModel);
-
-    console.log('input');
-    console.log(this.input);
   }
 
   ngOnDestroy() {
@@ -159,8 +153,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onCrop(event: any, tab: IDeviceTab): void {
-    console.log(this.data.image);
-
     this._deviceService.setImage(tab.id, this.data.image);
   }
 }
