@@ -29,20 +29,30 @@
 
 
             <div class="row" style="height: 320px">
-              <div class="col s6 center-align">
+              <div class="col">
             <span [(colorPicker)]="deviceModel.colors[selectedColor]"
                   [cpDialogDisplay]="'inline'"
                   [style.background]="deviceModel.colors[selectedColor]"
                   [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
                   [cpCancelButton]="false"
                   [cpToggle]="true"
+
             >
             </span>
               </div>
-              <div class="col s6">
-                <div (click)="selectedColor='primary'" style="width:500px;height:100px;border:1px solid #000;" [style.background]="deviceModel.colors['primary']"></div>
+              <div class="col">
+                <div (click)="selectedColor='primary'"
+                     style="width:200px;
+                     height:75px;
+                     border:1px solid #000;"
+                     [style.background]="deviceModel.colors['primary']">
+                </div>
                 <br/>
-                <div (click)="selectedColor='secondary'" style="width:500px;height:100px;border:1px solid #000;" [style.background]="deviceModel.colors['secondary']"></div>
+                <div (click)="selectedColor='secondary'"
+                     style="width:200px;
+                     height:75px;
+                     border:1px solid #000;"
+                     [style.background]="deviceModel.colors['secondary']"></div>
               </div>
             </div>
           </div>
@@ -51,9 +61,48 @@
         <div *ngFor="let tab of deviceModel.tabs">
           <div [suiCollapse]="tab.id !== currentID">
             <div class="ui segment">
+
               <h4 class="ui header">{{ tab.title }} Tab</h4>
-              <p>Content of the panel.</p>
-              <img-cropper #cropper [image]="data" [settings]="cropperSettings" (onCrop)="onCrop($event, tab)"></img-cropper><br>
+              <form action="#">
+                <div class="row">
+                  <img-cropper class = "col s2" #cropper [image]="data" [settings]="cropperSettings" (onCrop)="onCrop($event, tab)"></img-cropper><br>
+                  <div class= "col s8">
+
+                    <div class="row">
+                      <md-input-container>
+
+                      <input id="tab_title"
+                             [(ngModel)]="tab.title"
+                             class="tb-width"
+                             type="text"
+                             maxlength="10"
+                             mdInput
+                             [ngModelOptions]="{standalone: true}"
+                             placeholder="Tab Title"
+                             >
+                        </md-input-container>
+                    </div>
+                    <div class="row">
+                      <input type="checkbox"
+                             id="tabItem"
+                             checked="tab.showTitle"
+                             [(ngModel)]="tab.showTitle"
+                             [ngModelOptions]="{standalone: true}"/>
+                      <label for="tabItem">Show Text Below Icon?</label>
+                    </div>
+                    <div class="row" *ngIf="tab.image != ''">
+                      <input type="checkbox"
+                             id="tabItem2"
+                             checked="tab.showTitle"
+                             [(ngModel)]="tab.showImage"
+                             [ngModelOptions]="{standalone: true}"/>
+                      <label for="tabItem2">Show Image?</label>
+                    </div>
+
+                  </div>
+                </div>
+              </form>
+
             </div>
           </div>
         </div>

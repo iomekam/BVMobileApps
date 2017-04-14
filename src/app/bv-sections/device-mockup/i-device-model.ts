@@ -32,4 +32,5 @@ export interface IDeviceTab {
     defaultIcon: string;
     image: string;
     showTitle: boolean;
+    showImage: boolean;
 }

@@ -67,7 +67,8 @@ export class VideoComponent implements OnInit, OnDestroy {
                     orderType: OrderType.ANY,
                     order: 1,
                     showTitle: true,
-                    image: ''
+                    image: '',
+                    showImage: false
                 }
             );
         }

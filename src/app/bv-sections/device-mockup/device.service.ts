@@ -17,7 +17,8 @@ export class DeviceService {
       order: 2,
       defaultIcon: 'icon ion ion-camera',
       image: '',
-      showTitle: true
+      showTitle: true,
+      showImage: false
     };
 
     this._model = {
@@ -34,7 +35,8 @@ export class DeviceService {
           order: -1, // Since we specify FIRST, the order doesn't matter.
           defaultIcon: 'icon ion ion-home',
           image: '',
-          showTitle: true
+          showTitle: true,
+          showImage: false
         },
         this._photo,
         {
@@ -44,7 +46,8 @@ export class DeviceService {
           order: 5, // Since we specify LAST, the order doesn't matter.
           defaultIcon: 'icon ion ion-more',
           image: '',
-          showTitle: true
+          showTitle: true,
+          showImage: false
         },
       ]
     };
@@ -110,6 +113,7 @@ export class DeviceService {
     );
 
     this._model.tabs[index].image = image;
+    this._model.tabs[index].showImage = true;
   }
 
   public moveTab(id: TabID, before: TabID) {

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
+import { IProfileModel, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service';
 
 @Component({
