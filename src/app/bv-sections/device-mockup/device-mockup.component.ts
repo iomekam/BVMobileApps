@@ -1,6 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { OnsenModule } from 'angular2-onsenui';
-import { DragulaService } from 'ng2-dragula/components/dragula.provider';
+import { Component, OnInit, Input } from '@angular/core';
 import { DeviceService } from './device.service';
 import { IDeviceModel } from './i-device-model';
 
@@ -9,7 +7,7 @@ import { IDeviceModel } from './i-device-model';
   templateUrl: './device-mockup.component.html',
   styleUrls: ['./device-mockup.component.css']
 })
-export class DeviceMockupComponent implements OnInit, OnDestroy {
+export class DeviceMockupComponent implements OnInit {
 
     public deviceModel: IDeviceModel;
 
@@ -23,30 +21,15 @@ export class DeviceMockupComponent implements OnInit, OnDestroy {
     @Input() public page: number;
 
     constructor(
-      private _dService: DragulaService,
       private _deviceService: DeviceService) {
 
       }
 
-    onDrag() {
-
-    }
-
-    onDrop() {
-
-    }
 
     ngOnInit() {
-      this._dService.setOptions('test', {
-        copy: true
-      });
-
       this._deviceService.getModel().subscribe(
         model => this.deviceModel = model
       );
     }
 
-    ngOnDestroy() {
-      this._dService.destroy('test');
-    }
 }
