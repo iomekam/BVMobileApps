@@ -18,7 +18,7 @@
   </md-input-container>
 </div>
 
-<div *ngFor='let display of displayArray'>
+<div *ngFor='let display of displayArray' style="padding-bottom:20px">
 
   <div class="ui message">
     <div class="ui ribbon label" [style.background-color] = display.color>
@@ -40,10 +40,13 @@
       </div>
     </div>
   </div>
-  <br/>
 </div>
 
 <div *ngIf="contentArray.length > 0">
+  <br/>
+  <br/>
+  <br/>
+
   <ons-speed-dial #fab position="right bottom" direction="left">
     <ons-fab>
       <ons-icon icon="ion-plus-round"></ons-icon>
@@ -53,10 +56,4 @@
       <ons-icon [ngClass]="mediaType.icon"></ons-icon>
     </ons-speed-dial-item>
   </ons-speed-dial>
-
-  <br />
-  <br />
-  <br />
-
 </div>
-
