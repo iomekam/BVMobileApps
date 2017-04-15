@@ -62,7 +62,7 @@ export class VideoComponent implements OnInit, OnDestroy {
 
         this.displayArray.forEach(
             mediaType => {
-                if (mediaType.username !== '') {
+                if (mediaType.username !== '' && mediaType.mediaType === MediaType.YOUTUBE) {
                     isValid = true;
                     return;
                 }
