@@ -6,8 +6,97 @@
   <div class="sensor"></div>
   <div class="speaker"></div>
 
-  <div class="screen" *ngIf="page === 0"> <!-- appInfoPage -->
-    <img src="/assets/img/appinfo.png"/>
+  <div class="screen" *ngIf="page === 0" style="background: white"> <!-- appInfoPage -->
+
+    <div class="bar bar-header bar-positive" [style.background]="deviceModel.colors['primary']">
+
+      <button  class="button button-icon icon ion-chevron-left">Search</button>
+
+
+    </div>
+
+    <div class="content has-header padding has-footer padding" style="color: black; position:absolute; right:0;left:0; overflow-y:scroll; overflow-x: hidden">
+      <div class="post-container">
+        <div class="post-thumb"><img [src]="appInfo.image" style="width: 100px;height: 100px; background: url(http://dummyimage.com/100x100/eee/000)" /></div>
+        <div class="post-content">
+          <h3 align="left" class="post-title" style=
+            "font-weight: bold;
+              font-size: large;
+              word-wrap: break-all;
+              max-height: 2em;
+              height: 2em ;
+              line-height: 1em;">
+            {{appInfo.appName| slice:0:36}}
+          </h3>
+          <p align="left">BV Mobile Apps</p></div>
+      </div>
+      <a class="waves-effect waves-light btn right-align" style="background: deepskyblue; color: white; float: right;margin-bottom: 20px">Buy</a>
+
+        <md-button-toggle-group class="align-content-center" #group="mdButtonToggleGroup">
+          <md-button-toggle value="left">
+            Details
+          </md-button-toggle>
+          <md-button-toggle value="center">
+            Review
+          </md-button-toggle>
+          <md-button-toggle value="right">
+            Related
+          </md-button-toggle>
+        </md-button-toggle-group>
+      <hr>
+
+      <div class="row" >
+        <p style="font-weight: bold;max-height: 50px; font-size: large; margin-left: 20px">
+          Description
+        </p>
+      </div>
+
+      <p align="left" style="word-wrap: break-word;width: 15em;margin-left: 20px ">
+        {{appInfo.longDescription}}
+      </p>
+
+
+
+    </div>
+    <div class='wrapper'>
+      <div class="tabs tabs-icon-top" [dragula]='"section-bag"'>
+        <div class="tab-item active">
+          <a>
+            <i class="icon ion-music-note"></i>
+            Music
+          </a>
+        </div>
+
+        <div class="tab-item active">
+          <a>
+            <i class="icon ion-ios-videocam"></i>
+            Video
+          </a>
+        </div>
+
+        <div class="tab-item active">
+          <a>
+            <i class="icon ion-camera"></i>
+            Photo
+          </a>
+        </div>
+
+        <div class="tab-item active">
+          <a>
+            <i class="icon ion-gear-a"></i>
+            Tab 4
+          </a>
+        </div>
+
+        <div class="tab-item active">
+          <a>
+            <i class="icon ion-gear-a"></i>
+            Tab 5
+          </a>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <div class="screen" [style.background]="backgroundColor" *ngIf="page === 1"> <!-- designPage -->
@@ -17,9 +106,6 @@
       <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
     </div>
 
-    <div [style.background]="deviceModel.colors['secondary']" class="bar bar-subheader bar-calm">
-      <h2 class="title">Sub Header</h2>
-    </div>
 
     <div class="wrapper">
       <div class="tabs tabs-icon-top">

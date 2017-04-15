@@ -3,8 +3,6 @@ import { ColorPickerService, Rgba } from 'angular2-color-picker';
 import { DragulaService } from 'ng2-dragula';
 import { DeviceService } from '../device-mockup/device.service';
 import {IDeviceModel, IDeviceTab, TabID} from '../device-mockup/i-device-model';
-import {PopoverFactory} from 'angular2-onsenui';
-import {MyPopoverComponent} from './MyPopoverComponent';
 import {CropperSettings, ImageCropperComponent} from 'ng2-img-cropper';
 
 export class Cmyk {
@@ -17,7 +15,6 @@ export class Cmyk {
 })
 export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
-    @ViewChild('test') input;
 
     public selectedColor = 'primary';
 
@@ -29,10 +26,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public deviceModel: IDeviceModel;
 
-    private _popover: any;
-
-    private _destroyPopover: Function;
-
     @ViewChild('cropper', undefined)
     private cropper: ImageCropperComponent;
 
@@ -40,11 +33,12 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     private data: any;
 
+    private showHints = true;
+
     constructor(
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,
-      private _deviceService: DeviceService,
-      private _popoverFactory: PopoverFactory) {
+      private _deviceService: DeviceService ) {
 
       this.cropperSettings = new CropperSettings();
       this.cropperSettings.width = 600;
@@ -111,18 +105,10 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       model => this.deviceModel = model
 
     );
-
-    this._popoverFactory
-      .createPopover(MyPopoverComponent, {msg: 'This is popover.'})
-      .then(({popover, destroy}) => {
-        this._popover = popover;
-        this._destroyPopover = destroy;
-      });
   }
 
   ngOnDestroy() {
     this._dragulaService.destroy('drag-bag');
-    this._destroyPopover();
   }
 
 
@@ -148,8 +134,10 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     // Cropper requires an actual img object if we want to preload an image
+
     const img = document.createElement('img');
     this.cropper.setImage(img);
+
   }
 
   onCrop(event: any, tab: IDeviceTab): void {

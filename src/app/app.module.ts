@@ -17,7 +17,7 @@ import { AppInfoService } from './bv-sections/app-info/app-info.service';
 import { MediaUpdateService } from './bv-sections/profile-info/media-update.service';
 import { BlogPostService } from './bv-sections/blog/blog-post.service';
 import { DeviceService } from './bv-sections/device-mockup/device.service';
-
+import {PopoverModule} from 'ngx-popover';
 
 @NgModule({
   declarations: [
@@ -34,6 +34,7 @@ import { DeviceService } from './bv-sections/device-mockup/device.service';
     ]),
     OnsenModule,
     BvSectionsModule,
+    PopoverModule
   ],
   providers: [
     MdIconRegistry,

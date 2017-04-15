@@ -28,6 +28,7 @@ import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { DesignComponent } from './design/design.component';
 import { DragulaModule } from 'ng2-dragula';
 import {MyPopoverComponent} from './design/MyPopoverComponent';
+import {PopoverModule} from 'ngx-popover';
 
 @NgModule({
   imports: [
@@ -82,7 +83,8 @@ import {MyPopoverComponent} from './design/MyPopoverComponent';
     ColorPickerModule,
     Ng2FloatBtnModule,
     RlTagInputModule,
-    DragulaModule
+    DragulaModule,
+    PopoverModule
   ],
   declarations: [
     AppInfoComponent,

@@ -5,17 +5,52 @@
       <div class="demo-card-container">
       <md-card-content>
 
-        <div class="row">
-          <div class="col card" (click)= "toggleCollapse(colorTabID)">Color</div>
+        <input type="checkbox"
+               id="showHintId"
+               checked="showHints"
+               [(ngModel)]="showHints"
+               [ngModelOptions]="{standalone: true}"/>
+        <label for="showHintId">Show Hints on Hover?</label>
+
+        <div popover="Click any item to expand content"
+             popoverTitle="Hint"
+             popoverPlacement="top"
+             [popoverOnHover]="true"
+             [popoverCloseOnClickOutside]="true"
+             [popoverCloseOnMouseOutside]="false"
+             [popoverDisabled]="!showHints"
+             [popoverAnimation]="true"
+             >
+          <div class="row">
+            <div class="col card" (click)= "toggleCollapse(colorTabID)">Color</div>
+          </div>
         </div>
+
+
 
         <div class="row">
           <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[0].id)">{{ deviceModel.tabs[0].title }}</div>
         </div>
 
-        <div class="row" [dragula]='"drag-bag"' #test>
-          <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1" class="col card" (click)= "toggleCollapse(tab.id)" [id] = 'tab.id'>{{ tab.title }}</div>
-        </div>
+            <div popover="Drag these items to change order of tabs on device."
+                 popoverTitle="Hint"
+                 popoverPlacement="top"
+                 [popoverOnHover]="true"
+                 [popoverCloseOnClickOutside]="true"
+                 [popoverCloseOnMouseOutside]="false"
+                 [popoverDisabled]="(deviceModel.tabs.length == 3 || !showHints)"
+                 [popoverAnimation]="true"
+                 class="row"
+                 [dragula]='"drag-bag"'>
+                    <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1"
+                         class="col card"
+                         (click)= "toggleCollapse(tab.id)"
+                         [id] = 'tab.id'>{{ tab.title }}
+                    </div>
+          </div>
+
+
+
 
         <div class="row">
           <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id)">{{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
@@ -34,24 +69,44 @@
                   [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
                   [cpCancelButton]="false"
                   [cpToggle]="true"
-
             >
             </span>
               </div>
               <div class="col">
-                <div (click)="selectedColor='primary'"
-                     style="width:200px;
-                     height:75px;
-                     border:1px solid #000;"
-                     [style.background]="deviceModel.colors['primary']">
+                  <div popover="Click to change the color of the header"
+                       popoverTitle="Hint"
+                       popoverPlacement="bottom"
+                       [popoverOnHover]="true"
+                       [popoverCloseOnClickOutside]="true"
+                       [popoverCloseOnMouseOutside]="false"
+                       [popoverDisabled]="!showHints"
+                       [popoverAnimation]="true"
+                  >
+                  <div (click)="selectedColor='primary'"
+                       style="width:200px;
+                       height:75px;
+                       border:1px solid #000;"
+                       [style.background]="deviceModel.colors['primary']">
+                  </div>
                 </div>
-                <br/>
+                  <br/>
+
+                  <div popover="Click to change the color of the refresh button"
+                       popoverTitle="Hint"
+                       popoverPlacement="bottom"
+                       [popoverOnHover]="true"
+                       [popoverCloseOnClickOutside]="true"
+                       [popoverCloseOnMouseOutside]="false"
+                       [popoverDisabled]="!showHints"
+                       [popoverAnimation]="true"
+                  >
                 <div (click)="selectedColor='secondary'"
                      style="width:200px;
                      height:75px;
                      border:1px solid #000;"
                      [style.background]="deviceModel.colors['secondary']"></div>
-              </div>
+                </div>
+                </div>
             </div>
           </div>
         </div>
@@ -63,8 +118,18 @@
               <h4 class="ui header">{{ tab.title }} Tab</h4>
               <form action="#">
                 <div class="row">
+                    <div popover="Upload an image to change current tab icon."
+                         popoverTitle="Hint"
+                         popoverPlacement="bottom"
+                         [popoverOnHover]="true"
+                         [popoverCloseOnClickOutside]="true"
+                         [popoverCloseOnMouseOutside]="false"
+                         [popoverDisabled]="!showHints"
+                         [popoverAnimation]="true"
+                    >
                   <img-cropper class = "col s2" #cropper [image]="data" [settings]="cropperSettings" (onCrop)="onCrop($event, tab)"></img-cropper><br>
-                  <div class= "col s8">
+                  </div>
+                    <div class= "col s8">
 
                     <div class="row">
                       <md-input-container>
@@ -149,3 +214,6 @@
     <bv-device-mockup [page]="1" style="padding-left:16px" class="locked"></bv-device-mockup>
   </div>
 </div>
+
+
+
