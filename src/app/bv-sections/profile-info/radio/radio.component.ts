@@ -57,7 +57,24 @@ export class RadioComponent implements OnInit, OnDestroy {
         this.profile.radioInfo = this.displayArray;
         this._profileService.setProfile(this.profile);
 
-        if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.RADIO)) {
+        let isValid = false;
+
+        this.displayArray.forEach(
+            mediaType => {
+                if (mediaType.username !== '') {
+                    isValid = true;
+                    return;
+                }
+            }
+        );
+
+        // The two cases we want to remove are:
+        // 1) If the length of display array is zero
+        // 2) The display array has items, but they aren't valid aka, the username hasn't been filled out
+        if (this.displayArray.length === 0 || !isValid) {
+            this._deviceService.removeTab(TabID.RADIO);
+        }
+        else if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.RADIO)) {
             this._deviceService.addTab(
                 {
                     id: TabID.RADIO,
@@ -70,9 +87,6 @@ export class RadioComponent implements OnInit, OnDestroy {
                     showImage: false
                 }
             );
-        }
-        else if (this.displayArray.length === 0) {
-            this._deviceService.removeTab(TabID.RADIO);
         }
     }
 

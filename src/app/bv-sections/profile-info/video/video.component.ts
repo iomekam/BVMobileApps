@@ -58,7 +58,24 @@ export class VideoComponent implements OnInit, OnDestroy {
         this.profile.videoInfo = this.displayArray;
         this._profileService.setProfile(this.profile);
 
-        if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.VIDEO)) {
+        let isValid = false;
+
+        this.displayArray.forEach(
+            mediaType => {
+                if (mediaType.username !== '' && mediaType.mediaType === MediaType.YOUTUBE) {
+                    isValid = true;
+                    return;
+                }
+            }
+        );
+
+        // The two cases we want to remove are:
+        // 1) If the length of display array is zero
+        // 2) The display array has items, but they aren't valid aka, the username hasn't been filled out
+        if (this.displayArray.length === 0 || !isValid) {
+            this._deviceService.removeTab(TabID.VIDEO);
+        }
+        else if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.VIDEO)) {
             this._deviceService.addTab(
                 {
                     id: TabID.VIDEO,
@@ -71,9 +88,6 @@ export class VideoComponent implements OnInit, OnDestroy {
                     showImage: false
                 }
             );
-        }
-        else if (this.displayArray.length === 0) {
-            this._deviceService.removeTab(TabID.VIDEO);
         }
     }
 

@@ -56,8 +56,24 @@ export class MusicComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.profile.musicInfo = this.displayArray;
         this._profileService.setProfile(this.profile);
+        let isValid = false;
 
-        if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.MUSIC)) {
+        this.displayArray.forEach(
+            mediaType => {
+                if (mediaType.username !== '') {
+                    isValid = true;
+                    return;
+                }
+            }
+        );
+
+        // The two cases we want to remove are:
+        // 1) If the length of display array is zero
+        // 2) The display array has items, but they aren't valid aka, the username hasn't been filled out
+        if (this.displayArray.length === 0 || !isValid) {
+            this._deviceService.removeTab(TabID.MUSIC);
+        }
+        else if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.MUSIC)) {
             this._deviceService.addTab(
                 {
                     id: TabID.MUSIC,
@@ -70,9 +86,6 @@ export class MusicComponent implements OnInit, OnDestroy {
                     showImage: false
                 }
             );
-        }
-        else if (this.displayArray.length === 0) {
-            this._deviceService.removeTab(TabID.MUSIC);
         }
     }
 
