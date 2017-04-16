@@ -140,7 +140,7 @@
                              [ngModelOptions]="{standalone: true}"/>
                       <label for="tabItem">Show Text Below Icon?</label>
                     </div>
-                    <div class="row" *ngIf="tab.image != ''">
+                    <div class="row" *ngIf="tab.image.image != ''">
                       <input type="checkbox"
                              id="tabItem2"
                              checked="tab.showTitle"
@@ -148,13 +148,13 @@
                              [ngModelOptions]="{standalone: true}"/>
                       <label for="tabItem2">Show Image?</label>
                     </div>
-                    <div class="row" *ngIf="tab.headerImage != ''">
+                    <div class="row" *ngIf="tab.headerImage.image != ''">
                       <input type="checkbox"
-                             id="tabItem2"
+                             id="tabItem3"
                              checked="tab.showTitle"
                              [(ngModel)]="tab.showHeader"
                              [ngModelOptions]="{standalone: true}"/>
-                      <label for="tabItem2">Show App Header?</label>
+                      <label for="tabItem3">Show App Header?</label>
                     </div>
 
                   </div>

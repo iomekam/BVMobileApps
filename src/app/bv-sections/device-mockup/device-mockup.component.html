@@ -63,19 +63,15 @@
     </div>
   </div>
 
-  <div class="screen" [style.background]="backgroundColor" *ngIf="page === 1"> <!-- designPage -->
+  <div class="screen" *ngIf="page === 1"> <!-- designPage -->
 
-    <div class="bar bar-header bar-positive" [style.background]="deviceModel.colors['primary']">
+    <div class="bar bar-header bar-positive" [style.background]="deviceModel.colors['primary']" [style.border-color]="backgroundColor">
       <h1 class="title">{{ deviceModel.appName }}</h1>
       <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
     </div>
 
-    <div *ngIf="deviceModel.activeTab === null || (deviceModel.activeTab !== null && !deviceModel.activeTab.showHeader)" class="bar bar-header bar-positive" [style.background]="deviceModel.colors['secondary']" [style.border-color]="backgroundColor">
+    <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.showHeader" class="bar bar-subheader bar-positive" style="background-size: 100% 100%" [ngStyle]="{'background-image': 'url(' + deviceModel.activeTab.headerImage.image + ')'}">
     </div>
-
-    <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.showHeader" class="bar bar-header bar-positive" style="background-size: 100% 100%" [ngStyle]="{'background-image': 'url(' + deviceModel.activeTab.headerImage.image + ')'}" [style.border-color]="backgroundColor">
-    </div>
-
 
     <div class="wrapper">
       <div class="tabs tabs-icon-top">
