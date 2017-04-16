@@ -18,7 +18,9 @@ export class DeviceService {
       defaultIcon: 'icon ion ion-camera',
       image: '',
       showTitle: true,
-      showImage: false
+      showImage: false,
+      headerImage: '',
+      showHeader: false
     };
 
     this._model = {
@@ -36,7 +38,9 @@ export class DeviceService {
           defaultIcon: 'icon ion ion-home',
           image: '',
           showTitle: true,
-          showImage: false
+          showImage: false,
+          headerImage: '',
+          showHeader: false
         },
         this._photo,
         {
@@ -47,9 +51,12 @@ export class DeviceService {
           defaultIcon: 'icon ion ion-more',
           image: '',
           showTitle: true,
-          showImage: false
+          showImage: false,
+          headerImage: '',
+          showHeader: false
         },
-      ]
+      ],
+      activeTab: null
     };
   }
 
@@ -114,6 +121,19 @@ export class DeviceService {
 
     this._model.tabs[index].image = image;
     this._model.tabs[index].showImage = true;
+  }
+
+  public setHeaderImage(id: TabID, image: string) {
+    const index: number = this._model.tabs.findIndex(
+      tab => {
+        return (id + '') === (tab.id + '');
+      }
+    );
+
+    this._model.tabs[index].headerImage = image;
+    this._model.tabs[index].showHeader = true;
+
+    this._model.activeTab = this._model.tabs[index];
   }
 
   public moveTab(id: TabID, before: TabID) {

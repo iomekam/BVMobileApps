@@ -84,7 +84,9 @@ export class RadioComponent implements OnInit, OnDestroy {
                     order: 1,
                     showTitle: true,
                     image: '',
-                    showImage: false
+                    showImage: false,
+                    headerImage: '',
+                    showHeader: false,
                 }
             );
         }

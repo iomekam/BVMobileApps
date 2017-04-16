@@ -2,6 +2,7 @@ export interface IDeviceModel {
     appName: string;
     colors: any;
     tabs: IDeviceTab[];
+    activeTab: IDeviceTab;
 }
 
 // Enum we use to order the tab. There can only be one FIRST and one LAST.
@@ -33,4 +34,6 @@ export interface IDeviceTab {
     image: string;
     showTitle: boolean;
     showImage: boolean;
+    headerImage: string;
+    showHeader: boolean;
 }

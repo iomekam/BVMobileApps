@@ -31,6 +31,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     private cropperSettings: CropperSettings;
 
+    private headerCropperSettings: CropperSettings;
+
     private data: any;
 
     private showHints = true;
@@ -47,6 +49,17 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.cropperSettings.croppedHeight = 100;
       this.cropperSettings.canvasWidth = 100;
       this.cropperSettings.canvasHeight = 100;
+
+      this.headerCropperSettings = new CropperSettings();
+      this.headerCropperSettings.width = 612;
+      this.headerCropperSettings.height = 88;
+      this.headerCropperSettings.minWidth = 570;
+      this.headerCropperSettings.minHeight = 88;
+      this.headerCropperSettings.croppedWidth = 570;
+      this.headerCropperSettings.croppedHeight = 88;
+
+      this.headerCropperSettings.canvasWidth = 612;
+      this.headerCropperSettings.canvasHeight = 512;
 
       this.data = {};
     }
@@ -142,5 +155,10 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onCrop(event: any, tab: IDeviceTab): void {
     this._deviceService.setImage(tab.id, this.data.image);
+  }
+
+  onCropHeader(event: any, tab: IDeviceTab): void {
+    this._deviceService.setHeaderImage(tab.id, this.data.image);
+
   }
 }

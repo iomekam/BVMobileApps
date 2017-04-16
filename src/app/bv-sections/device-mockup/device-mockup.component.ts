@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DeviceService } from './device.service';
-import { IDeviceModel } from './i-device-model';
+import {IDeviceModel, IDeviceTab} from './i-device-model';
 import {AppInfoService} from '../app-info/app-info.service';
 import {IAppInfo} from '../app-info/iapp-info';
 
@@ -16,6 +16,11 @@ export class DeviceMockupComponent implements OnInit {
     public appInfo: IAppInfo;
 
     public backgroundColor = '#13afeb';
+
+
+    public currentTab: IDeviceTab;
+
+
 
     @Input() public page: number;
 
@@ -34,6 +39,8 @@ export class DeviceMockupComponent implements OnInit {
       this._appInfoService.getAppInfo().subscribe(
         appInfo => this.appInfo = appInfo
       );
+
+      this.deviceModel.activeTab = this.deviceModel.tabs[0];
     }
 
 }

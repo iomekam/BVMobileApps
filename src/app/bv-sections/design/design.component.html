@@ -164,6 +164,11 @@
 
                   </div>
                 </div>
+
+                <div class="row">
+                  <img-cropper class = "col s2" #cropper [image]="data" [settings]="headerCropperSettings" (onCrop)="onCropHeader($event, tab)"></img-cropper><br>
+                </div>
+
               </form>
 
             </div>
