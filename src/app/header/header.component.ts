@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { ValidationService } from '../bv-sections/shared/validation.service';
 
 @Component({
   selector: 'bv-header',
@@ -17,10 +18,11 @@ export class HeaderComponent implements OnInit  {
     isProfileInfoCurrent = false;
     isBlogCurrent = false;
     isDesignCurrent = false;
+    shouldEnableCreate = false;
 
     private currentID: number;
 
-    constructor() { }
+    constructor(private _validationService: ValidationService) { }
 
     toggleCurrent(id: number): void {
 
@@ -59,5 +61,9 @@ export class HeaderComponent implements OnInit  {
 
     ngOnInit() {
       this.currentID = this.appInfoID;
+
+      this._validationService.isValid$.subscribe(
+            isValid => this.shouldEnableCreate = isValid
+      );
     }
 }

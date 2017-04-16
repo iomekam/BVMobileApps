@@ -17,7 +17,8 @@ import { AppInfoService } from './bv-sections/app-info/app-info.service';
 import { MediaUpdateService } from './bv-sections/profile-info/media-update.service';
 import { BlogPostService } from './bv-sections/blog/blog-post.service';
 import { DeviceService } from './bv-sections/device-mockup/device.service';
-import {PopoverModule} from 'ngx-popover';
+import { ValidationService } from './bv-sections/shared/validation.service';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +35,6 @@ import {PopoverModule} from 'ngx-popover';
     ]),
     OnsenModule,
     BvSectionsModule,
-    PopoverModule
   ],
   providers: [
     MdIconRegistry,
@@ -42,6 +42,7 @@ import {PopoverModule} from 'ngx-popover';
     MediaUpdateService,
     BlogPostService,
     DeviceService,
+    ValidationService,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],
   bootstrap: [ AppComponent ]

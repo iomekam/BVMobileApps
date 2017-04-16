@@ -5,6 +5,7 @@ import { CropperSettings, ImageCropperComponent, Bounds } from '../../ng2-img-cr
 import { AppInfoService } from './app-info.service';
 import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 import { DeviceService } from '../device-mockup/device.service';
+import { ValidationService } from '../shared/validation.service';
 
 @Component({
   selector: 'bv-app-info',
@@ -44,7 +45,8 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     constructor(
         form: FormBuilder,
         private _appInfoService: AppInfoService,
-        private _deviceService: DeviceService) {
+        private _deviceService: DeviceService,
+        private _validationService: ValidationService) {
         this.form = form.group({
             appName: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
             shortDescription: ['', Validators.compose([Validators.required, Validators.maxLength(80)])],
@@ -83,6 +85,12 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     onInput(): void {
         this._deviceService.setAppName(this.appInfo.appName);
+        if(this.appInfo.appName === '') {
+            this._validationService.setAppInfoValid(false);
+        }
+        else {
+            this._validationService.setAppInfoValid(true);
+        }
     }
 
     onCrop(bounds: Bounds): void {

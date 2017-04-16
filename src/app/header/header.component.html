@@ -19,7 +19,7 @@
       (click)="toggleCurrent(designInfoID)">
       <a [routerLink]="['/design']" skipLocationChange style="font-size: large">Design</a>
     </li>
-     <li class="current">
+     <li [ngClass]="{'current': shouldEnableCreate }">
       <a style="font-size: large">Create</a>
     </li>
   </ol>
