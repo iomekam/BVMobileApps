@@ -73,7 +73,6 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit(): void {
-        console.log(this.appInfo.image.bounds);
         this.cropper.setImage(this.appInfo.image.original, this.appInfo.image.bounds);
     }
 

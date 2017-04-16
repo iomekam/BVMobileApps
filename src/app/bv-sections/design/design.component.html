@@ -19,7 +19,7 @@
         </div>
 
         <div class="row">
-          <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[0].id)">{{ deviceModel.tabs[0].title }}</div>
+          <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[0].id); deviceModel.activeTab = deviceModel.tabs[0]">{{ deviceModel.tabs[0].title }}</div>
         </div>
 
             <div popover="Drag these items to change order of tabs on device."
@@ -34,16 +34,14 @@
                  [dragula]='"drag-bag"'>
                     <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1"
                          class="col card"
-                         (click)= "toggleCollapse(tab.id)"
+                         (click)= "toggleCollapse(tab.id); deviceModel.activeTab = tab"
                          [id] = 'tab.id'>{{ tab.title }}
                     </div>
           </div>
 
-
-
-
         <div class="row">
-          <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id)">{{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
+          <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id); deviceModel.activeTab = deviceModel.tabs[deviceModel.tabs.length-1]">
+            {{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
         </div>
 
         <div [suiCollapse]="colorTabID !== currentID">
@@ -99,7 +97,7 @@
           </div>
         </div>
 
-        <div *ngFor="let tab of deviceModel.tabs">
+        <div *ngFor="let tab of deviceModel.tabs" >
           <div [suiCollapse]="tab.id !== currentID">
             <div class="ui segment">
 

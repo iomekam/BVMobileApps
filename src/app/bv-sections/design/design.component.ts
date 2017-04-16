@@ -66,8 +66,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public toggleCollapse(location: TabID) {
       const img = document.createElement('img');
-      //this.cropperHeader.last.setImage(img);
-      //img.src = this.deviceModel.tabs[1].headerImage;
 
       if (location === this.currentID) {
         this.currentID = -1;
