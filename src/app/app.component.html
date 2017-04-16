@@ -3,13 +3,20 @@
   <div class="center">{{ title }}</div>
 </ons-toolbar>
 
-<div class="container" style="padding-top:64px">
-  <div class="">
-    <div class="center-block">
-      <bv-header></bv-header>
-      <router-outlet></router-outlet>
-      <br/>
+<div class="container" style="padding-top:64px">  
+    <div class="row">  
+      <div class="center-block">
+        <bv-header></bv-header>
+      </div>
     </div>
   </div>
-</div>
+
+  <div class="container">  
+    <div class="row">  
+      <div class="center-block">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+  <br/>
 </div>
