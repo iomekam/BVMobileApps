@@ -62,6 +62,7 @@ export class VideoComponent implements OnInit, OnDestroy {
 
         this.displayArray.forEach(
             mediaType => {
+                // YouTube is required for the video tab to show up in device-mockup
                 if (mediaType.username !== '' && mediaType.mediaType === MediaType.YOUTUBE) {
                     isValid = true;
                     return;
