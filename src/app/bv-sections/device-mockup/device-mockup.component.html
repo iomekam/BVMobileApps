@@ -65,12 +65,12 @@
 
   <div class="screen" [style.background]="backgroundColor" *ngIf="page === 1"> <!-- designPage -->
 
-    <div *ngIf="deviceModel.activeTab === null || (deviceModel.activeTab !== null && !deviceModel.activeTab.showHeader)" class="bar bar-header bar-positive" [style.background]="deviceModel.colors['primary']">
+    <div *ngIf="deviceModel.activeTab === null || (deviceModel.activeTab !== null && !deviceModel.activeTab.showHeader)" class="bar bar-header bar-positive" [style.background]="deviceModel.colors['primary']" [style.border-color]="backgroundColor">
       <h1 class="title">{{ deviceModel.appName }}</h1>
       <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
     </div>
 
-    <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.showHeader" class="bar bar-header bar-positive" style="background-size: 100% 100%" [ngStyle]="{'background-image': 'url(' + deviceModel.activeTab.headerImage + ')'}">
+    <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.showHeader" class="bar bar-header bar-positive" style="background-size: 100% 100%" [ngStyle]="{'background-image': 'url(' + deviceModel.activeTab.headerImage + ')'}" [style.border-color]="backgroundColor">
       <h1 class="title">{{ deviceModel.appName }}</h1>
       <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
     </div>
