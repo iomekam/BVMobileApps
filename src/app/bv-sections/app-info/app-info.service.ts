@@ -15,9 +15,9 @@ export class AppInfoService {
             longDescription: '',
             keywords: [],
             image: {
-                original:new Image(),
-                image:"",
-                bounds:new Bounds()
+                original: new Image(),
+                image: '',
+                bounds: new Bounds()
             }
         };
     }

@@ -19,16 +19,16 @@ export class DeviceService {
       order: 2,
       defaultIcon: 'icon ion ion-camera',
       image: {
-          original:new Image(),
-          image:"",
-          bounds:new Bounds()
+          original: new Image(),
+          image: '',
+          bounds: new Bounds()
       },
       showTitle: true,
       showImage: false,
       headerImage: {
-          original:new Image(),
-          image:"",
-          bounds:new Bounds()
+          original: new Image(),
+          image: '',
+          bounds: new Bounds()
       },
       showHeader: false
     };
@@ -47,16 +47,16 @@ export class DeviceService {
           order: -1, // Since we specify FIRST, the order doesn't matter.
           defaultIcon: 'icon ion ion-home',
           image: {
-              original:new Image(),
-              image:"",
-              bounds:new Bounds()
+              original: new Image(),
+              image: '',
+              bounds: new Bounds()
           },
           showTitle: true,
           showImage: false,
           headerImage: {
-              original:new Image(),
-              image:"",
-              bounds:new Bounds()
+              original: new Image(),
+              image: '',
+              bounds: new Bounds()
           },
           showHeader: false
         },
@@ -68,16 +68,16 @@ export class DeviceService {
           order: 5, // Since we specify LAST, the order doesn't matter.
           defaultIcon: 'icon ion ion-more',
           image: {
-              original:new Image(),
-              image:"",
-              bounds:new Bounds()
+              original: new Image(),
+              image: '',
+              bounds: new Bounds()
           },
           showTitle: true,
           showImage: false,
           headerImage: {
-              original:new Image(),
-              image:"",
-              bounds:new Bounds()
+              original: new Image(),
+              image: '',
+              bounds: new Bounds()
           },
           showHeader: false
         },
@@ -145,7 +145,7 @@ export class DeviceService {
       }
     );
 
-    if(index === -1) { return; }
+    if (index === -1) { return; }
 
     this._model.tabs[index].image = image;
     this._model.tabs[index].showImage = true;
@@ -158,7 +158,7 @@ export class DeviceService {
       }
     );
 
-    if(index === -1) { return; }
+    if (index === -1) { return; }
 
     this._model.tabs[index].headerImage = image;
     this._model.tabs[index].showHeader = true;

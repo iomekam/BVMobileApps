@@ -95,9 +95,9 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
                     iaculis vel sit amet tortor. Etiam nisl ipsum, sollicitudin a ullamcorper et, ultrices at tortor. 
                     Duis vel malesuada velit, vitae luctus elit.`,
                     image: {
-                        original:new Image(),
-                        image:"",
-                        bounds:new Bounds()
+                        original: new Image(),
+                        image: '',
+                        bounds: new Bounds()
                     },
                     keywords: ['This', 'is', 'my', 'first', 'blog', 'post'],
                     id: 0,

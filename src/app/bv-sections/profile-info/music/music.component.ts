@@ -84,15 +84,15 @@ export class MusicComponent implements OnInit, OnDestroy {
                     order: 1,
                     showTitle: true,
                     image: {
-                        original:new Image(),
-                        image:"",
-                        bounds:new Bounds()
+                        original: new Image(),
+                        image: '',
+                        bounds: new Bounds()
                     },
                     showImage: false,
                     headerImage: {
-                        original:new Image(),
-                        image:"",
-                        bounds:new Bounds()
+                        original: new Image(),
+                        image: '',
+                        bounds: new Bounds()
                     },
                     showHeader: false
                 }
