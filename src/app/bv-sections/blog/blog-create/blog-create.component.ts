@@ -55,6 +55,8 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
         this.cropperSettings.croppedHeight = 700;
         this.cropperSettings.canvasWidth = 700;
         this.cropperSettings.canvasHeight = 700;
+        this.cropperSettings.dynamicSizing = true;
+        this.cropperSettings.preserveSize = true;
 
         // Config used by ckeditor
         this.config = {

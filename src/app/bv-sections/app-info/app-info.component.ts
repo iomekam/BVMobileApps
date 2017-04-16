@@ -60,6 +60,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
         this.cropperSettings.croppedHeight = 512;
         this.cropperSettings.canvasWidth = 600;
         this.cropperSettings.canvasHeight = 512;
+        this.cropperSettings.dynamicSizing = true;
     }
 
     private onTagLostFocus(message: string): void {
@@ -85,6 +86,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     onCrop(bounds: Bounds): void {
+        console.log(bounds);
         this.appInfo.image.bounds = bounds;
     }
 }

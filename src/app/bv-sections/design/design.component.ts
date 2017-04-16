@@ -41,7 +41,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     constructor(
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,
-      private _deviceService: DeviceService ) {
+      private _deviceService: DeviceService) {
 
       this.cropperSettings = new CropperSettings();
       this.cropperSettings.width = 600;
@@ -50,6 +50,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.cropperSettings.croppedHeight = 100;
       this.cropperSettings.canvasWidth = 100;
       this.cropperSettings.canvasHeight = 100;
+      this.cropperSettings.dynamicSizing = true;
+      this.cropperSettings.preserveSize = true;
 
       this.headerCropperSettings = new CropperSettings();
       this.headerCropperSettings.width = 612;

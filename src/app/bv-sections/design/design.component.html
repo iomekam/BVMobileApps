@@ -1,5 +1,5 @@
-<div class="row" style="width:1350px">
-  <div>
+<div class="row">
+  <div  class="col-xs-8">
   <div class="demo-card-container">
     <md-card class="demo-card-blue">
       <div class="demo-card-container">
@@ -132,7 +132,7 @@
                              checked="tab.showTitle"
                              [(ngModel)]="tab.showTitle"
                              [ngModelOptions]="{standalone: true}"/>
-                      <label for="tabItem">Show Text Below Icon?</label>
+                      <label for="tabItem">Show Title?</label>
                     </div>
                     <div class="row" *ngIf="tab.image.image != ''">
                       <input type="checkbox"
@@ -169,7 +169,7 @@
     </md-card>
   </div>
   </div>
-  <div style="padding-left:16px">
+  <div class="col-xs-4" style="padding-left:16px">
     <bv-device-mockup [page]="1" style="padding-left:16px"></bv-device-mockup>
   </div>
 </div>
