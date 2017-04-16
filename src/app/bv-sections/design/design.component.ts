@@ -1,9 +1,11 @@
-import {Component, OnInit, OnDestroy, ViewChild, ViewChildren, AfterViewInit, QueryList} from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ViewChildren, AfterViewInit, QueryList, Input } from '@angular/core';
 import { ColorPickerService, Rgba } from 'angular2-color-picker';
 import { DragulaService } from 'ng2-dragula';
 import { DeviceService } from '../device-mockup/device.service';
-import {IDeviceModel, IDeviceTab, TabID} from '../device-mockup/i-device-model';
-import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
+import { IDeviceModel, IDeviceTab, TabID } from '../device-mockup/i-device-model';
+import { CropperSettings, ImageCropperComponent, Bounds } from '../../ng2-img-cropper';
+import { BvImage } from '../shared/bv-image';
+import { DesignImageCropperComponent } from './design-image-cropper/design-image-cropper.component';
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }
@@ -26,11 +28,11 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public deviceModel: IDeviceModel;
 
-    @ViewChild('cropperIcon', undefined)
-    private cropperIcon: ImageCropperComponent;
+    @ViewChildren('designImgCropperIcon')
+    private imgCropperIcon: QueryList<DesignImageCropperComponent>;
 
-    @ViewChildren('cropperHeader')
-    private cropperHeader: QueryList<ImageCropperComponent>;
+    @ViewChildren('designImgCropper')
+    private imgCropper: QueryList<DesignImageCropperComponent>;
 
     private cropperSettings: CropperSettings;
 
@@ -147,16 +149,26 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // Cropper requires an actual img object if we want to preload an image
+    this.imgCropperIcon.forEach(
+      designImgCropper => {
+        designImgCropper.cropper.setImage(designImgCropper.model.image.original, designImgCropper.model.image.bounds);
+      }
+    );
+
+    this.imgCropper.forEach(
+      designImgCropper => {
+        designImgCropper.cropper.setImage(designImgCropper.model.headerImage.original, designImgCropper.model.headerImage.bounds);
+      }
+    );
   }
 
-  onCrop(event: any, tab: IDeviceTab): void {
+  onCrop(bounds: Bounds, tab: IDeviceTab): void {
+    tab.image.bounds = bounds;
     this._deviceService.setImage(tab.id, tab.image);
   }
 
-  onCropHeader(event: any, tab: IDeviceTab): void {
+  onCropHeader(bounds: Bounds, tab: IDeviceTab): void {
+    tab.headerImage.bounds = bounds;
     this._deviceService.setHeaderImage(tab.id, tab.headerImage);
-      console.log(event);
-      console.log(this.headerCropperSettings);
   }
 }

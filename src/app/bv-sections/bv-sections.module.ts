@@ -27,8 +27,9 @@ import { BlogListComponent } from './blog/blog-list/blog-list.component';
 import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { DesignComponent } from './design/design.component';
 import { DragulaModule } from 'ng2-dragula';
-import {MyPopoverComponent} from './design/MyPopoverComponent';
-import {PopoverModule} from 'ngx-popover';
+import { MyPopoverComponent } from './design/MyPopoverComponent';
+import { PopoverModule } from 'ngx-popover';
+import { DesignImageCropperComponent } from './design/design-image-cropper/design-image-cropper.component';
 
 @NgModule({
   imports: [
@@ -98,7 +99,8 @@ import {PopoverModule} from 'ngx-popover';
     BlogListComponent,
     BlogCreateComponent,
     DesignComponent,
-    MyPopoverComponent
+    MyPopoverComponent,
+    DesignImageCropperComponent,
   ],
   entryComponents: [MyPopoverComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],

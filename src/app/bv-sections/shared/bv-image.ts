@@ -1,7 +1,7 @@
 import { Bounds } from '../../ng2-img-cropper';
 
 export interface BvImage {
-    original: Image;
+    original: HTMLImageElement;
     image: string;
-    bounds: Bounds
+    bounds: Bounds;
 }

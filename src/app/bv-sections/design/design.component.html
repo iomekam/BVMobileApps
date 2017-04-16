@@ -114,7 +114,7 @@
                          [popoverCloseOnMouseOutside]="false"
                          [popoverAnimation]="true"
                     >
-                  <img-cropper class = "col s2" #cropperIcon [image]="tab.image" [settings]="cropperSettings" (onCrop)="onCrop($event, tab)"></img-cropper><br>
+                  <bv-design-image-cropper #designImgCropperIcon class="col s2" [model]="tab" [image]="tab.image" [settings]="cropperSettings" (onCrop)="onCrop($event, tab)"></bv-design-image-cropper>
                   </div>
                     <div class= "col s8">
 
@@ -161,7 +161,7 @@
                 </div>
 
                 <div class="row">
-                  <img-cropper class="col s2" #cropperHeader [image]="tab.headerImage" [settings]="headerCropperSettings" (onCrop)="onCropHeader($event, tab)"></img-cropper><br>
+                  <bv-design-image-cropper class="col s2" #designImgCropper [model]="tab" [image]="tab.headerImage" [settings]="headerCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
                 </div>
 
               </form>
