@@ -67,6 +67,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private onTagLostFocus(message: string): void {
         this.isTagTouched = true;
+        this._validationService.setAppInfoValid(this.appInfo);
     }
 
     ngOnInit() {
@@ -85,15 +86,15 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     onInput(): void {
         this._deviceService.setAppName(this.appInfo.appName);
-        if(this.appInfo.appName === '') {
-            this._validationService.setAppInfoValid(false);
-        }
-        else {
-            this._validationService.setAppInfoValid(true);
-        }
+        this._validationService.setAppInfoValid(this.appInfo);
+    }
+
+    onInputForValidation(): void {
+        this._validationService.setAppInfoValid(this.appInfo);
     }
 
     onCrop(bounds: Bounds): void {
         this.appInfo.image.bounds = bounds;
+        this._validationService.setAppInfoValid(this.appInfo);
     }
 }
