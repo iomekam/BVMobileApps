@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppInfo } from './iapp-info';
-import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
+import { CropperSettings, ImageCropperComponent, Bounds } from 'ng2-img-cropper';
 import { AppInfoService } from './app-info.service';
 import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 import { DeviceService } from '../device-mockup/device.service';
@@ -36,8 +36,6 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     private form: FormGroup;
 
     private isTagTouched = false;
-
-    private data: any;
     private cropperSettings: CropperSettings;
 
     @ViewChild('cropper', undefined)
@@ -62,8 +60,6 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
         this.cropperSettings.croppedHeight = 512;
         this.cropperSettings.canvasWidth = 600;
         this.cropperSettings.canvasHeight = 512;
-
-        this.data = {};
     }
 
     private onTagLostFocus(message: string): void {
@@ -77,10 +73,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit(): void {
-        // Cropper requires an actual img object if we want to preload an image
-        const img = document.createElement('img');
-        img.src = this.appInfo.image;
-        this.cropper.setImage(img);
+        this.cropper.setImage(this.appInfo.image.original, this.appInfo.image.bounds);
     }
 
     ngOnDestroy(): void {
@@ -91,7 +84,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
         this._deviceService.setAppName(this.appInfo.appName);
     }
 
-    onCrop(event: any): void {
-        this.appInfo.image = this.data.image;
+    onCrop(bounds: any): void {
+        this.appInfo.image.bounds = new Bounds(bounds.left, bounds.top, bounds.right - bounds.left, bounds.bottom - bounds.top);
     }
 }

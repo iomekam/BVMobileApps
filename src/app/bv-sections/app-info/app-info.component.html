@@ -94,7 +94,7 @@
             </md-card-subtitle>
             <md-card-content>
               <div>
-                <img-cropper #cropper [image]="data" [settings]="cropperSettings" (onCrop)="onCrop($event)"></img-cropper><br>
+                <img-cropper #cropper [image]="appInfo.image" [settings]="cropperSettings" (onCrop)="onCrop($event)"></img-cropper><br>
                 <!--<img [src]="data.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">-->
               </div>
             </md-card-content>

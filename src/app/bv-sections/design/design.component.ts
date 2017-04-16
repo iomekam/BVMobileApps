@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, OnInit, OnDestroy, ViewChild, ViewChildren, AfterViewInit, QueryList} from '@angular/core';
 import { ColorPickerService, Rgba } from 'angular2-color-picker';
 import { DragulaService } from 'ng2-dragula';
 import { DeviceService } from '../device-mockup/device.service';
@@ -26,8 +26,11 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public deviceModel: IDeviceModel;
 
-    @ViewChild('cropper', undefined)
-    private cropper: ImageCropperComponent;
+    @ViewChild('cropperIcon', undefined)
+    private cropperIcon: ImageCropperComponent;
+
+    @ViewChildren('cropperHeader')
+    private cropperHeader: QueryList<ImageCropperComponent>;
 
     private cropperSettings: CropperSettings;
 
@@ -64,6 +67,10 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
     public toggleCollapse(location: TabID) {
+      const img = document.createElement('img');
+      this.cropperHeader.last.setImage(img);
+      img.src = this.deviceModel.tabs[1].headerImage;
+
       if (location === this.currentID) {
         this.currentID = -1;
       }
@@ -145,10 +152,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngAfterViewInit(): void {
     // Cropper requires an actual img object if we want to preload an image
-
-    const img = document.createElement('img');
-    this.cropper.setImage(img);
-
   }
 
   onCrop(event: any, tab: IDeviceTab): void {
@@ -157,6 +160,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onCropHeader(event: any, tab: IDeviceTab): void {
     this._deviceService.setHeaderImage(tab.id, this.data.image);
-
+      console.log(event);
+      console.log(this.headerCropperSettings);
   }
 }

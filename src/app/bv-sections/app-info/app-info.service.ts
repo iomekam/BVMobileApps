@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IAppInfo } from './iapp-info';
+import { Bounds } from 'ng2-img-cropper';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -13,7 +14,11 @@ export class AppInfoService {
             shortDescription: '',
             longDescription: '',
             keywords: [],
-            image: ''
+            image: {
+                original:new Image(),
+                image:"",
+                bounds:new Bounds()
+            }
         };
     }
 
