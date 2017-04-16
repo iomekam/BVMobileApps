@@ -29,8 +29,8 @@ import {PopoverModule} from 'ngx-popover';
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-        { path: '', redirectTo: '', pathMatch: 'full' },
-        { path: '**', redirectTo: '', pathMatch: 'full' }
+        { path: '', redirectTo: '/', pathMatch: 'full' },
+        { path: '**', redirectTo: '/', pathMatch: 'full' }
     ]),
     OnsenModule,
     BvSectionsModule,
