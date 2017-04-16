@@ -3,7 +3,7 @@ import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprof
 import { MediaUpdateService } from '../media-update.service';
 import { DeviceService } from '../../device-mockup/device.service';
 import { OrderType, TabID } from '../../device-mockup/i-device-model';
-import { Bounds } from 'ng2-img-cropper';
+import { Bounds } from '../../../ng2-img-cropper';
 
 @Component({
   templateUrl: './video.component.html',

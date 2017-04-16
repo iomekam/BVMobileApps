@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, Input, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
+import { ImageCropperComponent, CropperSettings, Bounds } from '../../../ng2-img-cropper';
 import { IBlogPost } from '../iblog-post';
 import { BlogPostService } from '../blog-post.service';
 import { Subscription } from 'rxjs/Subscription';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IAppInfo } from './iapp-info';
-import { Bounds } from 'ng2-img-cropper';
+import { Bounds } from '../../ng2-img-cropper';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()

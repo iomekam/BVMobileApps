@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IDeviceModel, IDeviceTab, OrderType, TabID } from './i-device-model';
 import { Observable } from 'rxjs/Observable';
 import { BvImage } from '../shared/bv-image';
-import { Bounds } from 'ng2-img-cropper';
+import { Bounds } from '../../ng2-img-cropper';
 
 @Injectable()
 export class DeviceService {
