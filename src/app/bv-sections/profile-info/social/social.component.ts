@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IProfileModel, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service';
+import { ValidationService } from '../../shared/validation.service';
 
 @Component({
   templateUrl: './social.component.html',
@@ -18,7 +19,9 @@ export class SocialComponent implements OnInit, OnDestroy {
     // get removed/added to the contentArray list
     private displayArray: Array<IMediaInfo>;
 
-    constructor(private _profileService: MediaUpdateService) {
+    constructor(
+        private _profileService: MediaUpdateService,
+        private _validationService: ValidationService) {
     }
 
     ngOnInit(): void {
@@ -80,5 +83,9 @@ export class SocialComponent implements OnInit, OnDestroy {
 
         this.contentArray.push(this.displayArray[index]);
         this.displayArray.splice(index, 1);
+    }
+
+    onInput(): void {
+        this._validationService.setProfileInfoPageValid(this.profile);
     }
 }

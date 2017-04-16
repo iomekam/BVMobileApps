@@ -3,6 +3,7 @@
 <div>
   <md-input-container>
     <input [(ngModel)]="profile.website"
+           (input)="onInput()"
            class="tb-width"
            type="text"
            maxlength="100"
