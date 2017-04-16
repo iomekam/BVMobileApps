@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, AfterViewInit, Input, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ImageCropperComponent, CropperSettings } from 'ng2-img-cropper';
+import { ImageCropperComponent, CropperSettings, Bounds } from 'ng2-img-cropper';
 import { IBlogPost } from '../iblog-post';
 import { BlogPostService } from '../blog-post.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -18,7 +18,6 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild('cropper', undefined)
     private cropper: ImageCropperComponent;
 
-    private data: any;
     private cropperSettings: CropperSettings;
 
     private _activatedRouteSub: Subscription;
@@ -56,8 +55,6 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
         this.cropperSettings.croppedHeight = 700;
         this.cropperSettings.canvasWidth = 700;
         this.cropperSettings.canvasHeight = 700;
-
-        this.data = {};
 
         // Config used by ckeditor
         this.config = {
@@ -97,7 +94,11 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
                     Praesent gravida tortor at cursus rutrum. Curabitur vitae pellentesque velit. Sed eu massa a neque interdum 
                     iaculis vel sit amet tortor. Etiam nisl ipsum, sollicitudin a ullamcorper et, ultrices at tortor. 
                     Duis vel malesuada velit, vitae luctus elit.`,
-                    image: '',
+                    image: {
+                        original:new Image(),
+                        image:"",
+                        bounds:new Bounds()
+                    },
                     keywords: ['This', 'is', 'my', 'first', 'blog', 'post'],
                     id: 0,
                     date: new Date()
@@ -114,11 +115,6 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
         // This allows for navigation to go straight to the blog creation page instead of the blog list
         // when navigated back to the blog section
         this._blogPostService.setIsInCreationPage(true, updateID);
-
-        // represents the image that img cropper produces
-        this.data = {
-            image: this.blogPost.image
-        };
     }
 
     ngOnDestroy(): void {
@@ -135,15 +131,10 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit(): void {
-        // img cropper needs an actual img object to preload an image
-        const img = document.createElement('img');
-        img.src = this.blogPost.image;
-        this.cropper.setImage(img);
+        this.cropper.setImage(this.blogPost.image.original, this.blogPost.image.bounds);
     }
 
     submit(): void {
-        this.blogPost.image = this.data.image;
-
         // Update and post are different operations to the backend service,
         // so we need to be able to distingish between them
         if (this._isUpdate) {
@@ -165,8 +156,8 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
         this._router.navigate(['/app-blog/blog-list'], { skipLocationChange: true });
     }
 
-    onCrop(event: any): void {
-        this.blogPost.image = this.data.image;
+    onCrop(bounds: Bounds): void {
+        this.blogPost.image.bounds = bounds;
     }
 
     private onTagLostFocus(message: string): void {

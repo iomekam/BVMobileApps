@@ -28,7 +28,7 @@
     <md-card>
       <md-card-title>{{ blogPost.headline }}</md-card-title>
       <md-card-subtitle><em>{{ blogPost.date | date: 'medium' }}</em></md-card-subtitle>
-      <img md-card-image src="{{ blogPost.image }}">
+      <img md-card-image src="{{ blogPost.image.image }}">
       <md-card-content>
         <div [innerHTML]="blogPost.body"></div>
       </md-card-content>

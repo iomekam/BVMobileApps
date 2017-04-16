@@ -84,7 +84,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
         this._deviceService.setAppName(this.appInfo.appName);
     }
 
-    onCrop(bounds: any): void {
-        this.appInfo.image.bounds = new Bounds(bounds.left, bounds.top, bounds.right - bounds.left, bounds.bottom - bounds.top);
+    onCrop(bounds: Bounds): void {
+        this.appInfo.image.bounds = bounds;
     }
 }
