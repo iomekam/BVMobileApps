@@ -1,0 +1,90 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "ng2-img-cropper@^0.8.1",
+        "scope": null,
+        "escapedName": "ng2-img-cropper",
+        "name": "ng2-img-cropper",
+        "rawSpec": "^0.8.1",
+        "spec": ">=0.8.1 <0.9.0",
+        "type": "range"
+      },
+      "C:\\Users\\iomek\\Documents\\Visual Studio 2015\\Projects\\Test\\BV"
+    ]
+  ],
+  "_from": "ng2-img-cropper@>=0.8.1 <0.9.0",
+  "_id": "ng2-img-cropper@0.8.6",
+  "_inCache": true,
+  "_location": "/ng2-img-cropper",
+  "_nodeVersion": "7.7.1",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/ng2-img-cropper-0.8.6.tgz_1491291609529_0.7686086420435458"
+  },
+  "_npmUser": {
+    "name": "cstefanache",
+    "email": "cornel.stefanache@gmail.com"
+  },
+  "_npmVersion": "4.1.2",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "ng2-img-cropper@^0.8.1",
+    "scope": null,
+    "escapedName": "ng2-img-cropper",
+    "name": "ng2-img-cropper",
+    "rawSpec": "^0.8.1",
+    "spec": ">=0.8.1 <0.9.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ng2-img-cropper/-/ng2-img-cropper-0.8.6.tgz",
+  "_shasum": "e709e8831e9ad847043b0ef52a1864a27243101d",
+  "_shrinkwrap": null,
+  "_spec": "ng2-img-cropper@^0.8.1",
+  "_where": "C:\\Users\\iomek\\Documents\\Visual Studio 2015\\Projects\\Test\\BV",
+  "author": {
+    "name": "Cornel Stefanache"
+  },
+  "bugs": {
+    "url": "https://github.com/cstefanache/angular2-img-cropper/issues"
+  },
+  "dependencies": {},
+  "description": "Angular2 Image Cropper Component",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "e709e8831e9ad847043b0ef52a1864a27243101d",
+    "tarball": "https://registry.npmjs.org/ng2-img-cropper/-/ng2-img-cropper-0.8.6.tgz"
+  },
+  "homepage": "https://github.com/cstefanache/angular2-img-cropper#readme",
+  "keywords": [
+    "angular2",
+    "image",
+    "cropper"
+  ],
+  "license": "MIT",
+  "maintainers": [
+    {
+      "name": "cstefanache",
+      "email": "cornel.stefanache@gmail.com"
+    }
+  ],
+  "name": "ng2-img-cropper",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "@angular/common": "4.0.0",
+    "@angular/compiler": "4.0.0",
+    "@angular/core": "4.0.0"
+  },
+  "readme": "# Changelog\n\n\n### Release 0.8.4\n - Made compatible with Angular 4 && AOT\n\n### Release 0.8.2\n - CR: #148 - removed ts files from output package.\n - fix for #150 - made fileType undefined as default. if defined it will enforce output format\n\n### Release 0.8.1\n - added dynamicSizing, cropperClass for responsive purposes\n\n### Release 0.8\n\n - added reset() method on ImageCropperComponent - fix for  #118   \n - added compressRatio as parameter in the cropper settings \n\n### Release 0.7.6\n\n - 21 Bugs in the code, I fixed 3, (hopefully not) 30 Bugs in the code\n\n### Release 0.7.1\n - Fixed #87 get unsacled crop of image\n \n\n### Release 0.7.0\n - update for AngularJS 2.0.1\n - removed typings\n - fixed aspect ratio issue\n - made cropper property public\n - added onmouseleave behavior\n\n### Release 0.6.1\n - Fixed issue #49 - Error on reading exif\n\n### Release 0.6.0\n\n - Parsed EXIF information for image orientation\n - fixed multiple browser compatibility issues\n - added accepted files regex\n - updated to Angular RC5\n\n\n### Release 0.5.0\n\n - introduced flag to hide the component file input in order to allow customization\n - added pinch/zoom feature for touch devices\n\n###  Release 0.4.5:\n - introduced rounded cropper: cropperSettings.rounded = true. Making keep aspect = false will throw an error on rounded cropper. (Issue #14)\n - cropper takes into consideration source image data pixels not cropper image data. (Issue #17)\n - support for minSize now have the following option: minWithRelativeToResolution. When set to false it will keep min size relative to canvas size. (Issue #21)\n - allow user to customize look and feel of the cropper:  \n        this.cropperSettings.cropperDrawSettings.strokeColor = 'rgba(255,255,255,1)';\n        this.cropperSettings.cropperDrawSettings.strokeWidth = 2;\n\n### Release 0.4.2:\nStarting with: 0.4.2 ts files are no loger published (only js & d.ts).\nPlease change your system.config files to make use of the js files.\n```\n 'ng2-img-cropper' :           { main: 'index.js', defaultExtension: 'js' }\n```\n\n\n\n# ng2-img-cropper\n\nThis is an adapatation of Angular 1 image cropper from: https://github.com/AllanBishop/angular-img-cropper\nAn image cropping tool for AngularJS. Features a rectangular crop area. The crop area's aspect ratio can be enforced during dragging. \nThe crop image can either be 1:1 or scaled to fit an area.\n\n## Install from NPM\n\n```\n    npm i ng2-img-cropper --save\n```\n\n## Screenshot\n\n![Screenshot](https://raw.githubusercontent.com/cstefanache/cstefanache.github.io/master/assets/img/cropper.png \"Screenshot\")\n\n## Testing\n\n```\n    npm install\n    npm run all\n```\n\n## Example usage\n\n```typescript\nimport {Component} from 'angular2/core';\nimport {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';\n\n\n@Component({\n    selector: 'test-app',\n    template: `<div>\n        <img-cropper [image]=\"data\" [settings]=\"cropperSettings\"></img-cropper><br>\n        <img [src]=\"data.image\" [width]=\"cropperSettings.croppedWidth\" [height]=\"cropperSettings.croppedHeight\">\n    </div>`,\n    declarations: [ImageCropperComponent]\n})\nexport class AppComponent {\n    data: any;\n    cropperSettings: CropperSettings;\n\n    constructor() {\n\n        this.cropperSettings = new CropperSettings();\n        this.cropperSettings.width = 100;\n        this.cropperSettings.height = 100;\n        this.cropperSettings.croppedWidth =100;\n        this.cropperSettings.croppedHeight = 100;\n        this.cropperSettings.canvasWidth = 400;\n        this.cropperSettings.canvasHeight = 300;\n\n        this.data = {};\n\n    }\n}\n\n```\n\nCheckout this [sample plunker](https://embed.plnkr.co/VFwGvAO6MhV06IDTLk5W/)\n\n\n## Settings\n\n* **canvasWidth**:*number* - Canvas DOM Element width\n* **canvasHeight**:*number* - Canvas DOM Element height\n* **width**:*number* - Crop Width\n* **height**:*number* - Crop Height\n* **minWidth**:*number* - Minimum crop Width\n* **minHeight**:*number* - Minimum crop height\n* **croppedWidth**:*number* - Resulting image width\n* **croppedHeight**:*number* - Resulting image height\n* **touchRadius**:*number* - (default: 20) Touch devices radius\n* **minWithRelativeToResolution**:*boolean* - (default: true) By default the resulting image will be cropped from original image. If false, it will be cropped from canvas pixels\n* **noFileInput**:*boolean* - (default: false) - hides the file input element from cropper canvas. \n* **cropperDrawSettings**:*CropperDrawSettings* - rendering options\n    * **strokeWidth**:*number* - box/ellipsis stroke width\n    * **strokeColor**:*string* - box/ellipsis stroke color\n* **allowedFilesRegex**:*RegExp* - (default: /\\.(jpe?g|png|gif)$/i) - Regex for allowed images\n* **preserveSize**:*boolean* - will not scale the resulting image to the croppedWidth/croppedHeight and will output the exact crop size from original\n* **fileType**:*string* - if defined all images will be converted to desired format. sample: cropperSample.fileType = 'image/jpeg'\n* **compressRatio**:*number* (default: 1.0) - default compress ratio\n* **dynamicSizing**: (default: false) - if true then the cropper becomes responsive - might introduce performance issues on resize;\n* **cropperClass**: string - set class on canvas element;\n* **croppingClass**: string - appends class to cropper when image is set (#142);\n* **resampleFn**: Function(canvas) - function used to resample the cropped image (#136); - see example #3 from runtime sample app\n\n\n## Customizing Image cropper\n\nReplacing component file input:\n\n```html\n<div class=\"file-upload\">\n    <span class=\"text\">upload</span>\n    <input id=\"custom-input\" type=\"file\" (change)=\"fileChangeListener($event)\">\n</div>\n<img-cropper #cropper [image]=\"data\" [settings]=\"cropperSettings\"></img-cropper>\n<br>\n<span class=\"result rounded\" *ngIf=\"data.image\" >\n    <img [src]=\"data.image\" [width]=\"cropperSettings.croppedWidth\" [height]=\"cropperSettings.croppedHeight\">\n</span>\n```\n\n```typescript\n\ndata:any;\n\n@ViewChild('cropper', undefined) \ncropper:ImageCropperComponent;\n\nconstructor() {\n    this.cropperSettings = new CropperSettings();\n    this.cropperSettings.noFileInput = true;\n    this.data = {};\n}\n\nfileChangeListener($event) {\n    var image:any = new Image();\n    var file:File = $event.target.files[0];\n    var myReader:FileReader = new FileReader();\n    var that = this;\n    myReader.onloadend = function (loadEvent:any) {\n        image.src = loadEvent.target.result;\n        that.cropper.setImage(image);\n\n    };\n\n    myReader.readAsDataURL(file);\n}\n\n\n```\n\n\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cstefanache/angular2-img-cropper.git"
+  },
+  "scripts": {},
+  "version": "0.8.6"
+}

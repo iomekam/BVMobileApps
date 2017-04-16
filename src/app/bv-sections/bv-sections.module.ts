@@ -10,7 +10,7 @@ import { MaterialModule } from '@angular/material';
 import { CKEditorModule } from 'ng2-ckeditor';
 
 import { OnsenModule } from 'angular2-onsenui';
-import { ImageCropperModule } from 'ng2-img-cropper';
+import { ImageCropperModule } from '../ng2-img-cropper';
 import { SuiModule } from 'ng2-semantic-ui';
 import { ColorPickerModule } from 'angular2-color-picker';
 import { Ng2FloatBtnModule } from 'ng2-float-btn';

@@ -3,7 +3,7 @@ import { ColorPickerService, Rgba } from 'angular2-color-picker';
 import { DragulaService } from 'ng2-dragula';
 import { DeviceService } from '../device-mockup/device.service';
 import {IDeviceModel, IDeviceTab, TabID} from '../device-mockup/i-device-model';
-import {CropperSettings, ImageCropperComponent} from 'ng2-img-cropper';
+import { CropperSettings, ImageCropperComponent } from 'ng2-img-cropper';
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }

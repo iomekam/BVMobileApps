@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppInfo } from './iapp-info';
-import { CropperSettings, ImageCropperComponent, Bounds } from 'ng2-img-cropper';
+import { CropperSettings, ImageCropperComponent, Bounds } from '../../ng2-img-cropper';
 import { AppInfoService } from './app-info.service';
 import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 import { DeviceService } from '../device-mockup/device.service';
@@ -73,6 +73,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngAfterViewInit(): void {
+        console.log(this.appInfo.image.bounds);
         this.cropper.setImage(this.appInfo.image.original, this.appInfo.image.bounds);
     }
 
