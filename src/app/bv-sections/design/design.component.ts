@@ -36,8 +36,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     private headerCropperSettings: CropperSettings;
 
-    private data: any;
-
     constructor(
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,
@@ -61,15 +59,13 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.headerCropperSettings.canvasWidth = 612;
       this.headerCropperSettings.canvasHeight = 512;
-
-      this.data = {};
     }
 
 
     public toggleCollapse(location: TabID) {
       const img = document.createElement('img');
-      this.cropperHeader.last.setImage(img);
-      img.src = this.deviceModel.tabs[1].headerImage;
+      //this.cropperHeader.last.setImage(img);
+      //img.src = this.deviceModel.tabs[1].headerImage;
 
       if (location === this.currentID) {
         this.currentID = -1;
@@ -155,11 +151,11 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onCrop(event: any, tab: IDeviceTab): void {
-    this._deviceService.setImage(tab.id, this.data.image);
+    this._deviceService.setImage(tab.id, tab.image);
   }
 
   onCropHeader(event: any, tab: IDeviceTab): void {
-    this._deviceService.setHeaderImage(tab.id, this.data.image);
+    this._deviceService.setHeaderImage(tab.id, tab.headerImage);
       console.log(event);
       console.log(this.headerCropperSettings);
   }

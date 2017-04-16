@@ -1,3 +1,5 @@
+import { BvImage } from '../shared/bv-image';
+
 export interface IDeviceModel {
     appName: string;
     colors: any;
@@ -31,9 +33,9 @@ export interface IDeviceTab {
     orderType: OrderType;
     order: number;
     defaultIcon: string;
-    image: string;
+    image: BvImage;
     showTitle: boolean;
     showImage: boolean;
-    headerImage: string;
+    headerImage: BvImage;
     showHeader: boolean;
 }

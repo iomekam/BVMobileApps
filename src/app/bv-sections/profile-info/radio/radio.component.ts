@@ -3,6 +3,7 @@ import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprof
 import { MediaUpdateService } from '../media-update.service';
 import { DeviceService } from '../../device-mockup/device.service';
 import { OrderType, TabID } from '../../device-mockup/i-device-model';
+import { Bounds } from 'ng2-img-cropper';
 
 @Component({
   templateUrl: './radio.component.html',
@@ -83,9 +84,17 @@ export class RadioComponent implements OnInit, OnDestroy {
                     orderType: OrderType.ANY,
                     order: 1,
                     showTitle: true,
-                    image: '',
+                    image: {
+                        original:new Image(),
+                        image:"",
+                        bounds:new Bounds()
+                    },
                     showImage: false,
-                    headerImage: '',
+                    headerImage: {
+                        original:new Image(),
+                        image:"",
+                        bounds:new Bounds()
+                    },
                     showHeader: false,
                 }
             );

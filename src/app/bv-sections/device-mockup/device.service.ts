@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { IDeviceModel, IDeviceTab, OrderType, TabID } from './i-device-model';
 import { Observable } from 'rxjs/Observable';
+import { BvImage } from '../shared/bv-image';
+import { Bounds } from 'ng2-img-cropper';
 
 @Injectable()
 export class DeviceService {
@@ -16,10 +18,18 @@ export class DeviceService {
       orderType: OrderType.ANY,
       order: 2,
       defaultIcon: 'icon ion ion-camera',
-      image: '',
+      image: {
+          original:new Image(),
+          image:"",
+          bounds:new Bounds()
+      },
       showTitle: true,
       showImage: false,
-      headerImage: '',
+      headerImage: {
+          original:new Image(),
+          image:"",
+          bounds:new Bounds()
+      },
       showHeader: false
     };
 
@@ -36,10 +46,18 @@ export class DeviceService {
           orderType: OrderType.FIRST,
           order: -1, // Since we specify FIRST, the order doesn't matter.
           defaultIcon: 'icon ion ion-home',
-          image: '',
+          image: {
+              original:new Image(),
+              image:"",
+              bounds:new Bounds()
+          },
           showTitle: true,
           showImage: false,
-          headerImage: '',
+          headerImage: {
+              original:new Image(),
+              image:"",
+              bounds:new Bounds()
+          },
           showHeader: false
         },
         this._photo,
@@ -49,10 +67,18 @@ export class DeviceService {
           orderType: OrderType.LAST,
           order: 5, // Since we specify LAST, the order doesn't matter.
           defaultIcon: 'icon ion ion-more',
-          image: '',
+          image: {
+              original:new Image(),
+              image:"",
+              bounds:new Bounds()
+          },
           showTitle: true,
           showImage: false,
-          headerImage: '',
+          headerImage: {
+              original:new Image(),
+              image:"",
+              bounds:new Bounds()
+          },
           showHeader: false
         },
       ],
@@ -112,23 +138,27 @@ export class DeviceService {
       this._model.colors['primary'] = color;
   }
 
-  public setImage(id: TabID, image: string) {
+  public setImage(id: TabID, image: BvImage) {
     const index: number = this._model.tabs.findIndex(
       tab => {
         return (id + '') === (tab.id + '');
       }
     );
+
+    if(index === -1) { return; }
 
     this._model.tabs[index].image = image;
     this._model.tabs[index].showImage = true;
   }
 
-  public setHeaderImage(id: TabID, image: string) {
+  public setHeaderImage(id: TabID, image: BvImage) {
     const index: number = this._model.tabs.findIndex(
       tab => {
         return (id + '') === (tab.id + '');
       }
     );
+
+    if(index === -1) { return; }
 
     this._model.tabs[index].headerImage = image;
     this._model.tabs[index].showHeader = true;
