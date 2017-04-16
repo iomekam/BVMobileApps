@@ -15,7 +15,7 @@ export class DeviceMockupComponent implements OnInit {
 
     public appInfo: IAppInfo;
 
-    public backgroundColor = '#13afeb';
+    public backgroundColor = '#333333';
 
 
     public currentTab: IDeviceTab;
