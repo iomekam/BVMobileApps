@@ -155,7 +155,16 @@
                 </div>
 
                 <div class="row">
-                  <bv-design-image-cropper class="col s2" #designImgCropper [model]="tab" [image]="tab.headerImage" [settings]="headerCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
+                  <div popover="Upload an image to change the app header."
+                         popoverTitle="Hint"
+                         popoverPlacement="top"
+                         [popoverOnHover]="true"
+                         [popoverCloseOnClickOutside]="true"
+                         [popoverCloseOnMouseOutside]="false"
+                         [popoverAnimation]="true"
+                    >
+                    <bv-design-image-cropper class="col s2" #designImgCropper [model]="tab" [image]="tab.headerImage" [settings]="headerCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
+                  </div>
                 </div>
 
               </form>
