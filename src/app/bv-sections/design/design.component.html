@@ -5,44 +5,40 @@
       <div class="demo-card-container">
       <md-card-content>
 
-        <div popover="Click any item to expand content"
-             popoverTitle="Hint"
-             popoverPlacement="top"
-             [popoverOnHover]="true"
-             [popoverCloseOnClickOutside]="true"
-             [popoverCloseOnMouseOutside]="false"
-             [popoverAnimation]="true"
-             >
-          <div class="row">
-            <div class="col card" (click)= "toggleCollapse(colorTabID)">Color</div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[0].id); deviceModel.activeTab = deviceModel.tabs[0]">{{ deviceModel.tabs[0].title }}</div>
-        </div>
-
-            <div popover="Drag these items to change order of tabs on device."
-                 popoverTitle="Hint"
-                 popoverPlacement="top"
-                 [popoverOnHover]="true"
-                 [popoverCloseOnClickOutside]="true"
-                 [popoverCloseOnMouseOutside]="false"
-                 [popoverDisabled]="(deviceModel.tabs.length == 3)"
-                 [popoverAnimation]="true"
-                 class="row"
-                 [dragula]='"drag-bag"'>
-                    <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1"
-                         class="col card"
-                         (click)= "toggleCollapse(tab.id); deviceModel.activeTab = tab"
-                         [id] = 'tab.id'>{{ tab.title }}
-                    </div>
+        <div>
+          <div popover="Click any item to expand content"
+              popoverTitle="Hint"
+              popoverPlacement="top"
+              [popoverOnHover]="true"
+              [popoverCloseOnClickOutside]="true"
+              [popoverCloseOnMouseOutside]="false"
+              [popoverAnimation]="true"
+              >
+            <div class="row">
+              <div class="col card" (click)= "toggleCollapse(colorTabID)">Color</div>
+              <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[0].id); deviceModel.activeTab = deviceModel.tabs[0]">{{ deviceModel.tabs[0].title }}</div>
+              <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id); deviceModel.activeTab = deviceModel.tabs[deviceModel.tabs.length-1]">
+                {{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
+              </div>
+            </div>
           </div>
 
-        <div class="row">
-          <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id); deviceModel.activeTab = deviceModel.tabs[deviceModel.tabs.length-1]">
-            {{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
-        </div>
+        <div popover="Drag these items to change order of tabs on device."
+              popoverTitle="Hint"
+              popoverPlacement="top"
+              [popoverOnHover]="true"
+              [popoverCloseOnClickOutside]="true"
+              [popoverCloseOnMouseOutside]="false"
+              [popoverDisabled]="(deviceModel.tabs.length == 3)"
+              [popoverAnimation]="true"
+              class="row"
+              [dragula]='"drag-bag"'>
+                <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1"
+                      class="col card"
+                      (click)= "toggleCollapse(tab.id); deviceModel.activeTab = tab"
+                      [id] = 'tab.id'>{{ tab.title }}
+                </div>
+      </div>
 
         <div [suiCollapse]="colorTabID !== currentID">
           <div class="ui segment">
@@ -62,35 +58,35 @@
               </div>
               <div class="col">
                   <div popover="Click to change the color of the header"
-                       popoverTitle="Hint"
-                       popoverPlacement="bottom"
-                       [popoverOnHover]="true"
-                       [popoverCloseOnClickOutside]="true"
-                       [popoverCloseOnMouseOutside]="false"
-                       [popoverAnimation]="true"
+                        popoverTitle="Hint"
+                        popoverPlacement="bottom"
+                        [popoverOnHover]="true"
+                        [popoverCloseOnClickOutside]="true"
+                        [popoverCloseOnMouseOutside]="false"
+                        [popoverAnimation]="true"
                   >
                   <div (click)="selectedColor='primary'"
-                       style="width:200px;
-                       height:75px;
-                       border:1px solid #000;"
-                       [style.background]="deviceModel.colors['primary']">
+                        style="width:200px;
+                        height:75px;
+                        border:1px solid #000;"
+                        [style.background]="deviceModel.colors['primary']">
                   </div>
                 </div>
                   <br/>
 
                   <div popover="Click to change the color of the refresh button"
-                       popoverTitle="Hint"
-                       popoverPlacement="bottom"
-                       [popoverOnHover]="true"
-                       [popoverCloseOnClickOutside]="true"
-                       [popoverCloseOnMouseOutside]="false"
-                       [popoverAnimation]="true"
+                        popoverTitle="Hint"
+                        popoverPlacement="bottom"
+                        [popoverOnHover]="true"
+                        [popoverCloseOnClickOutside]="true"
+                        [popoverCloseOnMouseOutside]="false"
+                        [popoverAnimation]="true"
                   >
                 <div (click)="selectedColor='secondary'"
-                     style="width:200px;
-                     height:75px;
-                     border:1px solid #000;"
-                     [style.background]="deviceModel.colors['secondary']"></div>
+                      style="width:200px;
+                      height:75px;
+                      border:1px solid #000;"
+                      [style.background]="deviceModel.colors['secondary']"></div>
                 </div>
                 </div>
             </div>
