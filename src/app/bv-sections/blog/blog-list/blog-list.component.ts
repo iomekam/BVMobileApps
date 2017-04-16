@@ -3,6 +3,7 @@ import { CropperSettings } from 'ng2-img-cropper';
 import { Router } from '@angular/router';
 import { IBlogPost } from '../iblog-post';
 import { BlogPostService } from '../blog-post.service';
+import { ValidationService } from '../../shared/validation.service';
 
 @Component({
   selector: 'bv-blog-list',
@@ -18,7 +19,8 @@ export class BlogListComponent implements OnInit {
 
     constructor(
         private _router: Router,
-        private _blogPostService: BlogPostService) {
+        private _blogPostService: BlogPostService,
+        private _validationService: ValidationService) {
 
         this.blogPosts = [];
     }
@@ -33,6 +35,7 @@ export class BlogListComponent implements OnInit {
 
     deleteBlogPost(id: number): void {
         this._blogPostService.deleteBlogPost(id);
+        this._validationService.setBlogValidValid(this.blogPosts);
     }
 
     ngOnInit() {
@@ -55,7 +58,9 @@ export class BlogListComponent implements OnInit {
         }
 
         this._blogPostService.getBlogPosts().subscribe(
-            blogPosts => this.blogPosts = blogPosts
-        );
+            blogPosts => {
+                this.blogPosts = blogPosts;
+                this._validationService.setBlogValidValid(blogPosts);
+        });
     }
 }
