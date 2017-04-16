@@ -18,8 +18,6 @@
           </div>
         </div>
 
-
-
         <div class="row">
           <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[0].id)">{{ deviceModel.tabs[0].title }}</div>
         </div>
@@ -149,6 +147,14 @@
                              [(ngModel)]="tab.showImage"
                              [ngModelOptions]="{standalone: true}"/>
                       <label for="tabItem2">Show Image?</label>
+                    </div>
+                    <div class="row" *ngIf="tab.headerImage != ''">
+                      <input type="checkbox"
+                             id="tabItem2"
+                             checked="tab.showTitle"
+                             [(ngModel)]="tab.showHeader"
+                             [ngModelOptions]="{standalone: true}"/>
+                      <label for="tabItem2">Show App Header?</label>
                     </div>
 
                   </div>
