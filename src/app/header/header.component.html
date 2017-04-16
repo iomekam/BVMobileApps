@@ -1,4 +1,4 @@
-<div style="width:600px">
+<div style="width:700px">
 <nav>
   <ol class="cd-breadcrumb triangle center-align" >
     <li class="ui mini"
@@ -18,7 +18,9 @@
       [ngClass]="{'current': isDesignCurrent }"
       (click)="toggleCurrent(designInfoID)">
       <a [routerLink]="['/design']" skipLocationChange style="font-size: large">Design</a>
-
+    </li>
+     <li class="current">
+      <a style="font-size: large">Create</a>
     </li>
   </ol>
 </nav>
