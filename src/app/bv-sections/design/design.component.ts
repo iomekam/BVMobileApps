@@ -35,8 +35,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     private data: any;
 
-    private showHints = true;
-
     constructor(
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,

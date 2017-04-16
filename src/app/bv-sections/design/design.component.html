@@ -5,20 +5,12 @@
       <div class="demo-card-container">
       <md-card-content>
 
-        <input type="checkbox"
-               id="showHintId"
-               checked="showHints"
-               [(ngModel)]="showHints"
-               [ngModelOptions]="{standalone: true}"/>
-        <label for="showHintId">Show Hints on Hover?</label>
-
         <div popover="Click any item to expand content"
              popoverTitle="Hint"
              popoverPlacement="top"
              [popoverOnHover]="true"
              [popoverCloseOnClickOutside]="true"
              [popoverCloseOnMouseOutside]="false"
-             [popoverDisabled]="!showHints"
              [popoverAnimation]="true"
              >
           <div class="row">
@@ -38,7 +30,7 @@
                  [popoverOnHover]="true"
                  [popoverCloseOnClickOutside]="true"
                  [popoverCloseOnMouseOutside]="false"
-                 [popoverDisabled]="(deviceModel.tabs.length == 3 || !showHints)"
+                 [popoverDisabled]="(deviceModel.tabs.length == 3)"
                  [popoverAnimation]="true"
                  class="row"
                  [dragula]='"drag-bag"'>
@@ -79,7 +71,6 @@
                        [popoverOnHover]="true"
                        [popoverCloseOnClickOutside]="true"
                        [popoverCloseOnMouseOutside]="false"
-                       [popoverDisabled]="!showHints"
                        [popoverAnimation]="true"
                   >
                   <div (click)="selectedColor='primary'"
@@ -97,7 +88,6 @@
                        [popoverOnHover]="true"
                        [popoverCloseOnClickOutside]="true"
                        [popoverCloseOnMouseOutside]="false"
-                       [popoverDisabled]="!showHints"
                        [popoverAnimation]="true"
                   >
                 <div (click)="selectedColor='secondary'"
@@ -124,7 +114,6 @@
                          [popoverOnHover]="true"
                          [popoverCloseOnClickOutside]="true"
                          [popoverCloseOnMouseOutside]="false"
-                         [popoverDisabled]="!showHints"
                          [popoverAnimation]="true"
                     >
                   <img-cropper class = "col s2" #cropper [image]="data" [settings]="cropperSettings" (onCrop)="onCrop($event, tab)"></img-cropper><br>
@@ -174,41 +163,6 @@
             </div>
           </div>
         </div>
-        <!--<div [suiCollapse]="musicTab">
-          <div class="ui segment">
-            <h4 class="ui header">Music Tab</h4>
-            <p>Content of the panel.</p>
-          </div>
-        </div>
-
-        <div [suiCollapse]="videoTab">
-          <div class="ui segment">
-            <h4 class="ui header">Video Tab</h4>
-            <p>Content of the panel.</p>
-          </div>
-        </div>
-
-        <div [suiCollapse]="photoTab">
-          <div class="ui segment">
-            <h4 class="ui header">Photo Tab</h4>
-            <p>Content of the panel.</p>
-          </div>
-        </div>
-
-        <div [suiCollapse]="optionalTab">
-          <div class="ui segment">
-            <h4 class="ui header">Optional Tab 1</h4>
-            <p>Content of the panel.</p>
-          </div>
-        </div>
-
-        <div [suiCollapse]="optionalTab2">
-          <div class="ui segment">
-            <h4 class="ui header">Optional Tab 2</h4>
-            <p>Content of the panel.</p>
-          </div>
-        </div>-->
-
 
       </md-card-content>
       </div>
