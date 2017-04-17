@@ -12,12 +12,6 @@ import { Bounds } from '../../../ng2-img-cropper';
 })
 export class MusicComponent implements OnInit, OnDestroy {
     public profile: IProfileModel;
-
-    // contentArray represents the elements that appear inside the ons-speed-dial
-    public contentArray: Array<IMediaInfo>;
-
-    // displayArray are the media info that appear on screen. As elements get added/removed from this list, they
-    // get removed/added to the contentArray list
     private displayArray: Array<IMediaInfo>;
 
     constructor(
@@ -26,30 +20,10 @@ export class MusicComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        // We always want to start off with a null contentArray
-        this.contentArray = [];
-
         this._profileService.getProfile().subscribe(
             profile => {
                 this.profile = profile;
                 this.displayArray = this.profile.musicInfo;
-
-                // We only want to have elements not in the display array be added to the content array
-                this._profileService.musicMediaTypes.forEach(
-                    mediaType => {
-                        const shouldAddToContent = this.displayArray.find(
-                            content => {
-                                return content.mediaType === mediaType;
-                            }
-                        ) === undefined;
-
-                        // shouldAddToContent will be undefined if the mediaType was not found in the displayArray
-                        if (!shouldAddToContent) { return; }
-
-                        const mediaInfo = MediaTypeFactory.GetMediaInfo(mediaType);
-                        this.contentArray.push(mediaInfo);
-                    }
-                );
             }
         );
     }
@@ -98,31 +72,5 @@ export class MusicComponent implements OnInit, OnDestroy {
                 }
             );
         }
-    }
-
-    onFabClicked(mediaType: IMediaInfo): void {
-        const index: number = this.contentArray.findIndex(
-            type => {
-                return type === mediaType;
-            }
-        );
-
-        if (index === -1) { return; }
-
-        this.displayArray.push(this.contentArray[index]);
-        this.contentArray.splice(index, 1);
-    }
-
-    onDelete(mediaType: IMediaInfo): void {
-        const index: number = this.displayArray.findIndex(
-            type => {
-                return type === mediaType;
-            }
-        );
-
-        if (index === -1) { return; }
-
-        this.contentArray.push(this.displayArray[index]);
-        this.displayArray.splice(index, 1);
     }
 }
