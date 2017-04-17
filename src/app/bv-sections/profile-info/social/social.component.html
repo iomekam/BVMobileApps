@@ -10,12 +10,12 @@
               type="text"
               maxlength="100"
               mdInput
-              [disabled]="checked"
+              [disabled]="profile.noWebsite"
               placeholder="Website url">
       </md-input-container>
     </div>
     <div class="col-xs-4">
-    <md-checkbox [(ngModel)]="checked" (change)="onChecked()" *ngIf="checked || profile.website === ''" mdTooltip="If you do not have a website, you can use the account you have with BV Mobile Apps">Don't have a website?</md-checkbox></div>
+    <md-checkbox [(ngModel)]="profile.noWebsite" (change)="onChecked()" *ngIf="profile.noWebsite || profile.website === ''" mdTooltip="If you do not have a website, you can use the account you have with BV Mobile Apps">Don't have a website?</md-checkbox></div>
   </div>
 
   <md-card class="demo-card-blue">

@@ -1,5 +1,6 @@
 export interface IProfileModel {
     website: string;
+    noWebsite: boolean;
     phone_number: string;
     socialInfo: IMediaInfo[];
     videoInfo: IMediaInfo[];

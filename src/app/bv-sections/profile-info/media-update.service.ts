@@ -35,6 +35,7 @@ export class MediaUpdateService {
     constructor() {
         this._profile = {
             website: '',
+            noWebsite: false,
             phone_number: '',
             musicInfo: this.createMediaInfoList(this.musicMediaTypes),
             videoInfo: this.createMediaInfoList(this.videoMediaTypes),
