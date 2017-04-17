@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DeviceService } from './device.service';
-import {IDeviceModel, IDeviceTab} from './i-device-model';
-import {AppInfoService} from '../app-info/app-info.service';
-import {IAppInfo} from '../app-info/iapp-info';
+import { IDeviceModel, IDeviceTab } from './i-device-model';
+import { AppInfoService } from '../app-info/app-info.service';
+import { IAppInfo } from '../app-info/iapp-info';
+import { Bounds } from '../../ng2-img-cropper';
 
 @Component({
   selector: 'bv-device-mockup',
@@ -30,8 +31,20 @@ export class DeviceMockupComponent implements OnInit {
 
       }
 
-
     ngOnInit() {
+
+      this.appInfo = {
+            appName: '',
+            shortDescription: '',
+            longDescription: '',
+            keywords: [],
+            image: {
+                original: new Image(),
+                image: '',
+                bounds: new Bounds()
+            }
+        };
+
       this._deviceService.getModel().subscribe(
         model => this.deviceModel = model
       );

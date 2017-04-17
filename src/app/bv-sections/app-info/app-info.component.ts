@@ -74,6 +74,18 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.appInfo = {
+            appName: '',
+            shortDescription: '',
+            longDescription: '',
+            keywords: [],
+            image: {
+                original: new Image(),
+                image: '',
+                bounds: new Bounds()
+            }
+        };
+
         this._appInfoService.getAppInfo().subscribe(
             appInfo => this.appInfo = appInfo
         );
