@@ -19,6 +19,8 @@ export class SocialComponent implements OnInit, OnDestroy {
     // get removed/added to the contentArray list
     private displayArray: Array<IMediaInfo>;
 
+    public checked = false;
+
     constructor(
         private _profileService: MediaUpdateService,
         private _validationService: ValidationService) {
@@ -86,6 +88,17 @@ export class SocialComponent implements OnInit, OnDestroy {
     }
 
     onInput(): void {
+        this._validationService.setProfileInfoPageValid(this.profile);
+    }
+
+    onChecked(event: any): void {
+        if (this.checked) {
+            this.profile.website = "www.bvmobileapps.com/username";
+        }
+        else {
+            this.profile.website = "";
+        }
+
         this._validationService.setProfileInfoPageValid(this.profile);
     }
 }
