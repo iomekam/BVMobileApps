@@ -80,7 +80,7 @@ export class MediaTypeFactory {
             return {
                 mediaType: MediaType.AUDIOMACK,
                 mediaName: 'Audiomack',
-                icon: 'send',
+                icon: '',
                 pre_url: 'www.audiomack.com/',
                 username: '',
                 color: '#ffa200'
@@ -160,10 +160,10 @@ export class MediaTypeFactory {
             return {
                 mediaType: MediaType.LISTENLIVE,
                 mediaName: 'ListenLive',
-                icon: 'extension',
-                pre_url: 'www.?.com/',
+                icon: 'ion-radio-waves',
+                pre_url: 'www.',
                 username: '',
-              color: '#6e5494'
+                color: '#6e5494'
             };
         }
     }
