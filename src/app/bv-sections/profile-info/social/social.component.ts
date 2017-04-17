@@ -98,5 +98,7 @@ export class SocialComponent implements OnInit, OnDestroy {
         else {
             this.profile.website = "";
         }
+
+        this._validationService.setProfileInfoPageValid(this.profile);
     }
 }
