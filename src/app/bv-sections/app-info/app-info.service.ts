@@ -12,6 +12,7 @@ export class AppInfoService {
     private _url = 'http://localhost:7345/api/appInfo/1';
 
     private ngUnsubscribe = new Subject<void>();
+    private httpPutUnsubscribe = new Subject<void>();
 
     private _appInfoInit = new Subject<IAppInfo>();
     private _init = false;
@@ -49,8 +50,12 @@ export class AppInfoService {
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers });
         this._http.put(this._url, JSON.stringify(this._appInfo), options)
+                .takeUntil(this.httpPutUnsubscribe)
                 .subscribe(
-                    data => console.log('success'),
+                    data => {
+                        this.httpPutUnsubscribe.next();
+                        this.httpPutUnsubscribe.complete();
+                    },
                     error => console.log(JSON.stringify(error))
         );
     }
