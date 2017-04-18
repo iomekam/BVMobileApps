@@ -9,10 +9,12 @@ import { Subject } from 'rxjs/Subject';
 export class AppInfoService {
 
     private _appInfo: IAppInfo;
-    private _url = 'http://localhost:7345/api/appInfo';
-    
-    private init = false;
+    private _url = 'http://localhost:7345/api/appInfo/1';
+
     private ngUnsubscribe = new Subject<void>();
+
+    private _appInfoInit = new Subject<IAppInfo>();
+    private _init = false;
 
     constructor(private _http: Http) {
         this._appInfo = {
@@ -27,36 +29,51 @@ export class AppInfoService {
             }
         };
 
-        this.getAppInfo().takeUntil(this.ngUnsubscribe)
+        this.init().takeUntil(this.ngUnsubscribe)
             .subscribe(
-                appInfo => 
-                {
-                    this.init = true;
-                    this._appInfo = appInfo;
-                    this.ngUnsubscribe.next();
-                    this.ngUnsubscribe.complete();
-                }
+                appInfo => {
+                this._appInfo = appInfo;
+                this._init = true;
+                this._appInfoInit.next(this._appInfo);
+                this.ngUnsubscribe.next();
+                this.ngUnsubscribe.complete();
+            }
         );
     }
 
     setAppInfo(appInfo: IAppInfo): void {
-        let headers = new Headers();
+        console.log(this._appInfo);
+        this._appInfo = appInfo;
+
+        const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        this._http.post(this._url, JSON.stringify(this._appInfo), {headers: headers})
-                .map(res => res.json()).subscribe(
-                    data => console.log("success"),
-                    error => console.log(error)
+        const options = new RequestOptions({ headers: headers });
+        this._http.put(this._url, JSON.stringify(this._appInfo), options)
+                .subscribe(
+                    data => console.log('success'),
+                    error => console.log(JSON.stringify(error))
         );
     }
 
+    private init(): Observable<IAppInfo> {
+        return this._http.get(this._url)
+            .map((response: Response) => <IAppInfo> response.json())
+            .do(data => {
+                data.image = {
+                    original: new Image(),
+                    image: '',
+                    bounds: new Bounds()
+                };
+        });
+    }
+
     getAppInfo(): Observable<IAppInfo> {
-        if (this.init === false) {
-            return this._http.get(this._url)
-                .map((response: Response) =><IAppInfo> response.json())
+        if (!this._init) {
+            return this._appInfoInit.asObservable();
         }
         else {
             return Observable.of(this._appInfo);
-        } 
+        }
     }
 
     isAppNameUnique(): boolean {

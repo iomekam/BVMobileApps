@@ -41,11 +41,11 @@ export class SocialComponent implements OnInit, OnDestroy {
     }
 
     onChecked(event: any): void {
-        if (this.checked) {
-            this.profile.website = "www.bvmobileapps.com/username";
+        if (this.profile.noWebsite) {
+            this.profile.website = 'www.bvmobileapps.com/username';
         }
         else {
-            this.profile.website = "";
+            this.profile.website = '';
         }
 
         this._validationService.setProfileInfoPageValid(this.profile);

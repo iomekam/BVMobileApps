@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-import { IAppInfo } from '../app-info/iapp-info'
-import { IProfileModel } from '../profile-info/iprofile-model'
+import { IAppInfo } from '../app-info/iapp-info';
+import { IProfileModel } from '../profile-info/iprofile-model';
 import { IBlogPost } from '../blog/iblog-post';
 
 @Injectable()
