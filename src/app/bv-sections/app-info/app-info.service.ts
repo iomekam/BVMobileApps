@@ -43,7 +43,6 @@ export class AppInfoService {
     }
 
     setAppInfo(appInfo: IAppInfo): void {
-        console.log(this._appInfo);
         this._appInfo = appInfo;
 
         const headers = new Headers();
@@ -69,11 +68,12 @@ export class AppInfoService {
                     image: '',
                     bounds: new Bounds()
                 };
-        });
+            });
     }
 
     getAppInfo(): Observable<IAppInfo> {
         if (!this._init) {
+            this._appInfoInit.next(this._appInfo);
             return this._appInfoInit.asObservable();
         }
         else {
