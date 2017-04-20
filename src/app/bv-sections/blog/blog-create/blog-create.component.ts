@@ -55,8 +55,6 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
         this.cropperSettings.croppedHeight = 700;
         this.cropperSettings.canvasWidth = 700;
         this.cropperSettings.canvasHeight = 700;
-        this.cropperSettings.dynamicSizing = true;
-        this.cropperSettings.preserveSize = true;
 
         // Config used by ckeditor
         this.config = {
@@ -88,20 +86,14 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
 
             if (this.blogPost == null) {
                 this.blogPost = {
-                    headline: 'My first blog post',
-                    body: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas odio dui, 
-                    molestie non lacinia in, eleifend ut sapien. Maecenas id dapibus sapien. Sed vel
-                    tincidunt enim, nec mattis nisl. Nullam varius massa nisi, sed auctor tellus hendrerit non. 
-                    In eget sem nec risus posuere auctor in ac tortor. Aenean leo orci, blandit ut dui ut, congue porta quam. 
-                    Praesent gravida tortor at cursus rutrum. Curabitur vitae pellentesque velit. Sed eu massa a neque interdum 
-                    iaculis vel sit amet tortor. Etiam nisl ipsum, sollicitudin a ullamcorper et, ultrices at tortor. 
-                    Duis vel malesuada velit, vitae luctus elit.`,
+                    headline: '',
+                    body: '',
                     image: {
                         original: new Image(),
                         image: '',
                         bounds: new Bounds()
                     },
-                    keywords: ['This', 'is', 'my', 'first', 'blog', 'post'],
+                    keywords: [],
                     id: 0,
                     date: new Date()
                 };
