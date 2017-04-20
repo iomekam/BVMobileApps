@@ -1,5 +1,17 @@
 <br />
 
+<md-card class="demo-card-blue">
+  <md-card-content>
+    <div class="container" align="center">
+      <p>
+        <em><b>[If you would like to include a Radio tab in your app, enter the Streaming URL]</b></em>
+      </p>
+    </div>
+  </md-card-content>
+</md-card>
+
+<br/>
+
 <div *ngFor='let display of displayArray'>
 
   <div class="ui message">
@@ -11,10 +23,7 @@
     <div class="row">
       <div class="col">
         <div class="ui labeled input col" style="max-width: 80%">
-          <div class="ui label">
-            {{ display.pre_url }}
-          </div>
-          <input [(ngModel)]="display.username" type="text" placeholder="url">
+          <input [(ngModel)]="display.username" type="text" placeholder="Streaming URL">
 
         </div>
 
