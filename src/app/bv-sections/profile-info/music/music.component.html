@@ -25,7 +25,7 @@
           <div class="ui label">
             {{display.pre_url}}
           </div>
-          <input [(ngModel)]="display.username" type="text" placeholder="username">
+          <input  [attr.id]="'input' + display.mediaName" [(ngModel)]="display.username" type="text" placeholder="username">
         </div>
       </div>
     </div>

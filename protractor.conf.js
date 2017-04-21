@@ -13,7 +13,7 @@ exports.config = {
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
-  framework: 'jasmine',
+  framework: 'jasmine2',
   jasmineNodeOpts: {
     showColors: true,
     defaultTimeoutInterval: 30000,
@@ -23,6 +23,7 @@ exports.config = {
     require('ts-node').register({
       project: 'e2e/tsconfig.e2e.json'
     });
+    require("zone.js/dist/zone-node");
   },
   onPrepare() {
     jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));

@@ -59,6 +59,7 @@
     "zone.js": "^0.7.6"
   },
   "devDependencies": {
-    "@angular/cli": "^1.0.0"
+    "@angular/cli": "^1.0.0",
+    "reflect-metadata": "^0.1.10"
   }
 }

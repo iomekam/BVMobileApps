@@ -15,9 +15,9 @@
               [popoverAnimation]="true"
               >
             <div class="row">
-              <div class="col card" (click)= "toggleCollapse(colorTabID)">Color</div>
-              <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[0].id); deviceModel.activeTab = deviceModel.tabs[0]">{{ deviceModel.tabs[0].title }}</div>
-              <div class="col card" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id); deviceModel.activeTab = deviceModel.tabs[deviceModel.tabs.length-1]">
+              <div class="col card" id="card_color" (click)= "toggleCollapse(colorTabID)">Color</div>
+              <div class="col card" id="card_main" (click)= "toggleCollapse(deviceModel.tabs[0].id); deviceModel.activeTab = deviceModel.tabs[0]">{{ deviceModel.tabs[0].title }}</div>
+              <div class="col card" id="card_more" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id); deviceModel.activeTab = deviceModel.tabs[deviceModel.tabs.length-1]">
                 {{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
               </div>
             </div>
@@ -97,7 +97,7 @@
           <div [suiCollapse]="tab.id !== currentID">
             <div class="ui segment">
 
-              <h4 class="ui header">{{ tab.title }} Tab</h4>
+              <h4 id= "{{tab.id + 'uiSegment'}}"  class="ui header">{{ tab.title }} Tab</h4>
               <form action="#">
                 <div class="row">
                     <div popover="Upload an image to change current tab icon."
@@ -108,7 +108,7 @@
                          [popoverCloseOnMouseOutside]="false"
                          [popoverAnimation]="true"
                     >
-                  <bv-design-image-cropper #designImgCropperIcon class="col s2" [model]="tab" [image]="tab.image" [settings]="cropperSettings" (onCrop)="onCrop($event, tab)"></bv-design-image-cropper>
+                  <bv-design-image-cropper [attr.id]="'tabimageInputDiv' + tab.id" #designImgCropperIcon class="col s2" [model]="tab" [image]="tab.image" [settings]="cropperSettings" (onCrop)="onCrop($event, tab)"></bv-design-image-cropper>
                   </div>
                     <div class= "col s8">
 
@@ -154,7 +154,7 @@
                   </div>
                 </div>
 
-                <div class="row">
+                <div [attr.id]="'imageInputDiv' + tab.id" class="row">
                   <div popover="Upload an image to change the app header."
                          popoverTitle="Hint"
                          popoverPlacement="top"
