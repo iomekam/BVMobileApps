@@ -56,7 +56,7 @@ export class VideoComponent implements OnInit, OnDestroy {
                 {
                     id: TabID.VIDEO,
                     defaultIcon: 'icon ion ion-videocamera',
-                    title: 'Video',
+                    title: 'Videos',
                     orderType: OrderType.ANY,
                     order: 1,
                     showTitle: true,
