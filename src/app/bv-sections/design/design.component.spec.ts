@@ -45,5 +45,9 @@ describe('DesignComponent', () => {
     browser.get('/design');
 
   });
+
+  it('should expand when item clicked', () => {
+  });
+
 });
 
