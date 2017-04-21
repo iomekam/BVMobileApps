@@ -81,3 +81,37 @@ ion-scroll[direction=y] {
   position:relative;
   top:1px;
 }
+
+.myButton2 {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0099ff), color-stop(1, #0099ff));
+  background:-moz-linear-gradient(top, #0099ff 5%, #0099ff 100%);
+  background:-webkit-linear-gradient(top, #0099ff 5%, #0099ff 100%);
+  background:-o-linear-gradient(top, #0099ff 5%, #0099ff 100%);
+  background:-ms-linear-gradient(top, #0099ff 5%, #0099ff 100%);
+  background:linear-gradient(to bottom, #0099ff 5%, #0099ff 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0099ff', endColorstr='#0099ff',GradientType=0);
+  background-color:#0099ff;
+  display:inline-block;
+  cursor:pointer;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:13px;
+  font-weight:bold;
+  padding:8px 15px;
+  text-decoration:none;
+}
+.myButton2:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0099ff), color-stop(1, #0099ff));
+  background:-moz-linear-gradient(top, #0099ff 5%, #0099ff 100%);
+  background:-webkit-linear-gradient(top, #0099ff 5%, #0099ff 100%);
+  background:-o-linear-gradient(top, #0099ff 5%, #0099ff 100%);
+  background:-ms-linear-gradient(top, #0099ff 5%, #0099ff 100%);
+  background:linear-gradient(to bottom, #0099ff 5%, #0099ff 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0099ff', endColorstr='#0099ff',GradientType=0);
+  background-color:#0099ff;
+}
+.myButton2:active {
+  position:relative;
+  top:1px;
+}
+

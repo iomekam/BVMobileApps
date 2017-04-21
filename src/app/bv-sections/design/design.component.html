@@ -16,29 +16,41 @@
               >
             <div class="row">
               <div class="col card" id="card_color" (click)= "toggleCollapse(colorTabID)">Color</div>
-              <div class="col card" id="card_main" (click)= "toggleCollapse(deviceModel.tabs[0].id); deviceModel.activeTab = deviceModel.tabs[0]">{{ deviceModel.tabs[0].title }}</div>
-              <div class="col card" id="card_more" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id); deviceModel.activeTab = deviceModel.tabs[deviceModel.tabs.length-1]">
-                {{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
+
               </div>
             </div>
           </div>
 
+        <div class="row">
+          <div class="col card" id="card_main" (click)= "toggleCollapse(deviceModel.tabs[0].id); deviceModel.activeTab = deviceModel.tabs[0]">{{ deviceModel.tabs[0].title }}</div>
+        </div>
+
         <div popover="Drag these items to change order of tabs on device."
-              popoverTitle="Hint"
-              popoverPlacement="top"
-              [popoverOnHover]="true"
-              [popoverCloseOnClickOutside]="true"
-              [popoverCloseOnMouseOutside]="false"
-              [popoverDisabled]="(deviceModel.tabs.length == 3)"
-              [popoverAnimation]="true"
-              class="row"
-              [dragula]='"drag-bag"'>
-                <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1"
-                      class="col card"
-                      (click)= "toggleCollapse(tab.id); deviceModel.activeTab = tab"
-                      [id] = 'tab.id'>{{ tab.title }}
-                </div>
-      </div>
+             popoverTitle="Hint"
+             popoverPlacement="top"
+             [popoverOnHover]="true"
+             [popoverCloseOnClickOutside]="true"
+             [popoverCloseOnMouseOutside]="false"
+             [popoverDisabled]="(deviceModel.tabs.length == 3)"
+             [popoverAnimation]="true"
+             [dragula]='"drag-bag"'
+             class="row"
+        >
+          <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1"
+               class="col card"
+               (click)= "toggleCollapse(tab.id); deviceModel.activeTab = tab"
+               [id] = 'tab.id'>{{ tab.title }}
+          </div>
+        </div>
+
+
+
+
+        <div class="row">
+          <div class="col card" id="card_more" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id); deviceModel.activeTab = deviceModel.tabs[deviceModel.tabs.length-1]">
+            {{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
+        </div>
+
 
         <div [suiCollapse]="colorTabID !== currentID">
           <div class="ui segment">
@@ -53,6 +65,10 @@
                   [cpCancelButtonClass]= "'btn btn-primary btn-xs'"
                   [cpCancelButton]="false"
                   [cpToggle]="true"
+                  [cpFallbackColor]="'#000'"
+                  [cpOutputFormat]="'hex'"
+                  (colorPickerChange)="onChangeColor($event)"
+                  (onInput) = "onChangeColor($event)"
             >
             </span>
               </div>
@@ -65,14 +81,17 @@
                         [popoverCloseOnMouseOutside]="false"
                         [popoverAnimation]="true"
                   >
+                    <h3>Primary Color</h3>
                   <div (click)="selectedColor='primary'"
                         style="width:200px;
                         height:75px;
                         border:1px solid #000;"
                         [style.background]="deviceModel.colors['primary']">
+                    <p align="center" style="color: white">{{deviceModel.colors['primary']}}</p>
                   </div>
                 </div>
                   <br/>
+                <br>
 
                   <div popover="Click to change the color of the refresh button"
                         popoverTitle="Hint"
@@ -82,11 +101,14 @@
                         [popoverCloseOnMouseOutside]="false"
                         [popoverAnimation]="true"
                   >
+                    <h3>Secondary Color</h3>
                 <div (click)="selectedColor='secondary'"
                       style="width:200px;
                       height:75px;
                       border:1px solid #000;"
-                      [style.background]="deviceModel.colors['secondary']"></div>
+                      [style.background]="deviceModel.colors['secondary']">
+                  <p align="center" style="color: white">{{deviceModel.colors['secondary']}}</p>
+                </div>
                 </div>
                 </div>
             </div>
@@ -108,8 +130,10 @@
                          [popoverCloseOnMouseOutside]="false"
                          [popoverAnimation]="true"
                     >
+                      <h3 style="padding-left: 15px">Upload Tab Icon (Optional)</h3>
+                      <p style="padding-left: 15px">Upload 100 x 100 Monochrome PNG</p>
                   <bv-design-image-cropper [attr.id]="'tabimageInputDiv' + tab.id" #designImgCropperIcon class="col s2" [model]="tab" [image]="tab.image" [settings]="cropperSettings" (onCrop)="onCrop($event, tab)"></bv-design-image-cropper>
-                  </div>
+                    </div>
                     <div class= "col s8">
 
                     <div class="row">
@@ -132,16 +156,13 @@
                              checked="tab.showTitle"
                              [(ngModel)]="tab.showTitle"
                              [ngModelOptions]="{standalone: true}"/>
-                      <label for="tabItem" style="padding-left:10px">Show Title?</label>
+                      <label for="tabItem" style="padding-left:10px">Show Tab Name</label>
                     </div>
-                    <div class="row" *ngIf="tab.image.image != ''">
-                      <input type="checkbox"
-                             id="tabItem2"
-                             checked="tab.showTitle"
-                             [(ngModel)]="tab.showImage"
-                             [ngModelOptions]="{standalone: true}"/>
-                      <label for="tabItem2" style="padding-left:10px">Show Image?</label>
+                    <div class="row" *ngIf="tab.showImage">
+                      <button (click)="restoreIcon(tab)">Restore Default Icon</button>
+
                     </div>
+                      <!--
                     <div class="row" *ngIf="tab.headerImage.image != ''">
                       <input type="checkbox"
                              id="tabItem3"
@@ -150,11 +171,12 @@
                              [ngModelOptions]="{standalone: true}"/>
                       <label for="tabItem3" style="padding-left:10px">Show App Header?</label>
                     </div>
+                    -->
 
                   </div>
                 </div>
 
-                <div [attr.id]="'imageInputDiv' + tab.id" class="row">
+                <div [attr.id]="'imageInputDiv' + tab.id" class="row" *ngIf="tab.hasHeader">
                   <div popover="Upload an image to change the app header."
                          popoverTitle="Hint"
                          popoverPlacement="top"
@@ -163,9 +185,28 @@
                          [popoverCloseOnMouseOutside]="false"
                          [popoverAnimation]="true"
                     >
+                    <h3 style="padding-left: 15px">Upload Header Image (Required)</h3>
+                    <p style="padding-left: 15px">Upload {{tab.headerDimenWidth}} x {{tab.headerDimenHeight}} Image</p>
                     <bv-design-image-cropper class="col s2" #designImgCropper [model]="tab" [image]="tab.headerImage" [settings]="headerCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
                   </div>
                 </div>
+
+                <div *ngIf="tab.hasExtraHeader" [attr.id]="'imageInputDiv' + tab.id" class="row">
+                  <div popover="Upload an image to change the secondary header."
+                       popoverTitle="Hint"
+                       popoverPlacement="top"
+                       [popoverOnHover]="true"
+                       [popoverCloseOnClickOutside]="true"
+                       [popoverCloseOnMouseOutside]="false"
+                       [popoverAnimation]="true"
+                  >
+                    <h3 style="padding-left: 15px">Upload Header Image (Required)</h3>
+                    <p style="padding-left: 15px">Upload {{tab.extraHeaderDimenWidth}} x {{tab.extraHeaderDimenHeight}} Image</p>
+                    <bv-design-image-cropper class="col s2" #designImgCropper [model]="tab" [image]="tab.extraHeaderImage" [settings]="extraHeaderCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
+                  </div>
+                </div>
+
+
 
               </form>
 
@@ -176,7 +217,12 @@
       </md-card-content>
       </div>
     </md-card>
+
+
   </div>
+    <div class="col-xs-12" style="padding: 15px">
+      <a href="#" class="myButton2 col" align="center">Submit</a>
+    </div>
   </div>
   <div class="col-xs-4" style="padding-left:16px">
     <bv-device-mockup [page]="1" style="padding-left:16px"></bv-device-mockup>

@@ -6,6 +6,7 @@ import { IDeviceModel, IDeviceTab, TabID } from '../device-mockup/i-device-model
 import { CropperSettings, ImageCropperComponent, Bounds } from '../../ng2-img-cropper';
 import { BvImage } from '../shared/bv-image';
 import { DesignImageCropperComponent } from './design-image-cropper/design-image-cropper.component';
+import {MdSnackBar} from '@angular/material';
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }
@@ -38,10 +39,13 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     private headerCropperSettings: CropperSettings;
 
+    private extraHeaderCropperSettings: CropperSettings;
+
     constructor(
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,
-      private _deviceService: DeviceService) {
+      private _deviceService: DeviceService,
+      private snackBar: MdSnackBar) {
 
       this.cropperSettings = new CropperSettings();
       this.cropperSettings.width = 600;
@@ -63,6 +67,17 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.headerCropperSettings.canvasWidth = 612;
       this.headerCropperSettings.canvasHeight = 512;
+
+      this.extraHeaderCropperSettings = new CropperSettings();
+      this.extraHeaderCropperSettings.width = 612;
+      this.extraHeaderCropperSettings.height = 88;
+      this.extraHeaderCropperSettings.minWidth = 570;
+      this.extraHeaderCropperSettings.minHeight = 88;
+      this.extraHeaderCropperSettings.croppedWidth = 570;
+      this.extraHeaderCropperSettings.croppedHeight = 88;
+
+      this.extraHeaderCropperSettings.canvasWidth = 612;
+      this.extraHeaderCropperSettings.canvasHeight = 512;
     }
 
 
@@ -70,15 +85,32 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       const img = document.createElement('img');
 
       if (location === this.currentID) {
-        this.currentID = -1;
+        //this.currentID = -1;
       }
       else {
         this.currentID = location;
       }
     }
 
-  onChangeColor(color: string) {
+  onChangeColor(color: Event) {
+    let colorString = color + '';
 
+    if (colorString === '#fff' || colorString === '#ffff' || colorString === '#fffff' || colorString === '#ffffff') {
+      this.snackBar.open('Color Cannot Be White. Please Choose Another Color');
+
+      if(this.selectedColor === 'primary') {
+        this.deviceModel.colors['primary'] = '#000';
+      }
+      else {
+        this.deviceModel.colors['secondary'] = '#000';
+      }
+    }
+
+  }
+
+  restoreIcon(tab: IDeviceTab)
+  {
+    tab.showImage = false;
   }
 
   rgbaToCmyk(rgba: Rgba): Cmyk {
@@ -93,6 +125,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onChangeColorHex8(color: string): string {
+      console.log("Color Changing");
     return this.cpService.outputFormat(this.cpService.stringToHsva(color, true), 'rgba', true);
   }
 
@@ -170,5 +203,10 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   onCropHeader(bounds: Bounds, tab: IDeviceTab): void {
     tab.headerImage.bounds = bounds;
     this._deviceService.setHeaderImage(tab.id, tab.headerImage);
+  }
+
+  onCropExtraHeader(bounds: Bounds, tab: IDeviceTab): void {
+    tab.extraHeaderImage.bounds = bounds;
+    this._deviceService.setExtraHeaderImage(tab.id, tab.headerImage);
   }
 }

@@ -71,7 +71,18 @@ export class VideoComponent implements OnInit, OnDestroy {
                         image: '',
                         bounds: new Bounds()
                     },
-                    showHeader: false
+                    showHeader: false,
+                  headerDimenHeight: 612,
+                  headerDimenWidth: 302,
+                  hasExtraHeader: false,
+                  extraHeaderImage: {
+                    original: new Image(),
+                    image: '',
+                    bounds: new Bounds()
+                  },
+                  extraHeaderDimenHeight: 0,
+                  extraHeaderDimenWidth: 0,
+                  hasHeader: true
                 }
             );
         }

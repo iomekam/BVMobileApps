@@ -38,4 +38,11 @@ export interface IDeviceTab {
     showImage: boolean;
     headerImage: BvImage;
     showHeader: boolean;
+    headerDimenHeight: number;
+    headerDimenWidth: number;
+    hasExtraHeader: boolean;
+    extraHeaderImage: BvImage;
+    extraHeaderDimenHeight: number;
+    extraHeaderDimenWidth: number;
+    hasHeader: boolean;
 }

@@ -30,7 +30,18 @@ export class DeviceService {
           image: '',
           bounds: new Bounds()
       },
-      showHeader: false
+      showHeader: false,
+      headerDimenHeight: 302,
+      headerDimenWidth: 612,
+      hasExtraHeader: false,
+      extraHeaderImage: {
+        original: new Image(),
+          image: '',
+          bounds: new Bounds()
+      },
+      extraHeaderDimenHeight: 0,
+      extraHeaderDimenWidth: 0,
+      hasHeader: true
     };
 
     this._model = {
@@ -58,7 +69,18 @@ export class DeviceService {
               image: '',
               bounds: new Bounds()
           },
-          showHeader: false
+          showHeader: false,
+          headerDimenHeight: 302,
+          headerDimenWidth: 612,
+          hasExtraHeader: true,
+          extraHeaderImage: {
+            original: new Image(),
+            image: '',
+            bounds: new Bounds()
+          },
+          extraHeaderDimenHeight: 88,
+          extraHeaderDimenWidth: 300,
+          hasHeader: true
         },
         this._photo,
         {
@@ -79,7 +101,18 @@ export class DeviceService {
               image: '',
               bounds: new Bounds()
           },
-          showHeader: false
+          showHeader: false,
+          headerDimenHeight: 88,
+          headerDimenWidth: 570,
+          hasExtraHeader: false,
+          extraHeaderImage: {
+            original: new Image(),
+            image: '',
+            bounds: new Bounds()
+          },
+          extraHeaderDimenHeight: 0,
+          extraHeaderDimenWidth: 0,
+          hasHeader: false
         },
       ],
       activeTab: null
@@ -151,6 +184,7 @@ export class DeviceService {
     this._model.tabs[index].showImage = true;
   }
 
+
   public setHeaderImage(id: TabID, image: BvImage) {
     const index: number = this._model.tabs.findIndex(
       tab => {
@@ -165,6 +199,21 @@ export class DeviceService {
 
     this._model.activeTab = this._model.tabs[index];
   }
+
+  public setExtraHeaderImage(id: TabID, image: BvImage) {
+    const index: number = this._model.tabs.findIndex(
+      tab => {
+        return (id + '') === (tab.id + '');
+      }
+    );
+
+    if (index === -1) { return; }
+
+    this._model.tabs[index].extraHeaderImage = image;
+
+    this._model.activeTab = this._model.tabs[index];
+  }
+
 
   public moveTab(id: TabID, before: TabID) {
       if (this._model.tabs.length > 3 && id != null) {

@@ -66,7 +66,7 @@
   <div class="screen" *ngIf="page === 1"> <!-- designPage -->
 
     <div class="bar bar-header bar-positive" [style.background]="deviceModel.colors['primary']" [style.border-color]="backgroundColor">
-      <h1 class="title">{{ deviceModel.appName }}</h1>
+      <h1 class="title" style="float: left; text-align: left">{{ deviceModel.appName }}</h1>
       <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
     </div>
 
@@ -74,9 +74,9 @@
     </div>
 
     <div class="wrapper">
-      <div class="tabs tabs-icon-top">
+      <div class="tabs tabs-icon-top" style="background-color: black">
           <div class="tab-item active" *ngFor="let tab of deviceModel.tabs" (click) = "deviceModel.activeTab = tab">
-            <a>
+            <a style="color: white">
               <i *ngIf="tab.image.image !== '' && tab.showImage" [attr.id]="'inputBackground' + tab.id" class="icon" style="background-size: 32px 32px" [ngStyle]="{'background-image': 'url(' + tab.image.image + ')'}"></i>
               <i *ngIf="tab.image.iamge === '' || !tab.showImage" [attr.id]="'inputRegular' + tab.id" [class]="tab.defaultIcon"></i>
               <div *ngIf="tab.showTitle == true">
