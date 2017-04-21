@@ -40,10 +40,7 @@ describe('DesignComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should show color by default', () => {
-    //expect(component).toBeTruthy();
-    browser.get('/design');
-
+  it('should create', () => {
   });
 
   it('should expand when item clicked', () => {
