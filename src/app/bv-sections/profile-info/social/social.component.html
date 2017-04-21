@@ -18,17 +18,6 @@
     <md-checkbox [(ngModel)]="checked" (change)="onChecked()" *ngIf="checked || profile.website === ''" mdTooltip="If you do not have a website, you can use the account you have with BV Mobile Apps">Don't have a website?</md-checkbox></div>
   </div>
 
-  <md-card class="demo-card-blue">
-    <md-card-content>
-      <div class="container" align="center">
-        <p>
-          <em><b>[Phone number, Social Media, Music, Video, and Radio are all optional. However, if you'd like to have a tab for that media outlet, please provide the appropriate information]</b></em>
-        </p>
-      </div>
-    </md-card-content>
-  </md-card>
-  <br/>
-
   <md-input-container>
     <input [(ngModel)]="profile.phone_number"
            type="text"
@@ -42,17 +31,17 @@
 
   <div class="ui message">
     <div class="ui ribbon label" [style.background-color] = display.color>
-      <span class="{{display.icon}}"></span> {{display.mediaName}}
+      <span class="{{display.icon}}"></span><font style="padding-left:5px" color="white">{{display.mediaName}}</font>
     </div>
 
 
     <div class="row">
       <div class="col s12">
-        <div class="ui labeled input col s12" style="max-width: 80%">
+        <div class="ui labeled input col s12">
           <div class="ui label">
             {{display.pre_url}}
           </div>
-          <input [(ngModel)]="display.username" type="text" placeholder="username">
+          <input [(ngModel)]="display.username" type="text" placeholder="username (optional)">
         </div>
       </div>
     </div>
