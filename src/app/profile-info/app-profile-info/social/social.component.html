@@ -1,0 +1,100 @@
+﻿
+<form >
+  <div class="demo-card-container">
+    <md-card  *ngIf="showPeriscope">
+      <md-card-title class="periscope-card-blue">
+        Periscope
+      </md-card-title>
+      <md-card-content>
+        <md-input-container>
+          <input
+
+                 mdTooltip="{{ appNameMinCharacters }}"
+                 mdTooltipShowDelay="{{ displayTime }}"
+                 mdTooltipPosition="right"
+                 class="tb-width"
+                 type="text"
+                 maxlength="100"
+                 mdInput
+                 placeholder="Periscope">
+          </md-input-container>
+      </md-card-content>
+      <md-card-actions align="right">
+        <button md-button (click)="showPeriscope = !showPeriscope">Delete</button>
+      </md-card-actions>
+    </md-card>
+
+    <br />
+
+    <md-card class="soundcloud_cloud" *ngIf="showSoundCloud">
+      <md-card-content>
+        <md-input-container>
+          <input
+
+                 mdTooltip="{{ appNameMinCharacters }}"
+                 mdTooltipShowDelay="{{ displayTime }}"
+                 mdTooltipPosition="right"
+                 class="tb-width"
+                 type="text"
+                 maxlength="100"
+                 mdInput
+                 placeholder="SoundCloud">
+          </md-input-container>
+      </md-card-content>
+      <md-card-actions align="right">
+        <button md-button (click)="showSoundCloud = !showSoundCloud">Delete</button>
+      </md-card-actions>
+    </md-card>
+
+    <br />
+
+    <md-card class="mixcloud_card" *ngIf="showMixCloud">
+      <md-card-content>
+        <md-input-container>
+          <input
+
+                 mdTooltip="{{ appNameMinCharacters }}"
+                 mdTooltipShowDelay="{{ displayTime }}"
+                 mdTooltipPosition="right"
+                 class="tb-width"
+                 type="text"
+                 maxlength="100"
+                 mdInput
+                 placeholder="MixCloud">
+          </md-input-container>
+      </md-card-content>
+      <md-card-actions align="right">
+        <button md-raised-button style="color : #000000" (click)="showMixCloud = !showMixCloud">Delete</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</form>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<ons-speed-dial position="bottom right" direction="left" *ngIf="!showPeriscope || !showMixCloud || !showSoundCloud">
+  <ons-fab>
+    <ons-icon icon="ion-plus-round">
+    </ons-icon>
+  </ons-fab>
+  <ons-speed-dial-item class="periscope-card-blue" *ngIf="!showPeriscope" (click)="showPeriscope = !showPeriscope">
+    <ons-icon class="socicon-facebook">
+
+    </ons-icon>
+  </ons-speed-dial-item>
+
+  <ons-speed-dial-item class="soundcloud_cloud" *ngIf="!showSoundCloud" (click)="showSoundCloud = !showSoundCloud">
+    <ons-icon class="socicon-twitter">
+
+    </ons-icon>
+  </ons-speed-dial-item>
+
+  <ons-speed-dial-item class="mixcloud_card" *ngIf="!showMixCloud" (click)="showMixCloud = !showMixCloud">
+    <ons-icon class="socicon-facebook">
+
+    </ons-icon>
+  </ons-speed-dial-item>
+</ons-speed-dial>
