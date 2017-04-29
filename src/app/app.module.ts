@@ -18,7 +18,7 @@ import { MediaUpdateService } from './bv-sections/profile-info/media-update.serv
 import { BlogPostService } from './bv-sections/blog/blog-post.service';
 import { DeviceService } from './bv-sections/device-mockup/device.service';
 import { ValidationService } from './bv-sections/shared/validation.service';
-
+import { HeaderService } from './header/header.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { ValidationService } from './bv-sections/shared/validation.service';
     BlogPostService,
     DeviceService,
     ValidationService,
+    HeaderService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],
   bootstrap: [ AppComponent ]

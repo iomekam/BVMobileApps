@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { IBlogPost } from '../iblog-post';
 import { BlogPostService } from '../blog-post.service';
 import { ValidationService } from '../../shared/validation.service';
+import { HeaderService } from '../../../header/header.service';
 
 @Component({
   selector: 'bv-blog-list',

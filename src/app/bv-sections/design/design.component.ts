@@ -6,7 +6,9 @@ import { IDeviceModel, IDeviceTab, TabID } from '../device-mockup/i-device-model
 import { CropperSettings, ImageCropperComponent, Bounds } from '../../ng2-img-cropper';
 import { BvImage } from '../shared/bv-image';
 import { DesignImageCropperComponent } from './design-image-cropper/design-image-cropper.component';
-import {MdSnackBar} from '@angular/material';
+import { MdSnackBar } from '@angular/material';
+import { HeaderService } from '../../header/header.service';
+import { ValidationService } from '../../bv-sections/shared/validation.service';
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }
@@ -41,10 +43,14 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     private extraHeaderCropperSettings: CropperSettings;
 
+    public isSubmitEnabled: boolean = false;
+
     constructor(
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,
       private _deviceService: DeviceService,
+      private _headerService: HeaderService,
+      private _validationService: ValidationService,
       private snackBar: MdSnackBar) {
 
       this.cropperSettings = new CropperSettings();
@@ -153,6 +159,10 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     this._deviceService.getModel().subscribe(
       model => this.deviceModel = model
 
+    );
+
+    this._validationService.isValid$.subscribe(
+      isValid => this.isSubmitEnabled = isValid
     );
   }
 

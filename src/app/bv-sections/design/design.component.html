@@ -216,13 +216,19 @@
 
       </md-card-content>
       </div>
+      <div align="right" style="padding-top: 16px">
+        <button style="float:left" md-button (click)="_headerService.prev()">
+          <md-icon>arrow_back</md-icon>Previous
+        </button>
+        <button md-button [disabled]="!isSubmitEnabled">
+          Submit
+          <md-icon>arrow_upward</md-icon>
+        </button>
+      </div>
     </md-card>
 
 
   </div>
-    <div class="col-xs-12" style="padding: 15px">
-      <a href="#" class="myButton2 col" align="center">Submit</a>
-    </div>
   </div>
   <div class="col-xs-4" style="padding-left:16px">
     <bv-device-mockup [page]="1" style="padding-left:16px"></bv-device-mockup>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderService } from '../../header/header.service';
 
 @Component({
   selector: 'bv-blog',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogComponent implements OnInit {
 
-    constructor() {}
+    constructor(private _headerService: HeaderService) {}
 
     ngOnInit() {
 

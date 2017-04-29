@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdIconRegistry } from '@angular/material';
+import { HeaderService } from '../../header/header.service';
 
 @Component({
   templateUrl: './profile-info.component.html',
@@ -8,7 +9,7 @@ import { MdIconRegistry } from '@angular/material';
 
 export class ProfileInfoComponent implements OnInit {
 
-    constructor() {
+    constructor(private _headerService: HeaderService) {
     }
 
     ngOnInit() {

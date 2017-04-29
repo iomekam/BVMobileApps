@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { ValidationService } from '../bv-sections/shared/validation.service';
+import { HeaderService } from './header.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bv-header',
@@ -18,11 +19,12 @@ export class HeaderComponent implements OnInit  {
     isProfileInfoCurrent = false;
     isBlogCurrent = false;
     isDesignCurrent = false;
-    shouldEnableCreate = false;
 
     private currentID: number;
 
-    constructor(private _validationService: ValidationService) { }
+    constructor(
+        private _router: Router,
+        private _headerService: HeaderService) { }
 
     toggleCurrent(id: number): void {
 
@@ -59,11 +61,36 @@ export class HeaderComponent implements OnInit  {
         this.isDesignCurrent = false;
     }
 
+    goToHeader(): void {
+        if (this.currentID == this.appInfoID) {
+            this._router.navigate(['/app-info'], { skipLocationChange: true });
+        }
+        else if (this.currentID == this.profileInfoID) {
+            this._router.navigate(['/app-profile-info'], { skipLocationChange: true });
+        }
+        else if (this.currentID == this.blogInfoID) {
+            this._router.navigate(['/app-blog'], { skipLocationChange: true });
+        }
+        else if (this.currentID == this.designInfoID) {
+            this._router.navigate(['/design'], { skipLocationChange: true });
+        }
+    }
+
     ngOnInit() {
       this.currentID = this.appInfoID;
 
-      this._validationService.isValid$.subscribe(
-            isValid => this.shouldEnableCreate = isValid
+      this._headerService.next$.subscribe(
+          empty => {
+              this.toggleCurrent(this.currentID + 1);
+              this.goToHeader();
+          }
+      );
+
+      this._headerService.prev$.subscribe(
+          empty => {
+              this.toggleCurrent(this.currentID - 1);
+              this.goToHeader();
+          }
       );
     }
 }

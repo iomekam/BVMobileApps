@@ -18,6 +18,15 @@
         </md-tab-group>
       </md-card-content>
     </md-card>
+    <div align="right" style="padding-top: 16px">
+      <button style="float:left" md-button (click)="_headerService.prev()">
+        <md-icon>arrow_back</md-icon>Previous
+      </button>
+      <button md-button (click)="_headerService.next()">
+        Next
+        <md-icon>arrow_forward</md-icon>
+      </button>
+    </div>
   </md-card>
 
 </div>

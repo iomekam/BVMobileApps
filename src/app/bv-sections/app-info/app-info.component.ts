@@ -6,6 +6,7 @@ import { AppInfoService } from './app-info.service';
 import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 import { DeviceService } from '../device-mockup/device.service';
 import { ValidationService } from '../shared/validation.service';
+import { HeaderService } from '../../header/header.service';
 
 @Component({
   selector: 'bv-app-info',
@@ -46,7 +47,8 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
         form: FormBuilder,
         private _appInfoService: AppInfoService,
         private _deviceService: DeviceService,
-        private _validationService: ValidationService) {
+        private _validationService: ValidationService,
+        private _headerService: HeaderService) {
         this.form = form.group({
             appName: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
             shortDescription: ['', Validators.compose([Validators.required, Validators.maxLength(80)])],
