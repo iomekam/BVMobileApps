@@ -22,7 +22,7 @@
       <button style="float:left" md-button (click)="_headerService.prev()">
         <md-icon>arrow_back</md-icon>Previous
       </button>
-      <button md-button (click)="_headerService.next()">
+      <button md-button (click)="_headerService.next()" [disabled]="!isValid">
         Next
         <md-icon>arrow_forward</md-icon>
       </button>

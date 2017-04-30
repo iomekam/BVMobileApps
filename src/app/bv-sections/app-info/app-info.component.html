@@ -107,7 +107,7 @@
       </div>
     </form>
     <div align="right" style="padding-top: 16px">
-      <button md-button (click)="_headerService.next()">
+      <button md-button (click)="_headerService.next()" [disabled]="!_appInfoPageValid">
         Next
         <md-icon>arrow_forward</md-icon>
       </button>

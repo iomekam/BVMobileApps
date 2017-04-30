@@ -43,6 +43,8 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild('cropper', undefined)
     private cropper: ImageCropperComponent;
 
+    public _appInfoPageValid: boolean;
+
     constructor(
         form: FormBuilder,
         private _appInfoService: AppInfoService,
@@ -68,7 +70,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private onTagLostFocus(message: string): void {
         this.isTagTouched = true;
-        this._validationService.setAppInfoValid(this.appInfo);
+        this.validate();
     }
 
     ngOnInit() {
@@ -85,17 +87,22 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
         this._appInfoService.setAppInfo(this.appInfo);
     }
 
+    validate(): void {
+        this._appInfoPageValid = this.appInfo.appName !== '' && this.appInfo.image.image !== '' && this.appInfo.keywords.length > 0 && this.appInfo.longDescription !== '';
+        this._validationService.setAppInfoValid(this._appInfoPageValid);
+    }
+
     onInput(): void {
         this._deviceService.setAppName(this.appInfo.appName);
-        this._validationService.setAppInfoValid(this.appInfo);
+        this.validate();
     }
 
     onInputForValidation(): void {
-        this._validationService.setAppInfoValid(this.appInfo);
+        this.validate();
     }
 
     onCrop(bounds: Bounds): void {
         this.appInfo.image.bounds = bounds;
-        this._validationService.setAppInfoValid(this.appInfo);
+        this.validate();
     }
 }

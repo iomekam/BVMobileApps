@@ -12,28 +12,38 @@ export class ValidationService {
   private _profileInfoPageValid = false;
   private _blogValidPage = false;
 
-  private _isValidSource: Subject<boolean> = new Subject<boolean>();
-  isValid$ = this._isValidSource.asObservable();
+  private _isAppInfoPageValidSource: Subject<boolean> = new Subject<boolean>();
+  isAppInfoPageValid$ = this._isAppInfoPageValidSource.asObservable();
+
+  private _isProfileInfoPageValidSource: Subject<boolean> = new Subject<boolean>();
+  isProfileInfoPageValid$ = this._isProfileInfoPageValidSource.asObservable();
+
+  private _blogValidPageSource: Subject<boolean> = new Subject<boolean>();
+  blogValidPage$ = this._blogValidPageSource.asObservable();
 
   constructor() { }
 
-  public setAppInfoValid(appInfo: IAppInfo) {
+  public setAppInfoValid(appInfoPageValid: boolean) {
     
-    this._appInfoPageValid = appInfo.appName !== '' && appInfo.image.image !== '' && appInfo.keywords.length > 0 && appInfo.longDescription !== '';
-    this._isValidSource.next(this.areAllValid());
+    this._appInfoPageValid = appInfoPageValid;
+    this._isAppInfoPageValidSource.next(appInfoPageValid);
   }
 
   public setProfileInfoPageValid(profileInfo: IProfileModel) {
     this._profileInfoPageValid = profileInfo.website !== '';
-    this._isValidSource.next(this.areAllValid());
+    this._isProfileInfoPageValidSource.next(this._profileInfoPageValid);
   }
 
   public setBlogValidValid(blogPosts: IBlogPost[]) {
     this._blogValidPage = blogPosts.length > 0;
-    this._isValidSource.next(this.areAllValid());
+    this._blogValidPageSource.next(this._blogValidPage);
   }
 
-  private areAllValid(): boolean {
-    return this._appInfoPageValid && this._profileInfoPageValid && this._blogValidPage;
+  public getProfileInfoPageValid(): boolean {
+    return this._profileInfoPageValid;
+  }
+
+  public getBlogValidPage(): boolean {
+    return this._blogValidPage;
   }
 }

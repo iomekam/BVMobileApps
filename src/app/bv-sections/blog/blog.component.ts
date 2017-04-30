@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../../header/header.service';
+import { ValidationService } from '../shared/validation.service';
 
 @Component({
   selector: 'bv-blog',
@@ -8,9 +9,17 @@ import { HeaderService } from '../../header/header.service';
 })
 export class BlogComponent implements OnInit {
 
-    constructor(private _headerService: HeaderService) {}
+    public isValid: boolean;
+
+    constructor(
+      private _headerService: HeaderService,
+      private _validationService: ValidationService) {}
 
     ngOnInit() {
+      this.isValid = this._validationService.getBlogValidPage();
 
+      this._validationService.blogValidPage$.subscribe(
+        isValid => this.isValid = isValid
+      );
     }
 }

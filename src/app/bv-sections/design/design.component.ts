@@ -161,9 +161,9 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     );
 
-    this._validationService.isValid$.subscribe(
-      isValid => this.isSubmitEnabled = isValid
-    );
+    // this._validationService.isValid$.subscribe(
+    //   isValid => this.isSubmitEnabled = isValid
+    // );
   }
 
   ngOnDestroy() {
