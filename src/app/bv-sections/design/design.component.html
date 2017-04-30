@@ -16,13 +16,11 @@
               >
             <div class="row">
               <div class="col card" id="card_color" (click)= "toggleCollapse(colorTabID)">Color</div>
-
-              </div>
+              <div class="col card" id="card_main" (click)= "toggleCollapse(deviceModel.tabs[0].id); deviceModel.activeTab = deviceModel.tabs[0]">{{ deviceModel.tabs[0].title }}</div>
+              <div class="col card" id="card_more" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id); deviceModel.activeTab = deviceModel.tabs[deviceModel.tabs.length-1]">
+                {{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
             </div>
           </div>
-
-        <div class="row">
-          <div class="col card" id="card_main" (click)= "toggleCollapse(deviceModel.tabs[0].id); deviceModel.activeTab = deviceModel.tabs[0]">{{ deviceModel.tabs[0].title }}</div>
         </div>
 
         <div popover="Drag these items to change order of tabs on device."
@@ -42,15 +40,6 @@
                [id] = 'tab.id'>{{ tab.title }}
           </div>
         </div>
-
-
-
-
-        <div class="row">
-          <div class="col card" id="card_more" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id); deviceModel.activeTab = deviceModel.tabs[deviceModel.tabs.length-1]">
-            {{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
-        </div>
-
 
         <div [suiCollapse]="colorTabID !== currentID">
           <div class="ui segment">
