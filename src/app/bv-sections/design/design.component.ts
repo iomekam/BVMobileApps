@@ -102,7 +102,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     let colorString = color + '';
 
     if (colorString === '#fff' || colorString === '#ffff' || colorString === '#fffff' || colorString === '#ffffff') {
-      this.snackBar.open('Color Cannot Be White. Please Choose Another Color');
+      this.snackBar.open('Color Cannot Be White. Please Choose Another Color', 'Dismiss', {duration: 3000});
 
       if(this.selectedColor === 'primary') {
         this.deviceModel.colors['primary'] = '#000';
