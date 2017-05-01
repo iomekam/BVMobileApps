@@ -117,6 +117,17 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   restoreIcon(tab: IDeviceTab)
   {
     tab.showImage = false;
+
+    this.imgCropperIcon.forEach(
+      designImgCropper => {
+        if(designImgCropper.model.id == tab.id)
+        {
+          designImgCropper.cropper.setImage(new Image(), new Bounds());
+          designImgCropper.cropper.reset();
+        }
+      }
+    );
+
   }
 
   rgbaToCmyk(rgba: Rgba): Cmyk {
