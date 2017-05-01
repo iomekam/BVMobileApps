@@ -14,8 +14,6 @@ export class SocialComponent implements OnInit, OnDestroy {
 
     private displayArray: Array<IMediaInfo>;
 
-    public checked = false;
-
     constructor(
         private _profileService: MediaUpdateService,
         private _validationService: ValidationService) {
