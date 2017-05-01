@@ -25,6 +25,7 @@ export class AppInfoService {
             keywords: [],
             image: {
                 original: new Image(),
+                originalBase64: '',
                 image: '',
                 bounds: new Bounds()
             }
@@ -44,7 +45,7 @@ export class AppInfoService {
 
     setAppInfo(appInfo: IAppInfo): void {
         this._appInfo = appInfo;
-
+        this._appInfo.image.originalBase64 = appInfo.image.original.src;
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers });
@@ -63,9 +64,12 @@ export class AppInfoService {
         return this._http.get(this._url)
             .map((response: Response) => <IAppInfo> response.json())
             .do(data => {
+                let image = new Image();
+                image.src = data.image.originalBase64;
                 data.image = {
-                    original: new Image(),
-                    image: '',
+                    original: image,
+                    originalBase64: data.image.originalBase64,
+                    image: data.image.image,
                     bounds: new Bounds()
                 };
             });

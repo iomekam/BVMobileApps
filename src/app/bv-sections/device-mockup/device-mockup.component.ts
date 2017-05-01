@@ -40,10 +40,13 @@ export class DeviceMockupComponent implements OnInit {
             keywords: [],
             image: {
                 original: new Image(),
+                originalBase64: '',
                 image: '',
                 bounds: new Bounds()
             }
         };
+
+      this.deviceModel = this._deviceService.getDefaultModel();
 
       this._deviceService.getModel().subscribe(
         model => this.deviceModel = model

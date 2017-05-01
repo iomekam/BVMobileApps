@@ -13,7 +13,6 @@ export class HeaderService {
   constructor() { }
 
   public next():void {
-    console.log("g");
     this._nextSource.next();
   }
 
