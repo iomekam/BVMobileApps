@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { HeaderService } from './header.service';
 import { Router } from '@angular/router';
+import { ValidationService } from '../bv-sections/shared/validation.service';
 
 @Component({
   selector: 'bv-header',
@@ -20,11 +21,17 @@ export class HeaderComponent implements OnInit  {
     isBlogCurrent = false;
     isDesignCurrent = false;
 
+    isAppInfoValid = false;
+    isProfileInfoValid = false;
+    isBlogValid = false;
+    isDesignInfoValid = false;
+
     private currentID: number;
 
     constructor(
         private _router: Router,
-        private _headerService: HeaderService) { }
+        private _headerService: HeaderService,
+        private _validationService: ValidationService) { }
 
     toggleCurrent(id: number): void {
 
@@ -91,6 +98,18 @@ export class HeaderComponent implements OnInit  {
               this.toggleCurrent(this.currentID - 1);
               this.goToHeader();
           }
+      );
+
+      this._validationService.isAppInfoPageValid$.subscribe(
+            isValid => this.isAppInfoValid = isValid
+      );
+
+      this._validationService.isProfileInfoPageValid$.subscribe(
+            isValid => this.isProfileInfoValid = isValid
+      );
+
+      this._validationService.blogValidPage$.subscribe(
+            isValid => this.isBlogValid = isValid
       );
     }
 }
