@@ -100,12 +100,19 @@ export class HeaderComponent implements OnInit  {
           }
       );
 
+      this._headerService.goto$.subscribe(
+          id => {
+              this.toggleCurrent(id);
+              this.goToHeader();
+          }
+      );
+
       this._validationService.isAppInfoPageValid$.subscribe(
             isValid => this.isAppInfoValid = isValid
       );
 
       this._validationService.isProfileInfoPageValid$.subscribe(
-            isValid => this.isProfileInfoValid = isValid
+            isValid => {console.log(isValid);this.isProfileInfoValid = isValid}
       );
 
       this._validationService.blogValidPage$.subscribe(

@@ -9,6 +9,7 @@ import { DesignImageCropperComponent } from './design-image-cropper/design-image
 import { MdSnackBar } from '@angular/material';
 import { HeaderService } from '../../header/header.service';
 import { ValidationService } from '../../bv-sections/shared/validation.service';
+import { PageLoadingService, BVPages } from '../shared/page-loading.service';
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }
@@ -50,6 +51,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       private _dragulaService: DragulaService,
       private _deviceService: DeviceService,
       private _headerService: HeaderService,
+      private _pageValidation: PageLoadingService,
       private _validationService: ValidationService,
       private snackBar: MdSnackBar) {
 
@@ -160,6 +162,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       model => this.deviceModel = model
 
     );
+
+    this._pageValidation.savePage(BVPages.DESIGN);
 
     // this._validationService.isValid$.subscribe(
     //   isValid => this.isSubmitEnabled = isValid

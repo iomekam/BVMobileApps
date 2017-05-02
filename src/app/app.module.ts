@@ -19,6 +19,9 @@ import { BlogPostService } from './bv-sections/blog/blog-post.service';
 import { DeviceService } from './bv-sections/device-mockup/device.service';
 import { ValidationService } from './bv-sections/shared/validation.service';
 import { HeaderService } from './header/header.service';
+import { PageLoadingService } from './bv-sections/shared/page-loading.service';
+
+import { LoadpageGuard } from './bv-sections/loadpage.guard';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,7 @@ import { HeaderService } from './header/header.service';
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
-        { path: '', redirectTo: '', pathMatch: 'full' },
+        { path: '', redirectTo: '', pathMatch: 'full'},
         { path: '**', redirectTo: '', pathMatch: 'full' }
     ]),
     OnsenModule,
@@ -43,14 +46,25 @@ import { HeaderService } from './header/header.service';
     BlogPostService,
     DeviceService,
     ValidationService,
-    HeaderService
+    HeaderService,
+    PageLoadingService,
+    LoadpageGuard
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],
   bootstrap: [ AppComponent ]
 })
 
 export class AppModule {
-    constructor(mdIconRegistry: MdIconRegistry, sanitizer: DomSanitizer) {
+    constructor(
+      mdIconRegistry: MdIconRegistry, 
+      sanitizer: DomSanitizer,
+      private _appInfoService: AppInfoService,
+      private _mediaService: MediaUpdateService,
+      private _blogPostService: BlogPostService,
+      private _deviceService: DeviceService,
+      private _validationService: ValidationService,
+      private _headerService: HeaderService) {
         mdIconRegistry.registerFontClassAlias('fontawesome', 'fa');
+        _headerService.next();
     }
 }

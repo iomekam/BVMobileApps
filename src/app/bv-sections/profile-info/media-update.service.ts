@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Bounds } from '../../ng2-img-cropper';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
+import { ValidationService } from '../shared/validation.service'
 
 @Injectable()
 export class MediaUpdateService {
@@ -43,7 +44,9 @@ export class MediaUpdateService {
     private _profileInit = new Subject<IProfileModel>();
     private _init = false;
 
-    constructor(private _http: Http) {
+    constructor(
+        private _http: Http,
+        private _validationService: ValidationService) {
         this._profile = {
             website: '',
             noWebsite: false,
@@ -60,10 +63,13 @@ export class MediaUpdateService {
                     this._profile = profile;
                     this._init = true;
                     this._profileInit.next(this._profile);
+                    _validationService.setProfileInfoPageValid(this._profile);
                     this.ngUnsubscribe.next();
                     this.ngUnsubscribe.complete();
             }
         );
+
+        
     }
 
     private init(): Observable<IProfileModel> {

@@ -59,12 +59,14 @@ export class MusicComponent implements OnInit, OnDestroy {
                     showTitle: true,
                     image: {
                         original: new Image(),
+                        originalBase64: '',
                         image: '',
                         bounds: new Bounds()
                     },
                     showImage: false,
                     headerImage: {
                         original: new Image(),
+                        originalBase64: '',
                         image: '',
                         bounds: new Bounds()
                     },
@@ -75,6 +77,7 @@ export class MusicComponent implements OnInit, OnDestroy {
                   extraHeaderImage: {
                     original: new Image(),
                     image: '',
+                    originalBase64: '',
                     bounds: new Bounds()
                   },
                   extraHeaderDimenHeight: 0,

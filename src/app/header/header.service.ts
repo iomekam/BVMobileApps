@@ -10,10 +10,17 @@ export class HeaderService {
   private _prevSource: Subject<void> = new Subject<void>();
   prev$ = this._prevSource.asObservable();
 
+  private _gotoSource: Subject<number> = new Subject<number>();
+  goto$ = this._gotoSource.asObservable();
+
   constructor() { }
 
   public next():void {
     this._nextSource.next();
+  }
+
+  public goto(id: number) {
+    this._gotoSource.next(id);
   }
 
   public prev():void {

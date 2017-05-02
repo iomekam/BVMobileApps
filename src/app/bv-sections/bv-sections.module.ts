@@ -30,12 +30,13 @@ import { DragulaModule } from 'ng2-dragula';
 import { MyPopoverComponent } from './design/MyPopoverComponent';
 import { PopoverModule } from 'ngx-popover';
 import { DesignImageCropperComponent } from './design/design-image-cropper/design-image-cropper.component';
+import { LoadpageGuard } from './loadpage.guard';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', component: AppInfoComponent },
+      { path: '', canActivate: [LoadpageGuard], component: AppInfoComponent },
       { path: 'app-info', component: AppInfoComponent },
       {
         path: 'app-profile-info', component: ProfileInfoComponent,

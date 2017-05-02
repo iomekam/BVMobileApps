@@ -6,6 +6,7 @@ import { AppInfoService } from './app-info.service';
 import { Ng2FloatBtnComponent, Ng2FloatBtn } from 'ng2-float-btn';
 import { DeviceService } from '../device-mockup/device.service';
 import { ValidationService } from '../shared/validation.service';
+import { PageLoadingService, BVPages } from '../shared/page-loading.service';
 import { HeaderService } from '../../header/header.service';
 
 @Component({
@@ -50,6 +51,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
         private _appInfoService: AppInfoService,
         private _deviceService: DeviceService,
         private _validationService: ValidationService,
+        private _pageValidation: PageLoadingService,
         private _headerService: HeaderService) {
         this.form = form.group({
             appName: ['', Validators.compose([Validators.required, Validators.maxLength(100)])],
@@ -86,19 +88,21 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
                 bounds: new Bounds()
             }
         };
+
+        this._pageValidation.savePage(BVPages.APP_INFO);
     }
 
     ngAfterViewInit(): void {
         this._appInfoService.getAppInfo().subscribe(
             appInfo => {
                 this.appInfo = appInfo;
-                this.cropper.setImage(this.appInfo.image.original);
+                this.cropper.setImage(this.appInfo.image.original, new Bounds(0,0,this.cropperSettings.width,this.cropperSettings.height));
             }
         );
     }
 
     ngOnDestroy(): void {
-        this._appInfoService.setAppInfo(this.appInfo);
+        this._appInfoService.setAppInfo(this.appInfo);  
     }
 
     validate(): void {

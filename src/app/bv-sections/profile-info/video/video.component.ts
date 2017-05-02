@@ -63,12 +63,14 @@ export class VideoComponent implements OnInit, OnDestroy {
                     image: {
                         original: new Image(),
                         image: '',
+                        originalBase64: '',
                         bounds: new Bounds()
                     },
                     showImage: false,
                     headerImage: {
                         original: new Image(),
                         image: '',
+                        originalBase64: '',
                         bounds: new Bounds()
                     },
                     showHeader: false,
@@ -78,6 +80,7 @@ export class VideoComponent implements OnInit, OnDestroy {
                   extraHeaderImage: {
                     original: new Image(),
                     image: '',
+                    originalBase64: '',
                     bounds: new Bounds()
                   },
                   extraHeaderDimenHeight: 0,
