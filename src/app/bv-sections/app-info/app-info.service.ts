@@ -4,6 +4,7 @@ import { Bounds } from '../../ng2-img-cropper';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
+import { ValidationService } from '../shared/validation.service';
 
 @Injectable()
 export class AppInfoService {
@@ -17,7 +18,9 @@ export class AppInfoService {
     private _appInfoInit = new Subject<IAppInfo>();
     private _init = false;
 
-    constructor(private _http: Http) {
+    constructor(
+        private _http: Http,
+        private _validationService: ValidationService) {
         this._appInfo = {
             appName: '',
             shortDescription: '',
@@ -36,6 +39,8 @@ export class AppInfoService {
                 appInfo => {
                 this._appInfo = appInfo;
                 this._init = true;
+                const appInfoPageValid = this._appInfo.appName !== '' && this._appInfo.image.image !== '' && this._appInfo.keywords.length > 0 && this._appInfo.longDescription !== '';
+                this._validationService.setAppInfoValid(appInfoPageValid);
                 this._appInfoInit.next(this._appInfo);
                 this.ngUnsubscribe.next();
                 this.ngUnsubscribe.complete();

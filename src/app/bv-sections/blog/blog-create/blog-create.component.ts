@@ -90,6 +90,7 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
                     body: '',
                     image: {
                         original: new Image(),
+                        originalBase64: '',
                         image: '',
                         bounds: new Bounds()
                     },

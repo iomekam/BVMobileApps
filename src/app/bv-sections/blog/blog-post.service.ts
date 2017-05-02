@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Bounds } from '../../ng2-img-cropper';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
+import { ValidationService } from '../shared/validation.service'
 
 @Injectable()
 export class BlogPostService {
@@ -23,7 +24,9 @@ export class BlogPostService {
     private _blogPostInit = new Subject<IBlogPost[]>();
     private _init = false;
 
-    constructor(private _http: Http) {
+    constructor(
+        private _http: Http,
+        private _validationService: ValidationService) {
         this._blogPost = [];
 
         this.init().takeUntil(this.ngUnsubscribe)
@@ -32,6 +35,7 @@ export class BlogPostService {
                     this._blogPost = blogPost;
                     this._init = true;
                     this._blogPostInit.next(this._blogPost);
+                    _validationService.setBlogValidValid(this._blogPost);
                     this.ngUnsubscribe.next();
                     this.ngUnsubscribe.complete();
             }
@@ -47,6 +51,7 @@ export class BlogPostService {
                         blogPost => {
                             blogPost.image = {
                                 original: new Image(),
+                                originalBase64: '',
                                 image: '',
                                 bounds: new Bounds()
                             };

@@ -31,7 +31,6 @@ export class PageLoadingService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const options = new RequestOptions({ headers: headers });
-    console.log(JSON.stringify(lastPage));
 
     this._http.put(this._url, JSON.stringify(lastPage), options)
                 .takeUntil(this.httpPutUnsubscribe)
