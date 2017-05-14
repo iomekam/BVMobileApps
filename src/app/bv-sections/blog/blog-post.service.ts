@@ -115,7 +115,6 @@ export class BlogPostService {
 
     submitBlogPost(blogPost: IBlogPost): void {
         this._highestID++;
-        blogPost.id = this._highestID;
         blogPost.date = new Date();
         blogPost.image.originalBase64 = blogPost.image.original.src;
         this._blogPost.push(blogPost);
