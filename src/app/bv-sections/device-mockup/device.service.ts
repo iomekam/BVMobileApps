@@ -20,6 +20,7 @@ export class DeviceService {
       defaultIcon: 'icon ion ion-camera',
       image: {
           original: new Image(),
+          originalBase64: '',
           image: '',
           bounds: new Bounds()
       },
@@ -27,6 +28,7 @@ export class DeviceService {
       showImage: false,
       headerImage: {
           original: new Image(),
+          originalBase64: '',
           image: '',
           bounds: new Bounds()
       },
@@ -35,7 +37,8 @@ export class DeviceService {
       headerDimenWidth: 612,
       hasExtraHeader: false,
       extraHeaderImage: {
-        original: new Image(),
+          original: new Image(),
+          originalBase64: '',
           image: '',
           bounds: new Bounds()
       },
@@ -59,6 +62,7 @@ export class DeviceService {
           defaultIcon: 'icon ion ion-home',
           image: {
               original: new Image(),
+              originalBase64: '',
               image: '',
               bounds: new Bounds()
           },
@@ -66,6 +70,7 @@ export class DeviceService {
           showImage: false,
           headerImage: {
               original: new Image(),
+              originalBase64: '',
               image: '',
               bounds: new Bounds()
           },
@@ -75,6 +80,7 @@ export class DeviceService {
           hasExtraHeader: true,
           extraHeaderImage: {
             original: new Image(),
+            originalBase64: '',
             image: '',
             bounds: new Bounds()
           },
@@ -91,6 +97,7 @@ export class DeviceService {
           defaultIcon: 'icon ion ion-more',
           image: {
               original: new Image(),
+              originalBase64: '',
               image: '',
               bounds: new Bounds()
           },
@@ -98,6 +105,7 @@ export class DeviceService {
           showImage: false,
           headerImage: {
               original: new Image(),
+              originalBase64: '',
               image: '',
               bounds: new Bounds()
           },
@@ -107,6 +115,7 @@ export class DeviceService {
           hasExtraHeader: false,
           extraHeaderImage: {
             original: new Image(),
+            originalBase64: '',
             image: '',
             bounds: new Bounds()
           },

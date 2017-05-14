@@ -61,6 +61,11 @@ export class MediaUpdateService {
             .subscribe(
                 profile => {
                     this._profile = profile;
+
+                    if (profile.website.includes("www.bvmobileapps.com")) {
+                        this._profile.noWebsite = true;
+                    }
+
                     this._init = true;
                     this._profileInit.next(this._profile);
                     _validationService.setProfileInfoPageValid(this._profile);
