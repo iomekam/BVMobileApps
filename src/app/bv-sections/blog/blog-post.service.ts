@@ -46,17 +46,16 @@ export class BlogPostService {
         return this._http.get(this._url)
             .map((response: Response) => <IBlogPost[]> response.json())
             .do(data => {
-                    let count = 1;
                     data.forEach(
                         blogPost => {
+                            let image = new Image();
+                            image.src = blogPost.image.originalBase64;
                             blogPost.image = {
-                                original: new Image(),
-                                originalBase64: '',
-                                image: '',
-                                bounds: new Bounds()
+                                original: image,
+                                originalBase64: blogPost.image.originalBase64,
+                                image: blogPost.image.image,
+                                bounds: new Bounds(blogPost.image.bounds.left, blogPost.image.bounds.top, blogPost.image.bounds.right - blogPost.image.bounds.left, blogPost.image.bounds.bottom - blogPost.image.bounds.top)
                             };
-
-                            blogPost.id = count++; 
                         }
                     );
                 }
@@ -118,13 +117,41 @@ export class BlogPostService {
         this._highestID++;
         blogPost.id = this._highestID;
         blogPost.date = new Date();
+        blogPost.image.originalBase64 = blogPost.image.original.src;
         this._blogPost.push(blogPost);
 
         this._unfinishedBlogPost = null;
+
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        const options = new RequestOptions({ headers: headers });
+        this._http.put(this._url, JSON.stringify(blogPost), options)
+                .takeUntil(this.httpPutUnsubscribe)
+                .subscribe(
+                    data => {
+                        blogPost.id = (<IBlogPost> data.json()).id;
+                        this.httpPutUnsubscribe.next();
+                        this.httpPutUnsubscribe.complete();
+                    },
+                    error => console.log(JSON.stringify(error))
+        );
     }
 
     updateBlogPost(updatedBlogPost: IBlogPost): void {
         updatedBlogPost.date = new Date();
+
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        const options = new RequestOptions({ headers: headers });
+        this._http.put(this._url, JSON.stringify(updatedBlogPost), options)
+                .takeUntil(this.httpPutUnsubscribe)
+                .subscribe(
+                    data => {
+                        this.httpPutUnsubscribe.next();
+                        this.httpPutUnsubscribe.complete();
+                    },
+                    error => console.log(JSON.stringify(error))
+        );
     }
 
     deleteBlogPost(id: number): void {
