@@ -162,6 +162,21 @@ export class BlogPostService {
 
         if (index === -1) { return; }
 
+        const deletedBlogPost = this._blogPost[index];
+
         this._blogPost.splice(index, 1);
+
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        const options = new RequestOptions({ headers: headers, body: deletedBlogPost});
+        this._http.delete(this._url, options)
+                .takeUntil(this.httpPutUnsubscribe)
+                .subscribe(
+                    data => {
+                        this.httpPutUnsubscribe.next();
+                        this.httpPutUnsubscribe.complete();
+                    },
+                    error => console.log(JSON.stringify(error))
+        );
     }
 }
