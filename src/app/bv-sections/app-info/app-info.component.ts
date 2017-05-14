@@ -96,7 +96,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
         this._appInfoService.getAppInfo().subscribe(
             appInfo => {
                 this.appInfo = appInfo;
-                this.cropper.setImage(this.appInfo.image.original, new Bounds(0,0,this.cropperSettings.width,this.cropperSettings.height));
+                this.cropper.setImage(this.appInfo.image.original, this.appInfo.image.bounds);
             }
         );
     }

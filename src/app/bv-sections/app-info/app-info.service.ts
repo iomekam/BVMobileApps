@@ -75,7 +75,7 @@ export class AppInfoService {
                     original: image,
                     originalBase64: data.image.originalBase64,
                     image: data.image.image,
-                    bounds: new Bounds()
+                    bounds: new Bounds(data.image.bounds.left, data.image.bounds.top, data.image.bounds.right - data.image.bounds.left, data.image.bounds.bottom - data.image.bounds.top)
                 };
             });
     }
