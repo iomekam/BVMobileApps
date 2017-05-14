@@ -104,12 +104,11 @@
           </div>
         </div>
 
-        <div *ngFor="let tab of deviceModel.tabs" >
+        <div *ngFor="let tab of deviceModel.tabs;let i = index;" >
           <div [suiCollapse]="tab.id !== currentID">
             <div class="ui segment">
 
               <h4 id= "{{tab.id + 'uiSegment'}}"  class="ui header">{{ tab.title }} Tab</h4>
-              <form action="#">
                 <div class="row">
                     <div popover="Upload an image to change current tab icon."
                          popoverTitle="Hint"
@@ -141,11 +140,10 @@
                     </div>
                     <div class="row">
                       <input type="checkbox"
-                             id="tabItem"
-                             checked="tab.showTitle"
-                             [(ngModel)]="tab.showTitle"
-                             [ngModelOptions]="{standalone: true}"/>
-                      <label for="tabItem" style="padding-left:10px">Show Tab Name</label>
+                             [attr.id]="'tabItem' + i"
+                             [checked]="tab.showTitle"
+                             [(ngModel)]="tab.showTitle"/>
+                      <label [attr.for]="'tabItem' + i" style="padding-left:10px">Show Tab Name</label>
                     </div>
                     <div class="row" *ngIf="tab.showImage">
                       <button (click)="restoreIcon(tab)">Restore Default Icon</button>
@@ -194,11 +192,6 @@
                     <bv-design-image-cropper class="col s2" #designImgCropper [model]="tab" [image]="tab.extraHeaderImage" [settings]="extraHeaderCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
                   </div>
                 </div>
-
-
-
-              </form>
-
             </div>
           </div>
         </div>
