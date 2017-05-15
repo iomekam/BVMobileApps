@@ -106,7 +106,8 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     validate(): void {
-        this._appInfoPageValid = this.appInfo.appName !== '' && this.appInfo.image.image !== '' && this.appInfo.keywords.length > 0 && this.appInfo.longDescription !== '';
+        const areValid = this.appInfo.appName !== null && this.appInfo.image.image && this.appInfo.longDescription !== null && this.appInfo.shortDescription !== null;
+        this._appInfoPageValid = areValid && this.appInfo.appName !== '' && this.appInfo.image.image !== '' && this.appInfo.keywords.length > 0 && this.appInfo.longDescription !== '' && this.appInfo.shortDescription !== '';
         this._validationService.setAppInfoValid(this._appInfoPageValid);
     }
 
