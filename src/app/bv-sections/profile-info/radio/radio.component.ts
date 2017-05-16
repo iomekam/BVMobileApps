@@ -36,7 +36,7 @@ export class RadioComponent implements OnInit, OnDestroy {
 
         this.displayArray.forEach(
             mediaType => {
-                if (mediaType.username !== '') {
+                if (mediaType.username !== null && mediaType.username !== '') {
                     isValid = true;
                     return;
                 }

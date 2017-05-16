@@ -112,7 +112,7 @@ export class HeaderComponent implements OnInit  {
       );
 
       this._validationService.isProfileInfoPageValid$.subscribe(
-            isValid => {console.log(isValid);this.isProfileInfoValid = isValid}
+            isValid => this.isProfileInfoValid = isValid
       );
 
       this._validationService.blogValidPage$.subscribe(
