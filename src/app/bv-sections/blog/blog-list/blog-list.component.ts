@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CropperSettings } from 'ng2-img-cropper';
+import { CropperSettings } from '../../../ng2-img-cropper'
 import { Router } from '@angular/router';
 import { IBlogPost } from '../iblog-post';
 import { BlogPostService } from '../blog-post.service';
