@@ -34,16 +34,15 @@
       <span class="{{display.icon}}"></span><font style="padding-left:5px" color="white">{{display.mediaName}}</font>
     </div>
 
-
     <div class="row">
-      <div class="col s12">
-        <div class="ui labeled input col s12">
-          <div class="ui label">
-            {{display.pre_url}}
-          </div>
-          <input [(ngModel)]="display.username" type="text" placeholder="username (optional)">
-        </div>
-      </div>
-    </div>
+      <div class="col-xs-12">
+        <div class="input-group">
+            <div class="ui label">
+              {{display.pre_url}}
+            </div>
+            <input class="form-control" [(ngModel)]="display.username" type="text" placeholder="username (optional)">
+        </div><!-- /input-group -->
+      </div><!-- /.col-xs-12 -->
+    </div><!-- /.row -->
   </div>
 </div>
