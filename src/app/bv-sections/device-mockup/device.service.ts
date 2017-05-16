@@ -136,13 +136,22 @@ export class DeviceService {
     if (this._model.tabs.length === 5) {
       this.removeTab(TabID.PHOTO);
     }
+    
+    let index = 0;
 
-    this._model.tabs.splice(this._model.tabs.length - 2, 0, tab);
+    for(let t of this._model.tabs) {
+        index++;
+        if (t.order < tab.order) {
+          this._model.tabs.splice(index+1, 0, tab);
+          return;
+        }
+    }
   }
 
   public removeTab(id: TabID): void {
     // If we are removing a tab (not Photos), then we can restore the photo tab
     if (this._model.tabs.length === 5 && id !== TabID.PHOTO) {
+      console.log(this._model.tabs);
         this.addTab(this._photo);
     }
 
