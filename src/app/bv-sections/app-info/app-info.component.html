@@ -9,9 +9,6 @@
               <input [(ngModel)]="appInfo.appName"
                       [formControl]="form.controls['appName']"
                       (input)="onInput()"
-                      mdTooltip="{{ appNameMinCharacters }}"
-                      mdTooltipShowDelay="{{ displayTime }}"
-                      mdTooltipPosition="right"
                       class="tb-width"
                       type="text"
                       maxlength="30"
@@ -21,6 +18,10 @@
                         align="start"
                         *ngIf="form.controls['appName'].hasError('required') && form.controls['appName'].touched">{{ appNameEmptyErrorMessage }}</md-hint>
             </md-input-container>
+            <div class="help-tip">
+                <p>We recommend strong, relevant keyword in your App Name. For example, <br/> a. Contraband – Free Mixtapes <br/> 
+                b. Fresh Radio – Hip-Hop and Soul <br/></p>
+            </div>
           </md-card-content>
         </md-card>
       </div>
