@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?wredzy">
-
+  <link href="assets/css/please-wait.css" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.4/semantic.min.css">
 
@@ -24,8 +24,18 @@
 
   <link href="https://code.ionicframework.com/1.0.0-beta.1/css/ionic.css" rel="stylesheet">
   <script src="https://code.ionicframework.com/1.0.0-beta.14/js/ionic.bundle.js"></script>
+  
+  <link href="assets/css/please-wait.css" rel="stylesheet">
 </head>
 <body style="background-color:#f7f7f7">
+<script type="text/javascript" src="assets/js/please-wait.js"></script>
+<script type="text/javascript">
+      window.loading_screen = window.pleaseWait({
+        logo: "assets/img/logo.png",
+        backgroundColor: '#0099ff',
+        loadingHtml: "<p class='loading-message'>Loading... please wait</p>"
+      });
+    </script>
   <bv-root>Loading...</bv-root>
 </body>
 

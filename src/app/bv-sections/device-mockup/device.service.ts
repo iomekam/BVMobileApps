@@ -160,7 +160,6 @@ export class DeviceService {
   public removeTab(id: TabID): void {
     // If we are removing a tab (not Photos), then we can restore the photo tab
     if (this._model.tabs.length === 5 && id !== TabID.PHOTO) {
-      console.log(this._model.tabs);
         this.addTab(this._photo);
     }
 
