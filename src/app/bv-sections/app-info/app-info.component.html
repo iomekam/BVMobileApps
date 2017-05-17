@@ -18,9 +18,9 @@
                         align="start"
                         *ngIf="form.controls['appName'].hasError('required') && form.controls['appName'].touched">{{ appNameEmptyErrorMessage }}</md-hint>
             </md-input-container>
-            <div class="help-tip">
-                <p>We recommend strong, relevant keyword in your App Name. For example, <br/> a. Contraband – Free Mixtapes <br/> 
-                b. Fresh Radio – Hip-Hop and Soul <br/></p>
+            <div class="help-tip" style="z-index: 10;">
+                <p>We recommend strong, relevant keyword in your App Name. For example, <br/> a. Contraband – Free Mixtapes <br/>
+                b. Fresh Radio – Hip-Hop and Soul <br/></p> <br/>
             </div>
           </md-card-content>
         </md-card>
@@ -35,9 +35,6 @@
                         [ngClass]="{'has-error':!form.controls['appName'].valid && form.controls['appName'].touched}"
                         rows="2"
                         (input)="onInputForValidation()"
-                        mdTooltip="{{ shortDescriptionMaxCharacters }}"
-                        mdTooltipShowDelay="{{ displayTime }}"
-                        mdTooltipPosition="above"
                         class="tb-width input-height has-error"
                         type="text"
                         mdInput
@@ -46,15 +43,18 @@
               <md-hint [ngStyle]="{'color': 'red'}"
                         align="start"
                         *ngIf="form.controls['shortDescription'].hasError('required') && form.controls['shortDescription'].touched">{{ shortDescriptionEmptyErrorMessage }}</md-hint>
+
             </md-input-container>
+            <div class="help-tip">
+              <p> Short Description: {{shortDescriptionMaxCharacters}}<br/>
+                <br/> Long Description: {{longDescriptionMaxCharacters}}</p>
+            </div>
             <br />
             <md-input-container>
               <textarea [(ngModel)]="appInfo.longDescription"
                         [formControl]="form.controls['longDescription']"
                         rows="10"
                         (input)="onInputForValidation()"
-                        mdTooltip="{{ longDescriptionMaxCharacters }}"
-                        mdTooltipShowDelay="{{ displayTime }}"
                         class="tb-width"
                         mdInput
                         maxlength="4000"
@@ -63,6 +63,7 @@
                         align="start"
                         *ngIf="form.controls['longDescription'].hasError('required') && form.controls['longDescription'].touched">{{ longDescriptionEmptyErrorMessage }}</md-hint>
             </md-input-container>
+
           </md-card-content>
         </md-card>
       </div>
@@ -77,8 +78,6 @@
                           (addTag)="onInputForValidation()"
                           (onclick)="onTagLostFocus($event)"
                           (removeTag)="onInputForValidation()"
-                          mdTooltip="{{ keywordMaxCharacters }}"
-                          mdTooltipShowDelay="{{ displayTime }}"
                           placeholder="Add some keywords"
                           addOnSpace="true"
                           addOnPaste="true"
@@ -90,6 +89,9 @@
                       align="start"
                       *ngIf="form.controls['keywords'].hasError('required') && isTagTouched">{{ keywordEmptyErrorMessage }}</md-hint>
           </md-card-content>
+          <div class="help-tip">
+            <p> {{keywordMaxCharacters}} </p>
+          </div>
         </md-card>
       </div>
       <br />

@@ -90,11 +90,13 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     public toggleCollapse(location: TabID) {
       const img = document.createElement('img');
 
+      console.log("Current ID: Old: " + this.currentID);
       if (location === this.currentID) {
         //this.currentID = -1;
       }
       else {
         this.currentID = location;
+        console.log("Current ID New: " + this.currentID);
       }
     }
 
@@ -111,7 +113,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
         this.deviceModel.colors['secondary'] = '#000';
       }
     }
-
   }
 
   restoreIcon(tab: IDeviceTab)
