@@ -21,7 +21,7 @@ import { ValidationService } from './bv-sections/shared/validation.service';
 import { HeaderService } from './header/header.service';
 import { PageLoadingService } from './bv-sections/shared/page-loading.service';
 
-import { LoadpageGuard, WindowRefService  } from './bv-sections/loadpage.guard';
+import { LoadpageGuard  } from './bv-sections/loadpage.guard';
 
 @NgModule({
   declarations: [
@@ -48,8 +48,7 @@ import { LoadpageGuard, WindowRefService  } from './bv-sections/loadpage.guard';
     ValidationService,
     HeaderService,
     PageLoadingService,
-    LoadpageGuard,
-    WindowRefService,
+    LoadpageGuard
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],
   bootstrap: [ AppComponent ]

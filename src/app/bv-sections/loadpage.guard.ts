@@ -7,16 +7,8 @@ import { Subject } from 'rxjs/Subject';
 import { IAppInfo } from './app-info/iapp-info'
 import { LastCompleted } from './shared/page-loading.service';
 
-
 function getWindow (): any {
     return window;
-}
-
-@Injectable()
-export class WindowRefService {
-    public nativeWindow (): any {
-        return getWindow();
-    }
 }
 
 @Injectable()
@@ -25,9 +17,7 @@ export class LoadpageGuard implements CanActivate {
   constructor(
     private _router: Router,
     private _headerService: HeaderService,
-    private _http: Http,
-    private _window: WindowRefService
-    ) {}
+    private _http: Http) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -36,7 +26,7 @@ export class LoadpageGuard implements CanActivate {
             .map(response => {
               const info = <LastCompleted> response.json();
               this._headerService.goto(info.lastPage);
-              this._window.nativeWindow().loading_screen.finish();
+              getWindow().loading_screen.finish();
               return true;
 
             })
