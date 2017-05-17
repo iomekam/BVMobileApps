@@ -20,7 +20,7 @@
             </md-input-container>
             <div class="help-tip" style="z-index: 10;">
                 <p>We recommend strong, relevant keyword in your App Name. For example, <br/> a. Contraband – Free Mixtapes <br/>
-                b. Fresh Radio – Hip-Hop and Soul <br/></p> <br/>
+                b. Fresh Radio – Hip-Hop and Soul <br/>c. Jayforce – Celebrity News<br/>d. DJ Kenny B – Chicago House<br/></p>
             </div>
           </md-card-content>
         </md-card>
@@ -45,7 +45,7 @@
                         *ngIf="form.controls['shortDescription'].hasError('required') && form.controls['shortDescription'].touched">{{ shortDescriptionEmptyErrorMessage }}</md-hint>
 
             </md-input-container>
-            <div class="help-tip">
+            <div class="help-tip" style="z-index: 10;">
               <p> Short Description: {{shortDescriptionMaxCharacters}}<br/>
                 <br/> Long Description: {{longDescriptionMaxCharacters}}</p>
             </div>
@@ -89,7 +89,7 @@
                       align="start"
                       *ngIf="form.controls['keywords'].hasError('required') && isTagTouched">{{ keywordEmptyErrorMessage }}</md-hint>
           </md-card-content>
-          <div class="help-tip">
+          <div class="help-tip" style="z-index: 10;">
             <p> {{keywordMaxCharacters}} </p>
           </div>
         </md-card>
