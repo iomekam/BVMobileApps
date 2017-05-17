@@ -1,3 +1,5 @@
+@import '~assets/css/help.css';
+
 .demo-card-container {
   display: flex;
   flex-flow: column nowrap;

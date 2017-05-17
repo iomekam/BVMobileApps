@@ -56,7 +56,7 @@ export class RadioComponent implements OnInit, OnDestroy {
                     defaultIcon: 'icon ion ion-radio-waves',
                     title: 'Radio',
                     orderType: OrderType.ANY,
-                    order: 1,
+                    order: 2,
                     showTitle: true,
                     image: {
                         original: new Image(),

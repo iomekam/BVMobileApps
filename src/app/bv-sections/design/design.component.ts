@@ -104,7 +104,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     let colorString = color + '';
 
     if (colorString === '#fff' || colorString === '#ffff' || colorString === '#fffff' || colorString === '#ffffff') {
-      this.snackBar.open('Color Cannot Be White. Please Choose Another Color');
+      this.snackBar.open('Color Cannot Be White. Please Choose Another Color', 'Dismiss', {duration: 3000});
 
       if(this.selectedColor === 'primary') {
         this.deviceModel.colors['primary'] = '#000';
@@ -119,6 +119,17 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   restoreIcon(tab: IDeviceTab)
   {
     tab.showImage = false;
+
+    this.imgCropperIcon.forEach(
+      designImgCropper => {
+        if(designImgCropper.model.id == tab.id)
+        {
+          designImgCropper.cropper.setImage(new Image(), new Bounds());
+          designImgCropper.cropper.reset();
+        }
+      }
+    );
+
   }
 
   rgbaToCmyk(rgba: Rgba): Cmyk {

@@ -55,7 +55,7 @@ export class MusicComponent implements OnInit, OnDestroy {
                     defaultIcon: 'icon ion ion-music-note',
                     title: 'Music',
                     orderType: OrderType.ANY,
-                    order: 1,
+                    order: 4,
                     showTitle: true,
                     image: {
                         original: new Image(),
