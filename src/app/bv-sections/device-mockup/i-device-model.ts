@@ -18,13 +18,14 @@ export enum OrderType {
 
 // Represents the type of tab.
 export enum TabID {
+    // Order here is important. Blog and More should be first and last respectively
+    BLOG,
     PHOTO,
     MUSIC,
     VIDEO,
     RADIO,
-    BLOG,
     MORE,
-    COLOR,
+    COLOR
 }
 
 export interface IDeviceTab {

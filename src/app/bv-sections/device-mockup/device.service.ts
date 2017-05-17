@@ -3,13 +3,49 @@ import { IDeviceModel, IDeviceTab, OrderType, TabID } from './i-device-model';
 import { Observable } from 'rxjs/Observable';
 import { BvImage } from '../shared/bv-image';
 import { Bounds } from '../../ng2-img-cropper';
+import { Pipe, PipeTransform } from '@angular/core';
+
+@Pipe({
+    name: 'valid',
+    pure: false
+})
+export class FilterPipe implements PipeTransform {
+
+    transform(items: IDeviceTab[]): any {
+        if (!items) {
+            return items;
+        }
+        // filter items array, items which match and return true will be kept, false will be filtered out
+        let item = items.filter(item => item.order >= 0);
+        return item.sort(function compare(a: IDeviceTab, b: IDeviceTab): number {
+            if (a.order < b.order) {
+              return -1;
+            }
+
+            if (a.order > b.order) {
+              return 1;
+            }
+
+            return 0;
+        });
+    }
+}
 
 @Injectable()
 export class DeviceService {
 
   private _model: IDeviceModel;
 
+  private _main: IDeviceTab
   private _photo: IDeviceTab;
+  private _music: IDeviceTab;
+  private _video: IDeviceTab;
+  private _radio: IDeviceTab;
+  private _more: IDeviceTab
+
+  private _musicValid = false;
+  private _videoValid = false;
+  private _radioValid = false;
 
   constructor() {
     this._photo = {
@@ -47,18 +83,116 @@ export class DeviceService {
       hasHeader: true
     };
 
-    this._model = {
-      appName: '',
-      colors: {
-        primary: '#000000',
-        secondary: '#0099ff'
+    this._video = {
+      id: TabID.VIDEO,
+      defaultIcon: 'icon ion ion-videocamera',
+      title: 'Videos',
+      orderType: OrderType.ANY,
+      order: -1,
+      image: {
+          original: new Image(),
+          originalBase64: '',
+          image: '',
+          bounds: new Bounds()
       },
-      tabs: [
-        {
+      showTitle: true,
+      showImage: false,
+      headerImage: {
+          original: new Image(),
+          originalBase64: '',
+          image: '',
+          bounds: new Bounds()
+      },
+      showHeader: false,
+      headerDimenHeight: 302,
+      headerDimenWidth: 612,
+      hasExtraHeader: false,
+      extraHeaderImage: {
+          original: new Image(),
+          originalBase64: '',
+          image: '',
+          bounds: new Bounds()
+      },
+      extraHeaderDimenHeight: 0,
+      extraHeaderDimenWidth: 0,
+      hasHeader: true
+    };
+
+    this._music = {
+      id: TabID.MUSIC,
+      defaultIcon: 'icon ion ion-music-note',
+      title: 'Music',
+      orderType: OrderType.ANY,
+      order: -1,
+      image: {
+          original: new Image(),
+          originalBase64: '',
+          image: '',
+          bounds: new Bounds()
+      },
+      showTitle: true,
+      showImage: false,
+      headerImage: {
+          original: new Image(),
+          originalBase64: '',
+          image: '',
+          bounds: new Bounds()
+      },
+      showHeader: false,
+      headerDimenHeight: 302,
+      headerDimenWidth: 612,
+      hasExtraHeader: false,
+      extraHeaderImage: {
+          original: new Image(),
+          originalBase64: '',
+          image: '',
+          bounds: new Bounds()
+      },
+      extraHeaderDimenHeight: 0,
+      extraHeaderDimenWidth: 0,
+      hasHeader: true
+    };
+
+    this._radio = {
+      id: TabID.RADIO,
+      defaultIcon: 'icon ion ion-radio-waves',
+      title: 'Radio',
+      orderType: OrderType.ANY,
+      order: -1,
+      image: {
+          original: new Image(),
+          originalBase64: '',
+          image: '',
+          bounds: new Bounds()
+      },
+      showTitle: true,
+      showImage: false,
+      headerImage: {
+          original: new Image(),
+          originalBase64: '',
+          image: '',
+          bounds: new Bounds()
+      },
+      showHeader: false,
+      headerDimenHeight: 302,
+      headerDimenWidth: 612,
+      hasExtraHeader: false,
+      extraHeaderImage: {
+          original: new Image(),
+          originalBase64: '',
+          image: '',
+          bounds: new Bounds()
+      },
+      extraHeaderDimenHeight: 0,
+      extraHeaderDimenWidth: 0,
+      hasHeader: true
+    };
+
+    this._main = {
           id: TabID.BLOG,
           title: 'Main',
           orderType: OrderType.FIRST,
-          order: -1, // Since we specify FIRST, the order doesn't matter.
+          order: 0, // Since we specify FIRST, the order doesn't matter.
           defaultIcon: 'icon ion ion-home',
           image: {
               original: new Image(),
@@ -87,13 +221,13 @@ export class DeviceService {
           extraHeaderDimenHeight: 88,
           extraHeaderDimenWidth: 300,
           hasHeader: true
-        },
-        this._photo,
-        {
+        };
+
+    this._more = {
           id: TabID.MORE,
           title: 'More',
           orderType: OrderType.LAST,
-          order: 5, // Since we specify LAST, the order doesn't matter.
+          order: 4, // Since we specify LAST, the order doesn't matter.
           defaultIcon: 'icon ion ion-more',
           image: {
               original: new Image(),
@@ -122,10 +256,33 @@ export class DeviceService {
           extraHeaderDimenHeight: 0,
           extraHeaderDimenWidth: 0,
           hasHeader: false
-        },
+        };
+
+    this._model = {
+      appName: '',
+      colors: {
+        primary: '#000000',
+        secondary: '#0099ff'
+      },
+      tabs: [
+        this._main,
+        this._video,
+        this._radio,
+        this._music,
+        this._photo,
+        this._more,
       ],
       activeTab: null
     };
+
+    this._model.tabs[TabID.BLOG] = this._main;
+    this._model.tabs[TabID.VIDEO] = this._video;
+    this._model.tabs[TabID.RADIO] = this._radio;
+    this._model.tabs[TabID.MUSIC] = this._music;
+    this._model.tabs[TabID.PHOTO] = this._photo;
+    this._model.tabs[TabID.MORE] = this._more;
+
+    console.log(TabID.BLOG);
   }
 
   getDefaultModel(): IDeviceModel {
@@ -141,47 +298,76 @@ export class DeviceService {
   }
 
   public addTab(tab: IDeviceTab): void {
-    // If all 5 tabs are already being shown, then we want to replace the photo tab with the radio tab.
-    if (this._model.tabs.length === 5) {
-      this.removeTab(TabID.PHOTO);
+    if (tab.id == TabID.VIDEO) {
+      this._video = tab;
+      this._videoValid = true;
+      this._model.tabs[TabID.VIDEO] = this._video;
+    }
+    
+    if (tab.id == TabID.RADIO) {
+      this._radio = tab;
+      this._radioValid = true;
+      this._model.tabs[TabID.RADIO] = this._radio;
     }
 
-    let index = 0;
+    if (tab.id == TabID.MUSIC) {
+      this._music = tab;
+      this._musicValid = true;
+      this._model.tabs[TabID.MUSIC] = this._music;
+    }
 
-    for(let t of this._model.tabs) {
-        index++;
-        if (t.order < tab.order) {
-          this._model.tabs.splice(index+1, 0, tab);
-          return;
-        }
+    if (this._videoValid && this._musicValid && this._radioValid) {
+        this.removeTab(TabID.PHOTO);
+    }
+    else if (tab.id == TabID.PHOTO) {
+      this._photo.order = 2;
+      this._model.tabs[TabID.PHOTO] = this._photo;
     }
   }
 
   public removeTab(id: TabID): void {
-    // If we are removing a tab (not Photos), then we can restore the photo tab
-    if (this._model.tabs.length === 5 && id !== TabID.PHOTO) {
-        this.addTab(this._photo);
+    if (id == TabID.VIDEO) {
+      this._video.order = -1;
+      this._videoValid = false;
     }
 
-    const index: number = this._model.tabs.findIndex(
-        tab => {
-            return id === tab.id;
-        }
-    );
+    if (id == TabID.MUSIC) {
+      this._music.order = -1;
+      this._musicValid = false;
+    }
 
-    if (index === -1) { return; }
+    if (id == TabID.RADIO) {
+      this._radio.order = -1;
+      this._radioValid = false;
+    }
 
-    this._model.tabs.splice(index, 1);
+    // If we are removing a tab (not Photos), then we can restore the photo tab
+    if ((this._videoValid && this._musicValid && this._radioValid) == false) {
+        this.addTab(this._photo);
+    }
+    else {
+      if (id == TabID.PHOTO) {
+        this._photo.order = -1;
+      }
+    }
   }
 
   public isTabCreated(id: TabID): boolean {
-    const index: number = this._model.tabs.findIndex(
-          tab => {
-              return id === tab.id;
-          }
-      );
+    let isValid = false;
 
-       return index !== -1;
+    if (id == TabID.VIDEO) {
+      isValid = this._videoValid;
+    }
+    
+    if (id == TabID.RADIO) {
+      isValid = this._radioValid;
+    }
+
+    if (id == TabID.MUSIC) {
+      isValid = this._musicValid;
+    }
+
+    return isValid;
   }
 
   public setPrimaryColor(color: string): void {

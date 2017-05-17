@@ -92,13 +92,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     public toggleCollapse(location: TabID) {
       const img = document.createElement('img');
 
-      console.log("Current ID: Old: " + this.currentID);
-      if (location === this.currentID) {
-        //this.currentID = -1;
-      }
-      else {
+      if (location !== this.currentID) {
         this.currentID = location;
-        console.log("Current ID New: " + this.currentID);
       }
     }
 
@@ -172,7 +167,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this._deviceService.getModel().subscribe(
       model => this.deviceModel = model
-
+  
     );
 
     this._pageValidation.savePage(BVPages.DESIGN);

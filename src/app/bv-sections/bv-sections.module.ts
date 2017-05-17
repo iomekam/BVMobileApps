@@ -31,7 +31,7 @@ import { MyPopoverComponent } from './design/MyPopoverComponent';
 import { PopoverModule } from 'ngx-popover';
 import { DesignImageCropperComponent } from './design/design-image-cropper/design-image-cropper.component';
 import { LoadpageGuard } from './loadpage.guard';
-
+import { FilterPipe } from './device-mockup/device.service';
 @NgModule({
   imports: [
     CommonModule,
@@ -102,6 +102,7 @@ import { LoadpageGuard } from './loadpage.guard';
     DesignComponent,
     MyPopoverComponent,
     DesignImageCropperComponent,
+    FilterPipe
   ],
   entryComponents: [MyPopoverComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],

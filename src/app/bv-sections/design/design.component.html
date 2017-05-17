@@ -34,7 +34,7 @@
              [dragula]='"drag-bag"'
              class="row"
         >
-          <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1"
+          <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1 | valid"
                class="col card"
                (click)= "toggleCollapse(tab.id); deviceModel.activeTab = tab"
                [id] = 'tab.id'>{{ tab.title }}
