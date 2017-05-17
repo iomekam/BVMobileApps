@@ -39,7 +39,7 @@
                         type="text"
                         mdInput
                         placeholder="Short Description"
-                        maxlength="80">{{ appInfo.shortDescription }}</textarea>
+                        maxlength="80"></textarea>
               <md-hint [ngStyle]="{'color': 'red'}"
                         align="start"
                         *ngIf="form.controls['shortDescription'].hasError('required') && form.controls['shortDescription'].touched">{{ shortDescriptionEmptyErrorMessage }}</md-hint>
@@ -58,7 +58,7 @@
                         class="tb-width"
                         mdInput
                         maxlength="4000"
-                        placeholder="Full Description">{{ appInfo.shortDescription }}</textarea>
+                        placeholder="Full Description"></textarea>
               <md-hint [ngStyle]="{'color': 'red'}"
                         align="start"
                         *ngIf="form.controls['longDescription'].hasError('required') && form.controls['longDescription'].touched">{{ longDescriptionEmptyErrorMessage }}</md-hint>
