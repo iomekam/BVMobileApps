@@ -145,7 +145,7 @@ export class DeviceService {
     if (this._model.tabs.length === 5) {
       this.removeTab(TabID.PHOTO);
     }
-    
+
     let index = 0;
 
     for(let t of this._model.tabs) {
@@ -259,6 +259,11 @@ export class DeviceService {
 
         const removetab = this._model.tabs[indexStart];
 
+        const tempOrder = this._model.tabs[end].order;
+        this._model.tabs[end].order = this._model.tabs[indexStart].order;
+        this._model.tabs[indexStart].order = tempOrder;
+
+
         if (indexStart < end) {
           this._model.tabs.splice(end, 0, removetab);
           this._model.tabs.splice(indexStart, 1);
@@ -273,4 +278,6 @@ export class DeviceService {
   public setSecondaryColor(color: string): void {
      this._model.colors['secondary'] = color;
   }
+
+
 }
