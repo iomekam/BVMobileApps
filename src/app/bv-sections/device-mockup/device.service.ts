@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IDeviceModel, IDeviceTab, OrderType, TabID } from './i-device-model';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import { BvImage } from '../shared/bv-image';
 import { Bounds } from '../../ng2-img-cropper';
@@ -47,7 +49,15 @@ export class DeviceService {
   private _videoValid = false;
   private _radioValid = false;
 
-  constructor() {
+  private _url = 'http://localhost:7345/api/design/1'; 
+
+  private ngUnsubscribe = new Subject<void>();
+  private httpPutUnsubscribe = new Subject<void>();
+
+  private _modelInit = new Subject<IDeviceModel>();
+  private _init = false;
+
+  constructor(private _http: Http) {
     this._photo = {
       id: TabID.PHOTO,
       title: 'Photos',
@@ -281,16 +291,70 @@ export class DeviceService {
     this._model.tabs[TabID.MUSIC] = this._music;
     this._model.tabs[TabID.PHOTO] = this._photo;
     this._model.tabs[TabID.MORE] = this._more;
-
-    console.log(TabID.BLOG);
+ 
+    this.init().takeUntil(this.ngUnsubscribe)
+            .subscribe(
+                model => {
+                //this._model = model;
+                this._init = true;
+                //this._modelInit.next(this._model);
+                console.log(model);
+                //this.ngUnsubscribe.next();
+                //this.ngUnsubscribe.complete();
+            }
+        );
   }
+
+  private init(): Observable<IDeviceModel> {
+        return this._http.get(this._url)
+            .map((response: Response) => <IDeviceModel> response.json())
+            .do(data => {
+                for(let tab of data.tabs) {
+                  let image = new Image();
+                  image.src = tab.headerImage.originalBase64;
+
+                  tab.headerImage = {
+                      original: image,
+                      originalBase64: tab.headerImage.originalBase64,
+                      image: tab.headerImage.image,
+                      bounds: new Bounds(tab.headerImage.bounds.left, tab.headerImage.bounds.top, tab.headerImage.bounds.right - tab.headerImage.bounds.left, tab.headerImage.bounds.bottom - tab.headerImage.bounds.top)
+                    };
+
+                    image = new Image();
+                    image.src = tab.extraHeaderImage.originalBase64;
+
+                    tab.extraHeaderImage = {
+                      original: image,
+                      originalBase64: tab.extraHeaderImage.originalBase64,
+                      image: tab.extraHeaderImage.image,
+                      bounds: new Bounds(tab.extraHeaderImage.bounds.left, tab.extraHeaderImage.bounds.top, tab.extraHeaderImage.bounds.right - tab.extraHeaderImage.bounds.left, tab.extraHeaderImage.bounds.bottom - tab.extraHeaderImage.bounds.top)
+                    };
+
+                    image = new Image();
+                    image.src = tab.image.originalBase64;
+
+                    tab.image = {
+                      original: image,
+                      originalBase64: tab.image.originalBase64,
+                      image: tab.image.image,
+                      bounds: new Bounds(tab.image.bounds.left, tab.image.bounds.top, tab.image.bounds.right - tab.image.bounds.left, tab.image.bounds.bottom - tab.image.bounds.top)
+                    };
+                }
+            });
+    }
 
   getDefaultModel(): IDeviceModel {
     return this._model;
   }
 
   public getModel(): Observable<IDeviceModel> {
-    return Observable.of(this._model);
+    if (!this._init) {
+        this._modelInit.next(this._model);
+        return this._modelInit.asObservable();
+    }
+    else {
+        return Observable.of(this._model);
+    }
   }
 
   public setAppName(name: string): void {
