@@ -25,7 +25,7 @@
             <div class="ui label">
               {{display.pre_url}}
             </div>
-            <input class="form-control" [attr.id]="'input' + display.mediaName" [(ngModel)]="display.username" type="text" placeholder="username">
+            <input class="form-control" [attr.id]="'input' + display.mediaName" [maxlength]=display.length [(ngModel)]="display.username" type="text" placeholder="username">
         </div><!-- /input-group -->
       </div><!-- /.col-xs-12 -->
     </div><!-- /.row -->

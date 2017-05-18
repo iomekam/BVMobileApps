@@ -40,7 +40,7 @@
             <div class="ui label">
               {{display.pre_url}}
             </div>
-            <input class="form-control" [(ngModel)]="display.username" type="text" placeholder="username (optional)">
+            <input class="form-control" [(ngModel)]="display.username" [maxlength]=display.length type="text" placeholder="username (optional)">
         </div><!-- /input-group -->
       </div><!-- /.col-xs-12 -->
     </div><!-- /.row -->
