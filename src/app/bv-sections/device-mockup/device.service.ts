@@ -57,13 +57,43 @@ export class DeviceService {
   private _modelInit = new Subject<IDeviceModel>();
   private _init = false;
 
+  private getDefaultIcon(id: TabID): string {
+    let iconString = "";
+
+    if (id == TabID.VIDEO) {
+      iconString = "icon ion ion-videocamera";
+    }
+
+    if (id == TabID.MUSIC) {
+      iconString = "icon ion ion-music-note";
+    }
+
+    if (id == TabID.RADIO) {
+      iconString = "icon ion ion-radio-waves";
+    }
+
+    if (id == TabID.BLOG) {
+      iconString = "icon ion ion-home";
+    }
+
+    if (id == TabID.MORE) {
+      iconString = "icon ion ion-more";
+    }
+
+    if (id == TabID.PHOTO) {
+      iconString = "icon ion ion-camera";
+    }
+
+    return iconString;
+  }
+
   constructor(private _http: Http) {
     this._photo = {
       id: TabID.PHOTO,
       title: 'Photos',
       orderType: OrderType.ANY,
       order: 2,
-      defaultIcon: 'icon ion ion-camera',
+      defaultIcon: this.getDefaultIcon(TabID.PHOTO),
       image: {
           original: new Image(),
           originalBase64: '',
@@ -95,7 +125,7 @@ export class DeviceService {
 
     this._video = {
       id: TabID.VIDEO,
-      defaultIcon: 'icon ion ion-videocamera',
+      defaultIcon: this.getDefaultIcon(TabID.VIDEO),
       title: 'Videos',
       orderType: OrderType.ANY,
       order: -1,
@@ -130,7 +160,7 @@ export class DeviceService {
 
     this._music = {
       id: TabID.MUSIC,
-      defaultIcon: 'icon ion ion-music-note',
+      defaultIcon: this.getDefaultIcon(TabID.MUSIC),
       title: 'Music',
       orderType: OrderType.ANY,
       order: -1,
@@ -165,7 +195,7 @@ export class DeviceService {
 
     this._radio = {
       id: TabID.RADIO,
-      defaultIcon: 'icon ion ion-radio-waves',
+      defaultIcon: this.getDefaultIcon(TabID.RADIO),
       title: 'Radio',
       orderType: OrderType.ANY,
       order: -1,
@@ -203,7 +233,7 @@ export class DeviceService {
           title: 'Main',
           orderType: OrderType.FIRST,
           order: 0, // Since we specify FIRST, the order doesn't matter.
-          defaultIcon: 'icon ion ion-home',
+          defaultIcon: this.getDefaultIcon(TabID.BLOG),
           image: {
               original: new Image(),
               originalBase64: '',
@@ -238,7 +268,7 @@ export class DeviceService {
           title: 'More',
           orderType: OrderType.LAST,
           order: 4, // Since we specify LAST, the order doesn't matter.
-          defaultIcon: 'icon ion ion-more',
+          defaultIcon: this.getDefaultIcon(TabID.MORE),
           image: {
               original: new Image(),
               originalBase64: '',
@@ -292,24 +322,32 @@ export class DeviceService {
     this._model.tabs[TabID.PHOTO] = this._photo;
     this._model.tabs[TabID.MORE] = this._more;
  
-    this.init().takeUntil(this.ngUnsubscribe)
-            .subscribe(
-                model => {
-                //this._model = model;
-                this._init = true;
-                //this._modelInit.next(this._model);
-                console.log(model);
-                //this.ngUnsubscribe.next();
-                //this.ngUnsubscribe.complete();
-            }
-        );
+    this.fetchData();
   }
 
-  private init(): Observable<IDeviceModel> {
+    public setDataAfterFetch(model: IDeviceModel) {
+        this._model = model;
+        this._init = true;
+        
+        this._musicValid = this._model.tabs[TabID.MUSIC].order >= 0;
+        this._videoValid = this._model.tabs[TabID.VIDEO].order >= 0;
+        this._radioValid = this._model.tabs[TabID.RADIO].order >= 0;
+
+        console.log("inint");
+    }
+
+    public fetchData() : Observable<IDeviceModel> {
+        return this.init();
+    }
+
+    private init(): Observable<IDeviceModel> {
         return this._http.get(this._url)
             .map((response: Response) => <IDeviceModel> response.json())
             .do(data => {
+                data.activeTab = this._model.activeTab;
                 for(let tab of data.tabs) {
+                  tab.defaultIcon = this.getDefaultIcon(tab.id);
+
                   let image = new Image();
                   image.src = tab.headerImage.originalBase64;
 
@@ -339,6 +377,30 @@ export class DeviceService {
                       image: tab.image.image,
                       bounds: new Bounds(tab.image.bounds.left, tab.image.bounds.top, tab.image.bounds.right - tab.image.bounds.left, tab.image.bounds.bottom - tab.image.bounds.top)
                     };
+
+                    if (tab.id == TabID.VIDEO) {
+                      this._video = tab;
+                    }
+
+                    if (tab.id == TabID.MUSIC) {
+                      this._music = tab;
+                    }
+
+                    if (tab.id == TabID.RADIO) {
+                      this._radio = tab;
+                    }
+
+                    if (tab.id == TabID.BLOG) {
+                      this._main = tab;
+                    }
+
+                    if (tab.id == TabID.MORE) {
+                      this._more = tab;
+                    }
+
+                    if (tab.id == TabID.PHOTO) {
+                      this._photo = tab;
+                    }
                 }
             });
     }
@@ -357,11 +419,35 @@ export class DeviceService {
     }
   }
 
+  public setModel(model: IDeviceModel) {
+    this._model = model;
+
+    for(let tab of this._model.tabs) {
+      tab.image.originalBase64 = tab.image.original.src;
+      tab.headerImage.originalBase64 = tab.headerImage.original.src;
+      tab.extraHeaderImage.originalBase64 = tab.extraHeaderImage.original.src;
+    }
+
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const options = new RequestOptions({ headers: headers });
+    this._http.put(this._url, JSON.stringify(this._model), options)
+            .takeUntil(this.httpPutUnsubscribe)
+            .subscribe(
+                data => {
+                    this.httpPutUnsubscribe.next();
+                    this.httpPutUnsubscribe.complete();
+                },
+                error => console.log(JSON.stringify(error))
+    );
+  }
+
   public setAppName(name: string): void {
     this._model.appName = name;
   }
 
   public addTab(tab: IDeviceTab): void {
+    
     if (tab.id == TabID.VIDEO) {
       this._video = tab;
       this._videoValid = true;
@@ -406,7 +492,7 @@ export class DeviceService {
     }
 
     // If we are removing a tab (not Photos), then we can restore the photo tab
-    if ((this._videoValid && this._musicValid && this._radioValid) == false) {
+    if ((this._videoValid && this._musicValid && this._radioValid) == false && this._photo.order < 0) {
         this.addTab(this._photo);
     }
     else {
@@ -453,32 +539,14 @@ export class DeviceService {
 
 
   public setHeaderImage(id: TabID, image: BvImage) {
-    const index: number = this._model.tabs.findIndex(
-      tab => {
-        return (id + '') === (tab.id + '');
-      }
-    );
-
-    if (index === -1) { return; }
-
-    this._model.tabs[index].headerImage = image;
-    this._model.tabs[index].showHeader = true;
-
-    this._model.activeTab = this._model.tabs[index];
+    this._model.tabs[id].headerImage = image;
+    this._model.tabs[id].showHeader = true;
+    this._model.activeTab = this._model.tabs[id];
   }
 
   public setExtraHeaderImage(id: TabID, image: BvImage) {
-    const index: number = this._model.tabs.findIndex(
-      tab => {
-        return (id + '') === (tab.id + '');
-      }
-    );
-
-    if (index === -1) { return; }
-
-    this._model.tabs[index].extraHeaderImage = image;
-
-    this._model.activeTab = this._model.tabs[index];
+    this._model.tabs[id].extraHeaderImage = image;
+    this._model.activeTab = this._model.tabs[id];
   }
 
 

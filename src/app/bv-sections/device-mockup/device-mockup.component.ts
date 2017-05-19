@@ -28,7 +28,7 @@ export class DeviceMockupComponent implements OnInit {
     constructor(
       private _deviceService: DeviceService,
       private _appInfoService: AppInfoService) {
-
+          console.log("inint");
       }
 
     ngOnInit() {

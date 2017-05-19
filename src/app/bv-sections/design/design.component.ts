@@ -95,6 +95,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       if (location !== this.currentID) {
         this.currentID = location;
       }
+
+      
     }
 
   onChangeColor(color: Event) {
@@ -165,9 +167,29 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.onDrop(value.slice(1));
     });
 
+    this.deviceModel = this._deviceService.getDefaultModel();
+
     this._deviceService.getModel().subscribe(
-      model => this.deviceModel = model
-  
+      model => {
+        this.deviceModel = model;
+
+        if (this.imgCropperIcon !== null && this.imgCropper != null) {
+
+          this.imgCropperIcon.forEach(
+            designImgCropper => {
+              designImgCropper.model = this.deviceModel.tabs[designImgCropper.model.id];
+              console.log(designImgCropper.model);
+              designImgCropper.cropper.setImage(designImgCropper.model.image.original, designImgCropper.model.image.bounds);
+            }
+          );
+
+          this.imgCropper.forEach(
+            designImgCropper => {
+              designImgCropper.cropper.setImage(designImgCropper.model.headerImage.original, designImgCropper.model.headerImage.bounds);
+            }
+          );
+        }
+      }
     );
 
     this._pageValidation.savePage(BVPages.DESIGN);
@@ -179,6 +201,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     this._dragulaService.destroy('drag-bag');
+    this._deviceService.setModel(this.deviceModel);
   }
 
 
@@ -203,6 +226,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    console.log("fd");
     this.imgCropperIcon.forEach(
       designImgCropper => {
         designImgCropper.cropper.setImage(designImgCropper.model.image.original, designImgCropper.model.image.bounds);
