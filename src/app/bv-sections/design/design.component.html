@@ -174,7 +174,9 @@
                     >
                     <h3 style="padding-left: 15px">Upload Header Image (Required)</h3>
                     <p style="padding-left: 15px">Upload {{tab.headerDimenWidth}} x {{tab.headerDimenHeight}} Image</p>
-                    <bv-design-image-cropper class="col s2" #designImgCropper [model]="tab" [image]="tab.headerImage" [settings]="headerCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
+                    <bv-design-image-cropper *ngIf="tab.id === mainEnum || tab.id == moreEnum" class="col s2" #designImgCropper [model]="tab" [image]="tab.headerImage" [settings]="headerCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
+                    <bv-design-image-cropper *ngIf="tab.id === musicEnum || tab.id === videoEnum || tab.id === photoEnum" class="col s2" #designImgCropper1 [model]="tab" [image]="tab.headerImage" [settings]="headerVIDMUSPHOTCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
+                    <bv-design-image-cropper *ngIf="tab.id === radioEnum" class="col s2" #designImgCropper2 [model]="tab" [image]="tab.headerImage" [settings]="headerRADIOCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
                   </div>
                 </div>
 
@@ -187,7 +189,7 @@
                        [popoverCloseOnMouseOutside]="false"
                        [popoverAnimation]="true"
                   >
-                    <h3 style="padding-left: 15px">Upload Header Image (Required)</h3>
+                    <h3 style="padding-left: 15px">Upload Mini Header Image (Required)</h3>
                     <p style="padding-left: 15px">Upload {{tab.extraHeaderDimenWidth}} x {{tab.extraHeaderDimenHeight}} Image</p>
                     <bv-design-image-cropper class="col s2" #designImgCropper [model]="tab" [image]="tab.extraHeaderImage" [settings]="extraHeaderCropperSettings" (onCrop)="onCropHeader($event, tab)"></bv-design-image-cropper>
                   </div>

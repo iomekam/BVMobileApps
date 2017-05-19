@@ -33,6 +33,7 @@ export interface IMediaInfo {
     username: string;
     color: string;
     length: number;
+    iconLocation:string
 }
 
 // List of all the different media sites with icons, names, url, color theme, etc
@@ -47,6 +48,7 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#3b5998',
                 length: 200,
+                iconLocation: '',
             };
         }
         else if (mediaType === MediaType.TWITTER) {
@@ -58,6 +60,7 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#4099FF',
                 length: 20,
+                iconLocation: '',
             };
         }
         else if (mediaType === MediaType.INSTAGRAM) {
@@ -69,6 +72,7 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#458eff',
                 length: 50,
+                iconLocation: '',
             };
         }
         else if (mediaType === MediaType.PERISCOPE) {
@@ -80,6 +84,7 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#3aa4c6',
                 length: 20,
+                iconLocation: '',
             };
         }
         else if (mediaType === MediaType.AUDIOMACK) {
@@ -91,6 +96,7 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#ffa200',
                 length: 75,
+                iconLocation: '../../../assets/img/audiomack.png',
             };
         }
         else if (mediaType === MediaType.SOUNDCLOUD) {
@@ -102,6 +108,7 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#ff7700',
                 length: 50,
+                iconLocation: '',
             };
         }
         else if (mediaType === MediaType.MIXCLOUD) {
@@ -113,28 +120,31 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#589fc3',
                 length: 30,
+                iconLocation: '',
             };
         }
         else if (mediaType === MediaType.PODOMATIC) {
             return {
                 mediaType: MediaType.PODOMATIC,
                 mediaName: 'PodOmatic',
-                icon: 'extension',
+                icon: '',
                 pre_url: 'www.podomatic.com/',
                 username: '',
                 color: '#6e5494',
                 length: 50,
+                iconLocation: '../../../assets/img/podomatic.png',
             };
         }
         else if (mediaType === MediaType.BLOGTALKRADIO) {
             return {
                 mediaType: MediaType.BLOGTALKRADIO,
                 mediaName: 'BlogTalkRadio',
-                icon: 'extension',
+                icon: '',
                 pre_url: 'www.blogtalkradio.com.com/',
                 username: '',
                 color: '#363739',
                 length: 30,
+                iconLocation: '../../../assets/img/blogTalk.png',
             };
         }
         else if (mediaType === MediaType.YOUTUBE) {
@@ -146,6 +156,7 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#cd201f',
                 length: 60,
+                iconLocation: '',
             };
         }
         else if (mediaType === MediaType.VIMEO) {
@@ -157,6 +168,7 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#1ab7ea',
                 length: 50,
+                iconLocation: '',
             };
         }
         else if (mediaType === MediaType.FLICKR) {
@@ -168,6 +180,7 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#0063dc',
                 length: 30,
+                iconLocation: '',
             };
         }
         else if (mediaType === MediaType.LISTENLIVE) {
@@ -179,6 +192,7 @@ export class MediaTypeFactory {
                 username: '',
                 color: '#6e5494',
                 length: 200,
+                iconLocation: '',
             };
         }
     }

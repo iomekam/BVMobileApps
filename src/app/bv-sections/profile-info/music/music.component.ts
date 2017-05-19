@@ -71,8 +71,8 @@ export class MusicComponent implements OnInit, OnDestroy {
                         bounds: new Bounds()
                     },
                     showHeader: false,
-                  headerDimenHeight: 612,
-                  headerDimenWidth: 302,
+                  headerDimenHeight: 302,
+                  headerDimenWidth: 612,
                   hasExtraHeader: false,
                   extraHeaderImage: {
                     original: new Image(),

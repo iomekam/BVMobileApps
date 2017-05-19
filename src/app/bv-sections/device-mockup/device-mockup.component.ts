@@ -31,6 +31,7 @@ export class DeviceMockupComponent implements OnInit {
           console.log("inint");
       }
 
+
     ngOnInit() {
 
       this.appInfo = {

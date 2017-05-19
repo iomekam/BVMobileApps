@@ -123,4 +123,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
         this.appInfo.image.bounds = bounds;
         this.validate();
     }
+
+
+
 }
