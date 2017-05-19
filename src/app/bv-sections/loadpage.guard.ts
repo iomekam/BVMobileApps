@@ -39,7 +39,6 @@ export class LoadpageGuard implements CanActivate {
         this._deviceService.fetchData()
         ).map(
               data => {
-                console.log(data);
                 this._deviceService.setDataAfterFetch(<IDeviceModel>data[1]);
                 getWindow().loading_screen.finish();
 
