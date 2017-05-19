@@ -8,7 +8,7 @@
 
   <div class="screen" *ngIf="page === 0" style="background: white"> <!-- appInfoPage -->
 
-    <div class="bar bar-header bar-positive" style="background:#000000">
+    <div class="bar bar-header bar-positive" [attr.style]="'height:100px !important'">
       <button  class="button button-icon icon ion-arrow-left-c"></button>
       <h1 class="title" style="text-align: left; padding-left:40px">Google Play Store</h1>
       <button  class="button button-icon icon ion-ios-search-strong" style="float: right"></button>
@@ -70,7 +70,7 @@
       <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
     </div>
 
-    <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.showHeader" class="bar bar-subheader bar-positive" style="background-size: 100% 100%" [ngStyle]="{'background-image': 'url(' + deviceModel.activeTab.headerImage.image + ')'}" [style.border-color]="backgroundColor">
+    <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.showHeader" [style.height] = "'deviceModel.activeTab.headerDimenHeight' + 'px !important'" class="bar bar-subheader bar-positive" style="background-size: 100% 100%" [ngStyle]="{'background-image': 'url(' + deviceModel.activeTab.headerImage.image + ')'}" [style.border-color]="backgroundColor">
     </div>
 
     <div class="wrapper">

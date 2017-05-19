@@ -30,6 +30,11 @@ export class DeviceMockupComponent implements OnInit {
 
       }
 
+  test(): any
+  {
+    return {height: '100px',
+      background:'#000000'}
+  }
 
     ngOnInit() {
       this._deviceService.getModel().subscribe(
