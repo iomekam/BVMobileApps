@@ -333,7 +333,6 @@ export class DeviceService {
         this._videoValid = this._model.tabs[TabID.VIDEO].order >= 0;
         this._radioValid = this._model.tabs[TabID.RADIO].order >= 0;
 
-        console.log("inint");
     }
 
     public fetchData() : Observable<IDeviceModel> {
