@@ -229,6 +229,12 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this._pageValidation.savePage(BVPages.DESIGN);
 
+    this._deviceService.activeTabChanged$.subscribe(
+      id => {
+        this.toggleCollapse(id);
+      }
+    )
+
     // this._validationService.isValid$.subscribe(
     //   isValid => this.isSubmitEnabled = isValid
     // );
@@ -261,7 +267,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    console.log("fd");
     this.imgCropperIcon.forEach(
       designImgCropper => {
         designImgCropper.cropper.setImage(designImgCropper.model.image.original, designImgCropper.model.image.bounds);

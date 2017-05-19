@@ -58,4 +58,9 @@ export class DeviceMockupComponent implements OnInit {
       this.deviceModel.activeTab = this.deviceModel.tabs[0];
     }
 
+    tabClicked(tab: IDeviceTab) {
+      this.deviceModel.activeTab = tab;
+      this._deviceService.setActiveTabChanged(tab.id);
+    }
+
 }

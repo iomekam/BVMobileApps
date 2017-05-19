@@ -57,6 +57,13 @@ export class DeviceService {
   private _modelInit = new Subject<IDeviceModel>();
   private _init = false;
 
+  private _activeTabChangedSource: Subject<TabID> = new Subject<TabID>();
+  activeTabChanged$ = this._activeTabChangedSource.asObservable();
+
+  public setActiveTabChanged(id: TabID) {
+    this._activeTabChangedSource.next(id);
+  }
+
   private getDefaultIcon(id: TabID): string {
     let iconString = "";
 
