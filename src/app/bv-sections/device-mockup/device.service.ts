@@ -361,8 +361,6 @@ export class DeviceService {
     this._model.tabs[TabID.MUSIC] = this._music;
     this._model.tabs[TabID.PHOTO] = this._photo;
     this._model.tabs[TabID.MORE] = this._more;
- 
-    this.fetchData();
   }
 
     public setDataAfterFetch(model: IDeviceModel) {

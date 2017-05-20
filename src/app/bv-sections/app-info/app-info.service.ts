@@ -12,7 +12,6 @@ export class AppInfoService {
     private _appInfo: IAppInfo;
     private _url = 'http://localhost:7345/api/appInfo/1';
 
-    private ngUnsubscribe = new Subject<void>();
     private httpPutUnsubscribe = new Subject<void>();
 
     private _appInfoInit = new Subject<IAppInfo>();
@@ -33,19 +32,19 @@ export class AppInfoService {
                 bounds: new Bounds()
             }
         };
+    }
 
-        this.init().takeUntil(this.ngUnsubscribe)
-            .subscribe(
-                appInfo => {
-                this._appInfo = appInfo;
-                this._init = true;
-                const appInfoPageValid = this._appInfo.appName !== '' && this._appInfo.image.image !== '' && this._appInfo.keywords.length > 0 && this._appInfo.longDescription !== '';
-                this._validationService.setAppInfoValid(appInfoPageValid);
-                this._appInfoInit.next(this._appInfo);
-                this.ngUnsubscribe.next();
-                this.ngUnsubscribe.complete();
-            }
-        );
+    public setDataAfterFetch(model: IAppInfo) {
+        this._appInfo = model;
+        this._init = true;
+   
+        const appInfoPageValid = this._appInfo.appName !== '' && this._appInfo.image.image !== '' && this._appInfo.keywords.length > 0 && this._appInfo.longDescription !== '';
+        this._validationService.setAppInfoValid(appInfoPageValid);
+        this._appInfoInit.next(this._appInfo);
+     }
+
+    public fetchData() : Observable<IAppInfo> {
+        return this.init();
     }
 
     getUrl(): string {
@@ -84,14 +83,8 @@ export class AppInfoService {
             });
     }
 
-    getAppInfo(): Observable<IAppInfo> {
-        if (!this._init) {
-            this._appInfoInit.next(this._appInfo);
-            return this._appInfoInit.asObservable();
-        }
-        else {
-            return Observable.of(this._appInfo);
-        }
+    getAppInfo() {
+        return this._appInfo;
     }
 
     isAppNameUnique(): boolean {

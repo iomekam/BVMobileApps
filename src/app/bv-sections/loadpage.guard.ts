@@ -8,6 +8,7 @@ import { IAppInfo } from './app-info/iapp-info'
 import { LastCompleted } from './shared/page-loading.service';
 import { DeviceService } from './device-mockup/device.service';
 import { IDeviceModel } from './device-mockup/i-device-model';
+import { AppInfoService } from './app-info/app-info.service';
 
 function getWindow (): any {
     return window;
@@ -20,6 +21,7 @@ export class LoadpageGuard implements CanActivate {
     private _router: Router,
     private _headerService: HeaderService,
     private _deviceService: DeviceService,
+    private _appInfoService: AppInfoService,
     private _http: Http) { }
 
   canActivate(
@@ -36,10 +38,12 @@ export class LoadpageGuard implements CanActivate {
               this._headerService.goto(info.lastPage);
               
             }),
-        this._deviceService.fetchData()
+        this._deviceService.fetchData(),
+        this._appInfoService.fetchData(),
         ).map(
               data => {
                 this._deviceService.setDataAfterFetch(<IDeviceModel>data[1]);
+                this._appInfoService.setDataAfterFetch(<IAppInfo>data[2]);
                 getWindow().loading_screen.finish();
 
                 return true;

@@ -84,29 +84,12 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnInit() {
-        this.appInfo = {
-            appName: '',
-            shortDescription: '',
-            longDescription: '',
-            keywords: [],
-            image: {
-                original: new Image(),
-                originalBase64: '',
-                image: '',
-                bounds: new Bounds()
-            }
-        };
-
+        this.appInfo = this._appInfoService.getAppInfo();
         this._pageValidation.savePage(BVPages.APP_INFO);
     }
 
     ngAfterViewInit(): void {
-        this._appInfoService.getAppInfo().subscribe(
-            appInfo => {
-                this.appInfo = appInfo;
-                this.cropper.setImage(this.appInfo.image.original, this.appInfo.image.bounds);
-            }
-        );
+        this.cropper.setImage(this.appInfo.image.original, this.appInfo.image.bounds);
     }
 
     ngOnDestroy(): void {

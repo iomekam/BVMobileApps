@@ -51,9 +51,7 @@ export class DeviceMockupComponent implements OnInit {
         model => this.deviceModel = model
       );
 
-      this._appInfoService.getAppInfo().subscribe(
-        appInfo => this.appInfo = appInfo
-      );
+      this.appInfo = this._appInfoService.getAppInfo();
     }
 
     tabClicked(tab: IDeviceTab) {
