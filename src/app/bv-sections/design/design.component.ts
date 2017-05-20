@@ -202,14 +202,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.onDrop(value.slice(1));
     });
 
-    this.deviceModel = this._deviceService.getDefaultModel();
-
-    this._deviceService.getModel().subscribe(
-      model => {
-        this.deviceModel = model;
-      }
-    );
-
+    this.deviceModel = this._deviceService.getModel();
     this._pageValidation.savePage(BVPages.DESIGN);
 
     this._deviceService.activeTabChanged$.subscribe(

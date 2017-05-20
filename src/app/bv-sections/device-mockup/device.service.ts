@@ -51,11 +51,7 @@ export class DeviceService {
 
   private _url = 'http://localhost:7345/api/design/1'; 
 
-  private ngUnsubscribe = new Subject<void>();
   private httpPutUnsubscribe = new Subject<void>();
-
-  private _modelInit = new Subject<IDeviceModel>();
-  private _init = false;
 
   private _activeTabChangedSource: Subject<TabID> = new Subject<TabID>();
   activeTabChanged$ = this._activeTabChangedSource.asObservable();
@@ -365,7 +361,6 @@ export class DeviceService {
 
     public setDataAfterFetch(model: IDeviceModel) {
         this._model = model;
-        this._init = true;
         
         this._musicValid = this._model.tabs[TabID.MUSIC].order >= 0;
         this._videoValid = this._model.tabs[TabID.VIDEO].order >= 0;
@@ -443,18 +438,8 @@ export class DeviceService {
             });
     }
 
-  getDefaultModel(): IDeviceModel {
+  public getModel() {
     return this._model;
-  }
-
-  public getModel(): Observable<IDeviceModel> {
-    if (!this._init) {
-        this._modelInit.next(this._model);
-        return this._modelInit.asObservable();
-    }
-    else {
-        return Observable.of(this._model);
-    }
   }
 
   public setModel(model: IDeviceModel) {
