@@ -32,19 +32,6 @@ export class DeviceMockupComponent implements OnInit {
 
     ngOnInit() {
 
-      this.appInfo = {
-            appName: '',
-            shortDescription: '',
-            longDescription: '',
-            keywords: [],
-            image: {
-                original: new Image(),
-                originalBase64: '',
-                image: '',
-                bounds: new Bounds()
-            }
-        };
-
       this.deviceModel = this._deviceService.getDefaultModel();
 
       this._deviceService.getModel().subscribe(

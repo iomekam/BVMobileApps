@@ -31,11 +31,7 @@ export class ProfileInfoComponent implements OnInit {
         isValid => this.isValid = isValid
       );
 
-      this._profileService.getProfile().subscribe(
-            profile => {
-                this._profile = profile;
-            }
-        );
+      this._profile = this._profileService.getProfile();
     }
 
     @HostListener('window:beforeunload')

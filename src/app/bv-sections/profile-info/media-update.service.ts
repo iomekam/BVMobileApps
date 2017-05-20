@@ -38,7 +38,6 @@ export class MediaUpdateService {
 
     private _url = 'http://localhost:7345/api/profileInfo/1';
 
-    private ngUnsubscribe = new Subject<void>();
     private httpPutUnsubscribe = new Subject<void>();
 
     private _profileInit = new Subject<IProfileModel>();
@@ -60,25 +59,23 @@ export class MediaUpdateService {
             radioInfo: this.createMediaInfoList(this.radioMediaTypes),
             socialInfo: this.createMediaInfoList(this.socialMediaTypes)
         };
+    }
 
-        this.init().takeUntil(this.ngUnsubscribe)
-            .subscribe(
-                profile => {
-                    this._profile = profile;
+    public setDataAfterFetch(profile: IProfileModel) {
+        this._profile = profile;
 
-                    if (profile.website.includes("www.bvmobileapps.com")) {
-                        this._profile.noWebsite = true;
-                    }
+        if (profile.website.includes("www.bvmobileapps.com")) {
+            this._profile.noWebsite = true;
+        }
 
-                    this._init = true;
-                    this._profileInit.next(this._profile);
-                    _validationService.setProfileInfoPageValid(this._profile);
-                    this.ngUnsubscribe.next();
-                    this.ngUnsubscribe.complete();
-            }
-        );
+        this._init = true;
+        this._profileInit.next(this._profile);
+        this._validationService.setProfileInfoPageValid(this._profile);
 
-        
+     }
+
+    public fetchData() : Observable<IProfileModel> {
+        return this.init();
     }
 
     private init(): Observable<IProfileModel> {
@@ -129,14 +126,8 @@ export class MediaUpdateService {
         return newMediaInfoList;
     }
 
-    getProfile(): Observable<IProfileModel> {
-        if (!this._init) {
-            this._profileInit.next(this._profile);
-            return this._profileInit.asObservable();
-        }
-        else {
-            return Observable.of(this._profile);
-        }
+    getProfile() {
+        return this._profile;
     }
 
     setProfile(profile: IProfileModel): void {

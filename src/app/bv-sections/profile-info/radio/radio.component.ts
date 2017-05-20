@@ -20,12 +20,8 @@ export class RadioComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this._profileService.getProfile().subscribe(
-            profile => {
-                this.profile = profile;
-                this.displayArray = this.profile.radioInfo;
-            }
-        );
+        this.profile = this._profileService.getProfile();
+        this.displayArray = this.profile.radioInfo;
     }
 
     ngOnDestroy(): void {

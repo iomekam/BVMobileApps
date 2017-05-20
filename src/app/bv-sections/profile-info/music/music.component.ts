@@ -20,12 +20,8 @@ export class MusicComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this._profileService.getProfile().subscribe(
-            profile => {
-                this.profile = profile;
-                this.displayArray = this.profile.musicInfo;
-            }
-        );
+        this.profile = this._profileService.getProfile();
+        this.displayArray = this.profile.musicInfo;
     }
 
     ngOnDestroy(): void {
