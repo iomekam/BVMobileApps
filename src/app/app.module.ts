@@ -20,6 +20,7 @@ import { DeviceService } from './bv-sections/device-mockup/device.service';
 import { ValidationService } from './bv-sections/shared/validation.service';
 import { HeaderService } from './header/header.service';
 import { PageLoadingService } from './bv-sections/shared/page-loading.service';
+import { SharedService } from './bv-sections/shared/shared.service';
 
 import { LoadpageGuard } from './bv-sections/loadpage.guard';
 
@@ -48,6 +49,7 @@ import { LoadpageGuard } from './bv-sections/loadpage.guard';
     ValidationService,
     HeaderService,
     PageLoadingService,
+    SharedService,
     LoadpageGuard
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],

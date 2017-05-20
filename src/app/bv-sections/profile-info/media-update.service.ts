@@ -5,6 +5,7 @@ import { Bounds } from '../../ng2-img-cropper';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { ValidationService } from '../shared/validation.service'
+import { SharedService } from '../shared/shared.service';
 
 @Injectable()
 export class MediaUpdateService {
@@ -36,7 +37,7 @@ export class MediaUpdateService {
         MediaType.LISTENLIVE
     ];
 
-    private _url = 'http://localhost:7345/api/profileInfo/1';
+    private _url = '/api/profileInfo/1';
 
     private httpPutUnsubscribe = new Subject<void>();
 
@@ -46,7 +47,8 @@ export class MediaUpdateService {
 
     constructor(
         private _http: Http,
-        private _validationService: ValidationService) {
+        private _validationService: ValidationService,
+        private _sharedService: SharedService) {
         this._profile = {
             website: '',
             noWebsite: false,
@@ -56,6 +58,8 @@ export class MediaUpdateService {
             radioInfo: this.createMediaInfoList(this.radioMediaTypes),
             socialInfo: this.createMediaInfoList(this.socialMediaTypes)
         };
+
+        this._url = this._sharedService.url + this._url;
     }
 
     public setDataAfterFetch(profile: IProfileModel) {

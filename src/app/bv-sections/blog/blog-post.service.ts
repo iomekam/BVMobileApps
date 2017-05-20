@@ -5,6 +5,7 @@ import { Bounds } from '../../ng2-img-cropper';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { ValidationService } from '../shared/validation.service'
+import { SharedService } from '../shared/shared.service';
 
 @Injectable()
 export class BlogPostService {
@@ -16,27 +17,25 @@ export class BlogPostService {
     private _isInCreationPage = false;
     private _currentUpdateID = 0;
 
-    private _url = 'http://localhost:7345/api/blogs/1';
+    private _url = '/api/blogs/1';
 
     private httpPutUnsubscribe = new Subject<void>();
 
     constructor(
         private _http: Http,
-        private _validationService: ValidationService) {
+        private _validationService: ValidationService,
+        private _sharedService: SharedService) {
         this._blogPost = [];
+        this._url = this._sharedService.url + this._url;
     }
 
-    public setDataAfterFetch(blogPost: IBlogPost) {
+    public setDataAfterFetch(blogPost: IBlogPost[]) {
         this._blogPost = blogPost;
         this._validationService.setBlogValidValid(this._blogPost);
      }
 
-    public fetchData() : Observable<IBlogPost> {
+    public fetchData() : Observable<IBlogPost[]> {
         return this.init();
-    }
-
-    getUrl(): string {
-      return this._url;
     }
 
     private init(): Observable<IBlogPost[]> {

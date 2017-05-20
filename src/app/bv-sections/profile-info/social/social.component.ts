@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IProfileModel, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service';
 import { ValidationService } from '../../shared/validation.service';
+import { SharedService } from '../../shared/shared.service';
 
 @Component({
   templateUrl: './social.component.html',
@@ -16,7 +17,8 @@ export class SocialComponent implements OnInit, OnDestroy {
 
     constructor(
         private _profileService: MediaUpdateService,
-        private _validationService: ValidationService) {
+        private _validationService: ValidationService,
+        private _sharedService: SharedService) {
     }
 
     ngOnInit(): void {
@@ -36,7 +38,7 @@ export class SocialComponent implements OnInit, OnDestroy {
 
     onChecked(event: any): void {
         if (this.profile.noWebsite) {
-            this.profile.website = 'www.bvmobileapps.com/username';
+            this.profile.website = 'www.bvmobileapps.com/' + this._sharedService.username;
         }
         else {
             this.profile.website = '';

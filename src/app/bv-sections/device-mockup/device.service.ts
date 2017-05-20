@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { BvImage } from '../shared/bv-image';
 import { Bounds } from '../../ng2-img-cropper';
 import { Pipe, PipeTransform } from '@angular/core';
+import { SharedService } from '../shared/shared.service';
 
 @Pipe({
     name: 'valid',
@@ -49,7 +50,7 @@ export class DeviceService {
   private _videoValid = false;
   private _radioValid = false;
 
-  private _url = 'http://localhost:7345/api/design/1'; 
+  private _url = '/api/design/1'; 
 
   private httpPutUnsubscribe = new Subject<void>();
 
@@ -123,7 +124,9 @@ export class DeviceService {
     }
   }
 
-  constructor(private _http: Http) {
+  constructor(
+    private _http: Http,
+    private _sharedService: SharedService) {
     this._photo = {
       id: TabID.PHOTO,
       title: 'Photos',
@@ -357,11 +360,13 @@ export class DeviceService {
     this._model.tabs[TabID.MUSIC] = this._music;
     this._model.tabs[TabID.PHOTO] = this._photo;
     this._model.tabs[TabID.MORE] = this._more;
+
+    this._url = this._sharedService.url + this._url;
   }
 
     public setDataAfterFetch(model: IDeviceModel) {
         this._model = model;
-        
+
         this._musicValid = this._model.tabs[TabID.MUSIC].order >= 0;
         this._videoValid = this._model.tabs[TabID.VIDEO].order >= 0;
         this._radioValid = this._model.tabs[TabID.RADIO].order >= 0;

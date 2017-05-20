@@ -5,18 +5,20 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { ValidationService } from '../shared/validation.service';
+import { SharedService } from '../shared/shared.service';
 
 @Injectable()
 export class AppInfoService {
 
     private _appInfo: IAppInfo;
-    private _url = 'http://localhost:7345/api/appInfo/1';
+    private _url = '/api/appInfo/1';
 
     private httpPutUnsubscribe = new Subject<void>();
 
     constructor(
         private _http: Http,
-        private _validationService: ValidationService) {
+        private _validationService: ValidationService,
+        private _sharedService: SharedService) {
         this._appInfo = {
             appName: '',
             shortDescription: '',
@@ -29,6 +31,8 @@ export class AppInfoService {
                 bounds: new Bounds()
             }
         };
+
+        this._url = this._sharedService.url + this._url;
     }
 
     public setDataAfterFetch(model: IAppInfo) {
