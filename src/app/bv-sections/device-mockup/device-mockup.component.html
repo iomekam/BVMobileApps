@@ -66,11 +66,11 @@
   <div class="screen" *ngIf="page === 1"> <!-- designPage -->
 
     <div class="bar bar-header bar-positive" [style.background]="deviceModel.colors['primary']" [style.border-color]="backgroundColor">
-      <h1 class="title" style="float: left; text-align: left">{{ deviceModel.appName }}</h1>
+      <h1 class="title" style="float: left; text-align: left">{{ appInfo.appName }}</h1>
       <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
     </div>
 
-    <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.showHeader" [style.height] = "'deviceModel.activeTab.headerDimenHeight' + 'px !important'" class="bar bar-subheader bar-positive" style="background-size: 100% 100%" [ngStyle]="{'background-image': 'url(' + deviceModel.activeTab.headerImage.image + ')'}" [style.border-color]="backgroundColor">
+    <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.showHeader" class="bar bar-subheader bar-positive" style="background-size: 100% 100%;height:80px;width:auto" [ngStyle]="{'background-image': 'url(' + deviceModel.activeTab.headerImage.image + ')'}" [style.border-color]="backgroundColor">
     </div>
 
     <div class="wrapper">

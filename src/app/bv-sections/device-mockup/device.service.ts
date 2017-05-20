@@ -94,6 +94,35 @@ export class DeviceService {
     return iconString;
   }
 
+  private getHeaderDimmensions(tab: IDeviceTab) {
+    if (tab.id === TabID.BLOG) {
+      tab.headerDimenHeight = 80;
+      tab.headerDimenWidth = 570;
+      tab.extraHeaderDimenHeight = 0;
+      tab.extraHeaderDimenWidth = 0;
+    }
+    else if (tab.id === TabID.MUSIC) {
+      tab.headerDimenHeight = 302;
+      tab.headerDimenWidth = 612;
+    }
+    else if (tab.id === TabID.RADIO) {
+      tab.headerDimenHeight = 600;
+      tab.headerDimenWidth = 600;
+    }
+    else if (tab.id === TabID.PHOTO) {
+      tab.headerDimenHeight = 302;
+      tab.headerDimenWidth = 612;
+    }
+    else if (tab.id === TabID.MORE) {
+      tab.headerDimenHeight = 302;
+      tab.headerDimenWidth = 612;
+    }
+    else if (tab.id === TabID.VIDEO) {
+      tab.headerDimenHeight = 302;
+      tab.headerDimenWidth = 612;
+    }
+  }
+
   constructor(private _http: Http) {
     this._photo = {
       id: TabID.PHOTO,
@@ -256,7 +285,7 @@ export class DeviceService {
               bounds: new Bounds()
           },
           showHeader: false,
-          headerDimenHeight: 302,
+          headerDimenHeight: 1000,
           headerDimenWidth: 612,
           hasExtraHeader: true,
           extraHeaderImage: {
@@ -353,6 +382,7 @@ export class DeviceService {
                 data.activeTab = this._model.activeTab;
                 for(let tab of data.tabs) {
                   tab.defaultIcon = this.getDefaultIcon(tab.id);
+                  this.getHeaderDimmensions(tab);
 
                   let image = new Image();
                   image.src = tab.headerImage.originalBase64;

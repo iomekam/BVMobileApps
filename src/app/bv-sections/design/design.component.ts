@@ -48,12 +48,13 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public isSubmitEnabled: boolean = false;
 
-    public mainEnum : TabID = TabID.BLOG;
-    public videoEnum : TabID = TabID.VIDEO;
-    public musicEnum : TabID = TabID.MUSIC;
-    public photoEnum : TabID = TabID.PHOTO;
-    public radioEnum : TabID = TabID.RADIO;
-    public moreEnum : TabID = TabID.MORE;
+    public mainEnum = TabID.BLOG;
+    public videoEnum = TabID.VIDEO;
+    public musicEnum = TabID.MUSIC;
+    public photoEnum = TabID.PHOTO;
+    public radioEnum = TabID.RADIO;
+    public moreEnum = TabID.MORE;
+    
     constructor(
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,

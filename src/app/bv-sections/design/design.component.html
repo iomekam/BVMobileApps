@@ -16,9 +16,9 @@
               >
             <div class="row">
               <div class="col card" id="card_color" (click)= "toggleCollapse(colorTabID);">Color</div>
-              <div class="col card" id="card_main" (click)= "toggleCollapse(deviceModel.tabs[0].id); deviceModel.activeTab = deviceModel.tabs[0]">{{ deviceModel.tabs[0].title }}</div>
-              <div class="col card" id="card_more" (click)= "toggleCollapse(deviceModel.tabs[deviceModel.tabs.length-1].id); deviceModel.activeTab = deviceModel.tabs[deviceModel.tabs.length-1]">
-                {{ deviceModel.tabs[deviceModel.tabs.length-1].title }}</div>
+              <div class="col card" id="card_main" (click)= "toggleCollapse(deviceModel.tabs[mainEnum].id); deviceModel.activeTab = deviceModel.tabs[mainEnum]">{{ deviceModel.tabs[mainEnum].title }}</div>
+              <div class="col card" id="card_more" (click)= "toggleCollapse(deviceModel.tabs[moreEnum].id); deviceModel.activeTab = deviceModel.tabs[moreEnum]">
+                {{ deviceModel.tabs[moreEnum].title }}</div>
             </div>
           </div>
         </div>
