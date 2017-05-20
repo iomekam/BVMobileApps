@@ -29,14 +29,14 @@ export class ValidationService {
     this._isAppInfoPageValidSource.next(appInfoPageValid);
   }
 
-  public setProfileInfoPageValid(profileInfo: IProfileModel) {
-    this._profileInfoPageValid = profileInfo.website !== '';
-    this._isProfileInfoPageValidSource.next(this._profileInfoPageValid);
+  public setProfileInfoPageValid(profileInfoPageValid: boolean) {
+    this._profileInfoPageValid = profileInfoPageValid;
+    this._isProfileInfoPageValidSource.next(profileInfoPageValid);
   }
 
-  public setBlogValidValid(blogPosts: IBlogPost[]) {
-    this._blogValidPage = blogPosts.length > 0;
-    this._blogValidPageSource.next(this._blogValidPage);
+  public setBlogValid(blogValidPage: boolean) {
+    this._blogValidPage = blogValidPage;
+    this._blogValidPageSource.next(blogValidPage);
   }
 
   public getProfileInfoPageValid(): boolean {

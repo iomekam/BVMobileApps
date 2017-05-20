@@ -69,11 +69,15 @@ export class MediaUpdateService {
             this._profile.noWebsite = true;
         }
 
-        this._validationService.setProfileInfoPageValid(this._profile);
+        this._validationService.setProfileInfoPageValid(this.isValid());
      }
 
     public fetchData() : Observable<IProfileModel> {
         return this.init();
+    }
+
+    public isValid(): boolean {
+        return this._profile.website !== '';
     }
 
     private init(): Observable<IProfileModel> {

@@ -5,6 +5,7 @@ import { IBlogPost } from '../iblog-post';
 import { BlogPostService } from '../blog-post.service';
 import { Subscription } from 'rxjs/Subscription';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidationService } from '../../shared/validation.service';
 
 @Component({
   selector: 'bv-blog-create',
@@ -40,7 +41,8 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
         form: FormBuilder,
         private _router: Router,
         private _route: ActivatedRoute,
-        private _blogPostService: BlogPostService) {
+        private _blogPostService: BlogPostService,
+        private _validationService: ValidationService) {
 
         this.form = form.group({
             headline: ['', Validators.compose([Validators.required])],
@@ -71,6 +73,8 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
             removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar',
             extraPlugins: 'divarea'
         };
+
+        this._validationService.setBlogValid(false);
     }
 
     ngOnInit(): void {

@@ -38,6 +38,9 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     @ViewChildren('designImgCropper')
     private imgCropper: QueryList<DesignImageCropperComponent>;
 
+    @ViewChildren('designImgCropperExtra')
+    private imgCropperExtra: QueryList<DesignImageCropperComponent>;
+
     private cropperSettings: CropperSettings;
 
     private headerCropperSettings: CropperSettings;
@@ -45,8 +48,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     private headerRADIOCropperSettings: CropperSettings;
 
     private extraHeaderCropperSettings: CropperSettings;
-
-    public isSubmitEnabled: boolean = false;
 
     public mainEnum = TabID.BLOG;
     public videoEnum = TabID.VIDEO;
@@ -211,9 +212,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     )
 
-    // this._validationService.isValid$.subscribe(
-    //   isValid => this.isSubmitEnabled = isValid
-    // );
+
   }
 
   ngOnDestroy() {
@@ -262,20 +261,29 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
         designImgCropper.cropper.setImage(designImgCropper.model.headerImage.original, designImgCropper.model.headerImage.bounds);
       }
     );
+
+    this.imgCropperExtra.forEach(
+      designImgCropper => {
+        designImgCropper.cropper.setImage(designImgCropper.model.extraHeaderImage.original, designImgCropper.model.extraHeaderImage.bounds);
+      }
+    );
   }
 
   onCrop(bounds: Bounds, tab: IDeviceTab): void {
     tab.image.bounds = bounds;
+    tab.image.originalBase64 = tab.image.original.src;
     this._deviceService.setImage(tab.id, tab.image);
   }
 
   onCropHeader(bounds: Bounds, tab: IDeviceTab): void {
     tab.headerImage.bounds = bounds;
+    tab.headerImage.originalBase64 = tab.headerImage.original.src;
     this._deviceService.setHeaderImage(tab.id, tab.headerImage);
   }
 
   onCropExtraHeader(bounds: Bounds, tab: IDeviceTab): void {
     tab.extraHeaderImage.bounds = bounds;
-    this._deviceService.setExtraHeaderImage(tab.id, tab.headerImage);
+    tab.extraHeaderImage.originalBase64 = tab.extraHeaderImage.original.src;
+    this._deviceService.setExtraHeaderImage(tab.id, tab.extraHeaderImage);
   }
 }

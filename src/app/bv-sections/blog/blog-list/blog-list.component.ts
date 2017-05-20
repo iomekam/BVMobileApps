@@ -36,7 +36,7 @@ export class BlogListComponent implements OnInit {
 
     deleteBlogPost(id: number): void {
         this._blogPostService.deleteBlogPost(id);
-        this._validationService.setBlogValidValid(this.blogPosts);
+        this._validationService.setBlogValid(this._blogPostService.isValid());
     }
 
     ngOnInit() {
@@ -60,6 +60,6 @@ export class BlogListComponent implements OnInit {
             return;
         }
 
-        this._validationService.setBlogValidValid(this.blogPosts);
+        this._validationService.setBlogValid(this._blogPostService.isValid());
     }
 }

@@ -33,7 +33,7 @@ export class SocialComponent implements OnInit, OnDestroy {
     }
 
     onInput(): void {
-        this._validationService.setProfileInfoPageValid(this.profile);
+        this._validationService.setProfileInfoPageValid(this._profileService.isValid());
     }
 
     onChecked(event: any): void {
@@ -44,6 +44,6 @@ export class SocialComponent implements OnInit, OnDestroy {
             this.profile.website = '';
         }
 
-        this._validationService.setProfileInfoPageValid(this.profile);
+        this._validationService.setProfileInfoPageValid(this._profileService.isValid());
     }
 }

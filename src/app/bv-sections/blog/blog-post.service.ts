@@ -30,12 +30,22 @@ export class BlogPostService {
     }
 
     public setDataAfterFetch(blogPost: IBlogPost[]) {
-        this._blogPost = blogPost;
-        this._validationService.setBlogValidValid(this._blogPost);
+        if(blogPost === null) {
+            this._blogPost = [];
+        }
+        else {
+            this._blogPost = blogPost;
+        }
+        
+        this._validationService.setBlogValid(this.isValid());
      }
 
     public fetchData() : Observable<IBlogPost[]> {
         return this.init();
+    }
+
+    public isValid(): boolean {
+        return this._blogPost.length > 0;
     }
 
     private init(): Observable<IBlogPost[]> {

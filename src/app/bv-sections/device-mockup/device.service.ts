@@ -377,10 +377,20 @@ export class DeviceService {
         return this.init();
     }
 
+    public isValid(): boolean {
+      return (this._main.headerImage.image !== '' || this._main.order < 0) &&
+        (this._main.extraHeaderImage.image !== '' || this._main.order < 0) &&
+        (this._video.headerImage.image !== '' || this._video.order < 0) &&
+        (this._radio.headerImage.image !== '' || this._radio.order < 0) &&
+        (this._music.headerImage.image !== '' || this._music.order < 0) &&
+        (this._photo.headerImage.image !== '' || this._photo.order < 0);
+    }
+
     private init(): Observable<IDeviceModel> {
         return this._http.get(this._url)
             .map((response: Response) => <IDeviceModel> response.json())
             .do(data => {
+              
                 data.activeTab = this._model.activeTab;
                 for(let tab of data.tabs) {
                   tab.defaultIcon = this.getDefaultIcon(tab.id);
@@ -449,12 +459,6 @@ export class DeviceService {
 
   public setModel(model: IDeviceModel) {
     this._model = model;
-    
-    for(let tab of this._model.tabs) {
-      tab.image.originalBase64 = tab.image.original.src;
-      tab.headerImage.originalBase64 = tab.headerImage.original.src;
-      tab.extraHeaderImage.originalBase64 = tab.extraHeaderImage.original.src;
-    }
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
