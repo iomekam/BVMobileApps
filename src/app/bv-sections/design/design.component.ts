@@ -54,6 +54,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     public photoEnum = TabID.PHOTO;
     public radioEnum = TabID.RADIO;
     public moreEnum = TabID.MORE;
+    public colorEnum = TabID.COLOR;
     
     constructor(
       private cpService: ColorPickerService,
@@ -128,8 +129,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       if (location !== this.currentID) {
         this.currentID = location;
       }
-
-      
     }
 
   onChangeColor(color: Event) {
@@ -208,23 +207,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     this._deviceService.getModel().subscribe(
       model => {
         this.deviceModel = model;
-
-        if (this.imgCropperIcon !== null && this.imgCropper != null) {
-
-          this.imgCropperIcon.forEach(
-            designImgCropper => {
-              designImgCropper.model = this.deviceModel.tabs[designImgCropper.model.id];
-              console.log(designImgCropper.model);
-              designImgCropper.cropper.setImage(designImgCropper.model.image.original, designImgCropper.model.image.bounds);
-            }
-          );
-
-          this.imgCropper.forEach(
-            designImgCropper => {
-              designImgCropper.cropper.setImage(designImgCropper.model.headerImage.original, designImgCropper.model.headerImage.bounds);
-            }
-          );
-        }
       }
     );
 

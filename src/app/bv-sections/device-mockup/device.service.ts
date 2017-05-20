@@ -577,12 +577,10 @@ export class DeviceService {
   public setHeaderImage(id: TabID, image: BvImage) {
     this._model.tabs[id].headerImage = image;
     this._model.tabs[id].showHeader = true;
-    this._model.activeTab = this._model.tabs[id];
   }
 
   public setExtraHeaderImage(id: TabID, image: BvImage) {
     this._model.tabs[id].extraHeaderImage = image;
-    this._model.activeTab = this._model.tabs[id];
   }
 
 

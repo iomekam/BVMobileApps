@@ -15,9 +15,9 @@
               [popoverAnimation]="true"
               >
             <div class="row">
-              <div class="col card" id="card_color" (click)= "toggleCollapse(colorTabID);">Color</div>
-              <div class="col card" id="card_main" (click)= "toggleCollapse(deviceModel.tabs[mainEnum].id); deviceModel.activeTab = deviceModel.tabs[mainEnum]">{{ deviceModel.tabs[mainEnum].title }}</div>
-              <div class="col card" id="card_more" (click)= "toggleCollapse(deviceModel.tabs[moreEnum].id); deviceModel.activeTab = deviceModel.tabs[moreEnum]">
+              <div class="col card" id="card_color" [ngStyle]="deviceModel.activeTab === null ? {'background-color':deviceModel.colors['secondary']} : {'background-color': white}" (click)= "toggleCollapse(colorTabID);deviceModel.activeTab = null">Color</div>
+              <div class="col card" id="card_main" [ngStyle]="deviceModel.activeTab !== null && deviceModel.activeTab.id === mainEnum ? {'background-color':deviceModel.colors['secondary']} : {'background-color': white}" (click)= "toggleCollapse(deviceModel.tabs[mainEnum].id); deviceModel.activeTab = deviceModel.tabs[mainEnum]">{{ deviceModel.tabs[mainEnum].title }}</div>
+              <div class="col card" id="card_more" [ngStyle]="deviceModel.activeTab !== null && deviceModel.activeTab.id === moreEnum ? {'background-color':deviceModel.colors['secondary']} : {'background-color': white}" (click)= "toggleCollapse(deviceModel.tabs[moreEnum].id); deviceModel.activeTab = deviceModel.tabs[moreEnum]">
                 {{ deviceModel.tabs[moreEnum].title }}</div>
             </div>
           </div>
@@ -36,6 +36,7 @@
         >
           <div *ngFor="let tab of deviceModel.tabs | slice:1:deviceModel.tabs.length - 1 | valid"
                class="col card"
+               [ngStyle]="deviceModel.activeTab !== null && deviceModel.activeTab.id === tab.id ? {'background-color':deviceModel.colors['secondary']} : {'background-color': white}"
                (click)= "toggleCollapse(tab.id); deviceModel.activeTab = tab"
                [id] = 'tab.id'>{{ tab.title }}
           </div>
