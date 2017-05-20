@@ -18,28 +18,25 @@ export class BlogPostService {
 
     private _url = 'http://localhost:7345/api/blogs/1';
 
-    private ngUnsubscribe = new Subject<void>();
     private httpPutUnsubscribe = new Subject<void>();
-
-    private _blogPostInit = new Subject<IBlogPost[]>();
-    private _init = false;
 
     constructor(
         private _http: Http,
         private _validationService: ValidationService) {
         this._blogPost = [];
+    }
 
-        this.init().takeUntil(this.ngUnsubscribe)
-            .subscribe(
-                blogPost => {
-                    this._blogPost = blogPost;
-                    this._init = true;
-                    this._blogPostInit.next(this._blogPost);
-                    _validationService.setBlogValidValid(this._blogPost);
-                    this.ngUnsubscribe.next();
-                    this.ngUnsubscribe.complete();
-            }
-        );
+    public setDataAfterFetch(blogPost: IBlogPost) {
+        this._blogPost = blogPost;
+        this._validationService.setBlogValidValid(this._blogPost);
+     }
+
+    public fetchData() : Observable<IBlogPost> {
+        return this.init();
+    }
+
+    getUrl(): string {
+      return this._url;
     }
 
     private init(): Observable<IBlogPost[]> {
@@ -114,15 +111,8 @@ export class BlogPostService {
         );
     }
 
-    getBlogPosts(): Observable<IBlogPost[]> {
-        if (!this._init) {
-            this._blogPostInit.next(this._blogPost);
-            return this._blogPostInit.asObservable();
-        }
-        else {
-            this.sortBlogPosts();
-            return Observable.of(this._blogPost);
-        }
+    getBlogPosts() {
+        return this._blogPost;
     }
 
     submitBlogPost(blogPost: IBlogPost): void {

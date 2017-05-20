@@ -40,9 +40,6 @@ export class MediaUpdateService {
 
     private httpPutUnsubscribe = new Subject<void>();
 
-    private _profileInit = new Subject<IProfileModel>();
-    private _init = false;
-
     getUrl(): string {
       return this._url;
     }
@@ -68,10 +65,7 @@ export class MediaUpdateService {
             this._profile.noWebsite = true;
         }
 
-        this._init = true;
-        this._profileInit.next(this._profile);
         this._validationService.setProfileInfoPageValid(this._profile);
-
      }
 
     public fetchData() : Observable<IProfileModel> {

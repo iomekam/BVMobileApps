@@ -14,9 +14,6 @@ export class AppInfoService {
 
     private httpPutUnsubscribe = new Subject<void>();
 
-    private _appInfoInit = new Subject<IAppInfo>();
-    private _init = false;
-
     constructor(
         private _http: Http,
         private _validationService: ValidationService) {
@@ -36,11 +33,9 @@ export class AppInfoService {
 
     public setDataAfterFetch(model: IAppInfo) {
         this._appInfo = model;
-        this._init = true;
    
         const appInfoPageValid = this._appInfo.appName !== '' && this._appInfo.image.image !== '' && this._appInfo.keywords.length > 0 && this._appInfo.longDescription !== '';
         this._validationService.setAppInfoValid(appInfoPageValid);
-        this._appInfoInit.next(this._appInfo);
      }
 
     public fetchData() : Observable<IAppInfo> {

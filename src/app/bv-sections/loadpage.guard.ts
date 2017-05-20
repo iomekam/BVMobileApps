@@ -11,6 +11,8 @@ import { IDeviceModel } from './device-mockup/i-device-model';
 import { AppInfoService } from './app-info/app-info.service';
 import { MediaUpdateService } from './profile-info/media-update.service';
 import { IProfileModel } from './profile-info/iprofile-model';
+import { BlogPostService } from './blog/blog-post.service';
+import { IBlogPost } from './blog/iblog-post';
 
 function getWindow (): any {
     return window;
@@ -25,6 +27,7 @@ export class LoadpageGuard implements CanActivate {
     private _deviceService: DeviceService,
     private _appInfoService: AppInfoService,
     private _profileService: MediaUpdateService,
+    private _blogPostService: BlogPostService,
     private _http: Http) { }
 
   canActivate(
@@ -44,11 +47,14 @@ export class LoadpageGuard implements CanActivate {
         this._deviceService.fetchData(),
         this._appInfoService.fetchData(),
         this._profileService.fetchData(),
+        this._blogPostService.fetchData(),
         ).map(
               data => {
                 this._deviceService.setDataAfterFetch(<IDeviceModel>data[1]);
                 this._appInfoService.setDataAfterFetch(<IAppInfo>data[2]);
                 this._profileService.setDataAfterFetch(<IProfileModel>data[3]);
+                this._blogPostService.setDataAfterFetch(<IBlogPost>data[4]);
+
                 console.log(data);
                 getWindow().loading_screen.finish();
 
