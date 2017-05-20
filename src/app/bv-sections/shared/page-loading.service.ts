@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
+import { SharedService } from './shared.service';
 
 export enum BVPages {
     APP_INFO,
@@ -17,11 +18,15 @@ export interface LastCompleted
 @Injectable()
 export class PageLoadingService {
 
-  private _url = 'http://localhost:7345/api/lastcompleted/1';
+  private _url = '/api/lastcompleted/1';
   private ngUnsubscribe = new Subject<void>();
   private httpPutUnsubscribe = new Subject<void>();
 
-  constructor(private _http: Http) { }
+  constructor(
+      private _http: Http,
+      private _sharedService: SharedService) { 
+          this._url = this._sharedService.url + this._url;
+      }
 
   public savePage(page: BVPages) {
     let lastPage = {
