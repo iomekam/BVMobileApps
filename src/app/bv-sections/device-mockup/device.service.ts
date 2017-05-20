@@ -60,6 +60,10 @@ export class DeviceService {
   private _activeTabChangedSource: Subject<TabID> = new Subject<TabID>();
   activeTabChanged$ = this._activeTabChangedSource.asObservable();
 
+  getUrl(): string {
+      return this._url;
+  }
+
   public setActiveTabChanged(id: TabID) {
     this._activeTabChangedSource.next(id);
   }
@@ -457,7 +461,7 @@ export class DeviceService {
 
   public setModel(model: IDeviceModel) {
     this._model = model;
-
+    
     for(let tab of this._model.tabs) {
       tab.image.originalBase64 = tab.image.original.src;
       tab.headerImage.originalBase64 = tab.headerImage.original.src;
@@ -471,6 +475,7 @@ export class DeviceService {
             .takeUntil(this.httpPutUnsubscribe)
             .subscribe(
                 data => {
+                  
                     this.httpPutUnsubscribe.next();
                     this.httpPutUnsubscribe.complete();
                 },

@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { MdIconRegistry } from '@angular/material';
 import { HeaderService } from '../../header/header.service';
 import { ValidationService } from '../shared/validation.service';
 import { PageLoadingService, BVPages } from '../shared/page-loading.service';
+import { IProfileModel } from './iprofile-model';
+import { MediaUpdateService } from './media-update.service';
 
 @Component({
   templateUrl: './profile-info.component.html',
@@ -12,11 +14,13 @@ import { PageLoadingService, BVPages } from '../shared/page-loading.service';
 export class ProfileInfoComponent implements OnInit {
 
     private isValid: boolean;
+    private _profile: IProfileModel;
 
     constructor(
       private _headerService: HeaderService,
       private _validationService: ValidationService,
-      private _pageValidation: PageLoadingService) {
+      private _pageValidation: PageLoadingService,
+      private _profileService: MediaUpdateService) {
     }
 
     ngOnInit() {
@@ -26,5 +30,20 @@ export class ProfileInfoComponent implements OnInit {
       this._validationService.isProfileInfoPageValid$.subscribe(
         isValid => this.isValid = isValid
       );
+
+      this._profileService.getProfile().subscribe(
+            profile => {
+                this._profile = profile;
+            }
+        );
+    }
+
+    @HostListener('window:beforeunload')
+    onRefresh() {
+      let xhr = new XMLHttpRequest()
+
+      xhr.open("PUT", this._profileService.getUrl(), false);
+      xhr.setRequestHeader("Content-type", "application/json");
+      xhr.send(JSON.stringify(this._profile));
     }
 }

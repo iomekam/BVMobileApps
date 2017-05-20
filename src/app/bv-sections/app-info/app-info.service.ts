@@ -48,6 +48,10 @@ export class AppInfoService {
         );
     }
 
+    getUrl(): string {
+      return this._url;
+    }
+
     setAppInfo(appInfo: IAppInfo): void {
         this._appInfo = appInfo;
         this._appInfo.image.originalBase64 = appInfo.image.original.src;

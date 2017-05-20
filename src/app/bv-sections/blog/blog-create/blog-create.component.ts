@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, Input, ViewChild, HostListener } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ImageCropperComponent, CropperSettings, Bounds } from '../../../ng2-img-cropper';
 import { IBlogPost } from '../iblog-post';
@@ -96,7 +96,8 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
                     },
                     keywords: [],
                     id: 0,
-                    date: new Date()
+                    date: new Date(),
+                    isUnfinished: false
                 };
             }
         }
@@ -125,11 +126,26 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
         }
     }
 
+    @HostListener('window:beforeunload')
+    onRefresh() {
+      //this._blogPostService.setUnfinishedBlogPost(this.blogPost);
+      this.blogPost.image.originalBase64 = this.blogPost.image.original.src;
+      this.blogPost.isUnfinished = true;
+
+      let xhr = new XMLHttpRequest();
+      
+      xhr.open("PUT", this._blogPostService.getUrl(), false);
+      xhr.setRequestHeader("Content-type", "application/json");
+      xhr.send(JSON.stringify(this.blogPost));
+    }
+
     ngAfterViewInit(): void {
         this.cropper.setImage(this.blogPost.image.original, this.blogPost.image.bounds);
     }
 
     submit(): void {
+        this.blogPost.isUnfinished = false;
+
         // Update and post are different operations to the backend service,
         // so we need to be able to distingish between them
         if (this._isUpdate) {
@@ -148,6 +164,12 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
     cancel(): void {
         this._wasCanceled = true;
         this._blogPostService.setIsInCreationPage(false, null);
+
+        if(this.blogPost.isUnfinished) {
+            this.blogPost.isUnfinished = false;
+            this._blogPostService.deleteBlogPost(this.blogPost.id);
+        }
+
         this._router.navigate(['/app-blog/blog-list'], { skipLocationChange: true });
     }
 

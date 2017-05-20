@@ -40,26 +40,27 @@ export class BlogListComponent implements OnInit {
     }
 
     ngOnInit() {
-        // if we were in the middle of creating a blog post and left the page,
-        // go back to blog creation page instead of blog list page
-        if (this._blogPostService.isInCreationPage()) {
-            let url = '/app-blog/';
-            url += 'blog-create/';
-            const id = this._blogPostService.getUpdateId();
-
-            // If we do not have a number, that means that we were in the middle of creating a blog post.
-            // but did not finish. This is considered an unfinished post, which is different than a post
-            // that has been submitted and needs to be editted
-            if (!isNaN(id) && id > 0) {
-                url += id;
-            }
-
-            this._router.navigate([url], { skipLocationChange: true });
-            return;
-        }
-
         this._blogPostService.getBlogPosts().subscribe(
             blogPosts => {
+
+                // if we were in the middle of creating a blog post and left the page,
+                // go back to blog creation page instead of blog list page
+                if (this._blogPostService.isInCreationPage()) {
+                    let url = '/app-blog/';
+                    url += 'blog-create/';
+                    const id = this._blogPostService.getUpdateId();
+
+                    // If we do not have a number, that means that we were in the middle of creating a blog post.
+                    // but did not finish. This is considered an unfinished post, which is different than a post
+                    // that has been submitted and needs to be editted
+                    if (!isNaN(id) && id > 0) {
+                        url += id;
+                    }
+
+                    this._router.navigate([url], { skipLocationChange: true });
+                    return;
+                }
+
                 this.blogPosts = blogPosts;
                 this._validationService.setBlogValidValid(blogPosts);
         });

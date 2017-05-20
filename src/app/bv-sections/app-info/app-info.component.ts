@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, Input, Output, EventEmitter, ViewChild, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IAppInfo } from './iapp-info';
 import { CropperSettings, ImageCropperComponent, Bounds } from '../../ng2-img-cropper';
@@ -67,6 +67,15 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
         this.cropperSettings.croppedHeight = 512;
         this.cropperSettings.canvasWidth = 600;
         this.cropperSettings.canvasHeight = 512;
+    }
+
+    @HostListener('window:beforeunload')
+    onRefresh() {
+      let xhr = new XMLHttpRequest()
+
+      xhr.open("PUT", this._appInfoService.getUrl(), false);
+      xhr.setRequestHeader("Content-type", "application/json");
+      xhr.send(JSON.stringify(this.appInfo));
     }
 
     private onTagLostFocus(message: string): void {

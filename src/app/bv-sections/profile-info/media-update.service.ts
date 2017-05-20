@@ -44,6 +44,10 @@ export class MediaUpdateService {
     private _profileInit = new Subject<IProfileModel>();
     private _init = false;
 
+    getUrl(): string {
+      return this._url;
+    }
+
     constructor(
         private _http: Http,
         private _validationService: ValidationService) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ViewChildren, AfterViewInit, QueryList, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ViewChildren, AfterViewInit, QueryList, Input, HostListener } from '@angular/core';
 import { ColorPickerService, Rgba } from 'angular2-color-picker';
 import { DragulaService } from 'ng2-dragula';
 import { DeviceService } from '../device-mockup/device.service';
@@ -228,6 +228,14 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     this._deviceService.setModel(this.deviceModel);
   }
 
+  @HostListener('window:beforeunload')
+  onRefresh() {
+    let xhr = new XMLHttpRequest()
+
+     xhr.open("PUT", this._deviceService.getUrl(), false);
+     xhr.setRequestHeader("Content-type", "application/json");
+     xhr.send(JSON.stringify(this.deviceModel));
+  }
 
   onDrop(args) {
     const [el, target, source, sibling] = args;

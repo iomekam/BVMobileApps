@@ -7,4 +7,5 @@ export interface IBlogPost {
     image: BvImage;
     keywords: string[];
     date: Date;
+    isUnfinished: boolean;
 }

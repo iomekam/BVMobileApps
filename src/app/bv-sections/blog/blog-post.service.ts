@@ -48,6 +48,14 @@ export class BlogPostService {
             .do(data => {
                     data.forEach(
                         blogPost => {
+                            if(blogPost.isUnfinished === true) {
+                                this.setIsInCreationPage(true, blogPost.id);
+                            }
+
+                            if(blogPost.keywords === null) {
+                                blogPost.keywords = [];
+                            }
+                            
                             let image = new Image();
                             image.src = blogPost.image.originalBase64;
                             blogPost.image = {
@@ -84,6 +92,10 @@ export class BlogPostService {
     }
 
     setUnfinishedBlogPost(blogPost: IBlogPost): void {
+        if(blogPost !== null) {
+            blogPost.isUnfinished = blogPost !== null;
+        }
+        
         this._unfinishedBlogPost = blogPost;
     }
 
@@ -151,6 +163,10 @@ export class BlogPostService {
                     },
                     error => console.log(JSON.stringify(error))
         );
+    }
+
+    getUrl(): string {
+        return this._url;
     }
 
     deleteBlogPost(id: number): void {
