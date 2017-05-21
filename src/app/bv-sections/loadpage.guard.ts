@@ -13,6 +13,7 @@ import { MediaUpdateService } from './profile-info/media-update.service';
 import { IProfileModel } from './profile-info/iprofile-model';
 import { BlogPostService } from './blog/blog-post.service';
 import { IBlogPost } from './blog/iblog-post';
+import { SharedService } from './shared/shared.service';
 
 function getWindow (): any {
     return window;
@@ -28,6 +29,7 @@ export class LoadpageGuard implements CanActivate {
     private _appInfoService: AppInfoService,
     private _profileService: MediaUpdateService,
     private _blogPostService: BlogPostService,
+    private _sharedService: SharedService,
     private _http: Http) { }
 
   canActivate(
@@ -38,12 +40,7 @@ export class LoadpageGuard implements CanActivate {
 
   init() : Observable<boolean> {
       return Observable.forkJoin(
-        this._http.get('http://localhost:7345/api/lastcompleted/1')
-          .map(response => {
-              const info = <LastCompleted> response.json();
-              this._headerService.goto(info.lastPage);
-              
-            }),
+        this._http.get(this._sharedService.url + '/api/lastcompleted/1').map(response => { return <LastCompleted> response.json(); }),
         this._deviceService.fetchData(),
         this._appInfoService.fetchData(),
         this._profileService.fetchData(),
@@ -56,6 +53,7 @@ export class LoadpageGuard implements CanActivate {
                 this._blogPostService.setDataAfterFetch(<IBlogPost[]>data[4]);
 
                 console.log(data);
+                this._headerService.goto((<LastCompleted>data[0]).lastPage);
                 getWindow().loading_screen.finish();
 
                 return true;

@@ -46,11 +46,7 @@ export class DeviceService {
   private _radio: IDeviceTab;
   private _more: IDeviceTab
 
-  private _musicValid = false;
-  private _videoValid = false;
-  private _radioValid = false;
-
-  private _url = '/api/design/1'; 
+  private _url = '/api/design/1';
 
   private httpPutUnsubscribe = new Subject<void>();
 
@@ -127,215 +123,7 @@ export class DeviceService {
   constructor(
     private _http: Http,
     private _sharedService: SharedService) {
-    this._photo = {
-      id: TabID.PHOTO,
-      title: 'Photos',
-      orderType: OrderType.ANY,
-      order: 2,
-      defaultIcon: this.getDefaultIcon(TabID.PHOTO),
-      image: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      showTitle: true,
-      showImage: false,
-      headerImage: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      showHeader: false,
-      headerDimenHeight: 302,
-      headerDimenWidth: 612,
-      hasExtraHeader: false,
-      extraHeaderImage: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      extraHeaderDimenHeight: 0,
-      extraHeaderDimenWidth: 0,
-      hasHeader: true
-    };
-
-    this._video = {
-      id: TabID.VIDEO,
-      defaultIcon: this.getDefaultIcon(TabID.VIDEO),
-      title: 'Videos',
-      orderType: OrderType.ANY,
-      order: -1,
-      image: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      showTitle: true,
-      showImage: false,
-      headerImage: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      showHeader: false,
-      headerDimenHeight: 302,
-      headerDimenWidth: 612,
-      hasExtraHeader: false,
-      extraHeaderImage: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      extraHeaderDimenHeight: 0,
-      extraHeaderDimenWidth: 0,
-      hasHeader: true
-    };
-
-    this._music = {
-      id: TabID.MUSIC,
-      defaultIcon: this.getDefaultIcon(TabID.MUSIC),
-      title: 'Music',
-      orderType: OrderType.ANY,
-      order: -1,
-      image: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      showTitle: true,
-      showImage: false,
-      headerImage: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      showHeader: false,
-      headerDimenHeight: 302,
-      headerDimenWidth: 612,
-      hasExtraHeader: false,
-      extraHeaderImage: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      extraHeaderDimenHeight: 0,
-      extraHeaderDimenWidth: 0,
-      hasHeader: true
-    };
-
-    this._radio = {
-      id: TabID.RADIO,
-      defaultIcon: this.getDefaultIcon(TabID.RADIO),
-      title: 'Radio',
-      orderType: OrderType.ANY,
-      order: -1,
-      image: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      showTitle: true,
-      showImage: false,
-      headerImage: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      showHeader: false,
-      headerDimenHeight: 302,
-      headerDimenWidth: 612,
-      hasExtraHeader: false,
-      extraHeaderImage: {
-          original: new Image(),
-          originalBase64: '',
-          image: '',
-          bounds: new Bounds()
-      },
-      extraHeaderDimenHeight: 0,
-      extraHeaderDimenWidth: 0,
-      hasHeader: true
-    };
-
-    this._main = {
-          id: TabID.BLOG,
-          title: 'Main',
-          orderType: OrderType.FIRST,
-          order: 0, // Since we specify FIRST, the order doesn't matter.
-          defaultIcon: this.getDefaultIcon(TabID.BLOG),
-          image: {
-              original: new Image(),
-              originalBase64: '',
-              image: '',
-              bounds: new Bounds()
-          },
-          showTitle: true,
-          showImage: false,
-          headerImage: {
-              original: new Image(),
-              originalBase64: '',
-              image: '',
-              bounds: new Bounds()
-          },
-          showHeader: false,
-          headerDimenHeight: 1000,
-          headerDimenWidth: 612,
-          hasExtraHeader: true,
-          extraHeaderImage: {
-            original: new Image(),
-            originalBase64: '',
-            image: '',
-            bounds: new Bounds()
-          },
-          extraHeaderDimenHeight: 88,
-          extraHeaderDimenWidth: 300,
-          hasHeader: true
-        };
-
-    this._more = {
-          id: TabID.MORE,
-          title: 'More',
-          orderType: OrderType.LAST,
-          order: 4, // Since we specify LAST, the order doesn't matter.
-          defaultIcon: this.getDefaultIcon(TabID.MORE),
-          image: {
-              original: new Image(),
-              originalBase64: '',
-              image: '',
-              bounds: new Bounds()
-          },
-          showTitle: true,
-          showImage: false,
-          headerImage: {
-              original: new Image(),
-              originalBase64: '',
-              image: '',
-              bounds: new Bounds()
-          },
-          showHeader: false,
-          headerDimenHeight: 88,
-          headerDimenWidth: 570,
-          hasExtraHeader: false,
-          extraHeaderImage: {
-            original: new Image(),
-            originalBase64: '',
-            image: '',
-            bounds: new Bounds()
-          },
-          extraHeaderDimenHeight: 0,
-          extraHeaderDimenWidth: 0,
-          hasHeader: false
-        };
+    
 
     this._model = {
       appName: '',
@@ -343,34 +131,24 @@ export class DeviceService {
         primary: '#000000',
         secondary: '#0099ff'
       },
-      tabs: [
-        this._main,
-        this._video,
-        this._radio,
-        this._music,
-        this._photo,
-        this._more,
-      ],
+      tabs: [],
       activeTab: null
     };
-
-    this._model.tabs[TabID.BLOG] = this._main;
-    this._model.tabs[TabID.VIDEO] = this._video;
-    this._model.tabs[TabID.RADIO] = this._radio;
-    this._model.tabs[TabID.MUSIC] = this._music;
-    this._model.tabs[TabID.PHOTO] = this._photo;
-    this._model.tabs[TabID.MORE] = this._more;
 
     this._url = this._sharedService.url + this._url;
   }
 
     public setDataAfterFetch(model: IDeviceModel) {
-        this._model = model;
+        for(let t of model.tabs) {
+            // Go through the list and add the tabs that have a positive order. This is how we can
+            // determine whether the tabs should be shown on the screen
+            if(t.order > -1) {
+                this.addTab(t.id);
+            }
+        }
 
-        this._musicValid = this._model.tabs[TabID.MUSIC].order >= 0;
-        this._videoValid = this._model.tabs[TabID.VIDEO].order >= 0;
-        this._radioValid = this._model.tabs[TabID.RADIO].order >= 0;
-
+        this._model.colors = model.colors;
+        //this._model.appName = model.appName;
     }
 
     public fetchData() : Observable<IDeviceModel> {
@@ -457,13 +235,26 @@ export class DeviceService {
     return this._model;
   }
 
-  public setModel(model: IDeviceModel) {
-    this._model = model;
+  public saveModel() {
+
+    const model = {
+      appName: '',
+      colors: this._model.colors,
+      tabs: [
+        this._main,
+        this._radio,
+        this._photo,
+        this._video,
+        this._music,
+        this._more
+      ],
+      activeTab: null
+    };
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const options = new RequestOptions({ headers: headers });
-    this._http.put(this._url, JSON.stringify(this._model), options)
+    this._http.put(this._url, JSON.stringify(model), options)
             .takeUntil(this.httpPutUnsubscribe)
             .subscribe(
                 data => {
@@ -479,78 +270,86 @@ export class DeviceService {
     this._model.appName = name;
   }
 
-  public addTab(tab: IDeviceTab): void {
-    
-    if (tab.id == TabID.VIDEO) {
-      this._video = tab;
-      this._videoValid = true;
-      this._model.tabs[TabID.VIDEO] = this._video;
+  public getTab(id: TabID): IDeviceTab {
+    if (id == TabID.VIDEO) {
+      return this._video;
     }
-    
-    if (tab.id == TabID.RADIO) {
-      this._radio = tab;
-      this._radioValid = true;
-      this._model.tabs[TabID.RADIO] = this._radio;
+    else if (id == TabID.MUSIC) {
+      return this._music;
+    }
+    else if (id == TabID.RADIO) {
+      return this._radio;
+    }
+    else if (id == TabID.PHOTO) {
+      return this._photo;
+    }
+    else if (id == TabID.BLOG) {
+      return this._main;
+    }
+    else {
+      return this._more;
+    }
+  }
+
+  public getOrder(id: TabID): number {
+    if (id == TabID.VIDEO) {
+      return 3;
+    }
+    else if (id == TabID.MUSIC) {
+      return 4;
+    }
+    else if (id == TabID.RADIO) {
+      return 1;
+    }
+    else if (id == TabID.PHOTO) {
+      return 2;
+    }
+    else if (id == TabID.BLOG) {
+      return 0;
+    }
+    else {
+      return 5;
+    }
+  }
+
+  public addTab(id: TabID): void {
+    // If all 5 tabs are already being shown, then we want to replace the photo tab with the radio tab.
+    if (this._model.tabs.length === 5) {
+      this.removeTab(TabID.PHOTO);
     }
 
-    if (tab.id == TabID.MUSIC) {
-      this._music = tab;
-      this._musicValid = true;
-      this._model.tabs[TabID.MUSIC] = this._music;
-    }
-
-    if (this._videoValid && this._musicValid && this._radioValid) {
-        this.removeTab(TabID.PHOTO);
-    }
-    else if (tab.id == TabID.PHOTO) {
-      this._photo.order = 2;
-      this._model.tabs[TabID.PHOTO] = this._photo;
-    }
+    const tab = this.getTab(id);
+    tab.order = this.getOrder(id);
+    this._model.tabs.splice(this._model.tabs.length, 0, tab);  
   }
 
   public removeTab(id: TabID): void {
-    if (id == TabID.VIDEO) {
-      this._video.order = -1;
-      this._videoValid = false;
-    }
-
-    if (id == TabID.MUSIC) {
-      this._music.order = -1;
-      this._musicValid = false;
-    }
-
-    if (id == TabID.RADIO) {
-      this._radio.order = -1;
-      this._radioValid = false;
-    }
-
     // If we are removing a tab (not Photos), then we can restore the photo tab
-    if ((this._videoValid && this._musicValid && this._radioValid) == false && this._photo.order < 0) {
-        this.addTab(this._photo);
+    if (this._model.tabs.length === 5 && id !== TabID.PHOTO) {
+        this.addTab(TabID.PHOTO);
     }
-    else {
-      if (id == TabID.PHOTO) {
-        this._photo.order = -1;
-      }
-    }
+
+    const index: number = this._model.tabs.findIndex(
+        tab => {
+            return id === tab.id;
+        }
+    );
+
+    if (index === -1) { return; }
+
+    this._model.tabs[index].order = -1;
+
+    this._model.tabs.splice(index, 1);
   }
 
   public isTabCreated(id: TabID): boolean {
-    let isValid = false;
+    const index: number = this._model.tabs.findIndex(
+          tab => {
+              return id === tab.id;
+          }
+      );
 
-    if (id == TabID.VIDEO) {
-      isValid = this._videoValid;
-    }
-    
-    if (id == TabID.RADIO) {
-      isValid = this._radioValid;
-    }
-
-    if (id == TabID.MUSIC) {
-      isValid = this._musicValid;
-    }
-
-    return isValid;
+       return index !== -1;
   }
 
   public setPrimaryColor(color: string): void {

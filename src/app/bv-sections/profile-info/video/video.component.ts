@@ -48,42 +48,7 @@ export class VideoComponent implements OnInit, OnDestroy {
             this._deviceService.removeTab(TabID.VIDEO);
         }
         else if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.VIDEO)) {
-            this._deviceService.addTab(
-                {
-                    id: TabID.VIDEO,
-                    defaultIcon: 'icon ion ion-videocamera',
-                    title: 'Videos',
-                    orderType: OrderType.ANY,
-                    order: 3,
-                    showTitle: true,
-                    image: {
-                        original: new Image(),
-                        image: '',
-                        originalBase64: '',
-                        bounds: new Bounds()
-                    },
-                    showImage: false,
-                    headerImage: {
-                        original: new Image(),
-                        image: '',
-                        originalBase64: '',
-                        bounds: new Bounds()
-                    },
-                    showHeader: false,
-                  headerDimenHeight: 302,
-                  headerDimenWidth: 612,
-                  hasExtraHeader: false,
-                  extraHeaderImage: {
-                    original: new Image(),
-                    image: '',
-                    originalBase64: '',
-                    bounds: new Bounds()
-                  },
-                  extraHeaderDimenHeight: 0,
-                  extraHeaderDimenWidth: 0,
-                  hasHeader: true
-                }
-            );
+            this._deviceService.addTab(TabID.VIDEO);
         }
     }
 }

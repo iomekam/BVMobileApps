@@ -45,42 +45,7 @@ export class MusicComponent implements OnInit, OnDestroy {
             this._deviceService.removeTab(TabID.MUSIC);
         }
         else if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.MUSIC)) {
-            this._deviceService.addTab(
-                {
-                    id: TabID.MUSIC,
-                    defaultIcon: 'icon ion ion-music-note',
-                    title: 'Music',
-                    orderType: OrderType.ANY,
-                    order: 4,
-                    showTitle: true,
-                    image: {
-                        original: new Image(),
-                        originalBase64: '',
-                        image: '',
-                        bounds: new Bounds()
-                    },
-                    showImage: false,
-                    headerImage: {
-                        original: new Image(),
-                        originalBase64: '',
-                        image: '',
-                        bounds: new Bounds()
-                    },
-                    showHeader: false,
-                  headerDimenHeight: 302,
-                  headerDimenWidth: 612,
-                  hasExtraHeader: false,
-                  extraHeaderImage: {
-                    original: new Image(),
-                    image: '',
-                    originalBase64: '',
-                    bounds: new Bounds()
-                  },
-                  extraHeaderDimenHeight: 0,
-                  extraHeaderDimenWidth: 0,
-                  hasHeader: true
-                }
-            );
+            this._deviceService.addTab(TabID.MUSIC);
         }
     }
 }

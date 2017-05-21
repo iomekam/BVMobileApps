@@ -56,6 +56,9 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     public radioEnum = TabID.RADIO;
     public moreEnum = TabID.MORE;
     public colorEnum = TabID.COLOR;
+
+    public mainTab: IDeviceTab;
+    public moreTab: IDeviceTab;
     
     constructor(
       private cpService: ColorPickerService,
@@ -204,6 +207,9 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     });
 
     this.deviceModel = this._deviceService.getModel();
+    this.mainTab = this._deviceService.getTab(TabID.BLOG);
+    this.moreTab = this._deviceService.getTab(TabID.MORE);
+
     this._pageValidation.savePage(BVPages.DESIGN);
 
     this._deviceService.activeTabChanged$.subscribe(
@@ -217,7 +223,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnDestroy() {
     this._dragulaService.destroy('drag-bag');
-    this._deviceService.setModel(this.deviceModel);
+    this._deviceService.saveModel();
   }
 
   @HostListener('window:beforeunload')

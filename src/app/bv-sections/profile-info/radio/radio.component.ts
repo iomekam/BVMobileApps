@@ -46,42 +46,7 @@ export class RadioComponent implements OnInit, OnDestroy {
             this._deviceService.removeTab(TabID.RADIO);
         }
         else if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.RADIO)) {
-            this._deviceService.addTab(
-                {
-                    id: TabID.RADIO,
-                    defaultIcon: 'icon ion ion-radio-waves',
-                    title: 'Radio',
-                    orderType: OrderType.ANY,
-                    order: 2,
-                    showTitle: true,
-                    image: {
-                        original: new Image(),
-                        image: '',
-                        originalBase64: '',
-                        bounds: new Bounds()
-                    },
-                    showImage: false,
-                    headerImage: {
-                        original: new Image(),
-                        image: '',
-                        originalBase64: '',
-                        bounds: new Bounds()
-                    },
-                    showHeader: false,
-                  headerDimenHeight: 612,
-                  headerDimenWidth: 302,
-                  hasExtraHeader: false,
-                  extraHeaderImage: {
-                    original: new Image(),
-                    image: '',
-                    originalBase64: '',
-                    bounds: new Bounds()
-                  },
-                  extraHeaderDimenHeight: 0,
-                  extraHeaderDimenWidth: 0,
-                  hasHeader: true
-                }
-            );
+            this._deviceService.addTab(TabID.RADIO);
         }
     }
 }
