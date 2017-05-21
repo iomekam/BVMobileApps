@@ -17,7 +17,7 @@
             <div class="row">
               <div class="col card" id="card_color" [ngStyle]="deviceModel.activeTab === null ? {'background-color':deviceModel.colors['secondary']} : {'background-color': white}" (click)= "toggleCollapse(colorTabID);deviceModel.activeTab = null">Color</div>
               <div class="col card" id="card_main" [ngStyle]="deviceModel.activeTab !== null && deviceModel.activeTab.id === mainEnum ? {'background-color':deviceModel.colors['secondary']} : {'background-color': white}" (click)= "toggleCollapse(mainEnum); deviceModel.activeTab = mainTab">{{ mainTab.title }}</div>
-              <div class="col card" id="card_more" [ngStyle]="deviceModel.activeTab !== null && deviceModel.activeTab.id === moreEnum ? {'background-color':deviceModel.colors['secondary']} : {'background-color': white}" (click)= "toggleCollapse(moreEnum); deviceModel.activeTab = moreTav">
+              <div class="col card" id="card_more" [ngStyle]="deviceModel.activeTab !== null && deviceModel.activeTab.id === moreEnum ? {'background-color':deviceModel.colors['secondary']} : {'background-color': white}" (click)= "toggleCollapse(moreEnum); deviceModel.activeTab = moreTab">
                 {{ moreTab.title }}</div>
             </div>
           </div>
