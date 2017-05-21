@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, EventEmitter } from '@angular/core';
 import { HeaderService } from './header.service';
 import { Router } from '@angular/router';
 import { ValidationService } from '../bv-sections/shared/validation.service';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'bv-header',
@@ -9,7 +10,7 @@ import { ValidationService } from '../bv-sections/shared/validation.service';
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements OnInit  {
+export class HeaderComponent implements OnInit, OnDestroy {
 
     readonly appInfoID = 0;
     readonly profileInfoID = 1;
@@ -25,6 +26,15 @@ export class HeaderComponent implements OnInit  {
     isProfileInfoValid = false;
     isBlogValid = false;
     isDesignInfoValid = false;
+
+    private gotoUnsub = new Subject<void>();
+    private nextUnsub = new Subject<void>();
+    private prevUnsub = new Subject<void>();
+
+    private appInfoUnsub = new Subject<void>();
+    private profileUnsub = new Subject<void>();
+    private blogUnsub = new Subject<void>();
+    private designUnsub = new Subject<void>();
 
     private currentID: number;
 
@@ -86,37 +96,55 @@ export class HeaderComponent implements OnInit  {
     ngOnInit() {
       this.currentID = this.appInfoID;
 
-      this._headerService.next$.subscribe(
+      this._headerService.next$.takeUntil(this.nextUnsub).subscribe(
           empty => {
               this.toggleCurrent(this.currentID + 1);
               this.goToHeader();
           }
       );
 
-      this._headerService.prev$.subscribe(
+      this._headerService.prev$.takeUntil(this.prevUnsub).subscribe(
           empty => {
               this.toggleCurrent(this.currentID - 1);
               this.goToHeader();
           }
       );
 
-      this._headerService.goto$.subscribe(
+      this._headerService.goto$.takeUntil(this.gotoUnsub).subscribe(
           id => {
               this.toggleCurrent(id);
               this.goToHeader();
           }
       );
 
-      this._validationService.isAppInfoPageValid$.subscribe(
+      this._validationService.isAppInfoPageValid$.takeUntil(this.appInfoUnsub).subscribe(
             isValid => this.isAppInfoValid = isValid
       );
 
-      this._validationService.isProfileInfoPageValid$.subscribe(
+      this._validationService.isProfileInfoPageValid$.takeUntil(this.profileUnsub).subscribe(
             isValid => this.isProfileInfoValid = isValid
       );
 
-      this._validationService.blogValidPage$.subscribe(
+      this._validationService.blogValidPage$.takeUntil(this.blogUnsub).subscribe(
             isValid => this.isBlogValid = isValid
       );
+    }
+
+    ngOnDestroy() {
+        this.gotoUnsub.next();
+        this.nextUnsub.next();
+        this.prevUnsub.next();
+        this.appInfoUnsub.next();
+        this.profileUnsub.next();
+        this.blogUnsub.next();
+        this.designUnsub.next();
+
+        this.gotoUnsub.complete();
+        this.nextUnsub.complete();
+        this.prevUnsub.complete();
+        this.appInfoUnsub.complete();
+        this.profileUnsub.complete();
+        this.blogUnsub.complete();
+        this.designUnsub.complete();
     }
 }

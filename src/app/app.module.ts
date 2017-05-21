@@ -67,6 +67,5 @@ export class AppModule {
       private _validationService: ValidationService,
       private _headerService: HeaderService) {
         mdIconRegistry.registerFontClassAlias('fontawesome', 'fa');
-        _headerService.next();
     }
 }

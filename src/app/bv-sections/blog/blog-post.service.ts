@@ -20,6 +20,8 @@ export class BlogPostService {
     private _url = '/api/blogs/1';
 
     private httpPutUnsubscribe = new Subject<void>();
+    private httpUpdateUnsubscribe = new Subject<void>();
+    private httpDeleteUnsubscribe = new Subject<void>();
 
     constructor(
         private _http: Http,
@@ -157,8 +159,8 @@ export class BlogPostService {
                 .takeUntil(this.httpPutUnsubscribe)
                 .subscribe(
                     data => {
-                        this.httpPutUnsubscribe.next();
-                        this.httpPutUnsubscribe.complete();
+                        this.httpUpdateUnsubscribe.next();
+                        this.httpUpdateUnsubscribe.complete();
                     },
                     error => console.log(JSON.stringify(error))
         );
@@ -185,11 +187,11 @@ export class BlogPostService {
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers, body: deletedBlogPost});
         this._http.delete(this._url, options)
-                .takeUntil(this.httpPutUnsubscribe)
+                .takeUntil(this.httpDeleteUnsubscribe)
                 .subscribe(
                     data => {
-                        this.httpPutUnsubscribe.next();
-                        this.httpPutUnsubscribe.complete();
+                        this.httpDeleteUnsubscribe.next();
+                        this.httpDeleteUnsubscribe.complete();
                     },
                     error => console.log(JSON.stringify(error))
         );

@@ -19,7 +19,6 @@ export interface LastCompleted
 export class PageLoadingService {
 
   private _url = '/api/lastcompleted/1';
-  private ngUnsubscribe = new Subject<void>();
   private httpPutUnsubscribe = new Subject<void>();
 
   constructor(

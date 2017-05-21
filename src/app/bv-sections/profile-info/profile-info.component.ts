@@ -1,20 +1,22 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { MdIconRegistry } from '@angular/material';
 import { HeaderService } from '../../header/header.service';
 import { ValidationService } from '../shared/validation.service';
 import { PageLoadingService, BVPages } from '../shared/page-loading.service';
 import { IProfileModel } from './iprofile-model';
 import { MediaUpdateService } from './media-update.service';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   templateUrl: './profile-info.component.html',
   styleUrls: ['./profile-info.component.css']
 })
 
-export class ProfileInfoComponent implements OnInit {
+export class ProfileInfoComponent implements OnInit, OnDestroy {
 
     private isValid: boolean;
     private _profile: IProfileModel;
+    private validUnsub = new Subject<void>();
 
     constructor(
       private _headerService: HeaderService,
@@ -27,11 +29,16 @@ export class ProfileInfoComponent implements OnInit {
       this._pageValidation.savePage(BVPages.PROFILE_INFO);
 
       this.isValid = this._validationService.getProfileInfoPageValid();
-      this._validationService.isProfileInfoPageValid$.subscribe(
+      this._validationService.isProfileInfoPageValid$.takeUntil(this.validUnsub).subscribe(
         isValid => this.isValid = isValid
       );
 
       this._profile = this._profileService.getProfile();
+    }
+
+    ngOnDestroy() {
+      this.validUnsub.next();
+      this.validUnsub.complete();
     }
 
     @HostListener('window:beforeunload')

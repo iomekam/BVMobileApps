@@ -6,6 +6,7 @@ import { BlogPostService } from '../blog-post.service';
 import { Subscription } from 'rxjs/Subscription';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ValidationService } from '../../shared/validation.service';
+import { Subject } from 'rxjs/Subject';
 
 @Component({
   selector: 'bv-blog-create',
@@ -36,6 +37,8 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly keywordEmptyErrorMessage = 'A keyword is required';
 
     private config: any;
+
+    private routeUnsub = new Subject<void>();
 
     constructor(
         form: FormBuilder,
@@ -79,7 +82,7 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit(): void {
         let updateID = 0;
-        this._activatedRouteSub = this._route.params.subscribe(
+        this._activatedRouteSub = this._route.params.takeUntil(this.routeUnsub).subscribe(
             params => {
                 updateID = +params['id'];
             });

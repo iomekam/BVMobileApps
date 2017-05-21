@@ -62,6 +62,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     public moreTab: IDeviceTab;
 
     private dragUnsub = new Subject<void>();
+    private activeTabUnsub = new Subject<void>();
     
     constructor(
       private cpService: ColorPickerService,
@@ -215,13 +216,11 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this._pageValidation.savePage(BVPages.DESIGN);
 
-    this._deviceService.activeTabChanged$.subscribe(
+    this._deviceService.activeTabChanged$.takeUntil(this.activeTabUnsub).subscribe(
       id => {
         this.toggleCollapse(id);
       }
     )
-
-
   }
 
   ngOnDestroy() {
@@ -229,6 +228,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     this._deviceService.saveModel();
     this.dragUnsub.next();
     this.dragUnsub.complete();
+    this.activeTabUnsub.next();
+    this.activeTabUnsub.complete();
   }
 
   @HostListener('window:beforeunload')
