@@ -10,6 +10,7 @@ import { MdSnackBar } from '@angular/material';
 import { HeaderService } from '../../header/header.service';
 import { ValidationService } from '../../bv-sections/shared/validation.service';
 import { PageLoadingService, BVPages } from '../shared/page-loading.service';
+import { Subject } from 'rxjs/Subject';
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }
@@ -59,6 +60,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     public mainTab: IDeviceTab;
     public moreTab: IDeviceTab;
+
+    private dragUnsub = new Subject<void>();
     
     constructor(
       private cpService: ColorPickerService,
@@ -202,7 +205,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       ignoreInputTextSelection: true     // allows users to select input text, see details below
     });
 
-    this._dragulaService.drop.subscribe((value) => {
+    this._dragulaService.drop.takeUntil(this.dragUnsub).subscribe((value) => {
       this.onDrop(value.slice(1));
     });
 
@@ -224,6 +227,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy() {
     this._dragulaService.destroy('drag-bag');
     this._deviceService.saveModel();
+    this.dragUnsub.next();
+    this.dragUnsub.complete();
   }
 
   @HostListener('window:beforeunload')

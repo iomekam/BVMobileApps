@@ -168,7 +168,7 @@ export class DeviceService {
         return this._http.get(this._url)
             .map((response: Response) => <IDeviceModel> response.json())
             .do(data => {
-              
+                console.log(data);
                 data.activeTab = this._model.activeTab;
                 for(let tab of data.tabs) {
                   tab.defaultIcon = this.getDefaultIcon(tab.id);
@@ -395,7 +395,7 @@ export class DeviceService {
           end = indexEnd;
         }
         else {
-          end = this._model.tabs.length - 1;
+          end = this._model.tabs.length - 2;
         }
 
         const indexStart: number = this._model.tabs.findIndex(
@@ -410,7 +410,6 @@ export class DeviceService {
         const tempOrder = this._model.tabs[end].order;
         this._model.tabs[end].order = this._model.tabs[indexStart].order;
         this._model.tabs[indexStart].order = tempOrder;
-
 
         if (indexStart < end) {
           this._model.tabs.splice(end, 0, removetab);
