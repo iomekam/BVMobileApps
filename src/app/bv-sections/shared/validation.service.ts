@@ -11,6 +11,7 @@ export class ValidationService {
   private _appInfoPageValid = false;
   private _profileInfoPageValid = false;
   private _blogValidPage = false;
+  private _designValidPage = false;
 
   private _isAppInfoPageValidSource: Subject<boolean> = new Subject<boolean>();
   isAppInfoPageValid$ = this._isAppInfoPageValidSource.asObservable();
@@ -20,6 +21,9 @@ export class ValidationService {
 
   private _blogValidPageSource: Subject<boolean> = new Subject<boolean>();
   blogValidPage$ = this._blogValidPageSource.asObservable();
+
+  private _designPageSource: Subject<boolean> = new Subject<boolean>();
+  designValidPage$ = this._designPageSource.asObservable();
 
   constructor() { }
 
@@ -37,6 +41,11 @@ export class ValidationService {
   public setBlogValid(blogValidPage: boolean) {
     this._blogValidPage = blogValidPage;
     this._blogValidPageSource.next(blogValidPage);
+  }
+
+  public setDesignValid(designValidPage: boolean) {
+    this._designValidPage = designValidPage;
+    this._designPageSource.next(designValidPage);
   }
 
   public getProfileInfoPageValid(): boolean {

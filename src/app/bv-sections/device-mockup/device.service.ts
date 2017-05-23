@@ -7,6 +7,7 @@ import { BvImage } from '../shared/bv-image';
 import { Bounds } from '../../ng2-img-cropper';
 import { Pipe, PipeTransform } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
+import { ValidationService } from '../shared/validation.service';
 
 @Pipe({
     name: 'valid',
@@ -122,6 +123,7 @@ export class DeviceService {
 
   constructor(
     private _http: Http,
+    private _validationService: ValidationService,
     private _sharedService: SharedService) {
     
 
@@ -162,6 +164,10 @@ export class DeviceService {
         (this._radio.headerImage.image !== '' || this._radio.order < 0) &&
         (this._music.headerImage.image !== '' || this._music.order < 0) &&
         (this._photo.headerImage.image !== '' || this._photo.order < 0);
+    }
+
+    public validate(): void {
+        this._validationService.setDesignValid(this.isValid());
     }
 
     private init(): Observable<IDeviceModel> {
@@ -368,6 +374,8 @@ export class DeviceService {
 
   public setPrimaryColor(color: string): void {
       this._model.colors['primary'] = color;
+
+      this.validate();
   }
 
   public setImage(id: TabID, image: BvImage) {
@@ -381,16 +389,20 @@ export class DeviceService {
 
     this._model.tabs[index].image = image;
     this._model.tabs[index].showImage = true;
+    this.validate();
   }
 
 
   public setHeaderImage(id: TabID, image: BvImage) {
     this._model.tabs[id].headerImage = image;
     this._model.tabs[id].showHeader = true;
+
+    this.validate();
   }
 
   public setExtraHeaderImage(id: TabID, image: BvImage) {
     this._model.tabs[id].extraHeaderImage = image;
+    this.validate();
   }
 
   public moveTab(id: TabID, right: TabID) {

@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     isProfileInfoValid = false;
     isBlogValid = false;
     isDesignInfoValid = false;
+    isDeviceValid = false;
 
     private gotoUnsub = new Subject<void>();
     private nextUnsub = new Subject<void>();
@@ -128,6 +129,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this._validationService.blogValidPage$.takeUntil(this.blogUnsub).subscribe(
             isValid => this.isBlogValid = isValid
       );
+
+      this._validationService.designValidPage$.takeUntil(this.designUnsub).subscribe(
+            isValid => this.isDeviceValid = isValid
+      );
+
+      
     }
 
     ngOnDestroy() {
