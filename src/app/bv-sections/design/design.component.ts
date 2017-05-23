@@ -230,6 +230,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     this.dragUnsub.complete();
     this.activeTabUnsub.next();
     this.activeTabUnsub.complete();
+
+    console.log(this.deviceModel);
   }
 
   @HostListener('window:beforeunload')

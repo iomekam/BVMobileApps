@@ -19,7 +19,7 @@ export class FilterPipe implements PipeTransform {
             return items;
         }
         // filter items array, items which match and return true will be kept, false will be filtered out
-        let item = items.filter(item => item.order > 1);
+        let item = items.filter(item => item.order >= 0);
         return item.sort(function compare(a: IDeviceTab, b: IDeviceTab): number {
             if (a.order < b.order) {
               return -1;
@@ -95,8 +95,8 @@ export class DeviceService {
     if (tab.id === TabID.BLOG) {
       tab.headerDimenHeight = 80;
       tab.headerDimenWidth = 570;
-      tab.extraHeaderDimenHeight = 0;
-      tab.extraHeaderDimenWidth = 0;
+      tab.extraHeaderDimenHeight = 88;
+      tab.extraHeaderDimenWidth = 300;
     }
     else if (tab.id === TabID.MUSIC) {
       tab.headerDimenHeight = 302;
