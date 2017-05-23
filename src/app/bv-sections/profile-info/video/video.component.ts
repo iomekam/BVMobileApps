@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IProfileModel, MediaType, IMediaInfo, MediaTypeFactory } from '../iprofile-model';
 import { MediaUpdateService } from '../media-update.service';
 import { DeviceService } from '../../device-mockup/device.service';
-import { OrderType, TabID } from '../../device-mockup/i-device-model';
+import { TabID } from '../../device-mockup/i-device-model';
 import { Bounds } from '../../../ng2-img-cropper';
 
 @Component({

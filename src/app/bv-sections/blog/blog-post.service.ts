@@ -190,6 +190,7 @@ export class BlogPostService {
                 .takeUntil(this.httpDeleteUnsubscribe)
                 .subscribe(
                     data => {
+                        console.log(deletedBlogPost);
                         this.httpDeleteUnsubscribe.next();
                         this.httpDeleteUnsubscribe.complete();
                     },

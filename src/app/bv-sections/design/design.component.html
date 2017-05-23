@@ -34,7 +34,7 @@
              [dragula]='"drag-bag"'
              class="row"
         >
-          <div *ngFor="let tab of deviceModel.tabs | valid | slice:1:deviceModel.tabs.length - 1"
+          <div *ngFor="let tab of deviceModel.tabs | valid"
                class="col card"
                [ngStyle]="deviceModel.activeTab !== null && deviceModel.activeTab.id === tab.id ? {'background-color':deviceModel.colors['secondary']} : {'background-color': white}"
                (click)= "toggleCollapse(tab.id); deviceModel.activeTab = tab"

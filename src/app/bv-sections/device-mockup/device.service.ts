@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IDeviceModel, IDeviceTab, OrderType, TabID } from './i-device-model';
+import { IDeviceModel, IDeviceTab, TabID } from './i-device-model';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -19,7 +19,7 @@ export class FilterPipe implements PipeTransform {
             return items;
         }
         // filter items array, items which match and return true will be kept, false will be filtered out
-        let item = items.filter(item => item.order >= 0);
+        let item = items.filter(item => item.order > 1);
         return item.sort(function compare(a: IDeviceTab, b: IDeviceTab): number {
             if (a.order < b.order) {
               return -1;
@@ -129,7 +129,7 @@ export class DeviceService {
       appName: '',
       colors: {
         primary: '#000000',
-        secondary: '#0099ff'
+        secondary: '#009911'
       },
       tabs: [],
       activeTab: null
@@ -168,7 +168,6 @@ export class DeviceService {
         return this._http.get(this._url)
             .map((response: Response) => <IDeviceModel> response.json())
             .do(data => {
-                console.log(data);
                 data.activeTab = this._model.activeTab;
                 for(let tab of data.tabs) {
                   tab.defaultIcon = this.getDefaultIcon(tab.id);
@@ -235,9 +234,8 @@ export class DeviceService {
     return this._model;
   }
 
-  public saveModel() {
-
-    const model = {
+  public getFullModel() {
+    return {
       appName: '',
       colors: this._model.colors,
       tabs: [
@@ -250,6 +248,11 @@ export class DeviceService {
       ],
       activeTab: null
     };
+  }
+
+  public saveModel() {
+
+    const model = this.getFullModel();
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -258,7 +261,7 @@ export class DeviceService {
             .takeUntil(this.httpPutUnsubscribe)
             .subscribe(
                 data => {
-                  
+                    console.log(model);
                     this.httpPutUnsubscribe.next();
                     this.httpPutUnsubscribe.complete();
                 },
@@ -313,19 +316,28 @@ export class DeviceService {
   }
 
   public addTab(id: TabID): void {
+    const tab = this.getTab(id);
+
     // If all 5 tabs are already being shown, then we want to replace the photo tab with the radio tab.
     if (this._model.tabs.length === 5) {
       this.removeTab(TabID.PHOTO);
     }
-
-    const tab = this.getTab(id);
-    tab.order = this.getOrder(id);
+    
+    if(tab.order < 0) {
+      tab.order *= -1;
+    }
+    
     this._model.tabs.splice(this._model.tabs.length, 0, tab);  
   }
 
   public removeTab(id: TabID): void {
+    const tab = this.getTab(id);
+
     // If we are removing a tab (not Photos), then we can restore the photo tab
     if (this._model.tabs.length === 5 && id !== TabID.PHOTO) {
+        const temp = this._photo.order;
+        this._photo.order = tab.order;
+        tab.order = temp;
         this.addTab(TabID.PHOTO);
     }
 
@@ -337,7 +349,9 @@ export class DeviceService {
 
     if (index === -1) { return; }
 
-    this._model.tabs[index].order = -1;
+    if(tab.order > 0) {
+      this._model.tabs[index].order *= -1;
+    }
 
     this._model.tabs.splice(index, 1);
   }
@@ -379,47 +393,58 @@ export class DeviceService {
     this._model.tabs[id].extraHeaderImage = image;
   }
 
-
-  public moveTab(id: TabID, before: TabID) {
+  public moveTab(id: TabID, right: TabID) {
       if (this._model.tabs.length > 3 && id != null) {
+        // We get the id of the tab as well as what it's right sibling is. Therefore,
+        // we will look to see who is on the right before the swap and use that
+        // to obtain the proper tab to swap tab.order with
 
-        let end: number;
-        if (before != null) {
-          const indexEnd: number = this._model.tabs.findIndex(
-            tab => {
-
-              return (before + '') === (tab.id + '');
+        let items = this._model.tabs.sort(function compare(a: IDeviceTab, b: IDeviceTab): number {
+            if (a.order < b.order) {
+              return -1;
             }
-          );
 
-          end = indexEnd;
+            if (a.order > b.order) {
+              return 1;
+            }
+
+            return 0;
+        });
+        
+        const tab = this.getTab(id);
+        
+        let start = tab.order;
+        let end = 6;
+        let rightToLeft = false;
+
+        if(right !== null) {
+            
+            const rightTab = this.getTab(right);
+
+            if (tab.order > rightTab.order) {
+              rightToLeft = true;
+              start = rightTab.order;
+              end = tab.order;
+            }
+            else {
+              end = rightTab.order-1;
+            }
         }
-        else {
-          end = this._model.tabs.length - 2;
+
+        items = items.filter(item => item.order >= start && item.order <= end);
+
+        if(rightToLeft) {
+          items = items.reverse();
         }
 
-        const indexStart: number = this._model.tabs.findIndex(
-          tab => {
+        let target = this.getTab(items[0].id);
 
-            return (id + '') === (tab.id + '');
-          }
-        );
-
-        const removetab = this._model.tabs[indexStart];
-
-        const tempOrder = this._model.tabs[end].order;
-        this._model.tabs[end].order = this._model.tabs[indexStart].order;
-        this._model.tabs[indexStart].order = tempOrder;
-
-        if (indexStart < end) {
-          this._model.tabs.splice(end, 0, removetab);
-          this._model.tabs.splice(indexStart, 1);
+        for(let t of items) {
+            const temp = target.order;
+            target.order = t.order;
+            t.order = temp;
         }
-        else {
-          this._model.tabs.splice(indexStart, 1);
-          this._model.tabs.splice(end, 0, removetab);
-        }
-      }
+    }
   }
 
   public setSecondaryColor(color: string): void {

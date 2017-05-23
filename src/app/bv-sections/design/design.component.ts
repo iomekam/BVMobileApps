@@ -234,11 +234,13 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @HostListener('window:beforeunload')
   onRefresh() {
-    let xhr = new XMLHttpRequest()
+    const model = this._deviceService.getFullModel();
 
+    let xhr = new XMLHttpRequest()
+    console.log(this.deviceModel);
      xhr.open("PUT", this._deviceService.getUrl(), false);
      xhr.setRequestHeader("Content-type", "application/json");
-     xhr.send(JSON.stringify(this.deviceModel));
+     xhr.send(JSON.stringify(model));
   }
 
   onDrop(args) {
