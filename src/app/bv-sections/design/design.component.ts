@@ -230,6 +230,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     this.activeTabUnsub.next();
     this.activeTabUnsub.complete();
 
+    this.deviceModel.activeTab = null;
+
     console.log(this.deviceModel);
   }
 
