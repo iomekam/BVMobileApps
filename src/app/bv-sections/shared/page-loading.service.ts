@@ -18,13 +18,13 @@ export interface LastCompleted
 @Injectable()
 export class PageLoadingService {
 
-  private _url = '/api/lastcompleted/1';
+  private _url = '/api/lastcompleted/';
   private httpPutUnsubscribe = new Subject<void>();
+  private isIdSet = false;
 
   constructor(
       private _http: Http,
       private _sharedService: SharedService) { 
-          this._url = this._sharedService.url + this._url;
       }
 
   public savePage(page: BVPages) {
@@ -32,6 +32,11 @@ export class PageLoadingService {
       lastPage: page
     };
 
+    if(this.isIdSet === false) {
+        this._url = this._sharedService.url + this._url + this._sharedService.id;
+        this.isIdSet = true;
+    }
+    
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const options = new RequestOptions({ headers: headers });

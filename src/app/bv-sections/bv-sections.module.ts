@@ -32,11 +32,12 @@ import { PopoverModule } from 'ngx-popover';
 import { DesignImageCropperComponent } from './design/design-image-cropper/design-image-cropper.component';
 import { LoadpageGuard } from './loadpage.guard';
 import { FilterPipe } from './device-mockup/device.service';
+import { LoginComponent } from './login/login.component';
 @NgModule({
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', canActivate: [LoadpageGuard], component: AppInfoComponent },
+      { path: '', component: LoginComponent },
       { path: 'app-info', component: AppInfoComponent },
       {
         path: 'app-profile-info', component: ProfileInfoComponent,
@@ -102,7 +103,8 @@ import { FilterPipe } from './device-mockup/device.service';
     DesignComponent,
     MyPopoverComponent,
     DesignImageCropperComponent,
-    FilterPipe
+    FilterPipe,
+    LoginComponent
   ],
   entryComponents: [MyPopoverComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],

@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     readonly blogInfoID = 2;
     readonly designInfoID = 3;
 
-    isAppInfoCurrent = true;
+    isAppInfoCurrent = false;
     isProfileInfoCurrent = false;
     isBlogCurrent = false;
     isDesignCurrent = false;

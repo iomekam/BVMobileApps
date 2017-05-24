@@ -11,7 +11,7 @@ import { SharedService } from '../shared/shared.service';
 export class AppInfoService {
 
     private _appInfo: IAppInfo;
-    private _url = '/api/appInfo/1';
+    private _url = '/api/appInfo/';
 
     private httpPutUnsubscribe = new Subject<void>();
 
@@ -31,8 +31,6 @@ export class AppInfoService {
                 bounds: new Bounds()
             }
         };
-
-        this._url = this._sharedService.url + this._url;
     }
 
     public setDataAfterFetch(model: IAppInfo) {
@@ -68,6 +66,8 @@ export class AppInfoService {
     }
 
     private init(): Observable<IAppInfo> {
+        this._url = this._sharedService.url + this._url + this._sharedService.id;
+        console.log(this._url);
         return this._http.get(this._url)
             .map((response: Response) => <IAppInfo> response.json())
             .do(data => {

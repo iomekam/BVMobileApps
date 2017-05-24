@@ -47,7 +47,7 @@ export class DeviceService {
   private _radio: IDeviceTab;
   private _more: IDeviceTab
 
-  private _url = '/api/design/1';
+  private _url = '/api/design/';
 
   private httpPutUnsubscribe = new Subject<void>();
 
@@ -136,8 +136,6 @@ export class DeviceService {
       tabs: [],
       activeTab: null
     };
-
-    this._url = this._sharedService.url + this._url;
   }
 
     public setDataAfterFetch(model: IDeviceModel) {
@@ -171,6 +169,7 @@ export class DeviceService {
     }
 
     private init(): Observable<IDeviceModel> {
+      this._url = this._sharedService.url + this._url + this._sharedService.id;
         return this._http.get(this._url)
             .map((response: Response) => <IDeviceModel> response.json())
             .do(data => {

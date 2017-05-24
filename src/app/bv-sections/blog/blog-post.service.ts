@@ -17,7 +17,7 @@ export class BlogPostService {
     private _isInCreationPage = false;
     private _currentUpdateID = 0;
 
-    private _url = '/api/blogs/1';
+    private _url = '/api/blogs/';
 
     private httpPutUnsubscribe = new Subject<void>();
     private httpUpdateUnsubscribe = new Subject<void>();
@@ -28,7 +28,6 @@ export class BlogPostService {
         private _validationService: ValidationService,
         private _sharedService: SharedService) {
         this._blogPost = [];
-        this._url = this._sharedService.url + this._url;
     }
 
     public setDataAfterFetch(blogPost: IBlogPost[]) {
@@ -51,6 +50,7 @@ export class BlogPostService {
     }
 
     private init(): Observable<IBlogPost[]> {
+        this._url = this._sharedService.url + this._url + this._sharedService.id;
         return this._http.get(this._url)
             .map((response: Response) => <IBlogPost[]> response.json())
             .do(data => {

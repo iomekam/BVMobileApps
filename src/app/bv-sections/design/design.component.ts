@@ -215,7 +215,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     this.moreTab = this._deviceService.getTab(TabID.MORE);
 
     this._pageValidation.savePage(BVPages.DESIGN);
-
     this._deviceService.activeTabChanged$.takeUntil(this.activeTabUnsub).subscribe(
       id => {
         this.toggleCollapse(id);

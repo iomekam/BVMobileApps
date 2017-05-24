@@ -37,7 +37,7 @@ export class MediaUpdateService {
         MediaType.LISTENLIVE
     ];
 
-    private _url = '/api/profileInfo/1';
+    private _url = '/api/profileInfo/';
 
     private httpPutUnsubscribe = new Subject<void>();
 
@@ -58,8 +58,6 @@ export class MediaUpdateService {
             radioInfo: this.createMediaInfoList(this.radioMediaTypes),
             socialInfo: this.createMediaInfoList(this.socialMediaTypes)
         };
-
-        this._url = this._sharedService.url + this._url;
     }
 
     public setDataAfterFetch(profile: IProfileModel) {
@@ -81,6 +79,7 @@ export class MediaUpdateService {
     }
 
     private init(): Observable<IProfileModel> {
+        this._url = this._sharedService.url + this._url + this._sharedService.id;
         return this._http.get(this._url)
             .map((response: Response) => <IProfileModel> response.json())
             .do(data => {
