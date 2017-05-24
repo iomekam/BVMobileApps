@@ -187,4 +187,8 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
     private onTagLostFocus(message: string): void {
         this.isTagTouched = true;
     }
+
+    onChange(s:any) {
+        console.log(s);
+    }
 }

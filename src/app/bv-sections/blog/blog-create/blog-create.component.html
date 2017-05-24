@@ -1,4 +1,4 @@
-<form [formGroup]="form" (keydown.enter)="$event.preventDefault()">
+<form [formGroup]="form">
   <md-card>
     <md-card-content>
       <md-input-container>
@@ -17,6 +17,7 @@
       <ckeditor [(ngModel)]="blogPost.body"
                 [formControl]="form.controls['blog']"
                 [config]="config"
+                (change)="onChange($event)"
                 debounce="500">
       </ckeditor>
       <br />
@@ -27,15 +28,17 @@
 
       <br />
 
-      <rl-tag-input [(ngModel)]="blogPost.keywords"
+      <tag-input [(ngModel)]="blogPost.keywords"
                  [formControl]="form.controls['keywords']"
                  (onBlur)="onTagLostFocus($event)"
                  placeholder="Add a keyword"
+                 secondaryPlaceholder="Add a keyword"
                  addOnSpace="true"
                  addOnPaste="true"
                  addOnEnter="true"
-                 addOnComma="true"
-                 addOnBlur="true"></rl-tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
+                 addOnBlur="true"
+                 maxItems="10"
+                 modelAsStrings="true"></tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
     </md-card-content>
     <md-card-actions>
       <div align="right">
