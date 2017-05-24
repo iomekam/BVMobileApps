@@ -72,7 +72,7 @@
       <div class="demo-card-container">
         <md-card>
           <md-card-content>
-            <rl-tag-input [formControl]="form.controls['keywords']"
+            <tag-input [formControl]="form.controls['keywords']"
                           [(ngModel)]="appInfo.keywords"
                           (onBlur)="onTagLostFocus($event)"
                           (addTag)="onInputForValidation()"
@@ -83,8 +83,9 @@
                           addOnPaste="true"
                           addOnEnter="true"
                           addOnBlur="true"
-                          addOnComma="true"
-                          separatorKeys="[32]"></rl-tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
+                          maxItems="10"
+                          modelAsStrings="true"
+                          addOnComma="true"></tag-input>  <!-- separatorKeys=[32] mean to use space as way to seperate keys-->
             <md-hint [ngStyle]="{'color': 'red'}"
                       align="start"
                       *ngIf="form.controls['keywords'].hasError('required') && isTagTouched">{{ keywordEmptyErrorMessage }}</md-hint>

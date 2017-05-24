@@ -27,7 +27,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private readonly shortDescriptionMaxCharacters = 'No more than 80 characters';
     private readonly longDescriptionMaxCharacters = 'No more than 4000 characters';
-    private readonly keywordMaxCharacters = 'No more than 100 keywords';
+    private readonly keywordMaxCharacters = 'No more than 10 keywords';
 
     private readonly appNameEmptyErrorMessage = 'An App Name is required';
     private readonly shortDescriptionEmptyErrorMessage = 'A short description is required';
@@ -93,7 +93,8 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this._appInfoService.setAppInfo(this.appInfo);  
+        this._appInfoService.setAppInfo(this.appInfo);
+        console.log(this.appInfo.keywords);
     }
 
     validate(): void {
