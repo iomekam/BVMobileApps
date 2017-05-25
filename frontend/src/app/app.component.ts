@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SharedService } from './bv-sections/shared/shared.service';
 
 @Component({
   selector: 'bv-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public title = 'BV Mobile Apps';
+
+  constructor(
+      private _sharedService: SharedService) { }
 }

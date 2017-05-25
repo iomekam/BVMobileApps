@@ -3,7 +3,7 @@
   <div class="center">{{ title }}</div>
 </ons-toolbar>
 
-<div class="container" style="padding-top:64px">  
+<div *ngIf="_sharedService.showHeader" class="container" style="padding-top:64px">  
     <div class="row">  
       <div class="center-block">
         <bv-header></bv-header>

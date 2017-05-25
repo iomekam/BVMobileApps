@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
       startLoad();
       this._sharedService.id = this.hash();
       this._sharedService.username = this.username;
+      this._sharedService.showHeader = true;
       Observable.forkJoin(
         this._http.get(this._sharedService.url + '/api/lastcompleted/' + this._sharedService.id).map(response => { return <LastCompleted> response.json(); }),
         this._deviceService.fetchData(),
