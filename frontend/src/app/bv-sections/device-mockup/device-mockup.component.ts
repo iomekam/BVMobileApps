@@ -4,6 +4,7 @@ import { IDeviceModel, IDeviceTab } from './i-device-model';
 import { AppInfoService } from '../app-info/app-info.service';
 import { IAppInfo } from '../app-info/iapp-info';
 import { Bounds } from '../../ng2-img-cropper';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'bv-device-mockup',
@@ -27,10 +28,24 @@ export class DeviceMockupComponent implements OnInit {
 
     constructor(
       private _deviceService: DeviceService,
-      private _appInfoService: AppInfoService) {}
+      private _appInfoService: AppInfoService,
+      private sanitizer:DomSanitizer) {}
 
+  public ngSetHeight(): any
+  {
+    //padding-top: 100%;
+    //return this.sanitizer.bypassSecurityTrustStyle('height: ' + this.deviceModel.activeTab.headerDimenHeight + 'px !important;'
+    //+'border-color: ' + this.backgroundColor);
 
-    ngOnInit() {
+    console.log(this.deviceModel.activeTab.headerDimenWidth);
+    console.log(this.deviceModel.activeTab.headerDimenHeight);
+    return this.sanitizer.bypassSecurityTrustStyle('padding-top: ' + (this.deviceModel.activeTab.headerDimenHeight/this.deviceModel.activeTab.headerDimenWidth) * 100 + '% !important;'
+      + 'border-color: ' + this.backgroundColor + ';'
+      + 'background-size: 100% 100%;'
+      + 'background-image: ' + 'url(' + this.deviceModel.activeTab.headerImage.image + ')');
+  }
+
+  ngOnInit() {
 
       this.deviceModel = this._deviceService.getModel();
       this.appInfo = this._appInfoService.getAppInfo();

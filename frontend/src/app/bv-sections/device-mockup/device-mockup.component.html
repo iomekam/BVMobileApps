@@ -70,7 +70,7 @@
       <button [style.background]="deviceModel.colors['secondary']" class="button button-icon icon ion-refresh"></button>
     </div>
 
-    <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.showHeader" class="bar bar-subheader bar-positive" style="background-size: 100% 100%;height:80px;width:auto" [ngStyle]="{'background-image': 'url(' + deviceModel.activeTab.headerImage.image + ')'}" [style.border-color]="backgroundColor">
+    <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.showHeader" [attr.style]="ngSetHeight()" [style.background-image] = "'url(' + this.deviceModel.activeTab.headerImage.image + ')'" class="bar bar-subheader bar-positive">
     </div>
 
     <div class="wrapper">

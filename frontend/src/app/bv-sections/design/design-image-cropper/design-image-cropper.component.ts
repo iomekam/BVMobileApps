@@ -31,4 +31,28 @@ export class DesignImageCropperComponent implements OnInit {
     this.onCrop.emit(bounds);
   }
 
+  public clearThings(test: any)
+  {
+    test.toElement.value = "";
+    console.log(test);
+    console.log("lol");
+  }
+  /**
+   * Used to send image to second cropper
+   * @param $event
+   */
+  public fileChangeListener($event) {
+    console.log("Change detected");
+    let image:any = new Image();
+    let file:File = $event.target.files[0];
+    let myReader:FileReader = new FileReader();
+    let that = this;
+    myReader.onloadend = function (loadEvent:any) {
+      image.src = loadEvent.target.result;
+      that.cropper.setImage(image);
+    };
+
+    myReader.readAsDataURL(file);
+  }
+
 }

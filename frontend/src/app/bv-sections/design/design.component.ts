@@ -63,7 +63,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
     private dragUnsub = new Subject<void>();
     private activeTabUnsub = new Subject<void>();
-    
+
     constructor(
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,
@@ -82,6 +82,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.cropperSettings.canvasHeight = 100;
       this.cropperSettings.dynamicSizing = true;
       this.cropperSettings.preserveSize = true;
+      this.cropperSettings.noFileInput = true;
 
       this.headerCropperSettings = new CropperSettings();
       this.headerCropperSettings.width = 612;
@@ -89,7 +90,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.headerCropperSettings.minWidth = 570;
       this.headerCropperSettings.minHeight = 88;
       this.headerCropperSettings.croppedWidth = 570;
-      this.headerCropperSettings.croppedHeight = 88;
+      this.headerCropperSettings.croppedHeight = 88
+      this.headerCropperSettings.noFileInput = true;
 
       this.headerCropperSettings.canvasWidth = 612;
       this.headerCropperSettings.canvasHeight = 512;
@@ -101,7 +103,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.headerVIDMUSPHOTCropperSettings.minHeight = 302;
       this.headerVIDMUSPHOTCropperSettings.croppedWidth = 612;
       this.headerVIDMUSPHOTCropperSettings.croppedHeight = 302;
-
+      this.headerVIDMUSPHOTCropperSettings.noFileInput = true;
 
 
       this.headerVIDMUSPHOTCropperSettings.canvasWidth = 612;
@@ -116,16 +118,18 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.headerRADIOCropperSettings.croppedHeight = 600;
 
       this.headerRADIOCropperSettings.canvasWidth = 612;
-      this.headerRADIOCropperSettings.canvasHeight = 512;
+      this.headerRADIOCropperSettings.canvasHeight = 600;
+      this.headerRADIOCropperSettings.noFileInput = true;
 
       this.extraHeaderCropperSettings = new CropperSettings();
       this.extraHeaderCropperSettings.width = 612;
       this.extraHeaderCropperSettings.height = 88;
-      this.headerCropperSettings.minWidth = 600;
-      this.headerCropperSettings.minHeight = 600;
-      this.headerCropperSettings.croppedWidth = 600;
-      this.headerCropperSettings.croppedHeight = 600;
+      this.extraHeaderCropperSettings.minWidth = 600;
+      this.extraHeaderCropperSettings.minHeight = 600;
+      this.extraHeaderCropperSettings.croppedWidth = 600;
+      this.extraHeaderCropperSettings.croppedHeight = 600;
 
+      this.extraHeaderCropperSettings.noFileInput = true;
       this.extraHeaderCropperSettings.canvasWidth = 612;
       this.extraHeaderCropperSettings.canvasHeight = 612;
     }
@@ -164,8 +168,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
         {
           designImgCropper.cropper.setImage(new Image(), new Bounds());
           designImgCropper.cropper.reset();
-          designImgCropper.settings.noFileInput = true;
-          designImgCropper.settings.noFileInput = false;
+
+          console.log(designImgCropper.cropper.image);
 
         }
       }
