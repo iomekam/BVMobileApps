@@ -72,6 +72,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.cropperSettings.canvasHeight = 100;
       this.cropperSettings.dynamicSizing = true;
       this.cropperSettings.preserveSize = true;
+      this.cropperSettings.noFileInput = true;
 
       this.headerCropperSettings = new CropperSettings();
       this.headerCropperSettings.width = 612;
@@ -83,6 +84,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.headerCropperSettings.canvasWidth = 612;
       this.headerCropperSettings.canvasHeight = 512;
+      this.headerCropperSettings.noFileInput = true;
 
       this.headerVIDMUSPHOTCropperSettings = new CropperSettings();
       this.headerVIDMUSPHOTCropperSettings.width = 612;
@@ -92,10 +94,9 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.headerVIDMUSPHOTCropperSettings.croppedWidth = 612;
       this.headerVIDMUSPHOTCropperSettings.croppedHeight = 302;
 
-
-
       this.headerVIDMUSPHOTCropperSettings.canvasWidth = 612;
       this.headerVIDMUSPHOTCropperSettings.canvasHeight = 612;
+      this.headerVIDMUSPHOTCropperSettings.noFileInput = true;
 
       this.headerRADIOCropperSettings = new CropperSettings();
       this.headerRADIOCropperSettings.croppedWidth = 600;
@@ -107,6 +108,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.headerRADIOCropperSettings.canvasWidth = 612;
       this.headerRADIOCropperSettings.canvasHeight = 600;
+      this.headerRADIOCropperSettings.noFileInput = true;
 
       this.extraHeaderCropperSettings = new CropperSettings();
       this.extraHeaderCropperSettings.width = 612;
@@ -118,6 +120,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
       this.extraHeaderCropperSettings.canvasWidth = 612;
       this.extraHeaderCropperSettings.canvasHeight = 612;
+      this.extraHeaderCropperSettings.noFileInput = true;
     }
 
 
@@ -161,7 +164,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
           designImgCropper.cropper.reset();
 
           console.log(designImgCropper.cropper.image);
-          console.log(designImgCropper.cropper.cropper.));
+          //console.log(designImgCropper.cropper.cropper.));
 
           //designImgCropper.cropper.image = null;
 

@@ -1,1 +1,4 @@
+<div class="file-upload">
+  <input id="custom-input" type="file" (click) = "clearThings($event)" (change)="fileChangeListener($event)">
+</div>
 <img-cropper #cropper [image]="image" [settings]="settings" (onCrop)="onCropDone($event)"></img-cropper>
