@@ -20,7 +20,7 @@
     </li>
     <li
       [ngClass]="{'current': isCreateCurrent }">
-      <a *ngIf="(isAppInfoValid && isProfileInfoValid && isBlogValid && isDeviceValid)" href="/g" id="header_info_design" skipLocationChange style="font-size: large">Create</a>
+      <a *ngIf="(isAppInfoValid && isProfileInfoValid && isBlogValid && isDeviceValid)" href="/" id="header_info_design" skipLocationChange style="font-size: large">Create</a>
       <a *ngIf="(isAppInfoValid && isProfileInfoValid && isBlogValid && isDeviceValid) === false" id="header_info_design" skipLocationChange style="font-size: large">Create</a>
     </li>
   </ol>

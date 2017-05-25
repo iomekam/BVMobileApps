@@ -205,7 +205,7 @@
         <button style="float:left" md-button (click)="_headerService.prev()">
           <md-icon>arrow_back</md-icon>Previous
         </button>
-        <button md-button [disabled]="!_deviceService.isValid()">
+        <button md-button (click)="onSubmit()" [disabled]="!_deviceService.isValid()">
           Submit
           <md-icon>arrow_upward</md-icon>
         </button>

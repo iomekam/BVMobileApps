@@ -11,6 +11,7 @@ import { HeaderService } from '../../header/header.service';
 import { ValidationService } from '../../bv-sections/shared/validation.service';
 import { PageLoadingService, BVPages } from '../shared/page-loading.service';
 import { Subject } from 'rxjs/Subject';
+import { Router } from '@angular/router';
 
 export class Cmyk {
   constructor(public c: number, public m: number, public y: number, public k: number) { }
@@ -71,6 +72,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       private _headerService: HeaderService,
       private _pageValidation: PageLoadingService,
       private _validationService: ValidationService,
+      private _router: Router,
       private snackBar: MdSnackBar) {
 
       this.cropperSettings = new CropperSettings();
@@ -311,5 +313,9 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     tab.extraHeaderImage.bounds = bounds;
     tab.extraHeaderImage.originalBase64 = tab.extraHeaderImage.original.src;
     this._deviceService.setExtraHeaderImage(tab.id, tab.extraHeaderImage);
+  }
+
+  onSubmit(): void {
+    this._router.navigate(['/'], { skipLocationChange: true });
   }
 }
