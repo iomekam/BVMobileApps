@@ -38,7 +38,7 @@ namespace BVMobileAppsApi.Model
             Image = new BVImage();
             ShowTitle = true;
             ShowImage = false;
-            ShowHeader = true;
+            ShowHeader = false;
             HasExtraHeader = false;
             HasHeader = true;
         }
@@ -397,12 +397,12 @@ namespace BVMobileAppsApi.Model
                             else
                             {
                                 Images image = imageRepository.Find(setup.RadioHeaderImageID);
-                                image.Image = tab.Image.Image;
-                                image.ImageOriginal = tab.Image.OriginalBase64;
-                                image.Left = tab.Image.Bounds.Left;
-                                image.Top = tab.Image.Bounds.Top;
-                                image.Right = tab.Image.Bounds.Right;
-                                image.Bottom = tab.Image.Bounds.Bottom;
+                                image.Image = tab.HeaderImage.Image;
+                                image.ImageOriginal = tab.HeaderImage.OriginalBase64;
+                                image.Left = tab.HeaderImage.Bounds.Left;
+                                image.Top = tab.HeaderImage.Bounds.Top;
+                                image.Right = tab.HeaderImage.Bounds.Right;
+                                image.Bottom = tab.HeaderImage.Bounds.Bottom;
 
                                 imageRepository.Update(image);
                             }
@@ -530,7 +530,6 @@ namespace BVMobileAppsApi.Model
                         Order = 8,
                         Title = "More",
                         HasHeader = false,
-                        ShowHeader = false
                     },
                 }
             };

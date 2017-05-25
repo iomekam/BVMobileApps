@@ -21,8 +21,12 @@ namespace BVMobileAppsApi.Model
 
         public int Add(Images item)
         {
-            _context.ImagesItems.Add(item);
-            _context.SaveChanges();
+            try
+            {
+                _context.ImagesItems.Add(item);
+                _context.SaveChanges();
+            }
+            catch { }
             return item.ImageID;
         }
 

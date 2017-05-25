@@ -143,6 +143,10 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
 
+    public print(tab: IDeviceTab) {
+      console.log(tab);
+    }
+
   onChangeColor(color: Event) {
     let colorString = color + '';
 

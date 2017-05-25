@@ -21,8 +21,12 @@ namespace BVMobileAppsApi.Model
 
         public void Add(UserProfile item)
         {
-            _context.UserProfileItems.Add(item);
-            _context.SaveChanges();
+            try
+            {
+                _context.UserProfileItems.Add(item);
+                _context.SaveChanges();
+            }
+            catch {}
         }
 
         public UserProfile Find(long userID)

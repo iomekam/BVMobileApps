@@ -21,8 +21,12 @@ namespace BVMobileAppsApi.Model
 
         public void Add(AppSetup item)
         {
-            _context.AppSetupItems.Add(item);
-            _context.SaveChanges();
+            try
+            {
+                _context.AppSetupItems.Add(item);
+                _context.SaveChanges();
+            }
+            catch { }
         }
 
         public AppSetup Find(long userID)

@@ -21,8 +21,12 @@ namespace BVMobileAppsApi.Model
 
         public void Add(BVBlogs item)
         {
-            _context.BVBlogsItems.Add(item);
-            _context.SaveChanges();
+            try
+            {
+                _context.BVBlogsItems.Add(item);
+                _context.SaveChanges();
+            }
+            catch { }
         }
 
         public BVBlogs Find(long userID, long blogID)

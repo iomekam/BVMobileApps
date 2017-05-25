@@ -37,8 +37,6 @@ export class DeviceMockupComponent implements OnInit {
     //return this.sanitizer.bypassSecurityTrustStyle('height: ' + this.deviceModel.activeTab.headerDimenHeight + 'px !important;'
     //+'border-color: ' + this.backgroundColor);
 
-    console.log(this.deviceModel.activeTab.headerDimenWidth);
-    console.log(this.deviceModel.activeTab.headerDimenHeight);
     return this.sanitizer.bypassSecurityTrustStyle('padding-top: ' + (this.deviceModel.activeTab.headerDimenHeight/this.deviceModel.activeTab.headerDimenWidth) * 100 + '% !important;'
       + 'border-color: ' + this.backgroundColor + ';'
       + 'background-size: 100% 100%;'

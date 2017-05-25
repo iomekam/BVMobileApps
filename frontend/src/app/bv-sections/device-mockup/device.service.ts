@@ -378,29 +378,25 @@ export class DeviceService {
   }
 
   public setImage(id: TabID, image: BvImage) {
-    const index: number = this._model.tabs.findIndex(
-      tab => {
-        return (id + '') === (tab.id + '');
-      }
-    );
+    const tab = this.getTab(id);
+    tab.image = image;
+    tab.showImage = true;
 
-    if (index === -1) { return; }
-
-    this._model.tabs[index].image = image;
-    this._model.tabs[index].showImage = true;
     this.validate();
   }
 
 
   public setHeaderImage(id: TabID, image: BvImage) {
-    this._model.tabs[id].headerImage = image;
-    this._model.tabs[id].showHeader = true;
+    const tab = this.getTab(id);
+    tab.headerImage = image;
+    tab.showHeader = true;
 
     this.validate();
   }
 
   public setExtraHeaderImage(id: TabID, image: BvImage) {
-    this._model.tabs[id].extraHeaderImage = image;
+    const tab = this.getTab(id);
+    tab.extraHeaderImage = image;
     this.validate();
   }
 
