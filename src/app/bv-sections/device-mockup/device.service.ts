@@ -70,8 +70,8 @@ export class DeviceService {
               bounds: new Bounds()
           },
           showHeader: false,
-          headerDimenHeight: 302,
-          headerDimenWidth: 612,
+          headerDimenHeight: 88,
+          headerDimenWidth: 570,
           hasExtraHeader: true,
           extraHeaderImage: {
             original: new Image(),

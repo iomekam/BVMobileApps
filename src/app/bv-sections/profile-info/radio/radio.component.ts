@@ -70,8 +70,8 @@ export class RadioComponent implements OnInit, OnDestroy {
                         bounds: new Bounds()
                     },
                     showHeader: false,
-                  headerDimenHeight: 612,
-                  headerDimenWidth: 302,
+                  headerDimenHeight: 600,
+                  headerDimenWidth: 600,
                   hasExtraHeader: false,
                   extraHeaderImage: {
                     original: new Image(),

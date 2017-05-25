@@ -53,6 +53,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     public photoEnum : TabID = TabID.PHOTO;
     public radioEnum : TabID = TabID.RADIO;
     public moreEnum : TabID = TabID.MORE;
+
+
     constructor(
       private cpService: ColorPickerService,
       private _dragulaService: DragulaService,
@@ -104,7 +106,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.headerRADIOCropperSettings.croppedHeight = 600;
 
       this.headerRADIOCropperSettings.canvasWidth = 612;
-      this.headerRADIOCropperSettings.canvasHeight = 512;
+      this.headerRADIOCropperSettings.canvasHeight = 600;
 
       this.extraHeaderCropperSettings = new CropperSettings();
       this.extraHeaderCropperSettings.width = 612;
@@ -157,9 +159,13 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
         {
           designImgCropper.cropper.setImage(new Image(), new Bounds());
           designImgCropper.cropper.reset();
-          designImgCropper.settings.noFileInput = true;
-          designImgCropper.settings.noFileInput = false;
 
+          console.log(designImgCropper.cropper.image);
+          console.log(designImgCropper.cropper.cropper.));
+
+          //designImgCropper.cropper.image = null;
+
+          //designImgCropper.cropper.image.
         }
       }
     );
