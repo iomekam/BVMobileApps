@@ -37,6 +37,7 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly keywordEmptyErrorMessage = 'A keyword is required';
 
     private config: any;
+    private test: string;
 
     private routeUnsub = new Subject<void>();
 
@@ -63,18 +64,27 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // Config used by ckeditor
         this.config = {
-            toolbarGroups: [
-                { 'name': 'basicstyles', 'groups': ['basicstyles'] },
-                { 'name': 'links', 'groups': ['links'] },
-                { 'name': 'paragraph', 'groups': ['list', 'blocks'] },
-                { 'name': 'document', 'groups': ['mode'] },
-                { 'name': 'insert', 'groups': ['insert'] },
-                { 'name': 'styles', 'groups': ['styles'] },
-                { 'name': 'about', 'groups': ['about'] }
-            ],
             // Remove the redundant buttons from toolbar groups defined above.
-            removeButtons: 'Underline,Strike,Subscript,Superscript,Anchor,Styles,Specialchar',
-            extraPlugins: 'divarea'
+            wordcount: {
+
+                // Whether or not you want to show the Word Count
+                showWordCount: false,
+
+                showParagraphs: false,
+
+                // Whether or not you want to show the Char Count
+                showCharCount: true,
+                
+                // Maximum allowed Word Count
+                maxWordCount: 0,
+
+                // Maximum allowed Char Count
+                maxCharCount: 10000,
+
+                countSpacesAsChars: true,
+
+                pasteWarningDuration: 3,
+            }
         };
 
         this._validationService.setBlogValid(false);
@@ -186,9 +196,5 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private onTagLostFocus(message: string): void {
         this.isTagTouched = true;
-    }
-
-    onChange(s:any) {
-        console.log(s);
     }
 }

@@ -293,6 +293,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onCropHeader(bounds: Bounds, tab: IDeviceTab): void {
+    console.log(tab);
     tab.headerImage.bounds = bounds;
     tab.headerImage.originalBase64 = tab.headerImage.original.src;
     this._deviceService.setHeaderImage(tab.id, tab.headerImage);

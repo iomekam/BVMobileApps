@@ -16,12 +16,9 @@
       <br />
       <ckeditor [(ngModel)]="blogPost.body"
                 [formControl]="form.controls['blog']"
-                [config]="config"
-                (change)="onChange($event)"
-                debounce="500">
+                [config]="config">
       </ckeditor>
       <br />
-
       <div>
         <img-cropper #cropper [(image)]="blogPost.image" [settings]="cropperSettings" (onCrop)="onCrop($event)"></img-cropper><br>
       </div>
