@@ -61,11 +61,11 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // For app-info page, we want the image to be 512x600
         this.cropperSettings = new CropperSettings();
-        this.cropperSettings.width = 600;
+        this.cropperSettings.width = 512;
         this.cropperSettings.height = 512;
-        this.cropperSettings.croppedWidth = 600;
+        this.cropperSettings.croppedWidth = 512;
         this.cropperSettings.croppedHeight = 512;
-        this.cropperSettings.canvasWidth = 600;
+        this.cropperSettings.canvasWidth = 512;
         this.cropperSettings.canvasHeight = 512;
     }
 
