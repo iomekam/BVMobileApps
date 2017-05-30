@@ -94,6 +94,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
     }
 
+    submit(): void {
+        //this._router.navigate(['/'], { skipLocationChange: true });
+    }
+
     ngOnInit() {
       this.currentID = this.appInfoID;
 
