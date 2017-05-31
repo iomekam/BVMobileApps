@@ -33,6 +33,7 @@ import { DesignImageCropperComponent } from './design/design-image-cropper/desig
 import { LoadpageGuard } from './loadpage.guard';
 import { FilterPipe } from './device-mockup/device.service';
 import { LoginComponent } from './login/login.component';
+import { CreateComponent } from './create/create.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -74,6 +75,7 @@ import { LoginComponent } from './login/login.component';
           ]
       },
       { path: 'design', component: DesignComponent },
+      { path: 'create', component: CreateComponent },
     ]),
     FormsModule,
     ReactiveFormsModule,
@@ -104,7 +106,8 @@ import { LoginComponent } from './login/login.component';
     MyPopoverComponent,
     DesignImageCropperComponent,
     FilterPipe,
-    LoginComponent
+    LoginComponent,
+    CreateComponent
   ],
   entryComponents: [MyPopoverComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],

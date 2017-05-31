@@ -314,8 +314,4 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     tab.extraHeaderImage.originalBase64 = tab.extraHeaderImage.original.src;
     this._deviceService.setExtraHeaderImage(tab.id, tab.extraHeaderImage);
   }
-
-  onSubmit(): void {
-    this._router.navigate(['/'], { skipLocationChange: true });
-  }
 }

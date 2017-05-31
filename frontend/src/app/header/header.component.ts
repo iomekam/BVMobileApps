@@ -16,16 +16,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     readonly profileInfoID = 1;
     readonly blogInfoID = 2;
     readonly designInfoID = 3;
+    readonly createID = 4;
 
     isAppInfoCurrent = false;
     isProfileInfoCurrent = false;
     isBlogCurrent = false;
     isDesignCurrent = false;
+    isCreateCurrent = false;
 
     isAppInfoValid = false;
     isProfileInfoValid = false;
     isBlogValid = false;
-    isDesignInfoValid = false;
     isDeviceValid = false;
 
     private gotoUnsub = new Subject<void>();
@@ -70,6 +71,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
           this.isDesignCurrent = true;
           this.currentID = this.designInfoID;
         }
+        else if (id === this.createID) {
+          this.isCreateCurrent = true;
+          this.currentID = this.createID;
+        }
     }
 
     clearCurrent(): void {
@@ -77,6 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         this.isProfileInfoCurrent = false;
         this.isBlogCurrent = false;
         this.isDesignCurrent = false;
+        this.isCreateCurrent = false;
     }
 
     goToHeader(): void {
@@ -92,10 +98,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
         else if (this.currentID == this.designInfoID) {
             this._router.navigate(['/design'], { skipLocationChange: true });
         }
-    }
-
-    submit(): void {
-        //this._router.navigate(['/'], { skipLocationChange: true });
+        else if (this.currentID == this.createID) {
+            this._router.navigate(['/create'], { skipLocationChange: true });
+        }
     }
 
     ngOnInit() {
