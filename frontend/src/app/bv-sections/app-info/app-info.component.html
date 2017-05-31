@@ -6,8 +6,17 @@
         <md-card>
           <md-card-content>
             <md-input-container>
+              <popover-content #myPopover
+                placement="bottom"
+                [animation]="true" 
+                [closeOnClickOutside]="true" >
+                  <p>We recommend strong, relevant keyword in your App Name. For example, <br/> a. Contraband – Free Mixtapes <br/>
+                              b. Fresh Radio – Hip-Hop and Soul <br/>c. Jayforce – Celebrity News<br/>d. DJ Kenny B – Chicago House<br/></p>
+              </popover-content>
               <input [(ngModel)]="appInfo.appName"
                       [formControl]="form.controls['appName']"
+                      [popover]="myPopover"
+                      [popoverOnHover]="true"
                       (input)="onInput()"
                       class="tb-width"
                       type="text"
@@ -18,10 +27,6 @@
                         align="start"
                         *ngIf="form.controls['appName'].hasError('required') && form.controls['appName'].touched">{{ appNameEmptyErrorMessage }}</md-hint>
             </md-input-container>
-            <div class="help-tip" style="z-index: 20;">
-                <p>We recommend strong, relevant keyword in your App Name. For example, <br/> a. Contraband – Free Mixtapes <br/>
-                b. Fresh Radio – Hip-Hop and Soul <br/>c. Jayforce – Celebrity News<br/>d. DJ Kenny B – Chicago House<br/></p>
-            </div>
           </md-card-content>
         </md-card>
       </div>
@@ -30,9 +35,17 @@
         <md-card>
           <md-card-content>
             <md-input-container>
+              <popover-content #myPopoverDesc
+                placement="bottom"
+                [animation]="true" 
+                [closeOnClickOutside]="true" >
+                  {{shortDescriptionMaxCharacters}}
+              </popover-content>
               <textarea [(ngModel)]="appInfo.shortDescription"
                         [formControl]="form.controls['shortDescription']"
                         [ngClass]="{'has-error':!form.controls['appName'].valid && form.controls['appName'].touched}"
+                        [popover]="myPopoverDesc"
+                        [popoverOnHover]="true"
                         rows="2"
                         (input)="onInputForValidation()"
                         class="tb-width input-height has-error"
@@ -45,14 +58,18 @@
                         *ngIf="form.controls['shortDescription'].hasError('required') && form.controls['shortDescription'].touched">{{ shortDescriptionEmptyErrorMessage }}</md-hint>
 
             </md-input-container>
-            <div class="help-tip" style="z-index: 10;">
-              <p> Short Description: {{shortDescriptionMaxCharacters}}<br/>
-                <br/> Long Description: {{longDescriptionMaxCharacters}}</p>
-            </div>
             <br />
             <md-input-container>
+              <popover-content #myPopoverLongDesc
+                placement="bottom"
+                [animation]="true" 
+                [closeOnClickOutside]="true" >
+                  {{longDescriptionMaxCharacters}}
+              </popover-content>
               <textarea [(ngModel)]="appInfo.longDescription"
                         [formControl]="form.controls['longDescription']"
+                        [popover]="myPopoverLongDesc"
+                        [popoverOnHover]="true"
                         rows="10"
                         (input)="onInputForValidation()"
                         class="tb-width"
@@ -72,7 +89,15 @@
       <div class="demo-card-container">
         <md-card>
           <md-card-content>
+            <popover-content #myPopoverKey
+                placement="bottom"
+                [animation]="true" 
+                [closeOnClickOutside]="true" >
+                  {{keywordMaxCharacters}}
+              </popover-content>
             <tag-input [formControl]="form.controls['keywords']"
+                        [popover]="myPopoverKey"
+                        [popoverOnHover]="true"
                           [(ngModel)]="appInfo.keywords"
                           (onBlur)="onTagLostFocus($event)"
                           (addTag)="onInputForValidation()"
@@ -91,9 +116,6 @@
                       align="start"
                       *ngIf="form.controls['keywords'].hasError('required') && isTagTouched">{{ keywordEmptyErrorMessage }}</md-hint>
           </md-card-content>
-          <div class="help-tip" style="z-index: 10;">
-            <p> {{keywordMaxCharacters}} </p>
-          </div>
         </md-card>
       </div>
       <br />

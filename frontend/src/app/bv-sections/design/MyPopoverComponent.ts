@@ -4,12 +4,7 @@ import {Params, PopoverFactory} from 'angular2-onsenui';
 
 @Component({
   template: `
-    <ons-popover direction="up down" cancelable #popover (prehide)="onPreHide($event)">
-      <div style="text-align: center; opacity: 0.7;">
-        <p>{{message}}</p>
-        <p><ons-button (click)="popover.hide()" modifier="light">Hide</ons-button></p>
-      </div>
-    </ons-popover>
+
   `
 })
 export class MyPopoverComponent implements OnInit {

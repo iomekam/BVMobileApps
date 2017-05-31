@@ -19,12 +19,6 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     private readonly displayTime = 150;
 
-    private readonly appNameMinCharacters = `
-    We recommend strong, relevant keyword in your App Name. For example, \n a. Contraband – Free Mixtapes 
-    b. Fresh Radio – Hip-Hop and Soul 
-    c. Jayforce – Celebrity News 
-    d. DJ Kenny B – Chicago House "`;
-
     private readonly shortDescriptionMaxCharacters = 'No more than 80 characters';
     private readonly longDescriptionMaxCharacters = 'No more than 4000 characters';
     private readonly keywordMaxCharacters = 'No more than 10 keywords';

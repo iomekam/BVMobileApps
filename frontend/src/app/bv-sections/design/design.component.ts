@@ -76,8 +76,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       private snackBar: MdSnackBar) {
 
       this.cropperSettings = new CropperSettings();
-      this.cropperSettings.width = 600;
-      this.cropperSettings.height = 512;
+      this.cropperSettings.width = 100;
+      this.cropperSettings.height = 100;
       this.cropperSettings.croppedWidth = 100;
       this.cropperSettings.croppedHeight = 100;
       this.cropperSettings.canvasWidth = 100;
@@ -87,7 +87,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.cropperSettings.noFileInput = true;
 
       this.headerCropperSettings = new CropperSettings();
-      this.headerCropperSettings.width = 612;
+      this.headerCropperSettings.width = 570;
       this.headerCropperSettings.height = 88;
       this.headerCropperSettings.minWidth = 570;
       this.headerCropperSettings.minHeight = 88;
@@ -95,8 +95,8 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.headerCropperSettings.croppedHeight = 88
       this.headerCropperSettings.noFileInput = true;
 
-      this.headerCropperSettings.canvasWidth = 612;
-      this.headerCropperSettings.canvasHeight = 512;
+      this.headerCropperSettings.canvasWidth = 570;
+      this.headerCropperSettings.canvasHeight = 88;
 
       this.headerVIDMUSPHOTCropperSettings = new CropperSettings();
       this.headerVIDMUSPHOTCropperSettings.width = 612;
@@ -109,7 +109,7 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
       this.headerVIDMUSPHOTCropperSettings.canvasWidth = 612;
-      this.headerVIDMUSPHOTCropperSettings.canvasHeight = 612;
+      this.headerVIDMUSPHOTCropperSettings.canvasHeight = 302;
 
       this.headerRADIOCropperSettings = new CropperSettings();
       this.headerRADIOCropperSettings.croppedWidth = 600;
@@ -119,21 +119,21 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       this.headerRADIOCropperSettings.croppedWidth = 600;
       this.headerRADIOCropperSettings.croppedHeight = 600;
 
-      this.headerRADIOCropperSettings.canvasWidth = 612;
+      this.headerRADIOCropperSettings.canvasWidth = 600;
       this.headerRADIOCropperSettings.canvasHeight = 600;
       this.headerRADIOCropperSettings.noFileInput = true;
 
       this.extraHeaderCropperSettings = new CropperSettings();
-      this.extraHeaderCropperSettings.width = 612;
+      this.extraHeaderCropperSettings.width = 300;
       this.extraHeaderCropperSettings.height = 88;
-      this.extraHeaderCropperSettings.minWidth = 600;
-      this.extraHeaderCropperSettings.minHeight = 600;
-      this.extraHeaderCropperSettings.croppedWidth = 600;
-      this.extraHeaderCropperSettings.croppedHeight = 600;
+      this.extraHeaderCropperSettings.minWidth = 300;
+      this.extraHeaderCropperSettings.minHeight = 88;
+      this.extraHeaderCropperSettings.croppedWidth = 300;
+      this.extraHeaderCropperSettings.croppedHeight = 88;
 
       this.extraHeaderCropperSettings.noFileInput = true;
-      this.extraHeaderCropperSettings.canvasWidth = 612;
-      this.extraHeaderCropperSettings.canvasHeight = 612;
+      this.extraHeaderCropperSettings.canvasWidth = 300;
+      this.extraHeaderCropperSettings.canvasHeight = 88;
     }
 
 

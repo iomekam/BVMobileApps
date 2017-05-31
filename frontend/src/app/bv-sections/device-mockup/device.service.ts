@@ -94,7 +94,7 @@ export class DeviceService {
 
   private getHeaderDimmensions(tab: IDeviceTab) {
     if (tab.id === TabID.BLOG) {
-      tab.headerDimenHeight = 80;
+      tab.headerDimenHeight = 88;
       tab.headerDimenWidth = 570;
       tab.extraHeaderDimenHeight = 88;
       tab.extraHeaderDimenWidth = 300;
