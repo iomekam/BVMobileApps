@@ -6,12 +6,11 @@
       <md-card-content>
 
         <div>
-          <div popover="Click any item to expand content"
-              popoverPlacement="top"
-              [popoverOnHover]="true"
-              [popoverCloseOnClickOutside]="true"
-              [popoverCloseOnMouseOutside]="false"
-              [popoverAnimation]="true"
+          <template #popTemplate1>Click any item to expand content</template>
+          <div
+            [popover]="popTemplate1"
+            triggers="mouseenter:mouseleave"
+            placement="top"
               >
             <div class="row">
               <div class="col card" id="card_color" [ngStyle]="deviceModel.activeTab === null ? {'background-color':deviceModel.colors['secondary']} : {'background-color': white}" (click)= "toggleCollapse(colorTabID);deviceModel.activeTab = null">Color</div>
@@ -21,16 +20,14 @@
             </div>
           </div>
         </div>
+        <template #popTemplate2>Drag these items to change order of tabs on device.</template>
 
-        <div popover="Drag these items to change order of tabs on device."
-             popoverPlacement="top"
-             [popoverOnHover]="true"
-             [popoverCloseOnClickOutside]="true"
-             [popoverCloseOnMouseOutside]="false"
-             [popoverDisabled]="(deviceModel.tabs.length == 3)"
-             [popoverAnimation]="true"
+        <div
              [dragula]='"drag-bag"'
              class="row"
+             [popover]="popTemplate2"
+             triggers="mouseenter:mouseleave"
+             placement="top"
         >
           <div *ngFor="let tab of deviceModel.tabs | valid | slice:1:deviceModel.tabs.length - 1"
                class="col card"
@@ -61,12 +58,12 @@
             </span>
               </div>
               <div class="col">
-                  <div popover="Click to change the color of the header"
-                        popoverPlacement="bottom"
-                        [popoverOnHover]="true"
-                        [popoverCloseOnClickOutside]="true"
-                        [popoverCloseOnMouseOutside]="false"
-                        [popoverAnimation]="true"
+                <template #popTemplate3>Click to change the color of the header</template>
+
+                  <div
+                    [popover]="popTemplate3"
+                    triggers="mouseenter:mouseleave"
+                    placement="bottom"
                   >
                     <h3>Primary Color</h3>
                   <div (click)="selectedColor='primary'"
@@ -79,13 +76,12 @@
                 </div>
                   <br/>
                 <br>
+                <template #popTemplate4>Click to change the color of the refresh button</template>
 
-                  <div popover="Click to change the color of the refresh button"
-                        popoverPlacement="bottom"
-                        [popoverOnHover]="true"
-                        [popoverCloseOnClickOutside]="true"
-                        [popoverCloseOnMouseOutside]="false"
-                        [popoverAnimation]="true"
+                  <div
+                    [popover]="popTemplate4"
+                    triggers="mouseenter:mouseleave"
+                    placement="bottom"
                   >
                     <h3>Secondary Color</h3>
                 <div (click)="selectedColor='secondary'"
@@ -107,12 +103,12 @@
 
               <h4 id= "{{tab.id + 'uiSegment'}}"  class="ui header">{{ tab.title }} Tab</h4>
                 <div class="row">
-                    <div popover="Upload an image to change current tab icon."
-                         popoverPlacement="bottom"
-                         [popoverOnHover]="true"
-                         [popoverCloseOnClickOutside]="true"
-                         [popoverCloseOnMouseOutside]="false"
-                         [popoverAnimation]="true"
+                  <template #popTemplate5>Upload an image to change current tab icon.</template>
+
+                    <div
+                      [popover]="popTemplate5"
+                      triggers="mouseenter:mouseleave"
+                      placement="bottom"
                     >
                       <h3 style="padding-left: 15px">Upload Tab Icon (Optional)</h3>
                       <p style="padding-left: 15px">Upload 100 x 100 Monochrome PNG</p>
@@ -160,12 +156,12 @@
                 </div>
 
                 <div [attr.id]="'imageInputDiv' + tab.id" class="row" *ngIf="tab.hasHeader">
-                  <div popover="Upload an image to change the app header."
-                         popoverPlacement="top"
-                         [popoverOnHover]="true"
-                         [popoverCloseOnClickOutside]="true"
-                         [popoverCloseOnMouseOutside]="false"
-                         [popoverAnimation]="true"
+                  <template #popTemplate6>Upload an image to change the app header.</template>
+
+                  <div
+                    [popover]="popTemplate6"
+                    triggers="mouseenter:mouseleave"
+                    placement="bottom"
                     >
                     <h3 style="padding-left: 15px">Upload Header Image (Required)</h3>
                     <p style="padding-left: 15px">Upload {{tab.headerDimenWidth}} x {{tab.headerDimenHeight}} Image</p>
@@ -176,12 +172,11 @@
                 </div>
 
                 <div *ngIf="tab.hasExtraHeader" [attr.id]="'imageInputDiv' + tab.id" class="row">
-                  <div popover="Upload an image to change the secondary header."
-                       popoverPlacement="top"
-                       [popoverOnHover]="true"
-                       [popoverCloseOnClickOutside]="true"
-                       [popoverCloseOnMouseOutside]="false"
-                       [popoverAnimation]="true"
+                  <template #popTemplate7>Upload an image to change the secondary header.</template>
+                  <div
+                    [popover]="popTemplate6"
+                    triggers="mouseenter:mouseleave"
+                    placement="top"
                   >
                     <h3 style="padding-left: 15px">Upload Mini Header Image (Required)</h3>
                     <p style="padding-left: 15px">Upload {{tab.extraHeaderDimenWidth}} x {{tab.extraHeaderDimenHeight}} Image</p>

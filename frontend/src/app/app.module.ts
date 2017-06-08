@@ -24,6 +24,7 @@ import { SharedService } from './bv-sections/shared/shared.service';
 
 import { LoadpageGuard } from './bv-sections/loadpage.guard';
 
+import { PopoverModule } from 'ngx-bootstrap/popover';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { LoadpageGuard } from './bv-sections/loadpage.guard';
     BrowserModule,
     FormsModule,
     HttpModule,
+    PopoverModule.forRoot(),
     RouterModule.forRoot([
         { path: '', redirectTo: '', pathMatch: 'full'},
         { path: '**', redirectTo: '', pathMatch: 'full' }
@@ -58,7 +60,7 @@ import { LoadpageGuard } from './bv-sections/loadpage.guard';
 
 export class AppModule {
     constructor(
-      mdIconRegistry: MdIconRegistry, 
+      mdIconRegistry: MdIconRegistry,
       sanitizer: DomSanitizer,
       private _appInfoService: AppInfoService,
       private _mediaService: MediaUpdateService,

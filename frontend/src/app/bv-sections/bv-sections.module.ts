@@ -28,12 +28,14 @@ import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { DesignComponent } from './design/design.component';
 import { DragulaModule } from 'ng2-dragula';
 import { MyPopoverComponent } from './design/MyPopoverComponent';
-import { PopoverModule } from 'ngx-popover';
 import { DesignImageCropperComponent } from './design/design-image-cropper/design-image-cropper.component';
 import { LoadpageGuard } from './loadpage.guard';
 import { FilterPipe } from './device-mockup/device.service';
 import { LoginComponent } from './login/login.component';
 import { CreateComponent } from './create/create.component';
+
+import { PopoverModule } from 'ngx-bootstrap/popover';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -89,7 +91,7 @@ import { CreateComponent } from './create/create.component';
     Ng2FloatBtnModule,
     RlTagInputModule,
     DragulaModule,
-    PopoverModule
+    PopoverModule.forRoot()
   ],
   declarations: [
     AppInfoComponent,

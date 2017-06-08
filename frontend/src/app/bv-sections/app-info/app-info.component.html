@@ -6,17 +6,13 @@
         <md-card>
           <md-card-content>
             <md-input-container>
-              <popover-content #myPopover
-                placement="bottom"
-                [animation]="true" 
-                [closeOnClickOutside]="true" >
-                  <p>We recommend strong, relevant keyword in your App Name. For example, <br/> a. Contraband – Free Mixtapes <br/>
-                              b. Fresh Radio – Hip-Hop and Soul <br/>c. Jayforce – Celebrity News<br/>d. DJ Kenny B – Chicago House<br/></p>
-              </popover-content>
+              <template #popTemplate><p>We recommend strong, relevant keyword in your App Name. For example, <br/> a. Contraband – Free Mixtapes <br/>
+                b. Fresh Radio – Hip-Hop and Soul <br/>c. Jayforce – Celebrity News<br/>d. DJ Kenny B – Chicago House<br/></p></template>
               <input [(ngModel)]="appInfo.appName"
                       [formControl]="form.controls['appName']"
-                      [popover]="myPopover"
                       (input)="onInput()"
+                      [popover]="popTemplate"
+                      triggers="focus:blur"
                       class="tb-width"
                       type="text"
                       maxlength="30"
@@ -34,17 +30,21 @@
         <md-card>
           <md-card-content>
             <md-input-container>
+              <template #popTemplate2>{{shortDescriptionMaxCharacters}}</template>
+              <!--
               <popover-content #myPopoverDesc
                 placement="bottom"
-                [animation]="true" 
+                [animation]="true"
                 [closeOnClickOutside]="true" >
                   {{shortDescriptionMaxCharacters}}
               </popover-content>
+              -->
               <textarea [(ngModel)]="appInfo.shortDescription"
                         [formControl]="form.controls['shortDescription']"
                         [ngClass]="{'has-error':!form.controls['appName'].valid && form.controls['appName'].touched}"
-                        [popover]="myPopoverDesc"
                         rows="2"
+                        [popover]="popTemplate2"
+                        triggers="focus:blur"
                         (input)="onInputForValidation()"
                         class="tb-width input-height has-error"
                         type="text"
@@ -58,16 +58,20 @@
             </md-input-container>
             <br />
             <md-input-container>
+              <!--
               <popover-content #myPopoverLongDesc
                 placement="bottom"
-                [animation]="true" 
+                [animation]="true"
                 [closeOnClickOutside]="true" >
                   {{longDescriptionMaxCharacters}}
               </popover-content>
+              -->
+              <template #popTemplate3>{{longDescriptionMaxCharacters}}</template>
               <textarea [(ngModel)]="appInfo.longDescription"
                         [formControl]="form.controls['longDescription']"
-                        [popover]="myPopoverLongDesc"
                         rows="10"
+                        [popover]="popTemplate3"
+                        triggers="focus:blur"
                         (input)="onInputForValidation()"
                         class="tb-width"
                         mdInput
@@ -86,17 +90,21 @@
       <div class="demo-card-container">
         <md-card>
           <md-card-content>
+            <!--
             <popover-content #myPopoverKey
                 placement="bottom"
-                [animation]="true" 
+                [animation]="true"
                 [closeOnClickOutside]="true" >
                   {{keywordMaxCharacters}}
               </popover-content>
+            -->
+            <template #popTemplate4>{{keywordMaxCharacters}}</template>
             <tag-input [formControl]="form.controls['keywords']"
-                        [popover]="myPopoverKey"
                           [(ngModel)]="appInfo.keywords"
                           (onBlur)="onTagLostFocus($event)"
                           (addTag)="onInputForValidation()"
+                       [popover]="popTemplate4"
+                       triggers="focus:blur"
                           (onclick)="onTagLostFocus($event)"
                           (removeTag)="onInputForValidation()"
                           placeholder="Add some keywords"
@@ -140,3 +148,11 @@
     <bv-device-mockup [page]="0" style="padding-left:16px"></bv-device-mockup>
   </div>
 </div>
+
+<button type="button" class="btn btn-info"
+        popover="I will hide on blur"
+        triggers="mouseenter:mouseleave">
+  Hover over me!
+</button>
+
+
