@@ -38,9 +38,6 @@ export class MusicComponent implements OnInit, OnDestroy {
             }
         );
 
-        console.log(this._deviceService.getModel());
-        console.log(this._deviceService.isTabCreated(TabID.MUSIC));
-
         // The two cases we want to remove are:
         // 1) If the length of display array is zero
         // 2) The display array has items, but they aren't valid aka, the username hasn't been filled out
@@ -48,7 +45,6 @@ export class MusicComponent implements OnInit, OnDestroy {
             this._deviceService.removeTab(TabID.MUSIC);
         }
         else if (this.displayArray.length > 0 && !this._deviceService.isTabCreated(TabID.MUSIC)) {
-            console.log('g');
             this._deviceService.addTab(TabID.MUSIC);
         }
     }

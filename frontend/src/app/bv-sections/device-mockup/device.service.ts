@@ -324,6 +324,8 @@ export class DeviceService {
   public addTab(id: TabID): void {
     const tab = this.getTab(id);
 
+    console.log(id);
+
     // If all 5 tabs are already being shown, then we want to replace the photo tab with the radio tab.
     if (this._model.tabs.length === 5) {
       this.removeTab(TabID.PHOTO);
@@ -338,6 +340,11 @@ export class DeviceService {
 
   public removeTab(id: TabID): void {
     const tab = this.getTab(id);
+    
+    // If there is no tab created, there is nothing to remove
+    if(this.isTabCreated(id) === false) {
+      return;
+    }
 
     // If we are removing a tab (not Photos), then we can restore the photo tab
     if (this._model.tabs.length === 5 && id !== TabID.PHOTO) {
