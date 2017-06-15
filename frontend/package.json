@@ -28,6 +28,7 @@
     "@types/jasmine": "2.5.38",
     "@types/node": "~6.0.60",
     "angular2-color-picker": "git://github.com/zefoy/angular2-color-picker.git#npm-package",
+    "angular2-jwt": "^0.2.3",
     "angular2-onsenui": "^1.0.0-rc.6",
     "angular2-tag-input": "^1.2.3",
     "bootstrap": "^4.0.0-alpha.6",

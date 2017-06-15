@@ -7,23 +7,23 @@ namespace BVMobileAppsApi.Model
 {
     public class UserProfileRepository : IUserProfileRepository
     {
-        private readonly UserProfileContext _context;
+        private readonly BlackvibesContext _context;
 
-        public UserProfileRepository(UserProfileContext context)
+        public UserProfileRepository(BlackvibesContext context)
         {
             _context = context;
         }
 
         public IEnumerable<UserProfile> GetAll()
         {
-            return _context.UserProfileItems.ToList();
+            return _context.UsersProfile.ToList();
         }
 
         public void Add(UserProfile item)
         {
             try
             {
-                _context.UserProfileItems.Add(item);
+                _context.UsersProfile.Add(item);
                 _context.SaveChanges();
             }
             catch {}
@@ -31,11 +31,11 @@ namespace BVMobileAppsApi.Model
 
         public UserProfile Find(long userID)
         {
-            UserProfile setup = _context.UserProfileItems.FirstOrDefault(t => t.UserID == userID);
+            UserProfile setup = _context.UsersProfile.FirstOrDefault(t => t.UserId == userID);
             if (setup == null)
             {
                 setup = new UserProfile();
-                setup.UserID = (int)userID;
+                setup.UserId = (int)userID;
                 Add(setup);
             }
 
@@ -44,14 +44,14 @@ namespace BVMobileAppsApi.Model
 
         public void Remove(long userID)
         {
-            var entity = _context.UserProfileItems.First(t => t.UserID == userID);
-            _context.UserProfileItems.Remove(entity);
+            var entity = _context.UsersProfile.First(t => t.UserId == userID);
+            _context.UsersProfile.Remove(entity);
             _context.SaveChanges();
         }
 
         public void Update(UserProfile item)
         {
-            _context.UserProfileItems.Update(item);
+            _context.UsersProfile.Update(item);
             _context.SaveChanges();
         }
     }

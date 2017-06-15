@@ -51,6 +51,7 @@ export class AppInfoService {
     setAppInfo(appInfo: IAppInfo): void {
         this._appInfo = appInfo;
         this._appInfo.image.originalBase64 = appInfo.image.original.src;
+        console.log(this._appInfo);
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers });
@@ -61,7 +62,7 @@ export class AppInfoService {
                         this.httpPutUnsubscribe.next();
                         this.httpPutUnsubscribe.complete();
                     },
-                    error => console.log(JSON.stringify(error))
+                    error => this._sharedService.onHttpError(error)
         );
     }
 
@@ -79,7 +80,8 @@ export class AppInfoService {
                     image: data.image.image,
                     bounds: new Bounds(data.image.bounds.left, data.image.bounds.top, data.image.bounds.right - data.image.bounds.left, data.image.bounds.bottom - data.image.bounds.top)
                 };
-            });
+            },
+            error => this._sharedService.onHttpError(error));
     }
 
     getAppInfo() {

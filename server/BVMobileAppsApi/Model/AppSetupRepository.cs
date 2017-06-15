@@ -7,57 +7,57 @@ namespace BVMobileAppsApi.Model
 {
     public class AppSetupRepository : IAppSetupRepository
     {
-        private readonly AppSetupContext _context;
+        private readonly BlackvibesContext _context;
 
-        public AppSetupRepository(AppSetupContext context)
+        public AppSetupRepository(BlackvibesContext context)
         {
             _context = context;
         }
 
         public IEnumerable<AppSetup> GetAll()
         {
-            return _context.AppSetupItems.ToList();
+            return _context.AppSetup.ToList();
         }
 
         public void Add(AppSetup item)
         {
             try
             {
-                _context.AppSetupItems.Add(item);
+                _context.AppSetup.Add(item);
                 _context.SaveChanges();
             }
             catch { }
         }
 
-        public AppSetup Find(long userID)
+        public AppSetup Find(long userId)
         {
-            AppSetup setup = _context.AppSetupItems.FirstOrDefault(t => t.UserID == userID);
+            AppSetup setup = _context.AppSetup.FirstOrDefault(t => t.UserId == userId);
             if(setup == null)
             {
                 setup = new AppSetup();
-                setup.UserID = (int)userID;
+                setup.UserId = (int)userId;
                 Add(setup);
             }
 
             return setup;
         }
 
-        public void Remove(long userID)
+        public void Remove(long userId)
         {
-            var entity = _context.AppSetupItems.First(t => t.UserID == userID);
-            _context.AppSetupItems.Remove(entity);
+            var entity = _context.AppSetup.First(t => t.UserId == userId);
+            _context.AppSetup.Remove(entity);
             _context.SaveChanges();
         }
 
         public void Update(AppSetup item)
         {
-            _context.AppSetupItems.Update(item);
+            _context.AppSetup.Update(item);
             _context.SaveChanges();
         }
 
         public bool Exists(long key)
         {
-            AppSetup setup = _context.AppSetupItems.FirstOrDefault(t => t.UserID == key);
+            AppSetup setup = _context.AppSetup.FirstOrDefault(t => t.UserId == key);
             return setup != null;
         }
     }

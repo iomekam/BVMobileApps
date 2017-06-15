@@ -18,10 +18,10 @@ namespace BVMobileAppsApi.Model
         public void Commit(int id, IBVBlogsRepository bvBlogsRepository, IImagesRepository imageRepository)
         {
             BVBlogs blog = bvBlogsRepository.Find(id, this.Id);
-            this.Id = blog.BlogID;
+            this.Id = blog.BlogId;
 
-            blog.UserID = id;
-            blog.Display_Date = this.Date;
+            blog.UserId = id;
+            blog.DisplayDate = this.Date;
             blog.Headline = this.Headline;
             blog.Story = this.Body;
             blog.Keywords = String.Join(",", this.Keywords);
@@ -72,8 +72,8 @@ namespace BVMobileAppsApi.Model
 
                 blogs = blogs.Concat(new[] { new Blog
                 {
-                    Id = bvBlog.BlogID,
-                    Date = bvBlog.Display_Date,
+                    Id = bvBlog.BlogId,
+                    Date = bvBlog.DisplayDate,
                     Headline = bvBlog.Headline,
                     Body = bvBlog.Story,
                     IsUnfinished = bvBlog.Unfinished,

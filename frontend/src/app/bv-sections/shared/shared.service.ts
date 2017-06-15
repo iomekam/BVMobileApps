@@ -8,4 +8,8 @@ export class SharedService {
   public username: string = "iomekam";//localStorage.getItem('username');
   public id: number;
   public showHeader = false; // hack for login page
+
+  public onHttpError(error: any): void {
+    console.log("redirect");
+  }
 }

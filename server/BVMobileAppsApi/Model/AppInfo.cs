@@ -23,11 +23,11 @@ namespace BVMobileAppsApi.Model
             if (Image.Image != null && Image.Image != "")
             {
                 // Make new image
-                if (setup.LogoImageID == 0)
+                if (setup.LogoImageId == 0)
                 {
                     Images image = new Images
                     {
-                        UserID = id,
+                        UserId = id,
                         Image = this.Image.Image,
                         ImageOriginal = this.Image.OriginalBase64,
                         Left = this.Image.Bounds.Left,
@@ -36,11 +36,11 @@ namespace BVMobileAppsApi.Model
                         Bottom = this.Image.Bounds.Bottom
                     };
 
-                    setup.LogoImageID = imageRepository.Add(image);
+                    setup.LogoImageId = imageRepository.Add(image);
                 }
                 else
                 {
-                    Images image = imageRepository.Find(setup.LogoImageID);
+                    Images image = imageRepository.Find(setup.LogoImageId);
                     image.Image = this.Image.Image;
                     image.ImageOriginal = this.Image.OriginalBase64;
                     image.Left = this.Image.Bounds.Left;
@@ -77,14 +77,14 @@ namespace BVMobileAppsApi.Model
                 Keywords = setup.Keywords == null ? new List<string>() : setup.Keywords.Split(',').ToList(),
                 Image = new BVImage
                 {
-                    Image = imageRepository.Find(setup.LogoImageID).Image,
-                    OriginalBase64 = imageRepository.Find(setup.LogoImageID).ImageOriginal,
+                    Image = imageRepository.Find(setup.LogoImageId).Image,
+                    OriginalBase64 = imageRepository.Find(setup.LogoImageId).ImageOriginal,
                     Bounds = new Bounds
                     {
-                        Left = imageRepository.Find(setup.LogoImageID).Left,
-                        Top = imageRepository.Find(setup.LogoImageID).Top,
-                        Right = imageRepository.Find(setup.LogoImageID).Right,
-                        Bottom = imageRepository.Find(setup.LogoImageID).Bottom
+                        Left = imageRepository.Find(setup.LogoImageId).Left,
+                        Top = imageRepository.Find(setup.LogoImageId).Top,
+                        Right = imageRepository.Find(setup.LogoImageId).Right,
+                        Bottom = imageRepository.Find(setup.LogoImageId).Bottom
                     }
                 }
             };

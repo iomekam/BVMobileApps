@@ -14,14 +14,12 @@ namespace BVMobileAppsApi.Model
             ImageOriginal = "";
         }
 
-        [Key]
-        public int ImageID { get; set; }
-        public int UserID { get; set; }
-                public int Left { get; set; }
+        public int ImageId { get; set; }
+        public int UserId { get; set; }
+        public int Left { get; set; }
         public int Right { get; set; }
         public int Top { get; set; }
         public int Bottom { get; set; }
-
         public string Image { get; set; }
         public string ImageOriginal { get; set; }
     }

@@ -7,33 +7,34 @@ namespace BVMobileAppsApi.Model
 {
     public class ImagesRepository : IImagesRepository
     {
-        private readonly ImagesContext _context;
+        private readonly BlackvibesContext _context;
 
-        public ImagesRepository(ImagesContext context)
+        public ImagesRepository(BlackvibesContext context)
         {
             _context = context;
         }
 
         public IEnumerable<Images> GetAll()
         {
-            return _context.ImagesItems.ToList();
+            return _context.Images.ToList();
         }
 
         public int Add(Images item)
         {
             try
             {
-                _context.ImagesItems.Add(item);
+                _context.Images.Add(item);
                 _context.SaveChanges();
             }
             catch { }
-            return item.ImageID;
+
+            return item.ImageId;
         }
 
         public Images Find(long imageID)
         {
             if(imageID == 0) { return new Images(); }
-            Images setup = _context.ImagesItems.FirstOrDefault(t => t.ImageID == imageID);
+            Images setup = _context.Images.FirstOrDefault(t => t.ImageId == imageID);
             if(setup == null)
             {
                 setup = new Images();
@@ -45,14 +46,14 @@ namespace BVMobileAppsApi.Model
 
         public void Remove(long imageID)
         {
-            var entity = _context.ImagesItems.First(t => t.ImageID == imageID);
-            _context.ImagesItems.Remove(entity);
+            var entity = _context.Images.First(t => t.ImageId == imageID);
+            _context.Images.Remove(entity);
             _context.SaveChanges();
         }
 
         public void Update(Images item)
         {
-            _context.ImagesItems.Update(item);
+            _context.Images.Update(item);
             _context.SaveChanges();
         }
     }

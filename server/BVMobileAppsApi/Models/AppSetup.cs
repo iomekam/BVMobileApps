@@ -1,31 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace BVMobileAppsApi.Model
+namespace BVMobileAppsApi.Models
 {
-    public class AppSetup
+    public partial class AppSetup
     {
-        public AppSetup()
-        {
-            Color color = new Color();
-
-            this.AppName = "";
-            this.Keywords = null;
-            this.Phone = "";
-            this.PrimaryColor = color.Primary.Substring(1);
-            this.SecColor = color.Secondary.Substring(1);
-            this.Music = "";
-            this.Main = null;
-            this.Radio = "";
-            this.Videos = "";
-            this.Photos = "";
-            this.More = "";
-        }
-
         public int UserId { get; set; }
         public string AppName { get; set; }
         public byte LastCompleted { get; set; }

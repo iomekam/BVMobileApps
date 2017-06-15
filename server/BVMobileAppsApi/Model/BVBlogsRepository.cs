@@ -7,23 +7,23 @@ namespace BVMobileAppsApi.Model
 {
     public class BVBlogsRepository: IBVBlogsRepository
     {
-        private readonly BVBlogsContext _context;
+        private readonly BlackvibesContext _context;
 
-        public BVBlogsRepository(BVBlogsContext context)
+        public BVBlogsRepository(BlackvibesContext context)
         {
             _context = context;
         }
 
         public IEnumerable<BVBlogs> GetAll(long id)
         {
-            return _context.BVBlogsItems.Where(blog => blog.UserID == id);
+            return _context.Blogs.Where(blog => blog.UserId == id);
         }
 
         public void Add(BVBlogs item)
         {
             try
             {
-                _context.BVBlogsItems.Add(item);
+                _context.Blogs.Add(item);
                 _context.SaveChanges();
             }
             catch { }
@@ -31,11 +31,11 @@ namespace BVMobileAppsApi.Model
 
         public BVBlogs Find(long userID, long blogID)
         {
-            BVBlogs blog = _context.BVBlogsItems.FirstOrDefault(t => t.UserID == userID && t.BlogID == blogID);
+            BVBlogs blog = _context.Blogs.FirstOrDefault(t => t.UserId == userID && t.BlogId == blogID);
             if (blog == null)
             {
                 blog = new BVBlogs();
-                blog.UserID = (int)userID;
+                blog.UserId = (int)userID;
                 Add(blog);
             }
 
@@ -44,14 +44,14 @@ namespace BVMobileAppsApi.Model
 
         public void Remove(long userID, long blogID)
         {
-            var entity = _context.BVBlogsItems.First(t => t.UserID == userID && t.BlogID == blogID);
-            _context.BVBlogsItems.Remove(entity);
+            var entity = _context.Blogs.First(t => t.UserId == userID && t.BlogId == blogID);
+            _context.Blogs.Remove(entity);
             _context.SaveChanges();
         }
 
         public void Update(BVBlogs item)
         {
-            _context.BVBlogsItems.Update(item);
+            _context.Blogs.Update(item);
             _context.SaveChanges();
         }
     }

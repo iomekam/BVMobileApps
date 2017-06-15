@@ -48,7 +48,7 @@ namespace BVMobileAppsApi.Model
                         profile.AudioMack = info.Username;
                         break;
                     case MediaType.SOUNDCLOUD:
-                        profile.SoundCloud = info.Username;
+                        profile.Soundcloud = info.Username;
                         break;
                     case MediaType.MIXCLOUD:
                         profile.MixCloud = info.Username;
@@ -70,7 +70,7 @@ namespace BVMobileAppsApi.Model
                 switch (info.MediaType)
                 {
                     case MediaType.YOUTUBE:
-                        profile.YouTube = info.Username;
+                        profile.Youtube = info.Username;
                         break;
                     case MediaType.VIMEO:
                         profile.Vimeo = info.Username;
@@ -163,7 +163,7 @@ namespace BVMobileAppsApi.Model
             profile.musicInfo.Add(new MediaInfo
             {
                 MediaType = MediaType.SOUNDCLOUD,
-                Username = userProfile.SoundCloud
+                Username = userProfile.Soundcloud
             });
 
             profile.musicInfo.Add(new MediaInfo
@@ -192,7 +192,7 @@ namespace BVMobileAppsApi.Model
             profile.videoInfo.Add(new MediaInfo
             {
                 MediaType = MediaType.YOUTUBE,
-                Username = userProfile.YouTube
+                Username = userProfile.Youtube
             });
 
             profile.videoInfo.Add(new MediaInfo

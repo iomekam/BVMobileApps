@@ -20,7 +20,7 @@ namespace BVMobileAppsApi.Model
         public void Commit(int id, IAppSetupRepository appSetupRepository)
         {
             AppSetup setup = appSetupRepository.Find(id);
-            setup.LastCompleted = (int)this.LastPage;
+            setup.LastCompleted = (byte)this.LastPage;
 
             appSetupRepository.Update(setup);
         }
