@@ -145,8 +145,7 @@ export class BlogPostService {
                         this.httpPutUnsubscribe.next();
                         this.httpPutUnsubscribe.complete();
                     },
-                    error => console.log(JSON.stringify(error))
-        );
+                    error => this._sharedService.onHttpError(error));
     }
 
     updateBlogPost(updatedBlogPost: IBlogPost): void {
@@ -162,8 +161,7 @@ export class BlogPostService {
                         this.httpUpdateUnsubscribe.next();
                         this.httpUpdateUnsubscribe.complete();
                     },
-                    error => console.log(JSON.stringify(error))
-        );
+                    error => this._sharedService.onHttpError(error));
     }
 
     getUrl(): string {
@@ -194,7 +192,6 @@ export class BlogPostService {
                         this.httpDeleteUnsubscribe.next();
                         this.httpDeleteUnsubscribe.complete();
                     },
-                    error => console.log(JSON.stringify(error))
-        );
+                    error => this._sharedService.onHttpError(error));
     }
 }

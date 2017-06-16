@@ -107,6 +107,7 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     onCrop(bounds: Bounds): void {
         this.appInfo.image.bounds = bounds;
+        this.appInfo.image.originalBase64 = this.appInfo.image.original.src;
         this.validate();
     }
 

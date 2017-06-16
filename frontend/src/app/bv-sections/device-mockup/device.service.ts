@@ -232,7 +232,8 @@ export class DeviceService {
                       this._photo = tab;
                     }
                 }
-            });
+            },
+            error => this._sharedService.onHttpError(error));
     }
 
   public getModel() {
@@ -258,6 +259,7 @@ export class DeviceService {
   public saveModel() {
 
     const model = this.getFullModel();
+    console.log(model);
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -270,8 +272,7 @@ export class DeviceService {
                     this.httpPutUnsubscribe.next();
                     this.httpPutUnsubscribe.complete();
                 },
-                error => console.log(JSON.stringify(error))
-    );
+                error => this._sharedService.onHttpError(error));
   }
 
   public setAppName(name: string): void {

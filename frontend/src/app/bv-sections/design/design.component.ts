@@ -175,8 +175,12 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
           designImgCropper.cropper.setImage(new Image(), new Bounds());
           designImgCropper.cropper.reset();
 
-          console.log(designImgCropper.cropper.image);
+          tab.image.image = "";
+          tab.image.originalBase64 = "";
+          tab.image.original = new Image();
+          tab.image.bounds = new Bounds();
 
+          this._deviceService.setImage(tab.id, tab.image);
         }
       }
     );
@@ -241,8 +245,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     this.activeTabUnsub.complete();
 
     this.deviceModel.activeTab = null;
-
-    console.log(this.deviceModel);
   }
 
   @HostListener('window:beforeunload')

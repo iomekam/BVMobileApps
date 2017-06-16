@@ -29,11 +29,12 @@ namespace BVMobileAppsApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppSetupContext>(opt => opt.UseInMemoryDatabase());
-            services.AddDbContext<UserProfileContext>(opt => opt.UseInMemoryDatabase());
-            services.AddDbContext<BVBlogsContext>(opt => opt.UseInMemoryDatabase());
-            services.AddDbContext<ImagesContext>(opt => opt.UseInMemoryDatabase());
+            var connection = @"Server=tcp:iomekam.database.windows.net,1433;Initial Catalog=blackvibes;Persist Security Info=False;User ID=iomekam3;Password=04051993@Q1;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 
+            services.AddDbContext<BlackvibesContext>(opt => opt.UseSqlServer(connection));
+            //services.AddDbContext<BlackvibesContext>(opt => opt.UseInMemoryDatabase());
+
+            
             // Add framework services.
             services.AddMvc();
             services.AddScoped<IAppSetupRepository, AppSetupRepository>();
