@@ -66,27 +66,27 @@ export class DeviceService {
     let iconString = "";
 
     if (id == TabID.VIDEO) {
-      iconString = "icon ion ion-videocamera";
+      iconString = "/assets/img/tab_icon_videos.png";
     }
 
     if (id == TabID.MUSIC) {
-      iconString = "icon ion ion-music-note";
+      iconString = "/assets/img/tab_icon_music.png";
     }
 
     if (id == TabID.RADIO) {
-      iconString = "icon ion ion-radio-waves";
+      iconString = "/assets/img/tab_icon_microphone.png";
     }
 
     if (id == TabID.BLOG) {
-      iconString = "icon ion ion-home";
+      iconString = "/assets/img/tab_icon_home.png";
     }
 
     if (id == TabID.MORE) {
-      iconString = "icon ion ion-more";
+      iconString = "/assets/img/tab_icon_more.png";
     }
 
     if (id == TabID.PHOTO) {
-      iconString = "icon ion ion-camera";
+      iconString = "/assets/img/tab_icon_pictures.png";
     }
 
     return iconString;

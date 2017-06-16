@@ -77,9 +77,16 @@
       <div class="tabs tabs-icon-top" style="background-color: black" [style.border-color]="backgroundColor">
           <div class="tab-item active" *ngFor="let tab of deviceModel.tabs | valid" (click) = "tabClicked(tab)" [ngStyle]="deviceModel.activeTab !== null && deviceModel.activeTab.id === tab.id ? {'background-color':deviceModel.colors['secondary']} : {'background-color': black}">
             <a style="color: white">
-              <div class="grayscale">
-              <i class="grayscale" *ngIf="tab.image.image !== '' && tab.showImage" [attr.id]="'inputBackground' + tab.id" class="icon" style="background-size: 32px 32px;background-repeat: no-repeat !important;background-position: center !important; " [ngStyle]="{'background-image': 'url(' + tab.image.image + ')'}"></i>
-              <i *ngIf="tab.image.image === '' || !tab.showImage" [attr.id]="'inputRegular' + tab.id" [class]="tab.defaultIcon"  ></i>
+              <div *ngIf="deviceModel.activeTab === null || (deviceModel.activeTab !== null && deviceModel.activeTab.id !== tab.id)" class="grayscale">
+              <i *ngIf="tab.image.image !== '' && tab.showImage" [attr.id]="'inputBackground' + tab.id" class="icon" style="background-size: 32px 32px;background-repeat: no-repeat !important;background-position: center !important; " [ngStyle]="{'background-image': 'url(' + tab.image.image + ')'}"></i>
+              <i *ngIf="tab.image.image === '' || !tab.showImage" [attr.id]="'inputRegular' + tab.id" class="icon"><img [src]="tab.defaultIcon" /></i>
+              <div *ngIf="tab.showTitle == true">
+                  {{ tab.title }}
+              </div>
+              </div>
+              <div *ngIf="deviceModel.activeTab !== null && deviceModel.activeTab.id === tab.id">
+              <i *ngIf="tab.image.image !== '' && tab.showImage" [attr.id]="'inputBackground' + tab.id" class="icon" style="background-size: 32px 32px;background-repeat: no-repeat !important;background-position: center !important; " [ngStyle]="{'background-image': 'url(' + tab.image.image + ')'}"></i>
+              <i *ngIf="tab.image.image === '' || !tab.showImage" [attr.id]="'inputRegular' + tab.id" class="icon"><img [src]="tab.defaultIcon" /></i>
               <div *ngIf="tab.showTitle == true">
                   {{ tab.title }}
               </div>
