@@ -18,7 +18,7 @@
       <div class="post-container">
         <div class="post-thumb" style="width: 100px;height: 100px;"><img [src]="appInfo.image.image" style="background: url(/assets/img/dummy.png);width: 100px;height: 100px;" /></div>
         <div class="post-content">
-          <p align="left" class="post-title" style=
+          <p id="device_appname" align="left" class="post-title" style=
             " font-size: medium;
               word-wrap: break-all;
               max-height: 1em;
@@ -54,7 +54,7 @@
           <img align="center" src="../../../assets/img/play_store_icons.png" style="height: 75px; width: auto;">
       <hr style="margin-top: 5px">
 
-      <p align="center" style="word-wrap: break-word;width: 15em;margin-left: 20px ">
+      <p id="device_shortdes" align="center" style="word-wrap: break-word;width: 15em;margin-left: 20px ">
         {{appInfo.shortDescription}}
       </p>
       <p align="center" style="word-wrap: break-word;width: 15em;margin-left: 20px; font-family: 'Roboto', 'Helvetica Neue', sans-serif; color: #029a53; font-weight: bold ">
@@ -77,10 +77,12 @@
       <div class="tabs tabs-icon-top" style="background-color: black" [style.border-color]="backgroundColor">
           <div class="tab-item active" *ngFor="let tab of deviceModel.tabs | valid" (click) = "tabClicked(tab)" [ngStyle]="deviceModel.activeTab !== null && deviceModel.activeTab.id === tab.id ? {'background-color':deviceModel.colors['secondary']} : {'background-color': black}">
             <a style="color: white">
-              <i *ngIf="tab.image.image !== '' && tab.showImage" [attr.id]="'inputBackground' + tab.id" class="icon" style="background-size: 32px 32px;background-repeat: no-repeat !important;background-position: center !important; " [ngStyle]="{'background-image': 'url(' + tab.image.image + ')'}"></i>
+              <div class="grayscale">
+              <i class="grayscale" *ngIf="tab.image.image !== '' && tab.showImage" [attr.id]="'inputBackground' + tab.id" class="icon" style="background-size: 32px 32px;background-repeat: no-repeat !important;background-position: center !important; " [ngStyle]="{'background-image': 'url(' + tab.image.image + ')'}"></i>
               <i *ngIf="tab.image.image === '' || !tab.showImage" [attr.id]="'inputRegular' + tab.id" [class]="tab.defaultIcon"  ></i>
               <div *ngIf="tab.showTitle == true">
                   {{ tab.title }}
+              </div>
               </div>
             </a>
           </div>

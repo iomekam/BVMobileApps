@@ -197,3 +197,8 @@ ion-scroll[direction=y] {
   border-right-width: 0;
   border-left-color: #000;
 }
+
+.grayscale {
+  -webkit-filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1);
+}
