@@ -51,7 +51,12 @@ export class LoadpageGuard implements CanActivate {
   }
 
   init() : Observable<boolean> {
-    startLoad();
+      if(this._sharedService.isOfflineMode()) {
+        this._headerService.goto(0);
+        return Observable.of(true);
+      }
+
+      startLoad();
       return Observable.forkJoin(
         this._http.get(this._sharedService.url + '/api/lastcompleted/1').map(response => { return <LastCompleted> response.json(); }),
         this._deviceService.fetchData(),
@@ -65,7 +70,6 @@ export class LoadpageGuard implements CanActivate {
                 this._profileService.setDataAfterFetch(<IProfileModel>data[3]);
                 this._blogPostService.setDataAfterFetch(<IBlogPost[]>data[4]);
 
-                console.log(data);
                 this._headerService.goto((<LastCompleted>data[0]).lastPage);
                 endLoad();
 

@@ -28,6 +28,11 @@ export class PageLoadingService {
       }
 
   public savePage(page: BVPages) {
+
+    if(this._sharedService.isOfflineMode()) {
+        return;
+    }
+    
     let lastPage = {
       lastPage: page
     };

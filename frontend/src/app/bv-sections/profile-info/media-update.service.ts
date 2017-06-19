@@ -79,6 +79,10 @@ export class MediaUpdateService {
     }
 
     private init(): Observable<IProfileModel> {
+        if(this._sharedService.isOfflineMode()) {
+            return;
+        }
+
         this._url = this._sharedService.url + this._url + this._sharedService.id;
         return this._http.get(this._url)
             .map((response: Response) => <IProfileModel> response.json())
@@ -133,6 +137,10 @@ export class MediaUpdateService {
 
     setProfile(profile: IProfileModel): void {
         this._profile = profile;
+
+        if(this._sharedService.isOfflineMode()) {
+            return;
+        }
 
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');

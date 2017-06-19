@@ -8,6 +8,9 @@ export class SharedService {
   public username: string = "username";//localStorage.getItem('username');
   public id: number = -1;
 
+  public isOfflineMode(): boolean {
+    return this.id < 0;
+  }
   public onHttpError(error: any): void {
     console.log("redirect");
   }

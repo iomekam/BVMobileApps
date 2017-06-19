@@ -50,6 +50,10 @@ export class BlogPostService {
     }
 
     private init(): Observable<IBlogPost[]> {
+        if(this._sharedService.isOfflineMode()) {
+            return;
+        }
+
         this._url = this._sharedService.url + this._url + this._sharedService.id;
         return this._http.get(this._url)
             .map((response: Response) => <IBlogPost[]> response.json())
@@ -134,6 +138,10 @@ export class BlogPostService {
 
         this._unfinishedBlogPost = null;
 
+        if(this._sharedService.isOfflineMode()) {
+            return;
+        }
+
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers });
@@ -150,6 +158,10 @@ export class BlogPostService {
 
     updateBlogPost(updatedBlogPost: IBlogPost): void {
         updatedBlogPost.date = new Date();
+
+        if(this._sharedService.isOfflineMode()) {
+            return;
+        }
 
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -180,6 +192,10 @@ export class BlogPostService {
         const deletedBlogPost = this._blogPost[index];
 
         this._blogPost.splice(index, 1);
+
+        if(this._sharedService.isOfflineMode()) {
+            return;
+        }
 
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');

@@ -51,10 +51,15 @@ export class AppInfoService {
     setAppInfo(appInfo: IAppInfo): void {
         this._appInfo = appInfo;
         this._appInfo.image.originalBase64 = appInfo.image.original.src;
-        console.log(this._appInfo);
+        
+        if(this._sharedService.isOfflineMode()) {
+            return;
+        }
+
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers });
+        
         this._http.put(this._url, JSON.stringify(this._appInfo), options)
                 .takeUntil(this.httpPutUnsubscribe)
                 .subscribe(
@@ -67,8 +72,12 @@ export class AppInfoService {
     }
 
     private init(): Observable<IAppInfo> {
+
+        if(this._sharedService.isOfflineMode()) {
+            return;
+        }
+
         this._url = this._sharedService.url + this._url + this._sharedService.id;
-        console.log(this._url);
         return this._http.get(this._url)
             .map((response: Response) => <IAppInfo> response.json())
             .do(data => {

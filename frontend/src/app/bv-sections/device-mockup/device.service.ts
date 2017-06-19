@@ -125,20 +125,232 @@ export class DeviceService {
     private _http: Http,
     private _validationService: ValidationService,
     private _sharedService: SharedService) {
-    
+
+    this._main = {
+      id: TabID.BLOG,
+      title: "",
+      order: 0,
+      hasExtraHeader: true,
+      defaultIcon: "",
+      headerDimenHeight: 0,
+      headerDimenWidth: 0,
+      extraHeaderDimenHeight: 0,
+      extraHeaderDimenWidth: 0,
+      showTitle: true,
+      showImage: false,
+      showHeader: false,
+      hasHeader: true,
+      headerImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      image: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      extraHeaderImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+    };
+
+    this._photo = {
+      id: TabID.PHOTO,
+      title: "",
+      order: 0,
+      hasExtraHeader: false,
+      defaultIcon: "",
+      headerDimenHeight: 0,
+      headerDimenWidth: 0,
+      extraHeaderDimenHeight: 0,
+      extraHeaderDimenWidth: 0,
+      showTitle: true,
+      showImage: false,
+      showHeader: false,
+      hasHeader: true,
+      headerImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      image: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      extraHeaderImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+    };
+
+    this._music = {
+      id: TabID.MUSIC,
+      title: "",
+      order: 0,
+      hasExtraHeader: false,
+      defaultIcon: "",
+      headerDimenHeight: 0,
+      headerDimenWidth: 0,
+      extraHeaderDimenHeight: 0,
+      extraHeaderDimenWidth: 0,
+      showTitle: true,
+      showImage: false,
+      showHeader: false,
+      hasHeader: true,
+      headerImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      image: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      extraHeaderImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+    };
+
+    this._video = {
+      id: TabID.VIDEO,
+      title: "",
+      order: 0,
+      hasExtraHeader: false,
+      defaultIcon: "",
+      headerDimenHeight: 0,
+      headerDimenWidth: 0,
+      extraHeaderDimenHeight: 0,
+      extraHeaderDimenWidth: 0,
+      showTitle: true,
+      showImage: false,
+      showHeader: false,
+      hasHeader: true,
+      headerImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      image: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      extraHeaderImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+    };
+
+    this._radio = {
+      id: TabID.RADIO,
+      title: "",
+      order: 0,
+      hasExtraHeader: false,
+      defaultIcon: "",
+      headerDimenHeight: 0,
+      headerDimenWidth: 0,
+      extraHeaderDimenHeight: 0,
+      extraHeaderDimenWidth: 0,
+      showTitle: true,
+      showImage: false,
+      showHeader: false,
+      hasHeader: true,
+      headerImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      image: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      extraHeaderImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+    };
+
+    this._more = {
+      id: TabID.MORE,
+      title: "",
+      order: 0,
+      hasExtraHeader: false,
+      defaultIcon: "",
+      headerDimenHeight: 0,
+      headerDimenWidth: 0,
+      extraHeaderDimenHeight: 0,
+      extraHeaderDimenWidth: 0,
+      showTitle: true,
+      showImage: false,
+      showHeader: false,
+      hasHeader: false,
+      headerImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      image: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+      extraHeaderImage: {
+        original: new Image(),
+        originalBase64: "",
+        image: "",
+        bounds: new Bounds()
+      },
+    };
+
+    this.initDefaultModel(this._main);
+    this.initDefaultModel(this._photo);
+    this.initDefaultModel(this._music);
+    this.initDefaultModel(this._video);
+    this.initDefaultModel(this._radio);
+    this.initDefaultModel(this._more);
 
     this._model = {
       appName: '',
       colors: {
         primary: '#000000',
-        secondary: '#009911'
+        secondary: '#0099ff'
       },
-      tabs: [],
+      tabs: [this._main, this._photo, this._more],
       activeTab: null
     };
   }
 
     public setDataAfterFetch(model: IDeviceModel) {
+        this._model.tabs = [];
+
         for(let t of model.tabs) {
             // Go through the list and add the tabs that have a positive order. This is how we can
             // determine whether the tabs should be shown on the screen
@@ -148,7 +360,6 @@ export class DeviceService {
         }
 
         this._model.colors = model.colors;
-        //this._model.appName = model.appName;
     }
 
     public fetchData() : Observable<IDeviceModel> {
@@ -168,7 +379,46 @@ export class DeviceService {
         this._validationService.setDesignValid(this.isValid());
     }
 
+    public initDefaultModel(tab: IDeviceTab) {
+      if(tab.id === TabID.BLOG) {
+        tab.title = "Main";
+        tab.order = 0;
+        tab.defaultIcon = this.getDefaultIcon(tab.id);
+      }
+      else if(tab.id === TabID.PHOTO) {
+        tab.title = "Photos";
+        tab.order = 3;
+        tab.defaultIcon = this.getDefaultIcon(tab.id);
+      }
+      else if(tab.id === TabID.MUSIC) {
+        tab.title = "Music";
+        tab.order = -5;
+        tab.defaultIcon = this.getDefaultIcon(tab.id);
+      }
+      else if(tab.id === TabID.VIDEO) {
+        tab.title = "Videos";
+        tab.order = -4;
+        tab.defaultIcon = this.getDefaultIcon(tab.id);
+      }
+      else if(tab.id === TabID.RADIO) {
+        tab.title = "Radio";
+        tab.order = -2;
+        tab.defaultIcon = this.getDefaultIcon(tab.id);
+      }
+      else if(tab.id === TabID.MORE) {
+        tab.title = "More";
+        tab.order = 8;
+        tab.defaultIcon = this.getDefaultIcon(tab.id);
+      }
+
+      this.getHeaderDimmensions(tab);
+    }
+
     private init(): Observable<IDeviceModel> {
+      if(this._sharedService.isOfflineMode()) {
+            return;
+      }
+
       this._url = this._sharedService.url + this._url + this._sharedService.id;
         return this._http.get(this._url)
             .map((response: Response) => <IDeviceModel> response.json())
@@ -259,7 +509,10 @@ export class DeviceService {
   public saveModel() {
 
     const model = this.getFullModel();
-    console.log(model);
+
+    if(this._sharedService.isOfflineMode()) {
+            return;
+        }
 
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
