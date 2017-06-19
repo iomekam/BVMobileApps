@@ -19,6 +19,18 @@ function getWindow (): any {
     return window;
 }
 
+function startLoad (): any {
+   getWindow().loading = getWindow().pleaseWait({
+        logo: "assets/img/logo.png",
+        backgroundColor: '#0099ff',
+        loadingHtml: "<p class='loading-message'>Loading... please wait</p>"
+      });
+}
+
+function endLoad (): any {
+   getWindow().loading.finish();
+}
+
 @Injectable()
 export class LoadpageGuard implements CanActivate {
 
@@ -39,6 +51,7 @@ export class LoadpageGuard implements CanActivate {
   }
 
   init() : Observable<boolean> {
+    startLoad();
       return Observable.forkJoin(
         this._http.get(this._sharedService.url + '/api/lastcompleted/1').map(response => { return <LastCompleted> response.json(); }),
         this._deviceService.fetchData(),
@@ -54,7 +67,7 @@ export class LoadpageGuard implements CanActivate {
 
                 console.log(data);
                 this._headerService.goto((<LastCompleted>data[0]).lastPage);
-                getWindow().loading_screen.finish();
+                endLoad();
 
                 return true;
               }

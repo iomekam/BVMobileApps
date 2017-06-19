@@ -31,7 +31,6 @@ import { MyPopoverComponent } from './design/MyPopoverComponent';
 import { DesignImageCropperComponent } from './design/design-image-cropper/design-image-cropper.component';
 import { LoadpageGuard } from './loadpage.guard';
 import { FilterPipe } from './device-mockup/device.service';
-import { LoginComponent } from './login/login.component';
 import { CreateComponent } from './create/create.component';
 
 import { PopoverModule } from 'ngx-bootstrap/popover';
@@ -40,7 +39,7 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
   imports: [
     CommonModule,
     RouterModule.forChild([
-      { path: '', component: LoginComponent },
+      { path: '', component: AppInfoComponent, canActivate: [LoadpageGuard] },
       { path: 'app-info', component: AppInfoComponent },
       {
         path: 'app-profile-info', component: ProfileInfoComponent,
@@ -108,7 +107,6 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
     MyPopoverComponent,
     DesignImageCropperComponent,
     FilterPipe,
-    LoginComponent,
     CreateComponent
   ],
   entryComponents: [MyPopoverComponent],
