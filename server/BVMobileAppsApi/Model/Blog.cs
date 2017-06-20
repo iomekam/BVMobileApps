@@ -27,7 +27,24 @@ namespace BVMobileAppsApi.Model
             blog.Keywords = String.Join(",", this.Keywords);
             blog.Unfinished = this.IsUnfinished;
 
-            if(Image.Image != null && Image.Image != "")
+            string keywordsUrl = "username";
+
+            for(int count = 0; count < 3; count++)
+            {
+                string keyword = Keywords.ElementAtOrDefault(count);
+
+                // Keyword url needs at most 3 keywords
+                if(keyword == null)
+                {
+                    break;
+                }
+
+                keywordsUrl += "-" + keyword;
+            }
+
+            blog.KeywordsUrl = (keywordsUrl + "-" + blog.BlogId).ToLower();
+
+            if (Image.Image != null && Image.Image != "")
             {
                 // Make new image
                 if(blog.ImageID == 0)
