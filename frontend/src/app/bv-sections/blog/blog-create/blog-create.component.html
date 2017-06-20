@@ -3,6 +3,7 @@
     <md-card-content>
       <md-input-container>
         <input
+          id="blog_headline"
                [(ngModel)]="blogPost.headline"
                [formControl]="form.controls['headline']"
                class="tb-width"
@@ -39,10 +40,10 @@
                  modelAsStrings="true"></tag-input>
     </md-card-content>
     <md-card-actions>
-      <div align="right">
+      <div id="buttons" align="right">
         <button md-button type="button" (click)="cancel()">Cancel</button>
         <button md-button type="button" (click)="submit()" [disabled]="!form.valid">Submit</button>
-      </div> 
+      </div>
     </md-card-actions>
   </md-card>
 </form>

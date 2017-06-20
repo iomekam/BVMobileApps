@@ -11,7 +11,8 @@
               maxlength="100"
               mdInput
               [disabled]="profile.noWebsite"
-              placeholder="Website url">
+              placeholder="Website url"
+        id="website_name">
       </md-input-container>
     </div>
     <div class="col-xs-4">
@@ -23,7 +24,8 @@
            type="text"
            maxlength="100"
            mdInput
-           placeholder="Phone number (optional)">
+           placeholder="Phone number (optional)"
+    id="phone">
   </md-input-container>
 </div>
 
@@ -40,7 +42,7 @@
             <div class="ui label">
               {{display.pre_url}}
             </div>
-            <input class="form-control" [(ngModel)]="display.username" [maxlength]=display.length type="text" placeholder="username (optional)">
+            <input class="form-control" [attr.id]="'input' + display.mediaName" [(ngModel)]="display.username" [maxlength]=display.length type="text" placeholder="username (optional)">
         </div><!-- /input-group -->
       </div><!-- /.col-xs-12 -->
     </div><!-- /.row -->
