@@ -86,20 +86,12 @@ describe('DesignComponent', () => {
     // tabs
 
     expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
-    element.all(by.className('mat-tab-labels')).get(0).click();
-
-    const tags: ElementArrayFinder = element.all(by.className('tab'));
-    tags.count().then(function (size) {
-      for ( let i = size - 1; i >= 0; i--) {
-        tags.get(i).getText().then(function (string) {
-            if (string === 'Social') {
-              tags.get(i).click();
-            }
-        });
-      }
-    });
+    element.all(by.className('mat-tab-label')).get(0).click();
 
     const EC = protractor.ExpectedConditions;
+    browser.wait(EC.presenceOf(element(by.id('website_name'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('website_name'))), 20000);
+
     const website = element(by.id('website_name'));
     const phone = element(by.id('phone'));
     const fb = element(by.id('inputFacebook'));
@@ -130,10 +122,11 @@ describe('DesignComponent', () => {
     // tabs
 
     expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
-    element.all(by.className('mat-tab-labels')).get(1).click();
+    element.all(by.className('mat-tab-label')).get(1).click();
 
     const EC = protractor.ExpectedConditions;
     browser.wait(EC.presenceOf(element(by.id('inputAudiomack'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('inputAudiomack'))), 20000);
     const audiomack = element(by.id('inputAudiomack'));
     audiomack.clear();
 
@@ -154,12 +147,13 @@ describe('DesignComponent', () => {
     // tabs
 
     expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
-    element.all(by.className('mat-tab-labels')).get(2).click();
+    element.all(by.className('mat-tab-label')).get(2).click();
 
     const EC = protractor.ExpectedConditions;
-    browser.wait(EC.presenceOf(element(by.id('inputYoutube'))), 20000);
+    browser.wait(EC.presenceOf(element(by.id('inputYouTube'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('inputYouTube'))), 20000);
 
-    const youtube = element(by.id('inputYoutube'));
+    const youtube = element(by.id('inputYouTube'));
     youtube.clear();
 
     const vimeo = element(by.id('inputVimeo'));
@@ -174,10 +168,11 @@ describe('DesignComponent', () => {
     // tabs
 
     expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
-    element.all(by.className('mat-tab-labels')).get(3).click();
+    element.all(by.className('mat-tab-label')).get(3).click();
 
     const EC = protractor.ExpectedConditions;
     browser.wait(EC.presenceOf(element(by.id('inputListenLive'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('inputListenLive'))), 20000);
 
     const listenlive = element(by.id('inputListenLive'));
     listenlive.clear();
@@ -188,19 +183,20 @@ describe('DesignComponent', () => {
 
   const clearAllProfilePage = function () {
     clearProfilePageSocial();
-    //clearProfilePageMusic();
-    //clearProfilePageRadio();
-    //clearProfilePageVideo();
+    clearProfilePageMusic();
+    clearProfilePageVideo();
+    clearProfilePageRadio();
   };
 
   const populateProfilePageSocial = function () {
     // tabs
 
     expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
-    element.all(by.className('mat-tab-labels')).get(0).click();
+    element.all(by.className('mat-tab-label')).get(0).click();
 
     const EC = protractor.ExpectedConditions;
     browser.wait(EC.presenceOf(element(by.id('website_name'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('website_name'))), 20000);
 
     const website = element(by.id('website_name'));
     website.sendKeys('website_name');
@@ -225,10 +221,11 @@ describe('DesignComponent', () => {
     // tabs
 
     expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
-    element.all(by.className('mat-tab-labels')).get(1).click();
+    element.all(by.className('mat-tab-label')).get(1).click();
 
     const EC = protractor.ExpectedConditions;
     browser.wait(EC.presenceOf(element(by.id('inputAudiomack'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('inputAudiomack'))), 20000);
 
     const audiomack = element(by.id('inputAudiomack'));
     audiomack.sendKeys('audiomack');
@@ -250,11 +247,12 @@ describe('DesignComponent', () => {
     // tabs
 
     expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
-    element.all(by.className('mat-tab-labels')).get(2).click();
+    element.all(by.className('mat-tab-label')).get(2).click();
 
     const EC = protractor.ExpectedConditions;
-    browser.wait(EC.presenceOf(element(by.id('inputYoutube'))), 20000);
-    const youtube = element(by.id('inputYoutube'));
+    browser.wait(EC.presenceOf(element(by.id('inputYouTube'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('inputYouTube'))), 20000);
+    const youtube = element(by.id('inputYouTube'));
     youtube.sendKeys('youtube');
 
     const vimeo = element(by.id('inputVimeo'));
@@ -269,26 +267,56 @@ describe('DesignComponent', () => {
     // tabs
 
     expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
-    element.all(by.className('mat-tab-labels')).get(3).click();
+    element.all(by.className('mat-tab-label')).get(3).click();
 
     const EC = protractor.ExpectedConditions;
     browser.wait(EC.presenceOf(element(by.id('inputListenLive'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('inputListenLive'))), 20000);
 
     const listenlive = element(by.id('inputListenLive'));
     listenlive.sendKeys('lisenlive');
   };
 
   const populateAllProfilePage = function () {
-    //populateProfilePageSocial();
-    //populateProfilePageMusic();
-    //populateProfilePageRadio();
-    //populateProfilePageVideo();
+    populateProfilePageSocial();
+    populateProfilePageMusic();
+    populateProfilePageVideo();
+    populateProfilePageRadio();
   };
 
   const clearBlogPage = function () {
 
   };
 
+
+  const createBlog = function () {
+    const EC = protractor.ExpectedConditions;
+    browser.wait(EC.presenceOf(element(by.id('blog_headline'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('blog_headline'))), 20000);
+
+    const blog_headline = element(by.id('blog_headline'));
+    blog_headline.sendKeys('test');
+
+    const blog_input = element(by.tagName('ckeditor'))
+      .element(by.tagName('div'))
+      .element(by.tagName('div'))
+      .element(by.className('cke_editable'));
+    blog_input.sendKeys('test');
+
+    const tagInputDiv = element(by.className('ng2-tag-input'));
+    const tagInput = tagInputDiv.element(by.tagName('tag-input-form'))
+      .element(by.tagName('form'))
+      .element(by.tagName('input'));
+
+    for ( let i = 0; i < 3; i++) {
+      tagInput.sendKeys('tag' + i);
+      tagInput.sendKeys(protractor.Key.ENTER);
+    }
+
+
+    const ele = element(by.id('buttons'));
+    ele.all(by.tagName('button')).get(1).click();
+  };
 
   const populateAppInfoPage = function () {
     const imageChooser = element(by.id('tabimageInput'))
@@ -332,13 +360,13 @@ describe('DesignComponent', () => {
       tagInput.sendKeys(protractor.Key.ENTER);
     }
   };
-  /*
+
   it('should login and clear info page and test to see if written values are reflected', () => {
     const url = 'http://localhost:4200/';
     browser.ignoreSynchronization = true
     browser.get(url);
     expect(browser.driver.getCurrentUrl()).toEqual(url);
-    login();
+    //login();
     clearAppInfoPage();
 
     populateAppInfoPage();
@@ -347,13 +375,16 @@ describe('DesignComponent', () => {
 
     expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
   });
-*/
+
+
+
   it('should login get to the profileinfo and fill out stuff and go to blog', () => {
     const url = 'http://localhost:4200/';
     browser.ignoreSynchronization = true
     browser.get(url);
     expect(browser.driver.getCurrentUrl()).toEqual(url);
-    login();
+
+    //login();
     clearAppInfoPage();
 
     populateAppInfoPage();
@@ -367,56 +398,328 @@ describe('DesignComponent', () => {
 
     const nextButtonProfile = element(by.id('next_button'));
     nextButton.click();
+
+    expect(element(by.id('blog_card')).isPresent()).toBe(true);
   });
+
+
+
+
+  it('should verify you cannot add more than 3 blogs', () => {
+    const url = 'http://localhost:4200/';
+    browser.ignoreSynchronization = true
+    browser.get(url);
+    expect(browser.driver.getCurrentUrl()).toEqual(url);
+    //login();
+    clearAppInfoPage();
+
+    populateAppInfoPage();
+    const nextButton = element(by.id('next_button'));
+    nextButton.click();
+
+    expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
+
+    clearAllProfilePage();
+    populateAllProfilePage();
+
+    const nextButtonProfile = element(by.id('next_button'));
+    nextButton.click();
+
+    expect(element(by.id('blog_card')).isPresent()).toBe(true);
+
+    const tags: ElementArrayFinder = element.all(by.id('id_buttons'));
+    tags.count().then(function (size) {
+      for ( let i = size - 1; i >= 0; i--) {
+            tags.get(i).all(by.tagName('button')).get(0).click();
+      }
+    });
+
+    element(by.tagName('ckeditor')).isPresent().then(function (res) {
+      if (res) {
+        const ele = element(by.id('buttons'));
+        ele.all(by.tagName('button')).get(0).click();
+      }
+    });
+
+    const EC = protractor.ExpectedConditions;
+    browser.wait(EC.presenceOf(element(by.id('add_blog_button'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('add_blog_button'))), 20000);
+
+    element(by.id('add_blog_button')).click();
+    createBlog();
+    element(by.id('add_blog_button')).click();
+    createBlog();
+    element(by.id('add_blog_button')).click();
+    createBlog();
+
+    const blog_button = element(by.id('add_blog_button'));
+    expect(blog_button.isEnabled()).toBe(false);
+  });
+
+
+
+  it('should show color by default on design page', () => {
+   const url = 'http://localhost:4200/';
+   browser.ignoreSynchronization = true
+   browser.get(url);
+   expect(browser.driver.getCurrentUrl()).toEqual(url);
+   //login();
+   clearAppInfoPage();
+
+   populateAppInfoPage();
+   const nextButton = element(by.id('next_button'));
+   nextButton.click();
+
+   expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
+
+   clearAllProfilePage();
+   populateAllProfilePage();
+
+   const nextButtonProfile = element(by.id('next_button'));
+   nextButton.click();
+
+   expect(element(by.id('blog_card')).isPresent()).toBe(true);
+
+   const tags: ElementArrayFinder = element.all(by.id('id_buttons'));
+   tags.count().then(function (size) {
+   for ( let i = size - 1; i >= 0; i--) {
+   tags.get(i).all(by.tagName('button')).get(0).click();
+   }
+   });
+
+   element(by.tagName('ckeditor')).isPresent().then(function (res) {
+   if (res) {
+   const ele = element(by.id('buttons'));
+   ele.all(by.tagName('button')).get(0).click();
+   }
+   });
+
+   const EC = protractor.ExpectedConditions;
+   browser.wait(EC.presenceOf(element(by.id('add_blog_button'))), 20000);
+   browser.wait(EC.visibilityOf(element(by.id('add_blog_button'))), 20000);
+
+   element(by.id('add_blog_button')).click();
+   createBlog();
+   element(by.id('add_blog_button')).click();
+   createBlog();
+   element(by.id('add_blog_button')).click();
+   createBlog();
+
+   const blog_button = element(by.id('add_blog_button'));
+   expect(blog_button.isEnabled()).toBe(false);
+
+   const nextButtonProfile2 = element(by.id('next_button'));
+   nextButton.click();
+
+
+   expect(browser.isElementPresent(by.css('.ui.header')));
+
+   const header_elem = element(by.css('.ui.header'));
+
+   expect(header_elem.getText()).toEqual('Color');
+   });
+
+
+  it('should upload image to tab and show on device', () => {
+    const url = 'http://localhost:4200/';
+    browser.ignoreSynchronization = true
+    browser.get(url);
+    expect(browser.driver.getCurrentUrl()).toEqual(url);
+    //login();
+    clearAppInfoPage();
+
+    populateAppInfoPage();
+    const nextButton = element(by.id('next_button'));
+    nextButton.click();
+
+    expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
+
+    clearAllProfilePage();
+    populateAllProfilePage();
+
+    const nextButtonProfile = element(by.id('next_button'));
+    nextButton.click();
+
+    expect(element(by.id('blog_card')).isPresent()).toBe(true);
+
+    const tags: ElementArrayFinder = element.all(by.id('id_buttons'));
+    tags.count().then(function (size) {
+      for ( let i = size - 1; i >= 0; i--) {
+        tags.get(i).all(by.tagName('button')).get(0).click();
+      }
+    });
+
+    element(by.tagName('ckeditor')).isPresent().then(function (res) {
+      if (res) {
+        const ele = element(by.id('buttons'));
+        ele.all(by.tagName('button')).get(0).click();
+      }
+    });
+
+    const EC = protractor.ExpectedConditions;
+    browser.wait(EC.presenceOf(element(by.id('add_blog_button'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('add_blog_button'))), 20000);
+
+    element(by.id('add_blog_button')).click();
+    createBlog();
+    element(by.id('add_blog_button')).click();
+    createBlog();
+    element(by.id('add_blog_button')).click();
+    createBlog();
+
+    const blog_button = element(by.id('add_blog_button'));
+    expect(blog_button.isEnabled()).toBe(false);
+
+    const nextButtonProfile2 = element(by.id('next_button'));
+    nextButton.click();
+
+
+    expect(browser.isElementPresent(by.css('.ui.header')));
+
+    const header_elem = element(by.css('.ui.header'));
+
+    expect(header_elem.getText()).toEqual('Color');
+
+    const elem1 = element(by.id('card_main'));
+    elem1.click();
+
+    const imageChooser = element(by.id('tabimageInputDiv0'))
+      .element(by.tagName('div'))
+      .element(by.tagName('input'));
+
+    const path = require('path');
+// Select image
+    const fileToUpload = '../src/assets/img/dummy.png'
+      , absolutePath = path.resolve(__dirname, fileToUpload);
+
+    const imagePath = 'http://placehold.it/120x120&text=image1';
+    imageChooser.sendKeys(absolutePath);
+
+    const iconElm = element(by.css('#inputBackground0'));
+
+    expect(iconElm.getCssValue('background-image') !== undefined);
+  });
+
+
+
+
+  it('should test all combinations of headers', () => {
+    const url = 'http://localhost:4200/';
+    browser.ignoreSynchronization = true
+    browser.get(url);
+    expect(browser.driver.getCurrentUrl()).toEqual(url);
+    //login();
+    clearAppInfoPage();
+
+    populateAppInfoPage();
+    const nextButton = element(by.id('next_button'));
+    nextButton.click();
+
+    expect(element(by.className('mat-tab-labels')).isPresent()).toBe(true);
+
+    clearAllProfilePage();
+    populateAllProfilePage();
+
+    const nextButtonProfile = element(by.id('next_button'));
+    nextButton.click();
+
+    expect(element(by.id('blog_card')).isPresent()).toBe(true);
+
+    const tags: ElementArrayFinder = element.all(by.id('id_buttons'));
+    tags.count().then(function (size) {
+      for ( let i = size - 1; i >= 0; i--) {
+        tags.get(i).all(by.tagName('button')).get(0).click();
+      }
+    });
+
+    element(by.tagName('ckeditor')).isPresent().then(function (res) {
+      if (res) {
+        const ele = element(by.id('buttons'));
+        ele.all(by.tagName('button')).get(0).click();
+      }
+    });
+
+    const EC = protractor.ExpectedConditions;
+    browser.wait(EC.presenceOf(element(by.id('add_blog_button'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.id('add_blog_button'))), 20000);
+
+    element(by.id('add_blog_button')).click();
+    createBlog();
+    element(by.id('add_blog_button')).click();
+    createBlog();
+    element(by.id('add_blog_button')).click();
+    createBlog();
+
+    const blog_button = element(by.id('add_blog_button'));
+    expect(blog_button.isEnabled()).toBe(false);
+
+    const nextButtonProfile2 = element(by.id('next_button'));
+    nextButton.click();
+
+
+    expect(browser.isElementPresent(by.css('.ui.header')));
+
+    const header_elem = element(by.css('.ui.header'));
+
+    const headers1 = [
+      'Color',
+      'Main',
+      'More',
+      'Radio',
+      'Videos',
+      'Music'
+    ];
+    element.all(by.css('.col.card')).then(function (elm) {
+      for (let i = 0; i < elm.length; i++) {
+        elm[i].getText().then(function (text) {
+          expect(headers1.indexOf(text)).toBeGreaterThanOrEqual(0);
+        });
+      }
+    });
+/*
+    const profile = element(by.id('header_item_profileInfo'));
+    profile.click();
+
+    const design = element(by.id('header_info_design'));
+
+
+    clearProfilePageMusic();
+
+    const nextButtonProfile3 = element(by.id('next_button'));
+    nextButtonProfile3.click();
+
+    design.click();
+    browser.wait(EC.presenceOf(element(by.css('.ui.header'))), 20000);
+    browser.wait(EC.visibilityOf(element(by.css('.ui.header'))), 20000);
+
+
+
+    const checkArr =
+        ['Color',
+         'Main',
+         'More',
+         'Radio',
+         'Videos',
+         'Photos'
+    ];
+
+    element.all(by.css('.col.card')).then(function (elm) {
+      for (let i = 0; i < elm.length; i++) {
+        elm[i].getText().then(function (text) {
+          expect(checkArr.indexOf(text)).toBeGreaterThanOrEqual(0);
+        });
+      }
+    });
+  */
+  });
+
+
 
 
   /**
 
-  it('should show color by default', () => {
-    //expect(component).toBeTruthy();
-    let url = 'http://localhost:4200/design';
-    browser.ignoreSynchronization = true
-    browser.get(url);
-    expect(browser.driver.getCurrentUrl()).toEqual(url);
 
 
-    expect(browser.isElementPresent(by.css('.ui.header')));
-
-    let elem = element(by.css('.ui.header'));
-
-    expect(elem.getText()).toEqual('Color');
-
-  });
-
-  it('should upload image to tab and show on device', () => {
-    //expect(component).toBeTruthy();
-    let url = 'http://localhost:4200/design';
-    browser.ignoreSynchronization = true
-    browser.get(url);
-    expect(browser.driver.getCurrentUrl()).toEqual(url);
-
-
-    expect(browser.isElementPresent(by.css('.ui.header')));
-
-    let elem1 = element(by.id('card_main'));
-    elem1.click();
-
-    let imageChooser = element(by.id('tabimageInputDiv4')).element(by.tagName('img-cropper')).element(by.tagName('span')).element(by.tagName('input'));
-
-    var path = require('path');
-// Select image
-    var fileToUpload = '../src/assets/img/dummy.png'
-      , absolutePath = path.resolve(__dirname, fileToUpload);
-
-    var imagePath = 'http://placehold.it/120x120&text=image1';
-    imageChooser.sendKeys(absolutePath);
-
-    let iconElm = element(by.css('#inputBackground4'));
-
-      expect(iconElm.getCssValue("background-image")!= undefined);
-
-
-  });
 
 
 
