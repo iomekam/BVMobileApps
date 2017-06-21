@@ -27,7 +27,6 @@ export class VideoComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.profile.videoInfo = this.displayArray;
-        this._profileService.setProfile(this.profile);
 
         let isValid = false;
 

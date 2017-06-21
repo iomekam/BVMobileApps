@@ -7,6 +7,13 @@ using System.Threading.Tasks;
 
 namespace BVMobileAppsApi.Model
 {
+    public class InsertPicture
+    {
+        public int PictureID { get; set; }
+        public byte FolderID { get; set; }
+        public string KeywordsUrl { get; set; }
+    }
+
     public class AppSetup
     {
         public AppSetup()

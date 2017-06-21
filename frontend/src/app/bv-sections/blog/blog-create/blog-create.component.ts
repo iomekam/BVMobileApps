@@ -153,6 +153,7 @@ export class BlogCreateComponent implements OnInit, AfterViewInit, OnDestroy {
       
       xhr.open("PUT", this._blogPostService.getUrl(), false);
       xhr.setRequestHeader("Content-type", "application/json");
+      xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
       xhr.send(JSON.stringify(this.blogPost));
     }
 

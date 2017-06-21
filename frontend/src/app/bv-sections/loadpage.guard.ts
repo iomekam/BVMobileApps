@@ -14,6 +14,7 @@ import { IProfileModel } from './profile-info/iprofile-model';
 import { BlogPostService } from './blog/blog-post.service';
 import { IBlogPost } from './blog/iblog-post';
 import { SharedService } from './shared/shared.service';
+import { AuthHttp } from 'angular2-jwt';
 
 function getWindow (): any {
     return window;
@@ -42,7 +43,7 @@ export class LoadpageGuard implements CanActivate {
     private _profileService: MediaUpdateService,
     private _blogPostService: BlogPostService,
     private _sharedService: SharedService,
-    private _http: Http) { }
+    private _authHttp: AuthHttp) { }
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -58,7 +59,7 @@ export class LoadpageGuard implements CanActivate {
 
       startLoad();
       return Observable.forkJoin(
-        this._http.get(this._sharedService.url + '/api/lastcompleted/1').map(response => { return <LastCompleted> response.json(); }),
+        this._authHttp.get(this._sharedService.url + '/api/lastcompleted').map(response => { return <LastCompleted> response.json(); }),
         this._deviceService.fetchData(),
         this._appInfoService.fetchData(),
         this._profileService.fetchData(),
@@ -70,7 +71,9 @@ export class LoadpageGuard implements CanActivate {
                 this._profileService.setDataAfterFetch(<IProfileModel>data[3]);
                 this._blogPostService.setDataAfterFetch(<IBlogPost[]>data[4]);
 
-                this._headerService.goto((<LastCompleted>data[0]).lastPage);
+                const last = (<LastCompleted>data[0]);
+                this._sharedService.username = last.username;
+                this._headerService.goto(last.lastPage);
                 endLoad();
 
                 return true;

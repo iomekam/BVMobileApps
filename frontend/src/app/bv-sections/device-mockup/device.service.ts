@@ -8,6 +8,7 @@ import { Bounds } from '../../ng2-img-cropper';
 import { Pipe, PipeTransform } from '@angular/core';
 import { SharedService } from '../shared/shared.service';
 import { ValidationService } from '../shared/validation.service';
+import { AuthHttp } from 'angular2-jwt';
 
 @Pipe({
     name: 'valid',
@@ -47,7 +48,7 @@ export class DeviceService {
   private _radio: IDeviceTab;
   private _more: IDeviceTab
 
-  private _url = '/api/design/';
+  private _url = '/api/design';
 
   private httpPutUnsubscribe = new Subject<void>();
 
@@ -122,9 +123,11 @@ export class DeviceService {
   }
 
   constructor(
-    private _http: Http,
+    private _authHttp: AuthHttp,
     private _validationService: ValidationService,
     private _sharedService: SharedService) {
+
+      this._url = this._sharedService.url + this._url;
 
     this._main = {
       id: TabID.BLOG,
@@ -419,8 +422,7 @@ export class DeviceService {
             return;
       }
 
-      this._url = this._sharedService.url + this._url + this._sharedService.id;
-        return this._http.get(this._url)
+        return this._authHttp.get(this._url)
             .map((response: Response) => <IDeviceModel> response.json())
             .do(data => {
                 data.activeTab = this._model.activeTab;
@@ -517,11 +519,24 @@ export class DeviceService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const options = new RequestOptions({ headers: headers });
-    this._http.put(this._url, JSON.stringify(model), options)
+    this._authHttp.put(this._url, JSON.stringify(model), options)
             .takeUntil(this.httpPutUnsubscribe)
             .subscribe(
                 data => {
-                    console.log(model);
+                    this.httpPutUnsubscribe.next();
+                    this.httpPutUnsubscribe.complete();
+                },
+                error => this._sharedService.onHttpError(error));
+  }
+
+  public create() {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const options = new RequestOptions({ headers: headers });
+    this._authHttp.post(this._sharedService.url + "/api/create", JSON.stringify(""), options)
+            .takeUntil(this.httpPutUnsubscribe)
+            .subscribe(
+                data => {
                     this.httpPutUnsubscribe.next();
                     this.httpPutUnsubscribe.complete();
                 },
@@ -576,8 +591,6 @@ export class DeviceService {
 
   public addTab(id: TabID): void {
     const tab = this.getTab(id);
-
-    console.log(id);
 
     // If all 5 tabs are already being shown, then we want to replace the photo tab with the radio tab.
     if (this._model.tabs.length === 5) {

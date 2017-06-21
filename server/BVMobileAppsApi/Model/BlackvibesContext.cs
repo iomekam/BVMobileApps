@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
+using System.Linq;
 
 namespace BVMobileAppsApi.Model
 {
@@ -10,12 +12,9 @@ namespace BVMobileAppsApi.Model
         public virtual DbSet<BVBlogs> Blogs { get; set; }
         public virtual DbSet<Images> Images { get; set; }
         public virtual DbSet<UserProfile> UsersProfile { get; set; }
+        public virtual DbSet<Artists> Artists { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-            optionsBuilder.UseSqlServer(@"Server=tcp:iomekam.database.windows.net,1433;Initial Catalog=blackvibes;Persist Security Info=False;User ID=iomekam3;Password=04051993@Q1;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-        }
+        public BlackvibesContext(DbContextOptions options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -346,6 +345,73 @@ namespace BVMobileAppsApi.Model
 
                 entity.Property(e => e.Youtube).HasColumnType("varchar(60)");
             });
+
+            modelBuilder.Entity<Artists>(entity =>
+            {
+                entity.HasKey(e => e.Aid)
+                    .HasName("PK_Artists");
+
+                entity.Property(e => e.Aid).HasColumnName("AID");
+
+                entity.Property(e => e.Artist)
+                    .IsRequired()
+                    .HasColumnType("varchar(50)");
+
+                entity.Property(e => e.ArtistId).HasColumnName("ArtistID");
+
+                entity.Property(e => e.ContactEmail).HasColumnType("varchar(100)");
+
+                entity.Property(e => e.Description).HasColumnType("text");
+
+                entity.Property(e => e.GenreId).HasColumnName("GenreID");
+
+                entity.Property(e => e.Picture).HasColumnType("varchar(50)");
+
+                entity.Property(e => e.Twitter).HasColumnType("varchar(15)");
+
+                entity.Property(e => e.Website).HasColumnType("varchar(100)");
+            });
+
+            modelBuilder.Entity<InsertArtist>(entity =>
+            {
+                entity.HasKey(e => e.Aid);
+                entity.Property(e => e.Aid).HasColumnName("AID");
+                entity.Property(e => e.Status).HasColumnName("Status");
+            });
+
+            modelBuilder.Entity<InsertPicture>(entity =>
+            {
+                entity.HasKey(e => e.FolderID);
+            });
+
+            modelBuilder.Entity<InsertBlog>(entity =>
+            {
+                entity.HasKey(e => e.BlogID);
+            });
+
+            
+        }
+
+        public int InsertArtist(string appName, string twitter)
+        {
+            InsertArtist artist = this.Set<InsertArtist>().FromSql("InsertArtist @artist={0}, @genreid=25, @picture=null, @website=null, @twitter={1}, @description=null", appName, twitter).First();
+            return artist.Aid;
+
+        }
+
+        public InsertPicture InsertPicture(int aid, string username, string name, int picId)
+        {
+            return this.Set<InsertPicture>().FromSql("INSERTPICTURE {0},{1},{2},{3},1,{4},'',null, null, '', ''",
+                aid, name, picId, DateTime.Now, username + "-" + name).First();
+        }
+
+        public int InsertBlog(BVBlogs blog)
+        {
+            Random generator = new Random();
+            String r = generator.Next(100000, 1000000000).ToString();
+
+            return this.Set<InsertBlog>().FromSql("INSERT_BLOG {0},{1},{2},{3},{4},{5},{6},{7},null, 0,0,0,null",
+                blog.UserId, r, blog.Headline, blog.DisplayDate, blog.Story, blog.Keywords, blog.ImageID > 0, blog.KeywordsUrl).First().BlogID;
         }
     }
 }

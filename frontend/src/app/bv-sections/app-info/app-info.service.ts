@@ -6,19 +6,20 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { ValidationService } from '../shared/validation.service';
 import { SharedService } from '../shared/shared.service';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class AppInfoService {
 
     private _appInfo: IAppInfo;
-    private _url = '/api/appInfo/';
+    private _url = '/api/appInfo';
 
     private httpPutUnsubscribe = new Subject<void>();
 
     constructor(
-        private _http: Http,
         private _validationService: ValidationService,
-        private _sharedService: SharedService) {
+        private _sharedService: SharedService,
+        private _authHttp: AuthHttp) {
         this._appInfo = {
             appName: '',
             shortDescription: '',
@@ -31,6 +32,8 @@ export class AppInfoService {
                 bounds: new Bounds()
             }
         };
+
+        this._url = this._sharedService.url + this._url;
     }
 
     public setDataAfterFetch(model: IAppInfo) {
@@ -60,7 +63,7 @@ export class AppInfoService {
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers });
         
-        this._http.put(this._url, JSON.stringify(this._appInfo), options)
+        this._authHttp.put(this._url, JSON.stringify(this._appInfo), options)
                 .takeUntil(this.httpPutUnsubscribe)
                 .subscribe(
                     data => {
@@ -77,8 +80,7 @@ export class AppInfoService {
             return;
         }
 
-        this._url = this._sharedService.url + this._url + this._sharedService.id;
-        return this._http.get(this._url)
+        return this._authHttp.get(this._url)
             .map((response: Response) => <IAppInfo> response.json())
             .do(data => {
                 let image = new Image();

@@ -39,6 +39,8 @@ export class ProfileInfoComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
       this.validUnsub.next();
       this.validUnsub.complete();
+
+      this._profileService.setProfile(this._profileService.getProfile());
     }
 
     @HostListener('window:beforeunload')
@@ -47,6 +49,7 @@ export class ProfileInfoComponent implements OnInit, OnDestroy {
 
       xhr.open("PUT", this._profileService.getUrl(), false);
       xhr.setRequestHeader("Content-type", "application/json");
+      xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
       xhr.send(JSON.stringify(this._profile));
     }
 }

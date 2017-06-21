@@ -60,5 +60,10 @@ namespace BVMobileAppsApi.Model
             AppSetup setup = _context.AppSetup.FirstOrDefault(t => t.UserId == key);
             return setup != null;
         }
+
+        public InsertPicture InsertPicture(int aid, string username, string name, int picId)
+        {
+            return _context.InsertPicture(aid, username, name, picId);
+        }
     }
 }

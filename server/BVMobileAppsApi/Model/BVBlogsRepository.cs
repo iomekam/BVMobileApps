@@ -19,27 +19,14 @@ namespace BVMobileAppsApi.Model
             return _context.Blogs.Where(blog => blog.UserId == id);
         }
 
-        public void Add(BVBlogs item)
+        public int Add(BVBlogs item)
         {
-            try
-            {
-                _context.Blogs.Add(item);
-                _context.SaveChanges();
-            }
-            catch { }
+            return this._context.InsertBlog(item);
         }
 
         public BVBlogs Find(long userID, long blogID)
         {
-            BVBlogs blog = _context.Blogs.FirstOrDefault(t => t.UserId == userID && t.BlogId == blogID);
-            if (blog == null)
-            {
-                blog = new BVBlogs();
-                blog.UserId = (int)userID;
-                Add(blog);
-            }
-
-            return blog;
+            return _context.Blogs.FirstOrDefault(t => t.UserId == userID && t.BlogId == blogID);
         }
 
         public void Remove(long userID, long blogID)

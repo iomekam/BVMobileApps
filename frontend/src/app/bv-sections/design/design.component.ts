@@ -145,10 +145,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }
 
-    public print(tab: IDeviceTab) {
-      console.log(tab);
-    }
-
   onChangeColor(color: Event) {
     let colorString = color + '';
 
@@ -199,7 +195,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onChangeColorHex8(color: string): string {
-      console.log("Color Changing");
     return this.cpService.outputFormat(this.cpService.stringToHsva(color, true), 'rgba', true);
   }
 
@@ -252,9 +247,9 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     const model = this._deviceService.getFullModel();
 
     let xhr = new XMLHttpRequest()
-    console.log(this.deviceModel);
      xhr.open("PUT", this._deviceService.getUrl(), false);
      xhr.setRequestHeader("Content-type", "application/json");
+     xhr.setRequestHeader("Authorization", "Bearer " + localStorage.getItem("token"));
      xhr.send(JSON.stringify(model));
   }
 
@@ -305,7 +300,6 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onCropHeader(bounds: Bounds, tab: IDeviceTab): void {
-    console.log(tab);
     tab.headerImage.bounds = bounds;
     tab.headerImage.originalBase64 = tab.headerImage.original.src;
     this._deviceService.setHeaderImage(tab.id, tab.headerImage);
@@ -315,5 +309,10 @@ export class DesignComponent implements OnInit, OnDestroy, AfterViewInit {
     tab.extraHeaderImage.bounds = bounds;
     tab.extraHeaderImage.originalBase64 = tab.extraHeaderImage.original.src;
     this._deviceService.setExtraHeaderImage(tab.id, tab.extraHeaderImage);
+  }
+
+  create(): void {
+    this._deviceService.create();
+    this._headerService.next();
   }
 }

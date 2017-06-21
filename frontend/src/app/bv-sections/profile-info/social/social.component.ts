@@ -29,7 +29,6 @@ export class SocialComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
 
         this.profile.socialInfo = this.displayArray;
-        this._profileService.setProfile(this.profile);
     }
 
     onInput(): void {

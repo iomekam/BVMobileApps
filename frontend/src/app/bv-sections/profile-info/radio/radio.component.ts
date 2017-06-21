@@ -26,7 +26,6 @@ export class RadioComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.profile.radioInfo = this.displayArray;
-        this._profileService.setProfile(this.profile);
 
         let isValid = false;
 

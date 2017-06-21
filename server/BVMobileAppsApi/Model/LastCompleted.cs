@@ -16,6 +16,7 @@ namespace BVMobileAppsApi.Model
     public class LastCompleted
     {
         public int LastPage { get; set; }
+        public string Username { get; set; }
 
         public void Commit(int id, IAppSetupRepository appSetupRepository)
         {

@@ -3,6 +3,8 @@ import { HeaderService } from './header.service';
 import { Router } from '@angular/router';
 import { ValidationService } from '../bv-sections/shared/validation.service';
 import { Subject } from 'rxjs/Subject';
+import { DeviceService } from '../bv-sections/device-mockup/device.service';
+
 
 @Component({
   selector: 'bv-header',
@@ -43,7 +45,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     constructor(
         private _router: Router,
         private _headerService: HeaderService,
-        private _validationService: ValidationService) { }
+        private _validationService: ValidationService,
+        private _deviceService: DeviceService) { }
 
     toggleCurrent(id: number): void {
 
@@ -74,6 +77,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         else if (id === this.createID) {
           this.isCreateCurrent = true;
           this.currentID = this.createID;
+          this._deviceService.create()
         }
     }
 

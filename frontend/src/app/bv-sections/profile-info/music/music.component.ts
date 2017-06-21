@@ -26,7 +26,6 @@ export class MusicComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this.profile.musicInfo = this.displayArray;
-        this._profileService.setProfile(this.profile);
         let isValid = false;
 
         this.displayArray.forEach(

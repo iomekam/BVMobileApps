@@ -35,6 +35,17 @@ import { CreateComponent } from './create/create.component';
 
 import { PopoverModule } from 'ngx-bootstrap/popover';
 
+import { Http, RequestOptions } from '@angular/http';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
+
+export function authHttpServiceFactory(http: Http, options: RequestOptions) {
+  return new AuthHttp(new AuthConfig({
+    tokenName: 'token',
+		              tokenGetter: (() => localStorage.getItem('token')),
+		              globalHeaders: [{'Content-Type':'application/json'}],
+	      }), http, options);
+}
+
 @NgModule({
   imports: [
     CommonModule,
@@ -108,6 +119,13 @@ import { PopoverModule } from 'ngx-bootstrap/popover';
     DesignImageCropperComponent,
     FilterPipe,
     CreateComponent
+  ],
+  providers: [
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    }
   ],
   entryComponents: [MyPopoverComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA, ],

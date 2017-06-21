@@ -4,11 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BVMobileAppsApi.Model;
+using BVMobileAppsApi.Token;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace BVMobileAppsApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class BlogsController : Controller
     {
@@ -22,25 +25,31 @@ namespace BVMobileAppsApi.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public IEnumerable<Blog> Get(int id)
+        [HttpGet]
+        public IEnumerable<Blog> Get()
         {
+            int id = JWT.GetUserId(Request);
+            
             IEnumerable<Blog> blog = Blog.Get(id, this._bvBlogsRepository, _imageRepository);
             return blog;
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public Blog Put(int id, [FromBody]Blog value)
+        [HttpPut]
+        public Blog Put([FromBody]Blog value)
         {
-            value.Commit(id, this._bvBlogsRepository, _imageRepository);
+            int id = JWT.GetUserId(Request);
+            string username = JWT.GetUsername(Request);
+
+            value.Commit(id, username, this._bvBlogsRepository, _imageRepository);
             return value;
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id, [FromBody]Blog value)
+        [HttpDelete]
+        public void Delete([FromBody]Blog value)
         {
+            int id = JWT.GetUserId(Request);
             this._bvBlogsRepository.Remove(id, value.Id);
         }
     }

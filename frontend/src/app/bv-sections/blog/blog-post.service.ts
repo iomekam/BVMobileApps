@@ -6,6 +6,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { ValidationService } from '../shared/validation.service'
 import { SharedService } from '../shared/shared.service';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class BlogPostService {
@@ -17,17 +18,18 @@ export class BlogPostService {
     private _isInCreationPage = false;
     private _currentUpdateID = 0;
 
-    private _url = '/api/blogs/';
+    private _url = '/api/blogs';
 
     private httpPutUnsubscribe = new Subject<void>();
     private httpUpdateUnsubscribe = new Subject<void>();
     private httpDeleteUnsubscribe = new Subject<void>();
 
     constructor(
-        private _http: Http,
         private _validationService: ValidationService,
-        private _sharedService: SharedService) {
+        private _sharedService: SharedService,
+        private _authHttp: AuthHttp) {
         this._blogPost = [];
+        this._url = this._sharedService.url + this._url;
     }
 
     public setDataAfterFetch(blogPost: IBlogPost[]) {
@@ -54,8 +56,7 @@ export class BlogPostService {
             return;
         }
 
-        this._url = this._sharedService.url + this._url + this._sharedService.id;
-        return this._http.get(this._url)
+        return this._authHttp.get(this._url)
             .map((response: Response) => <IBlogPost[]> response.json())
             .do(data => {
                     data.forEach(
@@ -145,7 +146,7 @@ export class BlogPostService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers });
-        this._http.put(this._url, JSON.stringify(blogPost), options)
+        this._authHttp.put(this._url, JSON.stringify(blogPost), options)
                 .takeUntil(this.httpPutUnsubscribe)
                 .subscribe(
                     data => {
@@ -166,7 +167,7 @@ export class BlogPostService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers });
-        this._http.put(this._url, JSON.stringify(updatedBlogPost), options)
+        this._authHttp.put(this._url, JSON.stringify(updatedBlogPost), options)
                 .takeUntil(this.httpPutUnsubscribe)
                 .subscribe(
                     data => {
@@ -200,7 +201,7 @@ export class BlogPostService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers, body: deletedBlogPost});
-        this._http.delete(this._url, options)
+        this._authHttp.delete(this._url, options)
                 .takeUntil(this.httpDeleteUnsubscribe)
                 .subscribe(
                     data => {

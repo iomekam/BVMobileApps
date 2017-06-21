@@ -8,7 +8,7 @@ namespace BVMobileAppsApi.Model
     public interface IBVBlogsRepository
     {
         IEnumerable<BVBlogs> GetAll(long id);
-        void Add(BVBlogs item);
+        int Add(BVBlogs item);
         BVBlogs Find(long userID, long blogID);
         void Remove(long userID, long blogID);
         void Update(BVBlogs item);

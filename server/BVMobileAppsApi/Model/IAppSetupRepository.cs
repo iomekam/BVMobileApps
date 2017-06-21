@@ -13,5 +13,7 @@ namespace BVMobileAppsApi.Model
         void Remove(long key);
         void Update(AppSetup item);
         bool Exists(long key);
+
+        InsertPicture InsertPicture(int aid, string username, string name, int picId);
     }
 }

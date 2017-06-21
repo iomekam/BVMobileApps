@@ -14,7 +14,7 @@ namespace BVMobileAppsApi.Model
         public List<MediaInfo> musicInfo;
         public List<MediaInfo> radioInfo;
 
-        public void Commit(int id, IAppSetupRepository appSetupRepository, IUserProfileRepository userProfileRepository)
+        public void Commit(int id, IAppSetupRepository appSetupRepository, IUserProfileRepository userProfileRepository, IArtistRepository artistRepository)
         {
             UserProfile profile = userProfileRepository.Find(id);
             AppSetup setup = appSetupRepository.Find(id);
@@ -97,7 +97,22 @@ namespace BVMobileAppsApi.Model
 
             profile.Website = this.Website;
             setup.Phone = this.Phone_number;
+            
+            if(profile.Aid == null)
+            {
+                Artists a = new Artists
+                {
+                    Artist = setup.AppName,
+                    Twitter = profile.Twitter
+                };
 
+                profile.Aid = artistRepository.Add(a);
+            }
+
+            Artists artist = artistRepository.Find((int)profile.Aid);
+            artist.Twitter = profile.Twitter;
+
+            artistRepository.Update(artist);
             userProfileRepository.Update(profile);
             appSetupRepository.Update(setup);
         }

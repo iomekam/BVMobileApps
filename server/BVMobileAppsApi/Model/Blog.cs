@@ -15,10 +15,15 @@ namespace BVMobileAppsApi.Model
         public BVImage Image { get; set; }
         public bool IsUnfinished { get; set; }
 
-        public void Commit(int id, IBVBlogsRepository bvBlogsRepository, IImagesRepository imageRepository)
+        public void Commit(int id, string username, IBVBlogsRepository bvBlogsRepository, IImagesRepository imageRepository)
         {
             BVBlogs blog = bvBlogsRepository.Find(id, this.Id);
-            this.Id = blog.BlogId;
+            bool shouldCreate = blog == null;
+
+            if(blog == null)
+            {
+                blog = new BVBlogs();
+            }
 
             blog.UserId = id;
             blog.DisplayDate = this.Date;
@@ -27,7 +32,7 @@ namespace BVMobileAppsApi.Model
             blog.Keywords = String.Join(",", this.Keywords);
             blog.Unfinished = this.IsUnfinished;
 
-            string keywordsUrl = "username";
+            string keywordsUrl = username;
 
             for(int count = 0; count < 3; count++)
             {
@@ -42,7 +47,7 @@ namespace BVMobileAppsApi.Model
                 keywordsUrl += "-" + keyword;
             }
 
-            blog.KeywordsUrl = (keywordsUrl + "-" + blog.BlogId).ToLower();
+            blog.KeywordsUrl = (keywordsUrl).ToLower();
 
             if (Image.Image != null && Image.Image != "")
             {
@@ -74,6 +79,14 @@ namespace BVMobileAppsApi.Model
                     imageRepository.Update(image);
                 }
             }
+
+            if (shouldCreate)
+            {
+                blog.BlogId = bvBlogsRepository.Add(blog);
+                blog.KeywordsUrl = blog.KeywordsUrl + "-" + blog.BlogId;
+            }
+
+            this.Id = blog.BlogId;
 
             bvBlogsRepository.Update(blog);
         }

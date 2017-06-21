@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace BVMobileAppsApi.Model
 {
+    public class InsertBlog
+    {
+        public int BlogID { get; set; }
+    }
     public class BVBlogs
     {
         public BVBlogs()

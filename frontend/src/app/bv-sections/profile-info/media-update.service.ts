@@ -6,6 +6,7 @@ import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Subject } from 'rxjs/Subject';
 import { ValidationService } from '../shared/validation.service'
 import { SharedService } from '../shared/shared.service';
+import { AuthHttp } from 'angular2-jwt';
 
 @Injectable()
 export class MediaUpdateService {
@@ -37,7 +38,7 @@ export class MediaUpdateService {
         MediaType.LISTENLIVE
     ];
 
-    private _url = '/api/profileInfo/';
+    private _url = '/api/profileInfo';
 
     private httpPutUnsubscribe = new Subject<void>();
 
@@ -46,7 +47,7 @@ export class MediaUpdateService {
     }
 
     constructor(
-        private _http: Http,
+        private _authHttp: AuthHttp,
         private _validationService: ValidationService,
         private _sharedService: SharedService) {
         this._profile = {
@@ -58,6 +59,7 @@ export class MediaUpdateService {
             radioInfo: this.createMediaInfoList(this.radioMediaTypes),
             socialInfo: this.createMediaInfoList(this.socialMediaTypes)
         };
+        this._url = this._sharedService.url + this._url;
     }
 
     public setDataAfterFetch(profile: IProfileModel) {
@@ -83,8 +85,7 @@ export class MediaUpdateService {
             return;
         }
 
-        this._url = this._sharedService.url + this._url + this._sharedService.id;
-        return this._http.get(this._url)
+        return this._authHttp.get(this._url)
             .map((response: Response) => <IProfileModel> response.json())
             .do(data => {
                 data.noWebsite = false;
@@ -145,7 +146,7 @@ export class MediaUpdateService {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         const options = new RequestOptions({ headers: headers });
-        this._http.put(this._url, JSON.stringify(this._profile), options)
+        this._authHttp.put(this._url, JSON.stringify(this._profile), options)
                 .takeUntil(this.httpPutUnsubscribe)
                 .subscribe(
                     data => {

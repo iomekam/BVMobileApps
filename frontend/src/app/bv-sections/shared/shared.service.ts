@@ -5,13 +5,17 @@ import { environment } from '../../../environments/environment';
 export class SharedService {
 
   public url: string = environment.production === false ? "http://localhost:7345" : "http://bvmobileapps2017.azurewebsites.net";
-  public username: string = "username";//localStorage.getItem('username');
-  public id: number = -1;
+  public username: string = "bvMobileAppsTestAccount";
+  public redirectUrl: string = "";
 
   public isOfflineMode(): boolean {
-    return this.id < 0;
+    return this.username  === "bvMobileAppsTestAccounts";
   }
   public onHttpError(error: any): void {
-    console.log("redirect");
+    if(this.redirectUrl) {
+        console.log("redirect");
+        window.location.href = this.redirectUrl;
+    }
+    
   }
 }

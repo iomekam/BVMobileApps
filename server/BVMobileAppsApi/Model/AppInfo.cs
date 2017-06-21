@@ -15,7 +15,7 @@ namespace BVMobileAppsApi.Model
         public List<string> Keywords { get; set; }
         public BVImage Image { get; set; }
 
-        public void Commit(int id, IAppSetupRepository appSetupRepository, IUserProfileRepository userProfileRepository, IImagesRepository imageRepository)
+        public void Commit(int id, IAppSetupRepository appSetupRepository, IUserProfileRepository userProfileRepository, IImagesRepository imageRepository, IArtistRepository artistRepository)
         {
             AppSetup setup = appSetupRepository.Find(id);
             UserProfile profile = userProfileRepository.Find(id);
@@ -60,6 +60,23 @@ namespace BVMobileAppsApi.Model
             profile.Occupation = this.ShortDescription;
             profile.Picture = setup.Logo;
 
+            if (profile.Aid == null)
+            {
+                Artists a = new Artists
+                {
+                    Artist = setup.AppName,
+                    Twitter = profile.Twitter
+                };
+
+                artistRepository.Add(a);
+
+                profile.Aid = a.Aid;
+            }
+
+            Artists artist = artistRepository.Find((int)profile.Aid);
+            artist.Artist = setup.AppName;
+
+            artistRepository.Update(artist);
             appSetupRepository.Update(setup);
             userProfileRepository.Update(profile);
         }
