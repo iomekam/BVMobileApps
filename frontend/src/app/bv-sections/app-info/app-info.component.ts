@@ -89,7 +89,6 @@ export class AppInfoComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnDestroy(): void {
         this._appInfoService.setAppInfo(this.appInfo);
-        console.log(this.appInfo.keywords);
     }
 
     validate(): void {

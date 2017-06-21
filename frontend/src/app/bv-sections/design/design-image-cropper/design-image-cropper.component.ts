@@ -34,15 +34,12 @@ export class DesignImageCropperComponent implements OnInit {
   public clearThings(test: any)
   {
     test.toElement.value = "";
-    console.log(test);
-    console.log("lol");
   }
   /**
    * Used to send image to second cropper
    * @param $event
    */
   public fileChangeListener($event) {
-    console.log("Change detected");
     let image:any = new Image();
     let file:File = $event.target.files[0];
     let myReader:FileReader = new FileReader();

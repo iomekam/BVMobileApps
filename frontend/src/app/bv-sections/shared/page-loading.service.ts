@@ -51,7 +51,7 @@ export class PageLoadingService {
                         this.httpPutUnsubscribe.next();
                         this.httpPutUnsubscribe.complete();
                     },
-                    error => console.log(JSON.stringify(error))
+                    error => this._sharedService.onHttpError(error))
         );
   }
 }

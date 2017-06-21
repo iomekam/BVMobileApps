@@ -93,7 +93,8 @@ export class MediaUpdateService {
                 data.musicInfo = this.createMediaInfoListWithMediaInfo(this.musicMediaTypes, data.musicInfo);
                 data.videoInfo = this.createMediaInfoListWithMediaInfo(this.videoMediaTypes, data.videoInfo);
                 data.radioInfo = this.createMediaInfoListWithMediaInfo(this.radioMediaTypes, data.radioInfo);
-            });
+            },
+            error => this._sharedService.onHttpError(error));
     }
 
     // Creates a list of mediaInfo using the mediaTypes provided
@@ -153,8 +154,7 @@ export class MediaUpdateService {
                         this.httpPutUnsubscribe.next();
                         this.httpPutUnsubscribe.complete();
                     },
-                    error => console.log(JSON.stringify(error))
-        );
+                    error => this._sharedService.onHttpError(error));
     }
 
 }

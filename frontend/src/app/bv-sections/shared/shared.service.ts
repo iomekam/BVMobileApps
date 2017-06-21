@@ -13,7 +13,6 @@ export class SharedService {
   }
   public onHttpError(error: any): void {
     if(this.redirectUrl) {
-        console.log("redirect");
         window.location.href = this.redirectUrl;
     }
     
