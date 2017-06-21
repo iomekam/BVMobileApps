@@ -8,4 +8,6 @@ export class V2Page {
   getParagraphText() {
     return element(by.css('app-root h1')).getText();
   }
+
+   window.sessionStorage.setItem("test", "true");
 }

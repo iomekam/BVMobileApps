@@ -4,12 +4,14 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class SharedService {
 
-  public url: string = environment.production === false ? "http://localhost:7345" : "http://bvmobileapps2017.azurewebsites.net";
-  public username: string = "bvMobileAppsTestAccount";
+  public serverLocation: string = "http://bvmobileapps2017.azurewebsites.net";
+  public url: string = environment.production === false ? "http://localhost:7345" : this.serverLocation;
+  public username: string = "username";
   public redirectUrl: string = "";
+  private offlineMode = true;
 
   public isOfflineMode(): boolean {
-    return this.username  === "bvMobileAppsTestAccounts";
+    return this.offlineMode;
   }
   public onHttpError(error: any): void {
     if(this.redirectUrl) {
